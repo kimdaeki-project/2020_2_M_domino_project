@@ -4,7 +4,7 @@
 		<div class="footer_wrap1">
 			<div class="footer_wrap1_inner1">
 				<div class="footer_order">
-					<img alt="" src="./resources/images/index/logo.png">
+					<img alt="" src="${pageContext.request.contextPath}/resources/images/common/logo.png">
 					<span class="tel">1577-3082</span>
 				</div>
 	
@@ -47,11 +47,11 @@
 	
 					<div class="sns_box">
 						<ul>
-							<li><a href="http://blog.naver.com/dominostory"><img alt="" src="./resources/images/common/ico_sns_blog2.png"></a></li>
-							<li><a href="https://www.instagram.com/dominostory/"><img alt="" src="./resources/images/common/ico_sns_insta2.png"></a></li>
-							<li><a href="https://www.facebook.com/dominostory/"><img alt="" src="./resources/images/common/ico_sns_facebook2.png"></a></li>
-							<li><a href="https://www.facebook.com/dominostory/"><img alt="" src="./resources/images/common/ico_sns_facebook2.png"></a></li>
-							<li><a href="https://twitter.com/dominostory"><img alt="" src="./resources/images/common/ico_sns_twitter2.png"></a></li>
+							<li><a href="http://blog.naver.com/dominostory"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/ico_sns_blog2.png"></a></li>
+							<li><a href="https://www.instagram.com/dominostory/"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/ico_sns_insta2.png"></a></li>
+							<li><a href="https://www.facebook.com/dominostory/"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/ico_sns_facebook2.png"></a></li>
+							<li><a href="https://www.facebook.com/dominostory/"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/ico_sns_facebook2.png"></a></li>
+							<li><a href="https://twitter.com/dominostory"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/ico_sns_twitter2.png"></a></li>
 						</ul>
 					</div>
 				</div>
