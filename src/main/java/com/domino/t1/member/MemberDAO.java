@@ -13,6 +13,10 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.domino.t1.member.MemberDAO.";
 	
+	public int setMemberJoin(MemberDTO memberDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setMemberJoin", memberDTO);
+	}
+	
 	public List<MemberDTO> getMemberList(MemberDTO memberDTO) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getMemberList", memberDTO);
 	}

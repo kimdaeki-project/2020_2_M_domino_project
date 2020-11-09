@@ -11,6 +11,10 @@ public class MemberService {
 	@Autowired
 	private MemberDAO memberDAO;
 	
+	public int setMemberJoin(MemberDTO memberDTO) throws Exception{
+		return memberDAO.setMemberJoin(memberDTO);
+	}
+	
 	public List<MemberDTO> getMemberList(MemberDTO memberDTO) throws Exception{
 		return memberDAO.getMemberList(memberDTO);
 		
