@@ -15,5 +15,6 @@ public class SqlSessionTsest extends MyTestCase{
 	public void test() {
 		assertNotNull(sqlSession.getConnection());
 	}
+	
 
 }
