@@ -7,6 +7,10 @@
 	<typeAliases>
 		
 		<typeAlias type="java.lang.Long" alias="Long"/>
-		
+		<!-- item related aliases -->
+		<typeAlias type="com.domino.t1.item.ItemDTO" alias="ItemDTO"/>
+		<typeAlias type="com.domino.t1.item.dough.DoughDTO" alias="DoughDTO"/>
+		<typeAlias type="com.domino.t1.item.pizza.PizzaDTO" alias="PizzaDTO"/>
+		<typeAlias type="com.domino.t1.item.topping.ToppingDTO" alias="ToppingDTO"/>
 	</typeAliases>
 </configuration>
