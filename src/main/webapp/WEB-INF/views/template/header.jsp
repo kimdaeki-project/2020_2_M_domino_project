@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 	<header id="header">
 		<div id="header" class="header_wrap">
 			<div id="header_wrap_inner">
-				<a href="#"><img alt="" src="./resources/images/index/logo.png"></a>
+				<a href="#"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/logo.png"></a>
 				
 				<div class="util_nav">
 					<a href="#">로그인</a>

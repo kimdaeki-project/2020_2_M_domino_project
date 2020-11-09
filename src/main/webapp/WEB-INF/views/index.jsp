@@ -7,22 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script language="JavaScript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-<link href ="./resources/css/common/default.css" rel="stylesheet">
-
-<script>
-	$(function(){
-		$('#sub_nav').hide();
-		$('.nav_more').click(function(){
-			$('#sub_nav').slideToggle();
-		});
-	});
-</script>
-
-<script>$(document).ready(function(){$('.rollimgs').bxSlider();});</script>
+<c:import url="./template/bootstrap.jsp"></c:import>
 
 </head>
 <body>
