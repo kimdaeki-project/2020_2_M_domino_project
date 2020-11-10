@@ -86,7 +86,7 @@
 							<p>도미노피자의<br><strong>특별한 매니아 혜택</strong><br>누려보세요!</p>
 						</div>
 						<div class="btn_wrap">
-							<a href="#" >로그인</a>
+							<a href="./memberLogin.jsp" >로그인</a>
 						</div>
 					</div>
 				</div>
