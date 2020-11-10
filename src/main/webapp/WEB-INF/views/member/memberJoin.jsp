@@ -168,6 +168,8 @@
 		emptyCheck();
 		if(idCheck && pwCheck && phoneCheck && emailCheck && emptyCheckResult){
 			$("#frm").submit();
+		}else {
+			alert("필수 항목을 입력해주세요.")
 		}
 	});
 	
