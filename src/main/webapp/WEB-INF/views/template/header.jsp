@@ -20,7 +20,7 @@
 
 <div class="col-sm-12 lnb" id="myNavbar2">
 	  <ul>
-	        <li><a href="#">메뉴</a></li>
+	        <li><a href="${pageContext.request.contextPath}/menu/list/pizza">메뉴</a></li>
 	        <li><a href="#">e-쿠폰</a></li>
 	        <li><a href="#">상품권 선물</a></li>
 	        <li><a href="#">이벤트 제휴</a></li>

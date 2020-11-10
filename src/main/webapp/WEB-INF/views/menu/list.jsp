@@ -2,20 +2,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>도미노 메뉴</title>
-
-<c:import url="../template/bootstrap.jsp"></c:import>
-
+  <title>Insert title here</title>
+  <meta charset="utf-8">
+  <c:import url="../template/bootstrap.jsp"></c:import>
+  <link href ="../../resources/css/common/default.css" rel="stylesheet">
+  <script src="../../resources/js/header.js"></script>
+  
 </head>
 <body>
-	<div class="container">	
-	<c:import url="../template/header.jsp"></c:import>	
+
+<c:import url="../template/header.jsp"></c:import>
 	<section id="content">
 	
 	<h1>common menu list template</h1>
+	<h1>${pageContext.request.contextPath}</h1>
 
 
 
@@ -23,9 +25,8 @@
 
 	</section>
 	<c:import url="../template/footer.jsp"></c:import>
-	</div>
-
 	
+
 
 </body>
 </html>
