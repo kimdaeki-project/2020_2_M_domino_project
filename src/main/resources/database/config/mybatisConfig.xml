@@ -16,6 +16,9 @@
 		<typeAlias type="com.domino.t1.item.dough.DoughDTO" alias="DoughDTO"/>
 		<typeAlias type="com.domino.t1.item.pizza.PizzaDTO" alias="PizzaDTO"/>
 		<typeAlias type="com.domino.t1.item.topping.ToppingDTO" alias="ToppingDTO"/>
+		
+		<!-- board related aliases -->
+		<typeAlias type="com.domino.t1.board.faq.FaqDTO" alias="FaqDTO"/>
 
 	</typeAliases>
 </configuration>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<div class="container.fluid" id="header_wrap">
 <header class="container text-center">    
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -42,8 +44,8 @@
 	    	<div class="col-sm-2 myNavbar3">
 	    		<a href="#" class="inners_title">고객센터</a>
 	    			<ul>
-				       <li><a href="#">자주하는 질문</a></li>
-					   <li><a href="#">온라인 신문고</a></li>
+				       <li><a href="${pageContext.request.contextPath}/faq/faqList">자주하는 질문</a></li>
+					   <li><a href="${pageContext.request.contextPath}/qna/qnaWirte">온라인 신문고</a></li>
 				    </ul>
 	    	</div>
 	    	 
@@ -67,7 +69,5 @@
 	    	</div>
  	 </div> 
 </div>
-
-
-
 </header>
+</div>
