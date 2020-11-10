@@ -22,5 +22,9 @@
 	<select id="getMemberIdCheck" parameterType="MemberDTO" resultType="MemberDTO">
 		select member_id from member_info where member_id = #{member_id}
 	</select>
+	
+	<select id="getMemberPhoneCheck" parameterType="MemberDTO" resultType="MemberDTO">
+		select member_phone from member_info where member_phone = #{member_phone}
+	</select>
 
 </mapper>

@@ -19,12 +19,28 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@GetMapping("memberPhoneCheck")
+	public ModelAndView getMemberPhoneCheck(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		memberDTO = memberService.getMemberPhoneCheck(memberDTO);
+		
+		int result=1;
+		if(memberDTO == null) {
+			result=0;
+		}
+		
+		mv.addObject("msg", result);
+		mv.setViewName("common/ajaxResult");
+		
+		return mv;
+	}
+	
 	@GetMapping("memberIdCheck")
 	public ModelAndView getMemberIdCheck(MemberDTO memberDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		memberDTO = memberService.getMemberIdCheck(memberDTO);
 		
-		int result=1; //중복
+		int result=1;
 		if(memberDTO == null) {
 			result=0;
 		}

@@ -51,7 +51,7 @@
 			
 			<div class="form-group">
 				<label for="phone">휴대전화 </label>
-				<input type="text" name="member_phone">
+				<input type="text" name="member_phone" id="phone">
 				<input type="button" id="btnPhone" value="중복확인">
 				<div id="phoneResult"></div>
 			</div>
@@ -159,6 +159,7 @@
 	
 	var idCheck=false;
 	var pwCheck=false;
+	var phoneCheck=false;
 	var emptyCheckResult=true
 	
 	$("#pw2").blur(function() {
@@ -168,14 +169,14 @@
 		
 		if(pw2==''){
 			$("#pwResult").html("Password를 입력하세요");
-			$("#pwResult").removeClass("idCheck0").addClass("idCheck1");
+			$("#pwResult").removeClass("pwCheck0").addClass("pwCheck1");
 		} else if(pw == pw2){
 			$("#pwResult").html("Password가 일치 합니다");
-			$("#pwResult").removeClass("idCheck1").addClass("idCheck0");
+			$("#pwResult").removeClass("pwCheck1").addClass("pwCheck0");
 			pwCheck=true;
 		}else {
 			$("#pwResult").html("Password가 일치 하지 않습니다");
-			$("#pwResult").removeClass("idCheck0").addClass("idCheck1");
+			$("#pwResult").removeClass("pwCheck0").addClass("pwCheck1");
 		}
 	});
 	
@@ -200,6 +201,31 @@
 			$("#idResult").removeClass("idCheck0").addClass("idCheck1");
 		}
 	});
+	
+	$("#btnPhone").click(function () {
+		phoneCheck=false;
+		var phone = $("#phone").val();
+		if(phone !=''){
+			$.get("./memberPhoneCheck?member_phone="+phone,function(data){
+				data=data.trim();
+				var str = "중복된  전화번호 입니다."
+				
+				$("phoneResult").removeClass("phoneCheck0").addClass("phoneCheck1");
+				if(data==0){
+					str="사용 가능한 전화번호 입니다.";
+					$("#phoneResult").removeClass("phoneCheck1").addClass("phoneCheck0");
+					phoneCheck=true;
+				}
+				$("#phoneResult").html(str);
+			});
+		}else{
+			$("#phoneResult").html("전화번호는  필수 항복입니다.")
+			$("#phoneResult").removeClass("phoneCheck0").addClass("phoneCheck1");
+		}
+	});
+	
+
+
 	
 	
 	
