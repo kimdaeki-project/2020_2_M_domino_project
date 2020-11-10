@@ -13,30 +13,19 @@
 </head>
 <body>
 
-	<h1>Member List</h1>
 	
 	<div class="container">
-	<table class="table table-hober">
-		<tr>
-			<td>1</td>
-			<td>2</td>
-			<td>3</td>
-			<td>4</td>
-			
-		</tr>
-		
-		<c:forEach items="${list}" var="dto">
-			<tr>
-				<td>${dto.member_id}</td>
-				<td>${dto.member_pw}</td>
-				<td>${dto.member_name}</td>
-				<td>${dto.member_phone}</td>
-			
-			</tr>
-		</c:forEach>
+	<form action="">
 	
-	</table>
+	<div>
+		<input type="text" name="member_id">
+	</div>	
 	
+	<div>
+		<input type="password" name="member_pw">
+	</div>	
+	<button>로그인</button>
+	</form>
 	</div>
 <c:import url="../template/footer.jsp"></c:import>
 </body>

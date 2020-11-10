@@ -12,7 +12,10 @@
 	}
 	
 </style>
-<c:import url="../template/bootstrap.jsp"></c:import>
+  <c:import url="../template/bootstrap.jsp"></c:import>
+  <link href ="../resources/css/common/default.css" rel="stylesheet">
+  <script src="../resources/js/header.js"></script>
+<c:import url="../template/header.jsp"></c:import>
 </head>
 <body>
 	<h1>Member Join Page</h1>
@@ -106,11 +109,13 @@
   					<label><input type="checkbox" value=1 id="check6" class="chk" name="member_post_agg">DM 우편(최근 배달주소로 배송)(선택)</label>
 				</div>
 			</div>
-			<button>가입하기</button>
+			<button id="btn">가입하기</button>
 			
 			
 		</form>
 	</div>
+
+<c:import url="../template/footer.jsp"></c:import>
 </body>
 <script type="text/javascript">
 	$("#checkAll2").click(function() {
@@ -138,8 +143,15 @@
 		}
 		
 	});
-
 	
+	
+	if($("input[type=checkbox]").prop("checked", false)) {
+		$(".chk").val(0);
+	}
+	
+	$("#btn").click(function() {
+		alert("회원가입이 완료되었습니다.")
+	})
 	
 
 </script>

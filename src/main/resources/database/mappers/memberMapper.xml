@@ -14,5 +14,9 @@
 		#{member_pi_date}, #{member_pi_agg},#{member_clause_agg}, #{member_locate_agg},#{member_msg_agg},#{member_email_agg},#{member_post_agg}, 
 		sysdate, MEMBER_NUM_SEQ.NEXTVAL)
 	</insert>
+	
+	<select id="getMemberLogin" resultType="MemberDTO" parameterType="MemberDTO">
+		select * from member_info where member_id=#{member_id} and member_pw=#{member_pw}
+	</select>
 
 </mapper>
