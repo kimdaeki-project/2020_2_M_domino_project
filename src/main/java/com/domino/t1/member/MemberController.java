@@ -3,6 +3,7 @@ package com.domino.t1.member;
 import java.util.List;
 
 import javax.jws.WebParam.Mode;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,11 +20,18 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@PostMapping("memberLogin")
-	public ModelAndView getMemberLogin(MemberDTO memberDTO) throws Exception{
+	public ModelAndView getMemberLogin(MemberDTO memberDTO, HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		//memberDTO = memberService.getMemberJoin(memberDTO);
-		System.out.println(memberDTO.getMember_id());
-		System.out.println(memberDTO.getMember_pw());
+		memberDTO = memberService.getMemberLogin(memberDTO);
+		
+		if(memberDTO != null) {
+			session.setAttribute("member", memberDTO);
+			mv.setViewName("redirect:../");
+		}else {
+			mv.addObject("msg","로그인 실패");
+			mv.addObject("path", "./memberLogin");
+			mv.setViewName("common/result");
+		}
 		
 		return mv;
 	}

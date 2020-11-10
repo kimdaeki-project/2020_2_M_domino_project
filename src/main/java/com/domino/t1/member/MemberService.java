@@ -11,7 +11,7 @@ public class MemberService {
 	@Autowired
 	private MemberDAO memberDAO;
 	
-	public MemberDTO getMemberJoin(MemberDTO memberDTO) throws Exception{
+	public MemberDTO getMemberLogin(MemberDTO memberDTO) throws Exception{
 		return memberDAO.getMemberLogin(memberDTO);
 	}
 	

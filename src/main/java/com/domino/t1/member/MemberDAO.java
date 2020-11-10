@@ -14,7 +14,7 @@ public class MemberDAO {
 	private final String NAMESPACE = "com.domino.t1.member.MemberDAO.";
 	
 	public MemberDTO getMemberLogin(MemberDTO memberDTO) throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"getMemberJoin", memberDTO);
+		return sqlSession.selectOne(NAMESPACE+"getMemberLogin", memberDTO);
 	}
 	
 	public int setMemberJoin(MemberDTO memberDTO) throws Exception{

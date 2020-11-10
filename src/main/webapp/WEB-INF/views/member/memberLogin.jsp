@@ -15,7 +15,7 @@
 
 	
 	<div class="container">
-	<form action="">
+	<form action="./memberLogin" method="post">
 	
 	<div>
 		<input type="text" name="member_id">
@@ -23,8 +23,15 @@
 	
 	<div>
 		<input type="password" name="member_pw">
-	</div>	
-	<button>로그인</button>
+	</div>
+	
+	<div class="checkbox">
+	 	 <label><input type="checkbox" name="remember">이이디저장</label>
+	 	<a>아이디 찾기</a>
+	 	<a>비밀번호 찾기</a>
+	</div>
+		
+	<button type="submit">로그인</button>
 	</form>
 	</div>
 <c:import url="../template/footer.jsp"></c:import>
