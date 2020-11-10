@@ -6,14 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="./template/bootstrap.jsp"></c:import>
+<c:import url="../template/bootstrap.jsp"></c:import>
 </head>
 <body>
-<c:import url="./template/header.jsp"></c:import>
+<div class="container">
+<c:import url="../template/header.jsp"></c:import>
 
-	<div class="container">
-	<h1>매장검색</h1>
 	
+		<h1>매장검색</h1>
+		
+	</div>
 
 </body>
 </html>
