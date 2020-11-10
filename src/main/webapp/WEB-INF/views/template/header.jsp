@@ -33,7 +33,7 @@
 								<a href="#"><span>이벤트·제휴</span></a>
 							</li>
 							<li>
-								<a href="#"><span>매장검색</span></a>
+								<a href="../branch/branchSearch.jsp"><span>매장검색</span></a>
 							</li>
 							
 							<li>

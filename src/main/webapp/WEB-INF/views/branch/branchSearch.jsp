@@ -12,6 +12,7 @@
 <c:import url="./template/header.jsp"></c:import>
 
 	<div class="container">
+	<h1>매장검색</h1>
 	
 
 </body>
