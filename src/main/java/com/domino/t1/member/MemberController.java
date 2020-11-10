@@ -19,6 +19,41 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@GetMapping("memberIdCheck")
+	public ModelAndView getMemberIdCheck(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		memberDTO = memberService.getMemberIdCheck(memberDTO);
+		
+		int result=1; //중복
+		if(memberDTO == null) {
+			result=0;
+		}
+		
+		mv.addObject("msg", result);
+		mv.setViewName("common/ajaxResult");
+		
+		return mv;
+		
+	}
+	
+	@GetMapping("memberPage")
+	public ModelAndView getMemberPage() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("memberPage");
+		
+		return mv;
+	}
+	
+	@GetMapping("memberLogout")
+	public ModelAndView getMemberLogout(HttpSession session) throws Exception{
+		System.out.println("memberLogout");
+		ModelAndView mv = new ModelAndView();
+		session.invalidate();
+		mv.setViewName("redirect:../");
+		
+		return mv;
+	}
+	
 	@PostMapping("memberLogin")
 	public ModelAndView getMemberLogin(MemberDTO memberDTO, HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();

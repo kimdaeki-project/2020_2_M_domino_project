@@ -18,5 +18,9 @@
 	<select id="getMemberLogin" resultType="MemberDTO" parameterType="MemberDTO">
 		select * from member_info where member_id=#{member_id} and member_pw=#{member_pw}
 	</select>
+	
+	<select id="getMemberIdCheck" parameterType="MemberDTO" resultType="MemberDTO">
+		select member_id from member_info where member_id = #{member_id}
+	</select>
 
 </mapper>

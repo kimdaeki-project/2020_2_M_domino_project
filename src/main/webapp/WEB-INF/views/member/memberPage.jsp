@@ -10,35 +10,27 @@
   <link href ="../resources/css/common/default.css" rel="stylesheet">
   <script src="../resources/js/header.js"></script>
 <c:import url="../template/header.jsp"></c:import>
+
 </head>
 <body>
 
 	
+	
 	<div class="container">
-	<form action="./memberLogin" method="post">
+	<h1>나의정보</h1>
+	<br>
 	
-	<div>
-		<input type="text" name="member_id">
-	</div>	
 	
-	<div>
-		<input type="password" name="member_pw">
+	<ul class="breadcrumb">
+		<li><a href="#">매니아 등급</a></li>
+		<li><a href="#">주문 내역</a> </li>
+		<li><a href="#">쿠폰함</a></li>
+		<li><a href="#">1:1 문의</a></li>
+		<li><a href="#">정보 수정</a></li>
+	</ul>
+	
+	
 	</div>
-	
-	<div class="checkbox">
-	 	 <label><input type="checkbox" name="remember">이이디저장</label>
-	 	<a>아이디 찾기</a>
-	 	<a>비밀번호 찾기</a>
-	</div>
-		
-	<button type="submit">로그인</button>
-	<a href="./memberJoin">회원가입</a>
-	</form>
-	</div>
-	
-	
 <c:import url="../template/footer.jsp"></c:import>
 </body>
-
-
 </html>
