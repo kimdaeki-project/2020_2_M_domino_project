@@ -23,7 +23,8 @@
 		<form action="./memberJoin" method="post" id="frm">
 				<div class="form-group">
 				<label for="name">이름 </label>
-				<input type="text" id="name" name="member_name"> 
+				<input type="text" id="name" name="member_name" class="empty"> 
+				<div class="emptyResult"></div>
 			</div>
 			
 			<div class="form-group">
@@ -45,7 +46,8 @@
 			
 			<div class="form-group">
 				<label for="date">생년월일 </label>
-				<input type="date" id="date" name="member_date">
+				<input type="date" id="date" name="member_date" class="empty">
+				<div class="emptyResult"></div>
 			</div>
 			
 			
@@ -58,7 +60,7 @@
 			
 			<div class="form-group">
 				<label for="eamil">이메일 </label>
-				<input type="email" name="member_email">
+				<input type="email" name="member_email" id="email">
 				<input type="button" id="btnEmail" value="중복확인">
 				<div id="emailResult"></div>
 			</div>
@@ -113,8 +115,8 @@
   					<label><input type="checkbox" value=1 id="check6" class="chk" name="member_post_agg">DM 우편(최근 배달주소로 배송)(선택)</label>
 				</div>
 			</div>
-			<button id="btn">가입하기</button>
 			
+			<input type="button" value="가입하기" id="btn">
 			
 		</form>
 	</div>
@@ -153,14 +155,36 @@
 		$(".chk").val(0);
 	}
 	
-	$("#btn").click(function() {
-		alert("회원가입이 완료되었습니다.")
-	});
+	
+
 	
 	var idCheck=false;
 	var pwCheck=false;
 	var phoneCheck=false;
-	var emptyCheckResult=true
+	var emailCheck=false;
+	var emptyCheckResult=true;
+	
+	$("#btn").click(function() {
+		emptyCheck();
+		if(idCheck && pwCheck && phoneCheck && emailCheck && emptyCheckResult){
+			$("#frm").submit();
+		}
+	});
+	
+	function emptyCheck() {
+		emptyCheckResult=true;
+		$(".emptyResult").removeClass("idCheck1")
+		$(".emptyResult").html('');
+		$(".empty").each(function() {
+			var data = $(this).val();
+			if(data==''){
+				emptyCheckResult=false;
+				$(this).next().html("필수 항목입니다.")
+				$(".emptyResult").addClass("idCheck1");
+			}
+			
+		});
+	}
 	
 	$("#pw2").blur(function() {
 		var pw = $("#pw").val();
@@ -202,6 +226,7 @@
 		}
 	});
 	
+	
 	$("#btnPhone").click(function () {
 		phoneCheck=false;
 		var phone = $("#phone").val();
@@ -219,10 +244,34 @@
 				$("#phoneResult").html(str);
 			});
 		}else{
-			$("#phoneResult").html("전화번호는  필수 항복입니다.")
+			$("#phoneResult").html("전화번호를  입력후 중복검사를 해주세요.");
 			$("#phoneResult").removeClass("phoneCheck0").addClass("phoneCheck1");
 		}
 	});
+	
+	
+	$("#btnEmail").click(function () {
+		emailCheck=false;
+		var email = $("#email").val();
+		if(email !=''){
+			$.get("./memberEmailCheck?member_email="+email,function(data){
+				data=data.trim();
+				var str = "중복된  이메일 입니다."
+				
+				$("emailResult").removeClass("emailCheck0").addClass("emailCheck1");
+				if(data==0){
+					str="사용 가능한 이메일 입니다.";
+					$("#emailResult").removeClass("emailCheck1").addClass("emailCheck0");
+					emailCheck=true;
+				}
+				$("#emailResult").html(str);
+			});
+		}else{
+			$("#emailResult").html("이메일을  입력후 중복검사를 해주세요.");
+			$("#emailResult").removeClass("emailCheck0").addClass("emailCheck1");
+		}
+	});
+	
 	
 
 
