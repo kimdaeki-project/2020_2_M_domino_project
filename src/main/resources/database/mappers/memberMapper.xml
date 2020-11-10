@@ -10,7 +10,7 @@
 	</select>
 	
 	<insert id="setMemberJoin" parameterType="MemberDTO">
-		insert into member_info values(#{member_name},#{member_id},#{member_pw}, sysdate, #{member_phone},#{member_email}, #{member_level}, 
+		insert into member_info values(#{member_name},#{member_id},#{member_pw}, #{member_date}, #{member_phone},#{member_email}, #{member_level}, 
 		#{member_pi_date}, #{member_pi_agg},#{member_clause_agg}, #{member_locate_agg},#{member_msg_agg},#{member_email_agg},#{member_post_agg}, 
 		sysdate, MEMBER_NUM_SEQ.NEXTVAL)
 	</insert>

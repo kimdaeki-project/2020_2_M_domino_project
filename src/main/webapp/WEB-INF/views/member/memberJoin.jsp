@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	.level {
+		display: none;
+	}
+	
+</style>
 <c:import url="../template/bootstrap.jsp"></c:import>
 </head>
 <body>
@@ -39,7 +45,7 @@
 			
 			
 			<div class="form-group">
-				<label for="phome">휴대전화 </label>
+				<label for="phone">휴대전화 </label>
 				<input type="text" name="member_phone">
 				<button>중복확인</button>
 			</div>
@@ -50,49 +56,54 @@
 				<button>중복확인</button>
 			</div>
 			
+			<div class="form-group level">
+				<label for="phome">등급 </label>
+				<input type="text" name="member_level" value="REGULAR">
+			</div>
+			
 			<div class="form-group">
 				<label for="agg">개인정보 유효기간 선택 </label>
-  				<label class="radio-inline"><input type="radio" name="member_pi_date" value="1">1년</label>
-				<label class="radio-inline"><input type="radio" name="member_pi_date" value="3">3년</label>
-				<label class="radio-inline"><input type="radio" name="member_pi_date" value="5">5년</label>
+  				<label class="radio-inline"><input type="radio" name="member_pi_date" value=1>1년</label>
+				<label class="radio-inline"><input type="radio" name="member_pi_date" value=3>3년</label>
+				<label class="radio-inline"><input type="radio" name="member_pi_date" value=5>5년</label>
 			</div>
 			
 			<div class="form-group">
 				<label for="aggAll">약관 및 광고성 정보수신 전체 동의 </label>
 				<div class="checkbox">
-  					<label><input type="checkbox" value="" id="checkAll">전체 동의하기</label>
+  					<label><input type="checkbox" value=1 id="checkAll">전체 동의하기</label>
 				</div>
 				
 				<label for="aggAll">약관 전체동의 </label>
 				<div class="checkbox">
-  					<label><input type="checkbox" value="" id="checkAll2">전체 동의하기</label>
+  					<label><input type="checkbox" value=1 id="checkAll2">전체 동의하기</label>
 				</div>
   				<div class="checkbox">
-  					<label><input type="checkbox" value="" id="check1" class="chk2" name="member_pi_agg">개인정보 수집 및 이용동의(필수)</label>
+  					<label><input type="checkbox" value=1 id="check1" class="chk2" name="member_pi_agg">개인정보 수집 및 이용동의(필수)</label>
 				</div>
 				
 				<div class="checkbox">
- 					 <label><input type="checkbox" value="" id="check2" class="chk2" name="member_clause_agg">이용약관 동의(필수)</label>
+ 					 <label><input type="checkbox" value=1 id="check2" class="chk2" name="member_clause_agg">이용약관 동의(필수)</label>
 				</div>
 				
 				<div class="checkbox disabled">
-  					<label><input type="checkbox" value="" id="check3" class="chk2" name="member_locate_agg">위치기반 서비스 약관 동의(필수)</label>
+  					<label><input type="checkbox" value=1 id="check3" class="chk2" name="member_locate_agg">위치기반 서비스 약관 동의(필수)</label>
 				</div>
 				
 				<label for="aggAll">광고성 정보 수신 전체 동의 </label>
 				<div class="checkbox">
-  					<label><input type="checkbox" value="" id="checkAll3">전체 동의하기</label>
+  					<label><input type="checkbox" value=1 id="checkAll3">전체 동의하기</label>
 				</div>
   				<div class="checkbox">
-  					<label><input type="checkbox" value="" id="check4" class="chk" name="member_msg_agg">문자 메세지(선택)</label>
+  					<label><input type="checkbox" value=1 id="check4" class="chk" name="member_msg_agg">문자 메세지(선택)</label>
 				</div>
 				
 				<div class="checkbox">
- 					 <label><input type="checkbox" value="" id="check5" class="chk" name="member_email_agg">이메일(선택)</label>
+ 					 <label><input type="checkbox" value=1 id="check5" class="chk" name="member_email_agg">이메일(선택)</label>
 				</div>
 				
 				<div class="checkbox disabled">
-  					<label><input type="checkbox" value="" id="check6" class="chk" name="member_post_agg">DM 우편(최근 배달주소로 배송)(선택)</label>
+  					<label><input type="checkbox" value=1 id="check6" class="chk" name="member_post_agg">DM 우편(최근 배달주소로 배송)(선택)</label>
 				</div>
 			</div>
 			<button>가입하기</button>
