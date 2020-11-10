@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse" id="myNavbar1">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon"></span> 로그인</a></li>
-        <li><a href="#"><span class="glyphicon"></span> 회원가입</a></li>
+        <li><a href="/t1/member/memberJoin"><span class="glyphicon"></span> 회원가입</a></li>
       </ul>
     </div>
   </div>
