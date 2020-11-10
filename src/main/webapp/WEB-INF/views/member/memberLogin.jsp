@@ -32,8 +32,12 @@
 	</div>
 		
 	<button type="submit">로그인</button>
+	<a href="./memberJoin">회원가입</a>
 	</form>
 	</div>
+	
+	
 <c:import url="../template/footer.jsp"></c:import>
 </body>
+
 </html>
