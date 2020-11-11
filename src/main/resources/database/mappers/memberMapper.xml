@@ -30,5 +30,9 @@
 	<select id="getMemberEmailCheck" parameterType="MemberDTO" resultType="MemberDTO">
 		select member_email from member_info where member_email = #{member_email}
 	</select>
+	
+	<select id="getMemberCheck" parameterType="MemberDTO" resultType="MemberDTO">
+		select * from member_info where member_pw=#{member_pw}
+	</select>
 
 </mapper>

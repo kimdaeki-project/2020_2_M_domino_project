@@ -293,4 +293,63 @@
 	
  .emailCheck1 {
 		color: red;
-	}			
+	}	
+	
+
+		
+.myLevel{
+	background-color: black;
+	width: 1170px;
+	height: 283px;
+	padding: 46px 0px 57px 80px;
+	margin-bottom: 40px;
+	
+}
+
+#select{
+	bottom: 32px;
+}
+
+.myLevel2{
+	background-color: red;
+	height: 137px;
+	display: inline-block;
+	padding: 16px 18px 0px;
+	margin-bottom: 20px;
+	width: calc(100% - 640px);
+	
+	box-sizing: border-box;
+}
+
+.myOrder{
+	background-color: blue;
+	padding: 16px 18px 0px;
+	width: 320px;
+	height: 180px;
+	display: inline-block;
+	box-sizing: border-box;
+}
+
+.myCheck{
+	display: inline-block;
+    padding: 0 46px 8px 0;
+    border-bottom: 4px solid #1391ff;
+    font-size: 38px;
+    font-weight: 300;
+    line-height: 1;
+    color: white;
+    
+	
+}
+
+.myCheck2{
+	font-size: 16px;
+    margin-top: 30px;
+    font-weight: 500;
+    color: #888888;
+}
+
+.memberCheck{
+	border-top: 2px solid black;
+	width: 100%;
+}

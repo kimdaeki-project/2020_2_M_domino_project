@@ -14,12 +14,59 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import oracle.jdbc.proxy.annotation.Post;
+
 @Controller
 @RequestMapping("/member/**")
 public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@PostMapping("memberUpdate")
+	public ModelAndView setMemberUpdate(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+	}
+	
+	@GetMapping("memberUpdate")
+	public ModelAndView setMemberUpdate() throws Exception{
+		ModelAndView mv= new ModelAndView();
+		System.out.println("Update");
+		
+		mv.setViewName("member/memberUpdate");
+		return mv;
+		
+	}
+	
+	@PostMapping("memberCheck")
+	public ModelAndView getMemberCheck(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		memberDTO = memberService.getMemberCheck(memberDTO);
+		if(memberDTO != null) {
+			mv.addObject("dto", memberDTO);
+			mv.setViewName("redirect:./memberUpdate");
+		}else {
+			mv.addObject("msg","비밀번호를 다시 입력해주세요");
+			mv.addObject("path", "./memberCheck");
+			mv.setViewName("common/result");
+		}
+		
+		
+		return mv;
+	}
+	
+	@GetMapping("memberCheck")
+	public ModelAndView getMemberCheck() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("memberCheck");
+		
+		
+		mv.setViewName("member/memberCheck");
+		return mv;
+	}
 	
 	@GetMapping("memberEmailCheck")
 	public ModelAndView getMemberEmailCheck(MemberDTO memberDTO) throws Exception{

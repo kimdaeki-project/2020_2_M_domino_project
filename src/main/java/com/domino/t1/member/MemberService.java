@@ -11,6 +11,10 @@ public class MemberService {
 	@Autowired
 	private MemberDAO memberDAO;
 	
+	public MemberDTO getMemberCheck(MemberDTO memberDTO) throws Exception{
+		return memberDAO.getMemberCheck(memberDTO);
+	}
+	
 	public MemberDTO getMemberEmailCheck(MemberDTO memberDTO) throws Exception{
 		return memberDAO.getMemberEmailCheck(memberDTO);
 	}

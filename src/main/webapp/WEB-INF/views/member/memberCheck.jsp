@@ -30,13 +30,26 @@
 		</li>
 	</ul>
 	<div class="myLevel">
-		<div class="myLevel2">
-			<span>황바울</span>
-			<strong>REGULAR</strong>
-		</div>
-		
-		<div class="myOrder"></div>
+		<div class="myCheck">본인여부 확인</div>
+		<div></div>
+		<div class="myCheck2">회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시한번 확인합니다.</div>
 	</div>
+	
+	<form action="./memberCheck" method="post">
+	<table class="memberCheck">
+		<tr>
+			<td>아이디</td><td><input type="text" name="member_id" value="${member.member_id}" readonly="readonly"></td>
+		</tr>
+		<tr>
+			<td></td><td></td>
+		</tr>
+		<tr>
+			<td>비밀번호</td><td><input type="password" name="member_pw"><input type="submit" value="확인"></td>
+		</tr>
+		
+		
+	</table>
+	</form>
 	
 	</div>
 <c:import url="../template/footer.jsp"></c:import>
