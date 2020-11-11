@@ -8,14 +8,12 @@
 		SELECT item.*, pizza.*
 		FROM item LEFT JOIN pizza
 		ON item.item_id = pizza.item_id
-		WHERE item.item_category = 'pizza'
-			AND item.item_id = #{item_id}
+		WHERE pizza.pizza_id = #{pizza_id}
 	</select>
 	<select id="getPizzaListByType" parameterType="PizzaDTO" resultType="PizzaDTO">
 		SELECT item.*, pizza.*
 		FROM item LEFT JOIN pizza
 		ON item.item_id = pizza.item_id
-		WHERE item.item_category = 'pizza'
-			AND pizza.pizza_type = #{pizza_type}
+		WHERE pizza.pizza_type = #{pizza_type}
 	</select>
 </mapper>
