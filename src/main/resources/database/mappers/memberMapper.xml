@@ -32,7 +32,14 @@
 	</select>
 	
 	<select id="getMemberCheck" parameterType="MemberDTO" resultType="MemberDTO">
-		select * from member_info where member_pw=#{member_pw}
+		select * from member_info where member_pw=#{member_pw} and member_id=#{member_id}
 	</select>
+	
+	<update id="setMemberUpdate" parameterType="MemberDTO">
+		update member_info 
+		set member_pw = #{member_pw}, member_date = #{member_date}, member_email = #{member_email} 
+		, member_msg_agg = #{member_msg_agg}, member_email_agg = #{member_email_agg}, member_post_agg = #{member_post_agg} 
+		where member_id = #{member_id}
+	</update>
 
 </mapper>

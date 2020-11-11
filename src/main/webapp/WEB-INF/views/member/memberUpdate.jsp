@@ -37,21 +37,28 @@
 	
 	<form action="./memberUpdate" method="post">
 	<table class="memberCheck">
+	
 		<tr>
-			<td>아이디</td><td><input type="text" name="member_id" value="${member.member_id}"></td>
+			<td>이름</td><td><input type="text" name="member_name" value="${member.member_name}" readonly="readonly"></td>
 		</tr>
 		<tr>
-			<td>현재 비밀번호</td><td><input type="password" name="member_pw" value="${member.member_pw}"></td>
+			<td>아이디</td><td><input type="text" name="member_id" value="${member.member_id}" readonly="readonly"></td>
 		</tr>
 		<tr>
-			<td>새 비밀번호</td><td><input type="password" name="member_pw"></td>
+			<td>현재 비밀번호</td><td><input type="password" id="pw" value="${member.member_pw}"></td>
 		</tr>
 		<tr>
-			<td>새 비밀번호 확인</td><td><input type="password" name="member_pw"></td>
+			<td>새 비밀번호</td><td><input type="password"></td>
+		</tr>
+		<tr>
+			<td>새 비밀번호 확인</td><td><input type="password" name="member_pw" id="pw2"></td>
 		</tr>
 		<tr>
 			<td>생년월일</td><td><input type="date" name="member_date" value="${member.member_date}"></td>
 		</tr>
+		<tr>
+			<td>휴대전화</td><td><input type="text" name="member_phone" value="${member.member_phone}"></td>
+		</tr>		
 		<tr>
 			<td>이메일</td><td><input type="email" name="member_email" value="${member.member_email}"></td>
 		</tr>
@@ -72,10 +79,17 @@
 			</td>
 		</tr>
 	</table>
-	<input type="submit" value="수정하기">
+	<input type="submit" value="수정하기" id="btnUpdate">
 	</form>
 	
 	</div>
 <c:import url="../template/footer.jsp"></c:import>
 </body>
+<script type="text/javascript">
+	$("#btnUpdate").click(function () {
+		if($("#pw2").val()=='') {
+			$("#pw2").val($("#pw").val());
+		}
+	});
+</script>
 </html>

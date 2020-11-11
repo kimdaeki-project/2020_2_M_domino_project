@@ -13,6 +13,10 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.domino.t1.member.MemberDAO.";
 	
+	public int setMemberUpdate(MemberDTO memberDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setMemberUpdate", memberDTO);
+	}
+	
 	public MemberDTO getMemberCheck(MemberDTO memberDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getMemberCheck", memberDTO);
 	}

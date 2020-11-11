@@ -3,6 +3,8 @@ package com.domino.t1.member;
 import java.util.List;
 
 import javax.jws.WebParam.Mode;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -24,8 +26,19 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@PostMapping("memberUpdate")
-	public ModelAndView setMemberUpdate(MemberDTO memberDTO) throws Exception{
+	public ModelAndView setMemberUpdate(MemberDTO memberDTO, HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		MemberDTO s = (MemberDTO)session.getAttribute("member");
+		memberDTO.setMember_id(s.getMember_id());
+		
+		int result = memberService.setMemberUpdate(memberDTO);
+		
+		if(result>0) {
+			s.setMember_name(memberDTO.getMember_name());
+			s.setMember_email(memberDTO.getMember_email());
+		}	
+		
+		mv.setViewName("redirect:./memberPage");
 		
 		return mv;
 	}
@@ -136,8 +149,21 @@ public class MemberController {
 	}
 	
 	@PostMapping("memberLogin")
-	public ModelAndView getMemberLogin(MemberDTO memberDTO, HttpSession session) throws Exception{
+	public ModelAndView getMemberLogin(MemberDTO memberDTO, String remember, HttpServletResponse response ,HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		
+		
+		if(remember != null) {
+			Cookie cookie = new Cookie("remember", memberDTO.getMember_id());
+			
+			response.addCookie(cookie);
+		}else {
+			Cookie cookie = new Cookie("remember", "");
+			
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
+		}
+		
 		memberDTO = memberService.getMemberLogin(memberDTO);
 		
 		if(memberDTO != null) {

@@ -18,7 +18,7 @@
 	<form action="./memberLogin" method="post">
 	
 	<div>
-		<input type="text" name="member_id">
+		<input type="text" name="member_id" value="${cookie.remember.value}">
 	</div>	
 	
 	<div>
