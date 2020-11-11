@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,9 +19,11 @@
 <c:import url="../template/header.jsp"></c:import>
 </head>
 <body>
-	<h1>Member Join Page</h1>
+	
 	<div class="container">
+		<h1>회원가입</h1>
 		<form action="./memberJoin" method="post" id="frm">
+	
 				<div class="form-group">
 				<label for="name">이름 </label>
 				<input type="text" id="name" name="member_name" class="empty"> 
@@ -111,13 +114,14 @@
  					 <label><input type="checkbox" value=1 id="check5" class="chk" name="member_email_agg">이메일(선택)</label>
 				</div>
 				
-				<div class="checkbox disabled">
+				<div class="checkbox">
   					<label><input type="checkbox" value=1 id="check6" class="chk" name="member_post_agg">DM 우편(최근 배달주소로 배송)(선택)</label>
 				</div>
 			</div>
 			
-			<input type="button" value="가입하기" id="btn">
+			<input type="submit" value="가입하기" id="btn">
 			
+	
 		</form>
 	</div>
 
@@ -273,8 +277,6 @@
 			$("#emailResult").removeClass("emailCheck0").addClass("emailCheck1");
 		}
 	});
-	
-	
 
 
 	

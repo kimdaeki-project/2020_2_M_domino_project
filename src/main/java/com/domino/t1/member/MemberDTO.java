@@ -2,10 +2,24 @@ package com.domino.t1.member;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Entity;
+@Entity
 public class MemberDTO {
 	
+
 	private String member_name;
+	
+
 	private String member_id;
+	
+	
+	
 	private String member_pw;
 	private Date member_date;
 	private String member_phone;
@@ -21,7 +35,7 @@ public class MemberDTO {
 	private Date member_reg_date;
 	private long member_num;
 	
-	
+	//getter, setter
 	public String getMember_name() {
 		return member_name;
 	}
