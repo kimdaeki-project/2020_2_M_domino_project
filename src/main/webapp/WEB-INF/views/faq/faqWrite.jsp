@@ -15,7 +15,7 @@
 	<c:import url="../template/header.jsp"></c:import>
 	<div class="container">
 		<h2>faq Write Form</h2>
-		  	<form id="frm" action="./faqWrite" method="post" enctype="multipart/form-data">
+		  	<form action="./faqWrite" method="post">
 		  
 		    <div class="form-group">
 		      <label for="title">Title:</label>
@@ -32,8 +32,7 @@
 		      <textarea class="form-control" rows="20" cols="30" id="contents" name="board_contents"></textarea>
 		    </div>
 	
-		    <input type="button" class="btn btn-primary form-control" value="Write" id="btn">
-		    <button type="submit" class="btn btn-default form-control">Write</button>
+		    <button type="submit" class="btn btn-default form-control">faqWrite</button>
 		  	</form>
 			
 		</div>

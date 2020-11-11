@@ -19,6 +19,8 @@
 		
 		<!-- board related aliases -->
 		<typeAlias type="com.domino.t1.board.faq.FaqDTO" alias="FaqDTO"/>
+		<typeAlias type="com.domino.t1.board.qna.QnaDTO" alias="QnaDTO"/>
+	
 
 	</typeAliases>
 </configuration>

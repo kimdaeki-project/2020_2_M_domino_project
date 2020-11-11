@@ -19,6 +19,6 @@ public class FaqDAO {
 	}
 	
 	public int setInsert(FaqDTO faqDTO) throws Exception{
-		return sqlSession.insert(NAMESPACE+"setInsert");
+		return sqlSession.insert(NAMESPACE+"setInsert", faqDTO);
 	}
 }

@@ -36,11 +36,14 @@ public class FaqController {
 	
 	@PostMapping("faqWrite")
 	public ModelAndView setInsert(FaqDTO faqDTO) throws Exception{
+	
+		int result = faqService.setInsert(faqDTO);
+		if(result>0) {
+			System.out.println("write scucess");
+		}
+		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("faq/faqList");
-		
 		return mv;
-		
 		
 	}
 

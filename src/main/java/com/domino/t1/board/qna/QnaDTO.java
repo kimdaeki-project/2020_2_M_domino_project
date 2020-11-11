@@ -4,6 +4,10 @@ import java.sql.Date;
 
 import com.domino.t1.board.BoardDTO;
 
+/**
+ * @author user
+ *
+ */
 public class QnaDTO extends BoardDTO{
 	
 	private Date regDate;

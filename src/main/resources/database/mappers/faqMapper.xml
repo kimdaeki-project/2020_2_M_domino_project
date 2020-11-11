@@ -10,7 +10,7 @@
 	</select>
 	
 	<insert id="setInsert" parameterType="FaqDTO">
-		insert into faq values(board_seq, #{board_title}, #{board_writer}, #{board_contents})
+			insert into faq values(board_seq.nextval, #{board_title}, #{board_writer}, #{board_contents})
 	</insert>
-
+	
 </mapper>

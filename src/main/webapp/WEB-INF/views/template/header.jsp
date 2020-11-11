@@ -45,7 +45,7 @@
 	    		<a href="#" class="inners_title">고객센터</a>
 	    			<ul>
 				       <li><a href="${pageContext.request.contextPath}/faq/faqList">자주하는 질문</a></li>
-					   <li><a href="${pageContext.request.contextPath}/qna/qnaWirte">온라인 신문고</a></li>
+					   <li><a href="${pageContext.request.contextPath}/qna/qnaWrite">온라인 신문고</a></li>
 				    </ul>
 	    	</div>
 	    	 
@@ -63,8 +63,8 @@
 	    	<div class="col-sm-2 myNavbar3">
 	    		<a href="#" class="inners_title">공지사항</a>
 	    			<ul>
-				      <li><a href="#">도미노뉴스</a></li>
-					  <li><a href="#">보도자료</a></li>
+				      <li><a href="${pageContext.request.contextPath}/news/newsList">도미노뉴스</a></li>
+					  <li><a href="${pageContext.request.contextPath}/news/newsList">보도자료</a></li>
 				   </ul>
 	    	</div>
  	 </div> 
