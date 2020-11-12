@@ -119,7 +119,7 @@
 				</div>
 			</div>
 			
-			<input type="submit" id="btn" value="가입하기">
+			<input type="button" id="btn" value="가입하기">
 		
 		</form>
 	</div>
