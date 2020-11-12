@@ -15,5 +15,6 @@
 		FROM item LEFT JOIN pizza
 		ON item.item_id = pizza.item_id
 		WHERE pizza.pizza_type = #{pizza_type}
+			AND item.item_status = 1
 	</select>
 </mapper>

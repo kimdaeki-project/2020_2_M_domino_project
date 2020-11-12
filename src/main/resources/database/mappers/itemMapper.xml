@@ -9,5 +9,9 @@
 		FROM item
 		WHERE category = #{category}
 	</select>
-	
+	<select id="getOne" parameterType="ItemDTO" resultType="ItemDTO">
+		SELECT *
+		FROM item
+		WHERE item_id = #{item_id}
+	</select>
 </mapper>

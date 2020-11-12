@@ -23,7 +23,8 @@
 
 <c:import url="../../template/header.jsp"></c:import>
 <div>
-
+	
+	<!-- premium type pizza -->
 	<div class="container" id="premium-pizza-container">	
 	<h3>프리미엄</h3>
 		<c:forEach items="${premium}" var="dto" varStatus="loop">
