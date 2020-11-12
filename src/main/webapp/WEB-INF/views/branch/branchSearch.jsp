@@ -34,14 +34,18 @@
 							<div id="map"></div>
 							</div>
 						</div>
+						
+						<!-- 탭 선택 최상위 div -->
 						<div class="store-search">
-							<div class="tab-type1 tab1">
-								<ul style="background-color: silver;">
-									<li style="background-color: olive; float: left;"><a href="#">지역검색</a></li>
-									<li style="background-color: teal;"><a href="#">매장명</a></li>
-								</ul>
+							<!-- 탭 선택 -->
+							<div class="tab">
+							  <button class="tablinks search-tab" onclick="openSearch(event, 'search1')" id="defaultOpen">지역검색</button>
+							  <button class="tablinks search-tab" onclick="openSearch(event, 'search2')">매장명</button>
 							</div>
-							<div class="tab-content" id="search1">
+							<!-- 탭 선택 -->
+							
+							<!-- ============================= 지역검색 ============================= -->
+							<div class="tabcontent" id="search1">
 								<div class="address-wrap branch">
 									<div class="form-group srch-type">
 										<div class="form-region" id="form-region-first">
@@ -76,7 +80,10 @@
 									</div>
 								</div>
 							</div>
-							<div class="tab-content" id="search2">
+							<!-- ============================= 지역검색 ============================= -->
+							
+							<!-- ============================= 매장명 검색 ============================= -->
+							<div class="tabcontent" id="search2">
 								<div class="address-wrap branch">
 									<div class="form-group srch-type">
 										<div class="form-item" id="form-region-first">
@@ -99,15 +106,55 @@
 										<p class="spcl-info"><a href="#">이용안내</a></p>
 									</div>
 								</div>	
+							</div><!--  -->
+							<!-- ============================= 매장명 검색 ============================= -->
+							
+							<!-- ============================= 매장 리스트 ============================= -->
+							<div class="row branch-addr-list">
+								<div class="column branch">
+								
+								</div>
 							</div>
-						</div>
-					</div>
-				</div>
+							<!-- ============================= 매장 리스트 ============================= -->
+							
+						</div> <!-- 탭 선택 최상위 div -->
+					</div> <!-- store-map-area -->
+				</div> <!-- store-wrap -->
 			</div>
 		</div>
 	</div>
-</div>
+</div> <!-- container -->
 
+<!-- ========================= 검색탭 javascript ========================= -->
+
+<script type="text/javascript">
+
+	function openSearch(evt, searchTab) {
+		var i, tabcontent, tablinks;
+		
+		tabcontent = document.getElementsByClassName("tabcontent");
+		
+		for (i = 0; i < tabcontent.length; i++) {
+		  tabcontent[i].style.display = "none";
+		}
+		
+		tablinks = document.getElementsByClassName("tablinks");
+		
+		for (i = 0; i < tablinks.length; i++) {
+		  tablinks[i].className = tablinks[i].className.replace(" active", "");
+		}
+		
+		document.getElementById(searchTab).style.display = "block";
+		
+		evt.currentTarget.className += " active";
+	}
+	
+	// Get the element with id="defaultOpen" and click on it
+	document.getElementById("defaultOpen").click();
+	
+</script>
+   
+<!-- ========================= 지도 javascript ========================= -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8359d6b1a5e0267b346e7ce57922d7f4&libraries=services"></script>
 <script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -137,6 +184,7 @@
 	marker.setMap(map);  
 	
 </script>
+<!-- ========================= 지도 ========================= -->
 
 <!-- ============ footer ============ -->
 <c:import url="../template/footer.jsp"></c:import>
