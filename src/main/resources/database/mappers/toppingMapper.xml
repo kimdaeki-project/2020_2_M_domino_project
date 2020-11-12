@@ -5,9 +5,47 @@
     
 <mapper namespace="com.domino.t1.item.topping.ToppingDAO">
 	<select id="getAvailableToppingList" parameterType="PizzaDTO" resultType="ToppingDTO">
-	
+		SELECT topping.*, item.*
+		FROM pizza_topping_rel
+		    INNER JOIN topping
+		        ON pizza_topping_rel.topping_id = topping.topping_id
+		    INNER JOIN item
+		        ON topping.item_id = item.item_id
+		WHERE pizza_topping_rel.pizza_id = #{pizza_id}
+		    AND item.item_status = 1
 	</select>
-
-	
+	<select id="getAvailableMainToppingList" parameterType="PizzaDTO" resultType="PizzaDTO">
+		SELECT topping.*, item.*
+		FROM pizza_topping_rel
+		    INNER JOIN topping
+		        ON pizza_topping_rel.topping_id = topping.topping_id
+		    INNER JOIN item
+		        ON topping.item_id = item.item_id
+		WHERE pizza_topping_rel.pizza_id = #{pizza_id}
+		    AND item.item_status = 1
+		    AND topping.topping_category = 'main'		
+	</select>
+	<select id="getAvailableCheeseToppingList" parameterType="PizzaDTO" resultType="PizzaDTO">
+		SELECT topping.*, item.*
+		FROM pizza_topping_rel
+		    INNER JOIN topping
+		        ON pizza_topping_rel.topping_id = topping.topping_id
+		    INNER JOIN item
+		        ON topping.item_id = item.item_id
+		WHERE pizza_topping_rel.pizza_id = #{pizza_id}
+		    AND item.item_status = 1
+		    AND topping.topping_category = 'cheese'		
+	</select>
+	<select id="getAvailableAfterToppingList" parameterType="PizzaDTO" resultType="PizzaDTO">
+		SELECT topping.*, item.*
+		FROM pizza_topping_rel
+		    INNER JOIN topping
+		        ON pizza_topping_rel.topping_id = topping.topping_id
+		    INNER JOIN item
+		        ON topping.item_id = item.item_id
+		WHERE pizza_topping_rel.pizza_id = #{pizza_id}
+		    AND item.item_status = 1
+		    AND topping.topping_category = 'after'		
+	</select>	
 
 </mapper>
