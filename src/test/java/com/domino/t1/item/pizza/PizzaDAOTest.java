@@ -25,7 +25,7 @@ public class PizzaDAOTest extends MyTestCase{
 	@Test
 	public void getOneTestFail() throws Exception {
 		PizzaDTO dto = new PizzaDTO();
-		dto.setPizza_id(10);
+		dto.setPizza_id(666);
 		dto = pizzaDAO.getOne(dto);
 		assertNull(dto);
 	}
@@ -36,7 +36,7 @@ public class PizzaDAOTest extends MyTestCase{
 		dto.setPizza_type("프리미엄");
 		List<PizzaDTO> arr = pizzaDAO.getPizzaListByType(dto);
 		System.out.println(arr.size());
-		assertEquals(5, arr.size());
+		assertEquals(8, arr.size());
 	}
 
 }
