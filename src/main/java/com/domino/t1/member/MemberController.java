@@ -25,6 +25,34 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@PostMapping("memberInquirly")
+	public ModelAndView setInqBoardWrite(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		int result = memberService.setInqBoardWrite(memberDTO);
+		String message="문의 작성을 실패하였습니다.";
+		if(result>0) {
+			message ="문의 작성을 완료하였습니다.";
+		}
+		
+		mv.addObject("msg", message);
+		mv.addObject("path", "./memberInquirly");
+		
+		mv.setViewName("common/result");
+		
+		return mv;
+	}
+	
+	@GetMapping("memberInquirly")
+	public ModelAndView inqBoard(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("member/memberInquirly");
+		List<MemberDTO> ar = memberService.getInqBoardList(memberDTO);
+		mv.addObject("list", ar);
+		mv.setViewName("member/memberInquirly");
+		return mv;
+	}
+	
 	@PostMapping("memberUpdate")
 	public ModelAndView setMemberUpdate(MemberDTO memberDTO, HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();

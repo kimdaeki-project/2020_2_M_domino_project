@@ -11,6 +11,14 @@ public class MemberService {
 	@Autowired
 	private MemberDAO memberDAO;
 	
+	public List<MemberDTO> getInqBoardList(MemberDTO memberDTO) throws Exception{
+		return memberDAO.getInqBoardList(memberDTO);
+	}
+	
+	public int setInqBoardWrite(MemberDTO memberDTO) throws Exception{
+		return memberDAO.setInqBoardWrite(memberDTO);
+	}
+	
 	public int setMemberUpdate(MemberDTO memberDTO) throws Exception{
 		return memberDAO.setMemberUpdate(memberDTO);
 	}

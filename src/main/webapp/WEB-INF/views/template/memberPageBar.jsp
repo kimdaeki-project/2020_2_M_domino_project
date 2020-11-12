@@ -22,7 +22,7 @@
 	
 	<ul id="select">
 		<li>
-		<a href="./memberPage">매니아 등급</a> ㅣ 
+		<a href="./memberLevel">매니아 등급</a> ㅣ 
 		<a href="./memberOrder">주문 내역</a> ㅣ 
 		<a href="#">쿠폰함</a> ㅣ 
 		<a href="./memberInquirly">1:1 문의</a> ㅣ 
@@ -30,13 +30,11 @@
 		</li>
 	</ul>
 	<div class="myLevel">
-		<div class="myLevel2">
-			<span>황바울</span>
-			<strong>REGULAR</strong>
-		</div>
-		
-		<div class="myOrder"></div>
+		<div class="myCheck">본인여부 확인</div>
+		<div></div>
+		<div class="myCheck2">회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시한번 확인합니다.</div>
 	</div>
+	
 	
 	</div>
 <c:import url="../template/footer.jsp"></c:import>

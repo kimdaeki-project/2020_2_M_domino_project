@@ -63,7 +63,7 @@
 			
 			<div class="form-group">
 				<label for="eamil">이메일 </label>
-				<input type="email" name="member_email" id="email">
+				<input type="text" name="member_email" id="email">
 				<input type="button" id="btnEmail" value="중복확인">
 				<div id="emailResult"></div>
 			</div>
@@ -119,15 +119,15 @@
 				</div>
 			</div>
 			
-			<input type="button" value="가입하기" id="btn">
-			
-	
+			<input type="submit" id="btn" value="가입하기">
+		
 		</form>
 	</div>
 
 <c:import url="../template/footer.jsp"></c:import>
 </body>
 <script type="text/javascript">
+
 	$("#checkAll2").click(function() {
 		if($("#checkAll2").is(":checked")){
 			$(".chk2").prop("checked",true);
@@ -277,6 +277,9 @@
 			$("#emailResult").removeClass("emailCheck0").addClass("emailCheck1");
 		}
 	});
+
+
+
 
 
 	

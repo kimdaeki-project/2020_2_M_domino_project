@@ -41,5 +41,14 @@
 		, member_msg_agg = #{member_msg_agg}, member_email_agg = #{member_email_agg}, member_post_agg = #{member_post_agg} 
 		where member_id = #{member_id}
 	</update>
+	
+	<insert id="setInqBoardWrite" parameterType="MemberDTO">
+		insert into member_inquirly values(#{member_num} ,member_inquirly_seq.nextval, #{inq_title}, #{inq_contents},
+		sysdate, #{inq_state}, #{inq_type}, #{inq_shop}, #{inq_location})
+	</insert>
+	
+	<select id="getInqBoardList" resultType="MemberDTO">
+		select * from member_inquirly where member_num=#{member_num}
+	</select>
 
 </mapper>

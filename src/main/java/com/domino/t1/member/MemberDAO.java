@@ -13,6 +13,14 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.domino.t1.member.MemberDAO.";
 	
+	public List<MemberDTO> getInqBoardList(MemberDTO memberDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getInqBoardList", memberDTO);
+	}
+	
+	public int setInqBoardWrite(MemberDTO memberDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setInqBoardWrite", memberDTO);
+	}
+	
 	public int setMemberUpdate(MemberDTO memberDTO) throws Exception{
 		return sqlSession.update(NAMESPACE+"setMemberUpdate", memberDTO);
 	}

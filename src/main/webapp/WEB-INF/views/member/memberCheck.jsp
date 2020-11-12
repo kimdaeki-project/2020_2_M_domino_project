@@ -22,10 +22,10 @@
 	
 	<ul id="select">
 		<li>
-		<a href="./memberLevel">매니아 등급</a> ㅣ 
+		<a href="./memberPage">매니아 등급</a> ㅣ 
 		<a href="./memberOrder">주문 내역</a> ㅣ 
 		<a href="#">쿠폰함</a> ㅣ 
-		<a href="./memberEquirly">1:1 문의</a> ㅣ 
+		<a href="./memberInquirly">1:1 문의</a> ㅣ 
 		<a href="./memberCheck">정보 수정</a> 
 		</li>
 	</ul>
