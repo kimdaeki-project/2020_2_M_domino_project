@@ -37,10 +37,8 @@
 	
 	
 	<div class="container">
+	<h3 id="inq_num">${dto.inq_num}</h3>
 	<table class="memberCheck">
-		<tr>
-			<td>글번호</td><td id="inq_num">${dto.inq_num}</td>
-		</tr>
 	
 		<tr>
 			<td>아이디</td><td>${member.member_id}</td>

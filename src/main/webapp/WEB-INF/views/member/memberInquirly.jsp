@@ -44,7 +44,7 @@
 		<c:forEach items="${list}" var="dto">
 			<tr>
 				<td>${dto.inq_num}</td>
-				<td><a href="./memberInquirlySelect">${dto.inq_title}</a></td>
+				<td><a href="./memberInquirlySelect?inq_num=${dto.inq_num}">${dto.inq_title}</a></td>
 				<td>${dto.inq_date}</td>
 				<td>${dto.inq_state}</td>
 			</tr>
