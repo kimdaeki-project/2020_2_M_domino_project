@@ -25,6 +25,19 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@GetMapping("memberInquirlySelect")
+	public ModelAndView getOne(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("member select");
+		memberDTO = memberService.getOne(memberDTO);
+		
+		mv.addObject("dto", memberDTO);
+		mv.setViewName("member/memberInquirlySelect");
+		
+		
+		return mv;
+	}
+	
 	@PostMapping("memberInquirly")
 	public ModelAndView setInqBoardWrite(MemberDTO memberDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -44,9 +57,10 @@ public class MemberController {
 	}
 	
 	@GetMapping("memberInquirly")
-	public ModelAndView inqBoard(MemberDTO memberDTO) throws Exception{
+	public ModelAndView inqBoard(HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		System.out.println("member/memberInquirly");
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		List<MemberDTO> ar = memberService.getInqBoardList(memberDTO);
 		mv.addObject("list", ar);
 		mv.setViewName("member/memberInquirly");

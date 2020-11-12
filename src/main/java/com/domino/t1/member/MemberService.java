@@ -11,6 +11,10 @@ public class MemberService {
 	@Autowired
 	private MemberDAO memberDAO;
 	
+	public MemberDTO getOne(MemberDTO memberDTO) throws Exception{
+		return memberDAO.getOne(memberDTO);
+	}
+	
 	public List<MemberDTO> getInqBoardList(MemberDTO memberDTO) throws Exception{
 		return memberDAO.getInqBoardList(memberDTO);
 	}

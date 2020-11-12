@@ -25,7 +25,7 @@
 		<a href="./memberPage">매니아 등급</a> ㅣ 
 		<a href="./memberOrder">주문 내역</a> ㅣ 
 		<a href="#">쿠폰함</a> ㅣ 
-		<a href="./memberInquirly">1:1 문의</a> ㅣ 
+		<a id="inq" href="./memberInquirly">1:1 문의</a> ㅣ 
 		<a href="./memberCheck">정보 수정</a> 
 		</li>
 	</ul>
@@ -44,12 +44,13 @@
 		<c:forEach items="${list}" var="dto">
 			<tr>
 				<td>${dto.inq_num}</td>
-				<td>${dto.inq_title}</td>
+				<td><a href="./memberInquirlySelect">${dto.inq_title}</a></td>
 				<td>${dto.inq_date}</td>
 				<td>${dto.inq_state}</td>
 			</tr>
 		</c:forEach>
 	</table>
+		
 	  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">문의하기</button>
 
   <!-- Modal -->
@@ -114,7 +115,6 @@
 		</tr>		
 		</table>
 		
-		 
 		<input type="text" name="member_num" value="${member.member_num}" class="none">
 		<input type="text" name="inq_state" value="미처리" class="none">
 		
@@ -135,4 +135,9 @@
 	</div>
 <c:import url="../template/footer.jsp"></c:import>
 </body>
+<script type="text/javascript">
+	$("#inq").click(function() {
+		
+	})
+</script>
 </html>

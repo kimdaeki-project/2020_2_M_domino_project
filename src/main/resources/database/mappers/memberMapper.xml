@@ -48,7 +48,16 @@
 	</insert>
 	
 	<select id="getInqBoardList" resultType="MemberDTO">
-		select * from member_inquirly where member_num=#{member_num}
+		select * from member_inquirly where member_num=#{member_num} order by inq_num desc
 	</select>
+	
+	<select id="getOne" resultType="MemberDTO" parameterType="MemberDTO">
+		select * from member_inquirly where inq_num=#{inq_num}
+	</select>
+	
+	<select id="getNum" resultType="long">
+		select member_inquirly_seq.nextval from dual
+	</select>
+	
 
 </mapper>

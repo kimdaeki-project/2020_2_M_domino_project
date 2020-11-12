@@ -13,6 +13,14 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.domino.t1.member.MemberDAO.";
 	
+	public long getNum() throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getNum");
+	}
+	
+	public MemberDTO getOne (MemberDTO memberDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getOne", memberDTO);
+	}
+	
 	public List<MemberDTO> getInqBoardList(MemberDTO memberDTO) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getInqBoardList", memberDTO);
 	}
