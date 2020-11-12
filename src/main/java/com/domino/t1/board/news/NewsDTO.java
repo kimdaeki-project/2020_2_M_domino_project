@@ -5,10 +5,10 @@ import java.sql.Date;
 import com.domino.t1.board.BoardDTO;
 
 public class NewsDTO extends BoardDTO{
-
+	
 	private Date regDate;
 	private long hit;
-
+	
 	public Date getRegDate() {
 		return regDate;
 	}
@@ -21,7 +21,4 @@ public class NewsDTO extends BoardDTO{
 	public void setHit(long hit) {
 		this.hit = hit;
 	}
-	 
-	 
-
 }

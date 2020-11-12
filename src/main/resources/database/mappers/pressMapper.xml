@@ -3,9 +3,8 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-<mapper namespace="com.domino.t1.board.news.dominoNews.DominoNewsDAO">
+<mapper namespace="com.domino.t1.sample">
 
-	<select id="getList" resultType="DominoNewsDTO">
-		select * from domino_News
-	</select>
+	
+
 </mapper>
