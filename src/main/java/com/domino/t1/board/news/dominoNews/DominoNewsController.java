@@ -34,21 +34,21 @@ public class DominoNewsController {
 		return mv;	
 	}
 	
-	@GetMapping("dominoNewsWrite")
-	public ModelAndView setInsert() throws Exception{
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("news/newsWrite");
-		mv.addObject("news", "dominoNews");
-		return mv;
-	}
-	
-	@PostMapping("dominoNewsWrite")
-	public ModelAndView setIsnert(NewsDTO newsDTO, MultipartFile [] files, HttpSession session) throws Exception{
-		ModelAndView mv = new ModelAndView();
-
-		return mv;
-	
-	}
+//	@GetMapping("dominoNewsWrite")
+//	public ModelAndView setInsert() throws Exception{
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("news/newsWrite");
+//		mv.addObject("news", "dominoNews");
+//		return mv;
+//	}
+//	
+//	@PostMapping("dominoNewsWrite")
+//	public ModelAndView setIsnert(NewsDTO newsDTO, MultipartFile [] files, HttpSession session) throws Exception{
+//		ModelAndView mv = new ModelAndView();
+//
+//		return mv;
+//	
+//	}
 	
 
 }

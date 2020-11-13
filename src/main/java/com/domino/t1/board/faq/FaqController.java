@@ -18,7 +18,7 @@ public class FaqController {
 	
 	@GetMapping("faqList")
 	public ModelAndView getList(FaqDTO faqDTO) throws Exception{
-		
+		System.out.println("C"+faqDTO.getFaq_type());
 		ModelAndView mv = new ModelAndView();
 		List<FaqDTO> ar = faqService.getList(faqDTO);
 		mv.addObject("list", ar);

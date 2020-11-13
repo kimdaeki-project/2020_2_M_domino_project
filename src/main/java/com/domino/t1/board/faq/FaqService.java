@@ -12,12 +12,11 @@ public class FaqService {
 	private FaqDAO faqDAO;
 	
 	public List<FaqDTO> getList(FaqDTO faqDTO) throws Exception{
-		
+		System.out.println("S"+faqDTO.getFaq_type());
 		return faqDAO.getList(faqDTO);
 	}
 	
 	public int setInsert(FaqDTO faqDTO) throws Exception{
-		
 		return faqDAO.setInsert(faqDTO);
 	}
 

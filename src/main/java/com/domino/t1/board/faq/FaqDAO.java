@@ -17,7 +17,8 @@ public class FaqDAO {
 	private final String NAMESPACE="com.domino.t1.faq.FaqDAO.";
 	
 	public List<FaqDTO> getList(FaqDTO faqDTO) throws Exception{
-		return sqlSession.selectList(NAMESPACE+"getList");
+		System.out.println("D"+ faqDTO.getFaq_type());
+		return sqlSession.selectList(NAMESPACE+"getList", faqDTO);
 	}
 	
 	public int setInsert(FaqDTO faqDTO) throws Exception{

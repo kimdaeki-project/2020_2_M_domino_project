@@ -22,36 +22,42 @@ public class DominoNewsService implements NewsService {
 	@Autowired
 	private DominoNewsDAO dominoNewsDAO;
 	
-	@Autowired
-	private FileSaver fileSaver;
+//	@Autowired
+//	private FileSaver fileSaver;
+//	
+//	@Value("#{fileSave['dominoNews]}")
+//	private String filePath;
+//
+//	@Override
+//	public int setInsert(NewsDTO newsDTO, MultipartFile[] files, HttpSession session) throws Exception {
+//		// TODO Auto-generated method stub
+//		String path = session.getServletContext().getRealPath("filePath");
+//		File file = new File(path);
+//		System.out.println(path);
+//		
+//		int result = dominoNewsDAO.setInsert(newsDTO);
+//		
+//		for (MultipartFile multipartFile: files) { //files에서 multipartfile 타입의 객체들 꺼냄
+//			if(multipartFile.getSize() !=0) {
+//				String fileName = fileSaver.saveCopy(file, multipartFile);	
+//	
+//				BoardFileDTO boardFileDTO = new BoardFileDTO();
+//				boardFileDTO.setFile_Name(fileName);
+//				boardFileDTO.setOri_Name(multipartFile.getOriginalFilename());
+//				boardFileDTO.setFile_Num(newsDTO.getBoard_num());;
+//				
+//				dominoNewsDAO.setInsertFile(boardFileDTO);
+//				}
+//			}
+//		
+//		return result;
+//		
+//	}
 	
-	@Value("#{fileSave['dominoNews]}")
-	private String filePath;
-
 	@Override
 	public int setInsert(NewsDTO newsDTO, MultipartFile[] files, HttpSession session) throws Exception {
 		// TODO Auto-generated method stub
-		String path = session.getServletContext().getRealPath("filePath");
-		File file = new File(path);
-		System.out.println(path);
-		
-		int result = dominoNewsDAO.setInsert(newsDTO);
-		
-		for (MultipartFile multipartFile: files) { //files에서 multipartfile 타입의 객체들 꺼냄
-			if(multipartFile.getSize() !=0) {
-				String fileName = fileSaver.saveCopy(file, multipartFile);	
-	
-				BoardFileDTO boardFileDTO = new BoardFileDTO();
-				boardFileDTO.setFile_Name(fileName);
-				boardFileDTO.setOri_Name(multipartFile.getOriginalFilename());
-				boardFileDTO.setFile_Num(newsDTO.getBoard_num());;
-				
-				dominoNewsDAO.setInsertFile(boardFileDTO);
-				}
-			}
-		
-		return result;
-		
+		return 0;
 	}
 
 	@Override

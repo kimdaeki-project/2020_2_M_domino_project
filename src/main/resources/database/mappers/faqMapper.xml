@@ -5,12 +5,12 @@
     
 <mapper namespace="com.domino.t1.faq.FaqDAO">
 	
-	<select id="getList" resultType="FaqDTO">
-		select * from faq
+	<select id="getList" resultType="FaqDTO" parameterType="FaqDTO">
+		select * from faq where faq_type=#{faq_type}
 	</select>
 	
 	<insert id="setInsert" parameterType="FaqDTO">
-			insert into faq values(board_seq.nextval, #{board_title}, #{board_writer}, #{board_contents})
+		insert into faq values(board_seq.nextval, #{board_title}, #{board_writer}, #{board_contents}, #{faq_type})
 	</insert>
 	
 </mapper>
