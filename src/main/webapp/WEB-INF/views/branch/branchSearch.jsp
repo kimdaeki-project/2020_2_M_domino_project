@@ -1,3 +1,8 @@
+
+<%@page import="oracle.jdbc.driver.DBConversion"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -51,7 +56,8 @@
 										<div class="form-region" id="form-region-first">
 											<div class="select-region">
 												<select id="region1">
-													<option>시/도</option>
+													<option selected>시/도</option>
+													
 												</select>
 											</div>
 										</div>
@@ -74,7 +80,7 @@
 											  <input type="checkbox">
 											  <span class="slider round"></span>
 											</label>
-											<p>특별할인 진행 매장</p>
+											<p>특별할인 진행 전체 매장</p>
 										</div>
 										<p class="spcl-info"><a href="#">이용안내</a></p>
 									</div>
@@ -153,7 +159,7 @@
 		tablinks = document.getElementsByClassName("tablinks");
 		
 		for (i = 0; i < tablinks.length; i++) {
-		  tablinks[i].className = tablinks[i].className.replace(" active", "");
+		  tablinks[i].className = tablinks[i].className.replace("active", "");
 		}
 		
 		document.getElementById(searchTab).style.display = "block";
