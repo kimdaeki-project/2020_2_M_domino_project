@@ -31,7 +31,7 @@
 		 </li>
 		 
 		 <li class="list2">
-		<a href="./memberOrder">주문 내역</a>
+		<a href="#">주문 내역</a>
 		 </li> 
 		 
 		 <li class="list2">
@@ -59,16 +59,13 @@
 		</li>
 	</ul>
 	<div class="myLevel">
-		<div class="myLevel2">
-			<span>황바울</span>
-			<strong>REGULAR</strong>
-		</div>
-		
-		<div class="myOrder">
-		
-		</div>
+		<h4 id="mName">${member.member_name}님</h4>
+		<div class="myCheck"><h1 id="mLevel">${member.member_level}</h1></div>
+		<div></div>
+		<div class="myCheck2">등급별 혜택보기></div>
 	</div>
-	
+	<h4>PREMIUN 등급으로 업그레이드하려면?</h4>
+	<div class="memberCheck"></div>
 	</div>
 <c:import url="../template/footer.jsp"></c:import>
 </body>

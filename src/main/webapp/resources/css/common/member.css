@@ -42,6 +42,7 @@
 	height: 283px;
 	padding: 46px 0px 57px 80px;
 	margin-bottom: 40px;
+	display: inline-block;
 	
 }
 
@@ -150,6 +151,7 @@
 
 a{
 	color: black;
+	text-decoration: none;
 }
 
 .sNotice{
@@ -168,4 +170,26 @@ a{
 	height: 75px;
 	margin: 0 auto;
 	
+}
+
+#mName{
+	font-weight: bold;
+	color: white;
+	
+}
+
+#mLevel{
+	font-weight: bold;
+	color: white;
+	
+}
+
+body {
+    overflow-x: hidden;
+    line-height: 1;
+    font-family: "Roboto","Noto",sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -1px;
+    color: #000;
 }
