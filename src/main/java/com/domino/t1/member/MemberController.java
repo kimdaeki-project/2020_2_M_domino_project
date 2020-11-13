@@ -10,6 +10,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,53 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@GetMapping("memberSearchView")
+	public ModelAndView getMemberSearchView() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("view");
+		
+		mv.setViewName("member/memberSearchView");
+		return mv;
+	}
+	
+	@PostMapping("memberSearch")
+	public ModelAndView getMemberSearch(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		memberDTO = memberService.getMemberSearch(memberDTO);
+		
+		mv.addObject("dto", memberDTO);
+		mv.setViewName("member/memberSearchView");
+		
+		return mv;
+	}
+	
+	
+	@GetMapping("memberSearch")
+	public ModelAndView getMemberSearch() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("Search");
+		
+		mv.setViewName("member/memberSearch");
+		return mv;
+		
+	}
+	
+	@GetMapping("memberDelete")
+	public ModelAndView setMemberDelete(HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("Delete");
+		
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		
+		int result = memberService.setMemberDelete(memberDTO);
+		
+		session.invalidate();
+		mv.setViewName("redirect:../");
+		
+		return mv;
+		
+	}
 	
 	@GetMapping("memberInquirlySelect")
 	public ModelAndView getOne(MemberDTO memberDTO) throws Exception{

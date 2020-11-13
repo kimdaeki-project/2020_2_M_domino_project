@@ -80,7 +80,8 @@
 			</td>
 		</tr>
 	</table>
-	<input type="submit" value="수정하기" id="btnUpdate">
+	<input type="submit" value="수정하기" id="btnUpdate" class="btn btn-default">
+	<a href="./memberDelete" class="btn btn-default">회원탈퇴</a>
 	</form>
 	
 	</div>

@@ -55,8 +55,12 @@
 		select * from member_inquirly where inq_num=#{inq_num}
 	</select>
 	
-	<select id="getNum" resultType="long">
-		select member_inquirly_seq.nextval from dual
+	<delete id="setMemberDelete" parameterType="MemberDTO">
+		delete member_info where member_id = #{member_id}
+	</delete>
+	
+	<select id="getMemberSearch" parameterType="MemberDTO" resultType="MemberDTO">
+		select * from member_info where member_name = #{member_name} and member_date = #{member_date} and member_phone = #{member_phone}
 	</select>
 	
 

@@ -13,8 +13,12 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.domino.t1.member.MemberDAO.";
 	
-	public long getNum() throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"getNum");
+	public MemberDTO getMemberSearch(MemberDTO memberDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getMemberSearch", memberDTO);
+	}
+	
+	public int setMemberDelete(MemberDTO memberDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setMemberDelete", memberDTO);
 	}
 	
 	public MemberDTO getOne (MemberDTO memberDTO) throws Exception{

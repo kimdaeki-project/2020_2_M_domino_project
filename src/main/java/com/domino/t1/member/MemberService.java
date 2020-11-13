@@ -11,6 +11,14 @@ public class MemberService {
 	@Autowired
 	private MemberDAO memberDAO;
 	
+	public MemberDTO getMemberSearch(MemberDTO memberDTO) throws Exception{
+		return memberDAO.getMemberSearch(memberDTO);
+	}
+	
+	public int setMemberDelete(MemberDTO memberDTO) throws Exception{
+		return memberDAO.setMemberDelete(memberDTO);
+	}
+	
 	public MemberDTO getOne(MemberDTO memberDTO) throws Exception{
 		return memberDAO.getOne(memberDTO);
 	}
