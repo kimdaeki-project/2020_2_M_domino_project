@@ -5,7 +5,7 @@
 	      <div class="row"> 
 	      
 	   		 <div class="col-sm-8 footer_order">
-	   		 	<img alt="" src="${pageContext.request.contextPath}/resources/images/common/logo.png">
+	   		 	<img alt="" src="${pageContext.request.contextPath}/resources/images/common/logo2.png">
 				<span class="tel">1577-3082</span>
 			</div>
 			
@@ -19,7 +19,7 @@
 			<div class="col-sm-8 footer_contact">
 	   		 	<ul>
 					<li><a href="#">이용약관</a></li>
-					<li><a href="#">개인정보처리방침</a></li>
+					<li><a href="#"><strong style="color: black;">개인정보처리방침</strong></a></li>
 					<li><a href="#">청소년보호방침</a></li>
 					<li><a href="#">고객센터</a></li>
 					<li><a href="#">인재채용</a></li>
@@ -31,8 +31,8 @@
 			 <div class="col-sm-4 footer_cont app_box">
 				<p>DOWNLOAD APP</p>
 				<p>
-					<a href="#">ios</a>
-					<a href="#">안드로이드</a>
+					<a href="#"><img src="${pageContext.request.contextPath}/resources/images/common/icon_apple.png" alt=""></a>
+					<a href="#"><img src="${pageContext.request.contextPath}/resources/images/common/icon_android.png" alt=""></a>
 				</p>
 			</div>
 			
@@ -48,11 +48,11 @@
 			
 			 <div class="col-sm-4 footer_cont sns_box">
 				<ul>
-					<li><a href="http://blog.naver.com/dominostory"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/ico_sns_blog2.png"></a></li>
-					<li><a href="https://www.instagram.com/dominostory/"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/ico_sns_insta2.png"></a></li>
-					<li><a href="https://www.facebook.com/dominostory/"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/ico_sns_facebook2.png"></a></li>
-					<li><a href="https://www.facebook.com/dominostory/"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/ico_sns_facebook2.png"></a></li>
-					<li><a href="https://twitter.com/dominostory"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/ico_sns_twitter2.png"></a></li>
+					<li><a href="http://blog.naver.com/dominostory"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/icon_blog.png"></a></li>
+					<li><a href="https://www.instagram.com/dominostory/"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/icon_insta.png"></a></li>
+					<li><a href="https://www.facebook.com/dominostory/"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/icon_facebook.png"></a></li>
+					<li><a href="https://www.facebook.com/dominostory/"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/icon_youtube.png"></a></li>
+					<li><a href="https://twitter.com/dominostory"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/icon_twitter.png"></a></li>
 				</ul>	
 			</div>	 
 	   		</div>	

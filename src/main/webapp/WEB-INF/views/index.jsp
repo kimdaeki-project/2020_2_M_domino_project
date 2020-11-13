@@ -68,29 +68,35 @@
 	  <div class="row">
 	  
 	  	 <div class="col-sm-6 order_wrap">
-	      <a href="#"><span id="order1" class="order_text1">배달 주문 &ogt;</span></a>
+	  	  
+	      <a href="#">
+	      <img alt="" src="${pageContext.request.contextPath}/resources/images/index/order1.png" style="display: block;">
+	      <span id="order1" class="order_text1">배달 주문 &ogt;</span></a>
 	       <p class="order_text2">등급별 최대 30%</p>
 	    </div>
 	    
 	     <div class="col-sm-6 order_wrap">
-	       <a href="#"><span id="order2" class="order_text1">포장 주문 &ogt;</span></a>
-	       <p class="order_text2">등급별 최대 40%</p>
+	      <img alt="" src="${pageContext.request.contextPath}/resources/images/index/order2.png" style="display: block;">
+	      <a href="#"><span id="order2" class="order_text1">포장 주문 &ogt;</span></a>
+	      <p class="order_text2">등급별 최대 40%</p>
 	    </div>
 	    
 	     <div class="col-sm-4 domichat_wrap">
+	     <img alt="" src="${pageContext.request.contextPath}/resources/images/index/chat1.png" style="display: block;">
 	      <a href="#"><span class="chat_text1">도미챗 주문 &ogt;</span></a>
 	      <p class="chat_text2">빠르고 간편한 채팅 주문 서비스</p>
 	    </div>
 	    
 	     <div class="col-sm-4 domichat_wrap">
+	     <img alt="" src="${pageContext.request.contextPath}/resources/images/index/chat2.png" style="display: block;">
 	      <a href="#"><span class="chat_text1">퀵오더 &ogt;</span></a>
-	       
-	       <p class="chat_text2">자주이용하는 메뉴를 <br> 더 빠르게 준비해보세요! </p>
+	      <p class="chat_text2">자주이용하는 메뉴를 <br> 더 빠르게 준비해보세요! </p>
 	    </div>
 	    
 	     <div class="col-sm-4 domichat_wrap">
+	     <img alt="" src="${pageContext.request.contextPath}/resources/images/index/chat3.png" style="display: block;">
 	      <a href="#"><span class="chat_text1">드라이빙 픽업주문 &ogt;</span></a>
-	       <p class="chat_text2">고객님의 차로 직접 <br>피자를 가져다드립니다~</p>
+	      <p class="chat_text2">고객님의 차로 직접 <br>피자를 가져다드립니다~</p>
 	    </div>
 	   </div>
 </div>
