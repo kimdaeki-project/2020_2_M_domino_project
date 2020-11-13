@@ -26,6 +26,14 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@GetMapping("Sample")
+	public ModelAndView getJusoPopup() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("member/Sample");
+		return mv;
+	}
+	
 	@GetMapping("memberSearchView")
 	public ModelAndView getMemberSearchView() throws Exception{
 		ModelAndView mv = new ModelAndView();
