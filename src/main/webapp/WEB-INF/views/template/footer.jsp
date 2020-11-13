@@ -19,7 +19,7 @@
 			<div class="col-sm-8 footer_contact">
 	   		 	<ul>
 					<li><a href="#">이용약관</a></li>
-					<li><a href="#"><strong>개인정보처리방침</strong></a></li>
+					<li><a href="#"><strong style="color: black;">개인정보처리방침</strong></a></li>
 					<li><a href="#">청소년보호방침</a></li>
 					<li><a href="#">고객센터</a></li>
 					<li><a href="#">인재채용</a></li>

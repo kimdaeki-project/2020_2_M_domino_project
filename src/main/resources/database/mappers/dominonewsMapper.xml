@@ -5,7 +5,71 @@
     
 <mapper namespace="com.domino.t1.board.news.dominoNews.DominoNewsDAO">
 
-	<select id="getList" resultType="DominoNewsDTO">
-		select * from domino_News
-	</select>
+		<insert id="setInsertFile" parameterType="BoardFileDTO">
+    		insert into newsFile values(board_seq.nextval, #{board_num}, #{file_Name}, #{ori_Name}) 	
+    	</insert>
+  
+    	<update id = "setUpdate" parameterType="DominoNewsDTO">
+    		update domino_news set title=#{board_title}, contents=#{board_contents} where board_num=#{board_num}
+    	</update>
+
+    	<delete id ="setDelete" parameterType="DominoNewsDTO">
+    		delete domino_news where board_num=#{board_num}
+    	</delete>
+    	
+    	<resultMap type ="DominoNewsDTO" id="getOneResult">
+    		<id column="board_num" property="board_num"/>
+    		<result column="board_title" property="board_title"/>
+    		<result column="board_writer" property="board_writer"/>
+    		<result column="board_contents" property="board_contents"/>
+    		<result column="regDate" property="regDate"></result>
+    		<result column="hit" property="hit"></result>
+    		<collection property="boardFileDTOs" ofType="BoardFileDTO" javaType="java.util.List" >
+    			<id column="file_Num" property="file_Num"></id>
+    			<result column="file_Name" property="file_Name"/>
+    			<result column="ori_Name" property="ori_Name"/>
+    		</collection>
+    	</resultMap>
+    
+    	<select id="getOne" parameterType="DominoNewsDTO" resultMap="getOneResult">
+    		select D.*, NF.*
+			from dommino_news D left join newsFile NF
+			on D.board_num = NF.board_num
+			where D.board_num=#{board_num}
+    	</select>
+    	
+    	<select id="getNum" resultType="Long">
+    		select board_seq.nextval from dual
+    	</select>
+    
+   		 <insert id="setInsert" parameterType="DominoNewsDTO">
+   			 <selectKey keyProperty="board_num" resultType="Long" order="BEFORE">
+   		 		select board_seq.nextval from dual
+   			 </selectKey>
+   		 	insert into domino_news values(#{board_num}, #{board_title}, #{board_writer}, #{board_contents}, sysdate, 0)
+   		 </insert>
+  
+    	<select id="getList" resultType="DominoNewsDTO" parameterType="Pager">
+			select * from 
+			(select rownum R, D.* from 
+			(select * from domino_news where 
+			<choose>
+				<when test="kind =='title'">title</when>
+				<when test="kind =='writer'">writer</when>
+				<otherwise>contents</otherwise>
+			</choose>
+			 like '%'||#{search}||'%' order by board_num desc) D)
+			where R between #{startRow} and #{lastRow}
+    	</select>	
+    	
+    	<select id = "getCount" resultType="Long" parameterType="Pager">
+    		select count(board_num) from domino_news
+    		where 
+    		<choose>
+    			<when test="kind =='title'">title</when>
+				<when test="kind =='writer'">writer</when>
+				<otherwise>contents</otherwise>
+    		</choose>
+    		 like '%'||#{search}||'%'
+    	</select>
 </mapper>

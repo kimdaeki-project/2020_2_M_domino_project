@@ -42,9 +42,9 @@
 		  <input type="hidden" name="curPage" id="curPage">
 		       <div class="input-group">
 		       		<select class="input-group-sm" id="sel1" name="kind">
-		       			<option value="tt">Title</option>
-		       			<option value="wr">Writer</option>
-		       			<option value="con">Contents</option>
+		       			<option value="title">Title</option>
+		       			<option value="writer">Writer</option>
+		       			<option value="contents">Contents</option>
 		       		</select>
 		       		
 			        <input id="msg" type="text" class="form-control" name="search" placeholder="Additional Info">
