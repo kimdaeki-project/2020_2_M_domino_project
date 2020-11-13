@@ -143,6 +143,7 @@
 		color: #111;
     	background-color: #FFF;
     	font-weight: 600;
+    	border-top: 1px solid #ccc;
 	}
 	
 	/* Style the tab content */
@@ -179,12 +180,19 @@
 		float: left;         
 	}
 	
+	#search_branch {
+		padding-right: 0px;
+		float: left;         
+	}
+	
 	.select-region {
 		display: inline-block;
 		margin-left: 0;
 		line-height: 42px;
 		width: 100%;
 		border: 1px solid #ddd;
+		font-size: 15px;
+    	font-weight: bold;
 	}
 	
 	#region1, #region2 {
@@ -284,6 +292,7 @@
 		margin-bottom: 0px;
 		vertical-align: -2px;
 	    font-size: 16px;
+	    font-weight: bold;
 	    color: #888888;
 	}
 	
@@ -296,7 +305,8 @@
 	.spcl-info a {
 		color: #ff8040;
 	}
-	/*
+	
+	/**/
 	.form-item {
 		width: 342px;
 		height: 42px;
@@ -309,17 +319,84 @@
 		height: 42px;
 		border: 1px solid #ddd;
 	}
-	*/
+	
 	
 	.branch-addr-result {
 		width: 449px;
 		height: 382px;
 		max-height: 728px;
 		border-top: 1px solid #ccc; 
+		margin: 0;
 	}
 	
 	.branch-result-list {
-		
+		display: inline-block;
+	    position: relative;
+	    width: 100%;
+	    height: 213px;
+	    padding: 20px 0px 30px 32px;
+	    border-bottom: 1px solid #ccc;
+	    background-color: white;
+	}
+	
+	.branch-addr-result dl {
+		display: inline-block;
+		width: 200px;
+		height: 115px;
+		padding-top: 10px;
+		margin: 0;
+		background-color: #8080c0;
+	}
+	
+	.branch-addr-result .salenames {
+		position: absolute;
+	    right: 0;
+	    display: inline-block;
+	    width: 145px;
+	    height: 70px;
+	    margin: 0 30px;
+	    vertical-align: top;
+	}
+	
+	.branch-addr-result .salenames div {
+		position: relative;
+		display: inline-block;
+		width: 70px;
+		height: 70px;
+		background-color: #ff143c;
+		border-radius: 50%;
+	}
+	
+	.branch-addr-result .salenames div.sale2 {
+		position: absolute;
+		margin-left: 5px;
+    	background-color: #043088;
+	}
+	
+	.branch-addr-result .br-detail {
+		position: absolute;
+		left: 0px;
+	    bottom: 0px;
+	    display: inline-block;
+	    width: 417px;
+	    height: 32px;
+	    margin: 15px 0 30px 32px;
+	}
+	
+	.br-detail .btn {
+		width: 80px;
+		height: 32px;
+		color: #ffffff;
+	}
+	
+	.br-detail .btn.type1 {
+		display: inline-block;
+		background-color: #888888;
+		margin-right: 4px;
+	}
+	.br-detail .btn.type2 {
+		display: inline-block;
+		background-color: #111111;
 	}
 	
 	

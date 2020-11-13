@@ -44,7 +44,7 @@
 							</div>
 							<!-- 탭 선택 -->
 							
-							<!-- ============================= 지역검색 ============================= -->
+							<!-- ============================= [ 지역검색 ============================= -->
 							<div class="tabcontent" id="search1">
 								<div class="address-wrap branch">
 									<div class="form-group srch-type">
@@ -80,13 +80,13 @@
 									</div>
 								</div>
 							</div>
-							<!-- ============================= 지역검색 ============================= -->
+							<!-- ============================= 지역검색 ] ============================= -->
 							
-							<!-- ============================= 매장명 검색 ============================= -->
+							<!-- ============================= [ 매장명 검색 ============================= -->
 							<div class="tabcontent" id="search2">
 								<div class="address-wrap branch">
 									<div class="form-group srch-type">
-										<div class="form-item" id="form-region-first">
+										<div class="form-item" id="search_branch">
 											<input type="text" id="branch_name" placeholder="매장명을 입력하세요.">
 										</div>
 										<div class="form-region" id="btn-search">
@@ -101,21 +101,33 @@
 											  <input type="checkbox">
 											  <span class="slider round"></span>
 											</label>
-											<p>특별할인 진행 매장</p>
+											<p>특별할인 진행 전체 매장</p>
 										</div>
 										<p class="spcl-info"><a href="#">이용안내</a></p>
 									</div>
 								</div>	
 							</div><!--  -->
-							<!-- ============================= 매장명 검색 ============================= -->
+							<!-- ============================= 매장명 검색 ] ============================= -->
 							
-							<!-- ============================= 매장 리스트 ============================= -->
+							<!-- ============================= [ 매장 리스트 ============================= -->
 							<div class="row branch-addr-result">
 								<div class="column branch-result-list">
-									
+									<dl>
+										<dt></dt>
+										<dd></dd>
+										<dd></dd>
+									</dl>
+									<div class="salenames">
+										<div class="sale1"></div>
+										<div class="sale2"></div>
+									</div>
+									<div class="br-detail">
+										<a href="#" class="btn type1">상세보기</button></a>
+										<a href="#" class="btn type2">방문포장</button></a>
+									</div>
 								</div>
 							</div>
-							<!-- ============================= 매장 리스트 ============================= -->
+							<!-- ============================= 매장 리스트 ] ============================= -->
 							
 						</div> <!-- 탭 선택 최상위 div -->
 					</div> <!-- store-map-area -->
