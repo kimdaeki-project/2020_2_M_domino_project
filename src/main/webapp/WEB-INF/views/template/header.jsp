@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="container.fluid" id="header_wrap">
 <header class="container text-center">    
 <nav class="navbar navbar-inverse">
@@ -11,8 +11,19 @@
     
     <div class="collapse navbar-collapse" id="myNavbar1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon"></span> 로그인</a></li>
-        <li><a href="#"><span class="glyphicon"></span> 회원가입</a></li>
+      <c:choose>
+      	<c:when test="${not empty member}">
+       		<li><a href="${pageContext.request.contextPath}/member/memberLogout"><span class="glyphicon"></span> 로그아웃</a></li>
+       		<li><a href="${pageContext.request.contextPath}/member/memberPage"><span class="glyphicon"></span> 나의정보</a></li>
+       		<li><a href="#"><span class="glyphicon"></span><img src="${pageContext.request.contextPath}/resources/images/common/cart_icon.png"></a></li> 	    		
+      	</c:when>
+      		
+      	<c:otherwise> 
+      		<li><a href="${pageContext.request.contextPath}/member/memberLogin"><span class="glyphicon"></span> 로그인</a></li>
+       		<li><a href="${pageContext.request.contextPath}/member/memberJoin"><span class="glyphicon"></span> 회원가입</a></li>	
+      	</c:otherwise>
+      </c:choose>
+        
       </ul>
     </div>
   </div>
@@ -22,7 +33,7 @@
 
 <div class="col-sm-12 lnb" id="myNavbar2">
 	  <ul>
-	        <li><a href="#">메뉴</a></li>
+	        <li><a href="${pageContext.request.contextPath}/menu/list/pizzaList">메뉴</a></li>
 	        <li><a href="#">e-쿠폰</a></li>
 	        <li><a href="#">상품권 선물</a></li>
 	        <li><a href="#">이벤트 제휴</a></li>

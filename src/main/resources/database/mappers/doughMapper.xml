@@ -5,7 +5,14 @@
     
 <mapper namespace="com.domino.t1.item.dough.DoughDAO">
 	<select id="getAvailableDoughList" parameterType="PizzaDTO" resultType="DoughDTO">
-		
+		SELECT dough.*, item.*
+		FROM pizza_dough_rel 
+		    INNER JOIN dough
+		        ON pizza_dough_rel.dough_id = dough.dough_id
+		    INNER JOIN item
+		        ON dough.item_id = item.item_id
+		WHERE pizza_dough_rel.pizza_id = #{pizza_id}
+		    AND item.item_status = 1
 	</select>
 	
 
