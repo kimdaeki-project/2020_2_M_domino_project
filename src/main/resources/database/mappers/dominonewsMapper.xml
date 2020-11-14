@@ -33,7 +33,7 @@
     
     	<select id="getOne" parameterType="DominoNewsDTO" resultMap="getOneResult">
     		select D.*, NF.*
-			from dommino_news D left join newsFile NF
+			from domino_news D left join newsFile NF
 			on D.board_num = NF.board_num
 			where D.board_num=#{board_num}
     	</select>
@@ -54,9 +54,9 @@
 			(select rownum R, D.* from 
 			(select * from domino_news where 
 			<choose>
-				<when test="kind =='title'">title</when>
-				<when test="kind =='writer'">writer</when>
-				<otherwise>contents</otherwise>
+				<when test="kind =='title'">board_title</when>
+				<when test="kind =='writer'">board_writer</when>
+				<otherwise>board_contents</otherwise>
 			</choose>
 			 like '%'||#{search}||'%' order by board_num desc) D)
 			where R between #{startRow} and #{lastRow}
@@ -66,9 +66,9 @@
     		select count(board_num) from domino_news
     		where 
     		<choose>
-    			<when test="kind =='title'">title</when>
-				<when test="kind =='writer'">writer</when>
-				<otherwise>contents</otherwise>
+    			<when test="kind =='title'">board_title</when>
+				<when test="kind =='writer'">board_writer</when>
+				<otherwise>board_contents</otherwise>
     		</choose>
     		 like '%'||#{search}||'%'
     	</select>

@@ -12,22 +12,19 @@
 
 	<style type="text/css">
 		.detail_page{
-			margin-top: 2%;
 			border-bottom: 2px solid black;
-			margin-bottom: 1%;
+			padding: 20px 0;
 		}		
-		.detail_page h2 span{
+		.detail_page span{
 			float: right;
 			font-size: 15px;
 			padding: 1% 0;
 		}
 		
-		.detail_page_Link a{	
+		.detail_page_Link {	
 			text-align: left;
 			color: black;
-			float: left;
-			font-size: 16px;
-			padding: 1% 0;
+			padding: 0;
 		}
 		
 		.qna_input{
@@ -66,21 +63,24 @@
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
-	<div class="container detail_page">
-		<h2>고객센터<span>홈>매장검색</span></h2>
-		
-		<span class="detail_page_Link">
-		<a href="${pageContext.request.contextPath}/faq/faqList">자주하는 질문</a> <a href="${pageContext.request.contextPath}/qna/qnaWrite">온라인신문고</a>
-		</span>
-	</div>
 	
 	<div class="container">
+	
+	<div class="detail_page">
+			<h2>고객센터<span style="font-size: 12px;">홈>고객센터>온라인 신문고</span></h2>
+					
+			<div class="detail_page_Link">
+				<a href="#">자주하는 질문</a><a href="#">온라인신문고</a>
+			</div>
+	  </div>
+	
+	<div>
 		<p style="font-weight: bold;">도미노피자를 이용하시면서 느꼈던 불편한 점이나 건의사항, 제품에 대한 의견을 남겨주시면 성심껏 답변해드리겠습니다.<br>
 		※주문 취소/변경과 같은 긴급한 요청은 매장으로 연락 부탁드립니다.</p>
 		<p class="txt_faq" style="color:red;">도미노피자 고객만족센터 <strong>080-860-3082</strong></p>
 	</div>
 	
-	<div class="container">
+	<div>
 		<div class="col-sm-12" style="max-height: 180px; overflow-y: scroll; background: #f5f5f5; padding: 2%; font-size: 14px;">
 			개인정보보호정책은 청오디피케이㈜에서 운영하는 도미노피자 홈페이지 서비스(이하 도미노)를 이용하는 고객님의 개인정보 보호를 위하여, 
 			개인정보 수집의 목적과 그 정보의 정책적 , 시스템적 보안에 관한 규정입니다.<br><br>
@@ -128,7 +128,7 @@
 	
 	</div>
 	
-	<div class="container" style="margin-top:2%; border-top: 2px solid black; padding: 0;">
+	<div style="margin-top:2%; border-top: 2px solid black; padding: 0;">
 		<form class="form-horizontal" action="./qnaWrite" method="post" enctype="multipart/form-data">
 			  
 			  <div class="col-sm-12 qna_input">
@@ -205,6 +205,7 @@
    				<button type="submit" class="btn btn-danger">보내기</button>
    				</div>
 	</form>
+	</div>
 	</div>
 	
  	<c:import url="../template/footer.jsp"></c:import>
