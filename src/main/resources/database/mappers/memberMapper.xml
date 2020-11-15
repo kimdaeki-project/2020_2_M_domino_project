@@ -8,5 +8,56 @@
 	<select id="getMemberList" resultType="MemberDTO">
 		select * from member_info
 	</select>
+	
+	<insert id="setMemberJoin" parameterType="MemberDTO">
+		insert into member_info values(#{member_name},#{member_id},#{member_pw}, #{member_date}, #{member_phone},#{member_email}, #{member_level}, 
+		#{member_pi_date}, #{member_pi_agg},#{member_clause_agg}, #{member_locate_agg},#{member_msg_agg},#{member_email_agg},#{member_post_agg}, 
+		sysdate, MEMBER_NUM_SEQ.NEXTVAL)
+	</insert>
+	
+	<select id="getMemberLogin" resultType="MemberDTO" parameterType="MemberDTO">
+		select * from member_info where member_id=#{member_id} and member_pw=#{member_pw}
+	</select>
+	
+	<select id="getMemberIdCheck" parameterType="MemberDTO" resultType="MemberDTO">
+		select member_id from member_info where member_id = #{member_id}
+	</select>
+	
+	<select id="getMemberPhoneCheck" parameterType="MemberDTO" resultType="MemberDTO">
+		select member_phone from member_info where member_phone = #{member_phone}
+	</select>
+	
+	<select id="getMemberEmailCheck" parameterType="MemberDTO" resultType="MemberDTO">
+		select member_email from member_info where member_email = #{member_email}
+	</select>
+	
+	<select id="getMemberCheck" parameterType="MemberDTO" resultType="MemberDTO">
+		select * from member_info where member_pw=#{member_pw} and member_id=#{member_id}
+	</select>
+	
+	<update id="setMemberUpdate" parameterType="MemberDTO">
+		update member_info 
+		set member_pw = #{member_pw}, member_date = #{member_date}, member_email = #{member_email} 
+		, member_msg_agg = #{member_msg_agg}, member_email_agg = #{member_email_agg}, member_post_agg = #{member_post_agg} 
+		where member_id = #{member_id}
+	</update>
+	
+	<insert id="setInqBoardWrite" parameterType="MemberDTO">
+		insert into member_inquirly values(#{member_num} ,member_inquirly_seq.nextval, #{inq_title}, #{inq_contents},
+		sysdate, #{inq_state}, #{inq_type}, #{inq_shop}, #{inq_location})
+	</insert>
+	
+	<select id="getInqBoardList" resultType="MemberDTO">
+		select * from member_inquirly where member_num=#{member_num} order by inq_num desc
+	</select>
+	
+	<select id="getOne" resultType="MemberDTO" parameterType="MemberDTO">
+		select * from member_inquirly where inq_num=#{inq_num}
+	</select>
+	
+	<select id="getNum" resultType="long">
+		select member_inquirly_seq.nextval from dual
+	</select>
+	
 
 </mapper>

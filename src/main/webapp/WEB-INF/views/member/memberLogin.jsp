@@ -14,31 +14,32 @@
 </head>
 <body>
 
-	<h1>Member List</h1>
 	
 	<div class="container">
-	<table class="table table-hober">
-		<tr>
-			<td>1</td>
-			<td>2</td>
-			<td>3</td>
-			<td>4</td>
-			
-		</tr>
-		
-		<c:forEach items="${list}" var="dto">
-			<tr>
-				<td>${dto.member_id}</td>
-				<td>${dto.member_pw}</td>
-				<td>${dto.member_name}</td>
-				<td>${dto.member_phone}</td>
-			
-			</tr>
-		</c:forEach>
+	<form action="./memberLogin" method="post">
 	
-	</table>
+	<div>
+		<input type="text" name="member_id" value="${cookie.remember.value}">
+	</div>	
 	
+	<div>
+		<input type="password" name="member_pw">
 	</div>
+	
+	<div class="checkbox">
+	 	 <label><input type="checkbox" name="remember">이이디저장</label>
+	 	<a>아이디 찾기</a>
+	 	<a>비밀번호 찾기</a>
+	</div>
+		
+	<button type="submit">로그인</button>
+	<a href="./memberJoin">회원가입</a>
+	</form>
+	</div>
+	
+	
 <c:import url="../template/footer.jsp"></c:import>
 </body>
+
+
 </html>

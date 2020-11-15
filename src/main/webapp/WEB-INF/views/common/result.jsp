@@ -4,15 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>result jsp</title>
+<title>Insert title here</title>
 </head>
 <body>
 <script type="text/javascript">
-	var result = '${msg}' // msg의 값이 숫자면 홑따옴표를 하지 않아도 된다.
-	var path = '${path}'
-	alert(result)
-	location.href = path
-	
+	var result = '${msg}';
+	var path = '${path}';
+	alert(result);
+	// /notice/noticeList
+	// /common/result.jsp
+	location.href=path;
 </script>
 
 </body>
