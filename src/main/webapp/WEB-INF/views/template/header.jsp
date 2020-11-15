@@ -31,8 +31,6 @@
   </div>
 </nav>
 
-
-
 <div class="col-sm-12 lnb" id="myNavbar2">
 	  <ul>
 	        <li><a href="${pageContext.request.contextPath}/menu/list/pizzaList">메뉴</a></li>

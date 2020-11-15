@@ -102,10 +102,8 @@ public class DominoNewsController {
 	public ModelAndView getOne(NewsDTO newsDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		long hit = 0;
 		dominoNewsService.setHitsUpdate(newsDTO.getBoard_num());
-		mv.addObject("hits", hit);
-		
+	
 		newsDTO = dominoNewsService.getOne(newsDTO);
 		
 		if(newsDTO!=null) {

@@ -106,8 +106,8 @@
     <div class="row">
    			 <div class="col-sm-3 card_wrap_inner">
        			<p class="card_text1">도미노피자의<br><strong>특별한 매니아 혜택</strong><br>누려보세요!</p>
-       			<div class="btn_wrap">
-					<a href="#" >로그인</a>
+       			<div class="card_wrap_login">
+					<a href="${pageContext.request.contextPath}/member/memberLogin" >로그인</a>
 				</div>
    			 </div>
     

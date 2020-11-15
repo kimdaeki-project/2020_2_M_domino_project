@@ -39,22 +39,22 @@
 	<c:import url="../template/header.jsp"></c:import>
 	
 	<div class="container">
- 		<h2>${news} 글 작성</h2>
-  		<form id="frm" action="./${news}Write" method="post" enctype="multipart/form-data">
-  
+ 		<h2>${news} 글 수정</h2>
+  		<form id="frm" action="./${news}Update" method="post" enctype="multipart/form-data">
+  			 <input type="hidden" name="board_num" value="${dto.board_num}">
 		    <div class="form-group">
 		      <label for="title">Title</label>
-		      <input type="text" class="form-control" id="title" name="board_title">
+		      <input type="text" class="form-control" value="${dto.board_title}" id="title" name="board_title">
 		    </div>
 	    
 		    <div class="form-group">
 		      <label for="writer">Writer</label>
-		      <input type="text" class="form-control" value="" id="writer" name="board_writer">
+		      <input type="text" class="form-control" value="${dto.board_writer}" id="writer" name="board_writer">
 		    </div> 
 		    
 		     <div class="form-group">
 		      <label for="contents">Contents</label>
-		      <textarea class="form-control" rows="20" cols="30" id="contents" name="board_contents"></textarea>
+		      <textarea class="form-control" rows="20" cols="30" id="contents" name="board_contents">${dto.board_contents}</textarea>
 		    </div>
 		    
 			<div id="files" class="col-sm-6" style="border: 1px solid #ddd">
@@ -66,18 +66,15 @@
 			<div>
 			
 			<div style="float: right;">
-			 	 <input type="submit" class="write_control" value="글작성">
+			 	 <input type="submit" class="write_control" value="글수정">
 			</div>
 			
 			<div  class="write_control" style="float: right;">
 				<a href="./${news}List" style="color:white;">목록</a>
 			</div>
 			</div>
-			
-			
-			
-			
   		</form>
+  		
 	</div>
 	
 	<c:import url="../template/footer.jsp"></c:import>

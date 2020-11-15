@@ -50,6 +50,35 @@
             vertical-align: top;
             border-top: 1px solid #ddd;
 		}
+		
+		.list_con strong{
+			color:  black;
+		}
+		
+		.newsTitle{
+			text-align: left;
+		}
+		
+		.newsTitle strong{
+			padding-left: 70px;
+		}
+		
+		.list_write{
+			width: 100px;
+			height: 50px;
+			background-color: #222222;
+			float: right;
+			text-align: center;
+			line-height: 50px;
+			
+		}
+		
+		.list_write a{
+			color: white;
+			font-size: 17px;
+			
+		}
+		
 	
 	</style>
 </head>
@@ -73,7 +102,7 @@
 		       <div class="input-group" style="margin: 0 auto;">
 		       
 		       		<div class="form-item">
-		       		<select class="col-sm-2" id="sel1" name="kind" style="width: 150px; height: 50px; border-color: #ddd;">
+		       		<select class="col-sm-2" id="sel1" name="kind" style="width: 150px; height: 50px; border-color: #ddd; background-color: white;">
 		       			<option value="title">제목</option>
 		       			<option value="contents">내용</option>
 		       			<option value="tc">제목+내용</option>
@@ -96,7 +125,7 @@
   	  </div>
   
 			
-	<div>
+	<div class="list_con">
 		<table class="table table-hover">
 			<tr>
 				<th class="col-sm-1">번호</th>
@@ -107,18 +136,20 @@
 		
 		<c:forEach items="${list}" var="dto" varStatus="vs">
 			<tr>
-				<td>${dto.board_num}</td>
-				<td><a href="./${news}Select?board_num=${dto.board_num}">${dto.board_title}</a></td>
-				<td>${dto.regDate}</td>
-				<td>${dto.hit}</td>
+				<td><strong>${dto.board_num}</strong></td>
+				<td class="newsTitle"><a href="./${news}Select?board_num=${dto.board_num}"><strong>${dto.board_title}</strong></a></td>
+				<td><strong>${dto.regDate}</strong></td>
+				<td><strong>${dto.hit}</strong></td>
 			</tr>
 		</c:forEach>
 		</table>
 		
-		<a href="./${news}Write" class="btn btn-danger">Write</a>
+		<div class="list_write">
+			<a href="./${news}Write">글쓰기</a>
+		</div>
+		
 	</div>
 </div>
-
 
 	<div>
 	 	<c:if test="${pager.beforeCheck}">
