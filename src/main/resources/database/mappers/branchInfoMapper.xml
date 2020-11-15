@@ -5,6 +5,8 @@
     
 <mapper namespace="com.domino.t1.branchInfo.BranchInfoDAO">
 
+	<select id="getRegion1" resultType="BranchInfoDTO" parameterType="BranchInfoDTO">
+		select region1 from branch_info group by #{region1}
+	</select>
 	
-
 </mapper>
