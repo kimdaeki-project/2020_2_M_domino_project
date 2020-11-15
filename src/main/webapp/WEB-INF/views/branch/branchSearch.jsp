@@ -55,9 +55,12 @@
 									<div class="form-group srch-type">
 										<div class="form-region" id="form-region-first">
 											<div class="select-region">
-												<select id="region1">
-													<option selected>시/도</option>
-													
+												<select id="region1" name="region1">
+													<c:forEach var="dto" items="${dto.region1}">
+														<option value="0" selected>시/도</option>
+														<option value="1"></option>
+														
+													</c:forEach>
 												</select>
 											</div>
 										</div>
