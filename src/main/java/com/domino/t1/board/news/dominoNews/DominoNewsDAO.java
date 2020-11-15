@@ -26,6 +26,9 @@ public class DominoNewsDAO implements NewsDAO {
 		return sqlSession.insert(NAMESPACE+"setInsertFile", boardFileDTO);
 	}
 	
+	public int setHitsUpdate(long board_num) throws Exception{
+		return sqlSession.update("setHitsUpdate", board_num);
+	}
 	
 	@Override
 	public int setInsert(NewsDTO newsDTO) throws Exception {

@@ -12,6 +12,10 @@
     	<update id = "setUpdate" parameterType="DominoNewsDTO">
     		update domino_news set title=#{board_title}, contents=#{board_contents} where board_num=#{board_num}
     	</update>
+    	
+    	<update id="setHitsUpdate" parameterType="Long">
+    		update domino_news set hit=hit+1 where board_num=#{board_num}
+    	</update>
 
     	<delete id ="setDelete" parameterType="DominoNewsDTO">
     		delete domino_news where board_num=#{board_num}
@@ -54,22 +58,20 @@
 			(select rownum R, D.* from 
 			(select * from domino_news where 
 			<choose>
-				<when test="kind =='title'">board_title</when>
-				<when test="kind =='writer'">board_writer</when>
-				<otherwise>board_contents</otherwise>
+				<when test="kind =='title'">(board_title like '%'||#{search}||'%')</when>
+				<when test="kind =='contents'">(board_contents like '%'||#{search}||'%')</when>
+				<otherwise>(board_title like '%'||#{search}||'%' or board_contents like '%'||#{search}||'%')</otherwise>
 			</choose>
-			 like '%'||#{search}||'%' order by board_num desc) D)
-			where R between #{startRow} and #{lastRow}
+			 order by board_num desc) D) where R between #{startRow} and #{lastRow}
     	</select>	
     	
     	<select id = "getCount" resultType="Long" parameterType="Pager">
     		select count(board_num) from domino_news
     		where 
     		<choose>
-    			<when test="kind =='title'">board_title</when>
-				<when test="kind =='writer'">board_writer</when>
-				<otherwise>board_contents</otherwise>
+    			<when test="kind =='title'">(board_title like '%'||#{search}||'%')</when>
+				<when test="kind =='contents'">(board_contents like '%'||#{search}||'%')</when>
+				<otherwise>(board_title like '%'||#{search}||'%' or board_contents like '%'||#{search}||'%')</otherwise>
     		</choose>
-    		 like '%'||#{search}||'%'
     	</select>
 </mapper>

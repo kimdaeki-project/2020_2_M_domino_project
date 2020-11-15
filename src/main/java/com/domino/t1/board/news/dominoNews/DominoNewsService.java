@@ -42,8 +42,11 @@ public class DominoNewsService implements NewsService {
 		if(file2.exists()) {
 			result=file2.delete();
 		}
-		
 		return result;
+	}
+	
+	public int setHitsUpdate(long board_num) throws Exception {
+		return dominoNewsDAO.setHitsUpdate(board_num);
 	}
 	
 	@Override

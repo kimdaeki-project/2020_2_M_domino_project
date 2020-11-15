@@ -29,9 +29,26 @@
 		
 		.form-item{
 			float: left;
-			margin: 0 auto;
-			height: 40px;
-			background-color: yellow;
+			padding: 2px;
+		}
+		
+		th{
+			text-align: center;
+			height: 50px;
+			color: black;
+			font-weight: bold;
+		}
+		
+		td{
+			text-align: center;
+			height: 50px;
+		}
+		
+		.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    		padding: 15px;
+   		    line-height: 1.42857143;
+            vertical-align: top;
+            border-top: 1px solid #ddd;
 		}
 	
 	</style>
@@ -45,29 +62,30 @@
 			<h2>공지사항<span style="font-size: 12px;">홈>공지사항>도미노뉴스</span></h2>
 					
 			<div class="detail_page_Link">
-				<a href="#">도미노 뉴스</a><a href="#">보도자료</a>
+				<a href="${pageContext.request.contextPath}/dominoNews/dominoNewsList">도미노 뉴스</a>
+				<a href="${pageContext.request.contextPath}/press/pressList">보도자료</a>
 			</div>
 	  </div>
 	
-  	  <div class="col-sm-12" style="border-bottom: 1px solid black; padding:50px 0; ">
+  	  <div class="col-sm-12" style="border-bottom: 2px solid black; padding:50px 0; ">
 		  <form action="./${news}List">
 		 	 <input type="hidden" name="curPage" id="curPage">
-		       <div class="input-group col-sm-12">
+		       <div class="input-group" style="margin: 0 auto;">
 		       
 		       		<div class="form-item">
-		       		<select class="col-sm-2" id="sel1" name="kind">
+		       		<select class="col-sm-2" id="sel1" name="kind" style="width: 150px; height: 50px; border-color: #ddd;">
 		       			<option value="title">제목</option>
-		       			<option value="writer">내용</option>
-		       			<option value="contents">제목+내용</option>
+		       			<option value="contents">내용</option>
+		       			<option value="tc">제목+내용</option>
 		       		</select>
 		       		</div>
 		       		
 		       		<div class="form-item">
-			        <input class="col-sm-6" id="msg" type="text" class="form-control" name="search">
+			        <input class="col-sm-6" id="msg" type="text" class="form-control" name="search"  style="width: 500px; height: 50px; border: 1px solid #ddd;">
 			        </div>
 			       
 			        <div class="form-item">
-				    <button type="submit" style="background-color: #222;">
+				    <button type="submit" style="background-color: #222; width:50px; height: 50px;">
 				        <img alt="" src="${pageContext.request.contextPath}/resources/images/index/srch.png">
 				    </button>
 				    </div>
@@ -81,10 +99,10 @@
 	<div>
 		<table class="table table-hover">
 			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>등록일</th>
-				<th>조회</th>
+				<th class="col-sm-1">번호</th>
+				<th class="col-sm-7">제목</th>
+				<th class="col-sm-2">등록일</th>
+				<th class="col-sm-2">조회</th>
 			</tr>
 		
 		<c:forEach items="${list}" var="dto" varStatus="vs">

@@ -76,7 +76,7 @@
 		    	</div>
 		    	
 		    	<div class="col-sm-2 myNavbar3">
-		    		<a href="#" class="inners_title">공지사항</a>
+		    		<a href="${pageContext.request.contextPath}/dominoNews/dominoNewsList" class="inners_title">공지사항</a>
 		    			<ul>
 					      <li><a href="${pageContext.request.contextPath}/dominoNews/dominoNewsList">도미노뉴스</a></li>
 						  <li><a href="${pageContext.request.contextPath}/press/PressList">보도자료</a></li>
