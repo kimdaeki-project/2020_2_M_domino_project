@@ -58,6 +58,13 @@
 			display: inline-block;
 		}
 		
+		.Check0{
+			color: blue;
+		}
+		.Check1{
+			color: red;
+		}
+		
 		
 	</style>
 </head>
@@ -74,7 +81,7 @@
 			</div>
 	  </div>
 	
-	<div>
+	<div style="padding: 20px 0;">
 		<p style="font-weight: bold;">도미노피자를 이용하시면서 느꼈던 불편한 점이나 건의사항, 제품에 대한 의견을 남겨주시면 성심껏 답변해드리겠습니다.<br>
 		※주문 취소/변경과 같은 긴급한 요청은 매장으로 연락 부탁드립니다.</p>
 		<p class="txt_faq" style="color:red;">도미노피자 고객만족센터 <strong>080-860-3082</strong></p>
@@ -129,26 +136,29 @@
 	</div>
 	
 	<div style="margin-top:2%; border-top: 2px solid black; padding: 0;">
-		<form class="form-horizontal" action="./qnaWrite" method="post" enctype="multipart/form-data">
+		<form class="form-horizontal" id="frm" action="./qnaWrite" method="post" enctype="multipart/form-data">
 			  
 			  <div class="col-sm-12 qna_input">
 			    <label class="control-label col-sm-2" for="board_writer">이름<span>*</span></label>
 			    <div class="col-sm-4">
-			       <input type="text" class="form-control" id="board_writer" name="board_writer" >
+			       <input type="text" class="form-control empty" id="board_writer" name="board_writer" >
+			       <div class="emptyResult"></div>
 			    </div>
 			  </div>
   				
   			  <div class="col-sm-12 qna_input">
 				  <label class="control-label col-sm-2" for="phone">휴대전화<span>*</span></label>
 				  <div class="col-sm-6">
-				  <input type="text" class="form-control" id="phone" name="phone">
+				  <input type="text" class="form-control empty" id="phone" name="phone">
+				  <div class="emptyResult"></div>
 				  </div>
 			  </div>
 			 
   			  <div class="col-sm-12 qna_input">
 				  <label class="control-label col-sm-2" for="email">이메일<span>*</span></label>
 				  <div class="col-sm-6">
-				  <input type="text" class="form-control" id="email" name="email">
+				  <input type="text" class="form-control empty" id="email" name="email">
+				  <div class="emptyResult"></div>
 				  </div>
 			   </div>
   			
@@ -157,6 +167,7 @@
 				    <label class="control-label col-sm-2" for="qna_type">유형분류<span>*</span></label>
 				    <div class="col-sm-6">
 				    <input type="text" class="form-control empty" id="qna_type" name="qna_type">
+				    <div class="emptyResult"></div>
 				    </div>
 			   </div>
   
@@ -164,7 +175,8 @@
   			   <div class="col-sm-12 qna_input">
 				    <label class="control-label col-sm-2" for="branch_info">매장선택<span>*</span></label>
 				    <div class="col-sm-6">
-				     <input type="text" class="form-control empty" id="branch_info" name="branch_info">
+				    <input type="text" class="form-control empty" id="branch_info" name="branch_info">
+				    <div class="emptyResult"></div>
 				    </div>
 			   </div>
     
@@ -172,7 +184,7 @@
     		  	<div class="col-sm-12 qna_input">
 				    <label class="control-label col-sm-2" for="order_num">주문번호</label>
 				    <div class="col-sm-4">
-				    <input type="text" class="form-control empty" id="order_num" name="order_num">
+				    <input type="text" class="form-control" id="order_num" name="order_num">
 				    </div>
 				</div>
     
@@ -180,13 +192,15 @@
 				    <label class="control-label col-sm-2" for="board_title">제목<span>*</span></label>
 				    <div class="col-sm-6">
 				         <input type="text" class="form-control empty" id="board_title" name="board_title">
+				    	 <div class="emptyResult"></div>
 				    </div>
 				</div>
     
     			<div class="col-sm-12 qna_input">
 				    <label class="control-label col-sm-2" for="board_contents">글작성<span>*</span></label>
 				    <div class="col-sm-6">
-  						<textarea class="form-control" rows="15" id="board_contents" name="board_contents"></textarea>
+  						<textarea class="form-control empty" rows="15" id="board_contents" name="board_contents"></textarea>
+						<div class="emptyResult"></div>
 					</div>
 			    </div>
 			    
@@ -201,14 +215,52 @@
 				</div>
 			    
 			    <div class="col-sm-12" style="padding: 2%; text-align: center;">
-			    <button type="reset" class="btn btn-default">다시쓰기</button>
-   				<button type="submit" class="btn btn-danger">보내기</button>
+			    <button type="reset" id="qna_reset_btn" class="btn btn-default">다시쓰기</button>
+   				<button type="button" id="qna_write_btn" class="btn btn-danger">보내기</button>
    				</div>
 	</form>
 	</div>
 	</div>
 	
  	<c:import url="../template/footer.jsp"></c:import>
+	
+	
+	<script>
+		var emptyCheckResult = true;
+		
+	
+		$("#qna_reset_btn").click(function(){
+			if(confirm("작성된내용이 다지워집니다") == true){
+		        $('#qna_reset_btn').reset();
+		    }
+		    else{
+		        return ;
+		    }
+		});
+		
+		
+		$("#qna_write_btn").click(function(){
+			emptyCheck();
+			if(emptyCheckResult){
+				$("#frm").submit();
+			}
+			});
+		
+			
+		function emptyCheck(){
+			emptyCheckResult=true;
+			$(".emptyResult").removeClass("Check1");
+			$(".emptyResult").html('');
+			$(".empty").each(function(){
+				var data = $(this).val();
+				if(data==''){
+					emptyCheckResult=false;
+					$(this).next().html("필수항목 입니다");
+					$(".emptyResult").addClass("Check1");
+				}
+			});
+		}
+	</script>
 	
 </body>
 </html>

@@ -45,8 +45,8 @@ public class DominoNewsService implements NewsService {
 		return result;
 	}
 	
-	public int setHitsUpdate(long board_num) throws Exception {
-		return dominoNewsDAO.setHitsUpdate(board_num);
+	public int setNewsHits(long board_num) throws Exception {
+		return dominoNewsDAO.setNewsHits(board_num);
 	}
 	
 	@Override

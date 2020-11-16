@@ -32,6 +32,13 @@
 		font-size: 18px;
 		margin-right: 5px;
 	}
+	
+	.Check0{
+		color: blue;
+	}
+	.Check1{
+		color: red;
+	}
 </style>
   
 </head>
@@ -44,7 +51,7 @@
   
 		    <div class="form-group">
 		      <label for="title">Title</label>
-		      <input type="text" class="form-control" id="title" name="board_title">
+		      <input type="text" class="form-control empty" id="title" name="board_title" title="제목">
 		    </div>
 	    
 		    <div class="form-group">
@@ -54,8 +61,9 @@
 		    
 		     <div class="form-group">
 		      <label for="contents">Contents</label>
-		      <textarea class="form-control" rows="20" cols="30" id="contents" name="board_contents"></textarea>
+		      <textarea class="form-control empty" rows="20" cols="30" id="contents" name="board_contents" title="내용"></textarea>
 		    </div>
+		  
 		    
 			<div id="files" class="col-sm-6" style="border: 1px solid #ddd">
 				 <input class="files" type="file" class="form-control" name="files">
@@ -65,18 +73,15 @@
 			
 			<div>
 			
-			<div style="float: right;">
-			 	 <input type="submit" class="write_control" value="글작성">
+			<div id="news_submit_btn" style="float: right;" >
+			 	 <input type="button" class="write_control" value="글작성">
 			</div>
 			
 			<div  class="write_control" style="float: right;">
 				<a href="./${news}List" style="color:white;">목록</a>
 			</div>
 			</div>
-			
-			
-			
-			
+
   		</form>
 	</div>
 	
@@ -129,8 +134,29 @@
 		
 	 });
 	 
-</script>
-
+	 var emptyCheckResult = true;
+		$("#news_submit_btn").click(function(){
+			emptyCheck();
+			if(emptyCheckResult){
+				$("#frm").submit();
+			}
+		});
+	
+	function emptyCheck(){
+		emptyCheckResult=true;
+		$(".empty").each(function(){
+			var data = $(this).val();
+			if(data==''){
+				emptyCheckResult=false;
+				var title = $(this).attr("title");
+				alert(title+"을 입력하세요");
+			}
+		});
+	}
+	
+	
+	
+	</script>
 
 </body>
 </html>

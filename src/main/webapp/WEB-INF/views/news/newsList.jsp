@@ -88,7 +88,14 @@
 	<div class="container">
 	
 	  <div class="detail_page">
-			<h2>공지사항<span style="font-size: 12px;">홈>공지사항>도미노뉴스</span></h2>
+			<c:choose>
+			<c:when test="${news eq 'dominoNews'}">
+				<h2>공지사항<span style="font-size: 12px;">홈>공지사항>도미노뉴스</span></h2>
+			</c:when>
+			<c:when test="${news eq 'press'}">
+				<h2>공지사항<span style="font-size: 12px;">홈>공지사항>보도자료</span></h2>
+			</c:when>
+		</c:choose>	
 					
 			<div class="detail_page_Link">
 				<a href="${pageContext.request.contextPath}/dominoNews/dominoNewsList">도미노 뉴스</a>

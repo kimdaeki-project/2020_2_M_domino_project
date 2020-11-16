@@ -10,12 +10,12 @@
     	</insert>
   
     	<update id = "setUpdate" parameterType="DominoNewsDTO">
-    		update domino_news set board_title=#{board_title}, board_contents=#{board_contents} where board_num=#{board_num}
+    		update domino_news set board_title=#{board_title}, board_contents=#{board_contents}, boardFileDTOs=#{boardFileDTOs} where board_num=#{board_num}
     	</update>
     	
-    	<update id="setHitsUpdate" parameterType="Long">
+    	<update id="setNewsHits" parameterType="Long">
     		update domino_news set hit=hit+1 where board_num=#{board_num}
-    	</update>
+    	</update> 
 
     	<delete id ="setDelete" parameterType="DominoNewsDTO">
     		delete domino_news where board_num=#{board_num}

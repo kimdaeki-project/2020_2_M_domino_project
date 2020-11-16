@@ -37,13 +37,18 @@ public class FaqController {
 	public ModelAndView setInsert(FaqDTO faqDTO) throws Exception{
 	
 		int result = faqService.setInsert(faqDTO);
+		
+		String message="Write Fail";
 		if(result>0) {
-			System.out.println("write scucess");
+			message = "Write Success";
 		}
-		
 		ModelAndView mv = new ModelAndView();
-		return mv;
+	
+		mv.addObject("msg", message);
+		mv.addObject("path", "./faqList");
 		
+		mv.setViewName("common/result");
+		return mv;	
 	}
 
 }

@@ -57,18 +57,24 @@
 		line-height: 60px;
 	}
 	
-	.list_back a{
+	.list_back a, .sel_control a{
 		color: white;
 		font-size: 18px;	
 	}
 	
-	.select_control{
+	.sel_control{
 		float: right;
-		width: 120px;
-		height: 60px;
-		background-color: red;
+		width: 100px;
+		height: 50px;
+		background-color: #222222;
 		color: white;
+		text-align: center;
+		line-height: 50px;
+		margin-right: 5px;
+		margin-top: 20px;
 	}
+	
+	
   </style>
   
 </head>
@@ -78,8 +84,14 @@
 <div class="container">
 	
 	<div class="detail_page">
-		<h2>공지사항<span style="font-size: 12px;">홈>공지사항>도미노뉴스</span></h2>
-					
+		<c:choose>
+			<c:when test="${news eq 'dominoNews'}">
+				<h2>공지사항<span style="font-size: 12px;">홈>공지사항>도미노뉴스</span></h2>
+			</c:when>
+			<c:when test="${news eq 'press'}">
+				<h2>공지사항<span style="font-size: 12px;">홈>공지사항>보도자료</span></h2>
+			</c:when>
+		</c:choose>			
 		<div class="detail_page_Link">
 			<a href="${pageContext.request.contextPath}/dominoNews/dominoNewsList">도미노 뉴스</a>
 			<a href="${pageContext.request.contextPath}/press/pressList">보도자료</a>
@@ -109,27 +121,17 @@
 		<a href="./${news}List">목록</a>
 	 </div>
 	 
-	 <div class="list_back" id="news_upd">
-		<input type="button" title="${dto.board_num}" value="글수정" id="news_upd">
+	 <div class="sel_control" id="news_del">
+	 	<a href="./${news}Delete?board_num=${dto.board_num}">삭제</a>
 	 </div>
 	 
-	 <div class="list_back" id="news_del">
-		<input type="button" title="${dto.board_num}" value="삭제"  id="news_del">
+	 <div class="sel_control" id="news_upd">
+	 	<a href="./${news}Update?board_num=${dto.board_num}">글수정</a>
 	 </div>
- 	
+	 
  </div>
 
  <c:import url="../template/footer.jsp"></c:import>
  
- <script type="text/javascript">
-	$("#news_del").click(function(){
-		window.location.href="./${news}Delete?board_num="+${dto.board_num};
-	});
-	
-	$("#news_upd").click(function(){
-		window.location.href="./${news}Update?board_num="+${dto.board_num};
-	});
-</script>
-	
 </body>
 </html>
