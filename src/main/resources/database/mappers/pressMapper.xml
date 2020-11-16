@@ -6,7 +6,7 @@
 <mapper namespace="com.domino.t1.board.news.press.PressDAO">
 		
 		<insert id="setInsertFile" parameterType="BoardFileDTO">
-    		insert into newsFile values(board_seq.nextval, #{board_num}, #{file_Name}, #{ori_Name}) 	
+    		insert into pressFile values(board_seq.nextval, #{board_num}, #{file_Name}, #{ori_Name}) 	
     	</insert>
   
     	<update id="setUpdate" parameterType="PressDTO">
@@ -36,9 +36,9 @@
     	</resultMap>
     
     	<select id="getOne" parameterType="PressDTO" resultMap="getOneResult">
-    		select P.*, NF.*
-			from press P left join newsFile NF
-			on P.board_num = NF.board_num
+    		select P.*, PF.*
+			from press P left join pressFile PF
+			on P.board_num = PF.board_num
 			where P.board_num=#{board_num}
     	</select>
     	

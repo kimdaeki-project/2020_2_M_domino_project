@@ -215,7 +215,7 @@
 				</div>
 			    
 			    <div class="col-sm-12" style="padding: 2%; text-align: center;">
-			    <button type="reset" id="qna_reset_btn" class="btn btn-default">다시쓰기</button>
+			    <button type="button" id="qna_reset_btn" class="btn btn-default">다시쓰기</button>
    				<button type="button" id="qna_write_btn" class="btn btn-danger">보내기</button>
    				</div>
 	</form>
@@ -226,22 +226,23 @@
 	
 	
 	<script>
-		var emptyCheckResult = true;
-		
 	
-		$("#qna_reset_btn").click(function(){
-			if(confirm("작성된내용이 다지워집니다") == true){
-		        $('#qna_reset_btn').reset();
-		    }
-		    else{
-		        return ;
-		    }
+		var agreeCheck = true;
+		$(document).ready(function(){
+			$("#qna_write_btn").click(function(){
+				 if($("#agree_yes").is(":checked") == false){
+	                    alert("약관동의를 해주세요");
+	                    agreeCheck = false;
+	                    return;
+	                }
+			});
 		});
 		
+		var emptyCheckResult = true;
 		
 		$("#qna_write_btn").click(function(){
 			emptyCheck();
-			if(emptyCheckResult){
+			if(emptyCheckResult&&agreeCheck){
 				$("#frm").submit();
 			}
 			});
@@ -260,6 +261,19 @@
 				}
 			});
 		}
+		
+		$(document).ready(function(){
+			$("#qna_reset_btn").click(function(){
+				if(confirm("작성된 내용이 다 지워집니다") == true){
+					$("#frm").each(function(){
+						this.reset();
+					});
+				}
+				else{
+					return;
+				}
+			});
+		});
 	</script>
 	
 </body>
