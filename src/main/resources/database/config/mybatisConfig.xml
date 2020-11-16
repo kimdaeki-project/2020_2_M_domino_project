@@ -9,7 +9,8 @@
 		<typeAlias type="java.lang.Long" alias="Long"/>
     
 		<typeAlias type="com.domino.t1.member.MemberDAO" alias="MemberDAO"/>
-		<typeAlias type="com.domino.t1.member.MemberDTO" alias="MemberDTO"/>    
+		<typeAlias type="com.domino.t1.member.MemberDTO" alias="MemberDTO"/> 
+		<typeAlias type="com.domino.t1.member.memberUser.MemberUserDTO" alias="MemberUserDTO"/>    
     
 		<!-- item related aliases -->
 		<typeAlias type="com.domino.t1.item.ItemDTO" alias="ItemDTO"/>

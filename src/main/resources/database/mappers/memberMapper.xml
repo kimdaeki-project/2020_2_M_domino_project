@@ -5,7 +5,7 @@
     
 <mapper namespace="com.domino.t1.member.MemberDAO">
 
-	<select id="getMemberList" resultType="MemberDTO">
+	<select id="getMemberList" resultType="MemberUserDTO">
 		select * from member_info
 	</select>
 	
@@ -15,23 +15,23 @@
 		sysdate, MEMBER_NUM_SEQ.NEXTVAL)
 	</insert>
 	
-	<select id="getMemberLogin" resultType="MemberDTO" parameterType="MemberDTO">
+	<select id="getMemberLogin" resultType="MemberUserDTO" parameterType="MemberDTO">
 		select * from member_info where member_id=#{member_id} and member_pw=#{member_pw}
 	</select>
 	
-	<select id="getMemberIdCheck" parameterType="MemberDTO" resultType="MemberDTO">
+	<select id="getMemberIdCheck" parameterType="MemberDTO" resultType="MemberUserDTO">
 		select member_id from member_info where member_id = #{member_id}
 	</select>
 	
-	<select id="getMemberPhoneCheck" parameterType="MemberDTO" resultType="MemberDTO">
+	<select id="getMemberPhoneCheck" parameterType="MemberDTO" resultType="MemberUserDTO">
 		select member_phone from member_info where member_phone = #{member_phone}
 	</select>
 	
-	<select id="getMemberEmailCheck" parameterType="MemberDTO" resultType="MemberDTO">
+	<select id="getMemberEmailCheck" parameterType="MemberDTO" resultType="MemberUserDTO">
 		select member_email from member_info where member_email = #{member_email}
 	</select>
 	
-	<select id="getMemberCheck" parameterType="MemberDTO" resultType="MemberDTO">
+	<select id="getMemberCheck" parameterType="MemberDTO" resultType="MemberUserDTO">
 		select * from member_info where member_pw=#{member_pw} and member_id=#{member_id}
 	</select>
 	
@@ -47,11 +47,11 @@
 		sysdate, #{inq_state}, #{inq_type}, #{inq_shop}, #{inq_location})
 	</insert>
 	
-	<select id="getInqBoardList" resultType="MemberDTO">
+	<select id="getInqBoardList" resultType="MemberUserDTO">
 		select * from member_inquirly where member_num=#{member_num} order by inq_num desc
 	</select>
 	
-	<select id="getOne" resultType="MemberDTO" parameterType="MemberDTO">
+	<select id="getOne" resultType="MemberUserDTO" parameterType="MemberDTO">
 		select * from member_inquirly where inq_num=#{inq_num}
 	</select>
 	
@@ -59,7 +59,7 @@
 		delete member_info where member_id = #{member_id}
 	</delete>
 	
-	<select id="getMemberSearch" parameterType="MemberDTO" resultType="MemberDTO">
+	<select id="getMemberSearch" parameterType="MemberDTO" resultType="MemberUserDTO">
 		select * from member_info where member_name = #{member_name} and member_date = #{member_date} and member_phone = #{member_phone}
 	</select>
 	

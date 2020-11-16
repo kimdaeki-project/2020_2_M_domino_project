@@ -1,4 +1,4 @@
-package com.domino.t1.member;
+package com.domino.t1.member.memberUser;
 
 import java.util.List;
 
@@ -17,20 +17,38 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.domino.t1.member.MemberDTO;
+
 import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequestMapping("/member/**")
-public class MemberController {
+public class MemberUserController {
 	
 	@Autowired
-	private MemberService memberService;
+	private MemberUserService memberService;
+	
+	@PostMapping("jusoPopup")
+	public ModelAndView getJusoPopup2() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("member/jusoPopup");
+		return mv;
+	}
 	
 	@GetMapping("jusoPopup")
 	public ModelAndView getJusoPopup() throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
 		mv.setViewName("member/jusoPopup");
+		return mv;
+	}
+	
+	@PostMapping("Sample")
+	public ModelAndView getSampleoPopup2() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("member/Sample");
 		return mv;
 	}
 	
