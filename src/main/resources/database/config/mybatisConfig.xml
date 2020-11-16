@@ -23,6 +23,8 @@
 		<typeAlias type="com.domino.t1.board.qna.QnaDTO" alias="QnaDTO"/>
 		<typeAlias type="com.domino.t1.board.news.dominoNews.DominoNewsDTO" alias="DominoNewsDTO"/>
 		<typeAlias type="com.domino.t1.board.file.BoardFileDTO" alias="BoardFileDTO"/>
+		
+		<typeAlias type="com.domino.t1.branchInfo.BranchInfoDTO" alias="BranchInfoDTO"/>
 
 	</typeAliases>
 </configuration>
