@@ -1,8 +1,4 @@
 
-<%@page import="oracle.jdbc.driver.DBConversion"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.Connection"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -44,8 +40,8 @@
 						<div class="store-search">
 							<!-- 탭 선택 -->
 							<div class="tab">
-							  <button class="tablinks search-tab" onclick="openSearch(event, 'search1')" id="defaultOpen">지역검색</button>
-							  <button class="tablinks search-tab" onclick="openSearch(event, 'search2')">매장명</button>
+							  <button class="tablinks search-tab t1" onclick="openSearch(event, 'search1')" id="defaultOpen">지역검색</button>
+							  <button class="tablinks search-tab t2" onclick="openSearch(event, 'search2')">매장명</button>
 							</div>
 							<!-- 탭 선택 -->
 							
