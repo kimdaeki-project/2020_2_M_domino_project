@@ -5,11 +5,42 @@
     
 <mapper namespace="com.domino.t1.member.MemberDAO">
 
-	<select id="getMemberList" resultType="MemberUserDTO">
-		select * from 	
-		(select rownum R, N. * from 
-		(select * from member_info order by num desc) N)
+	<select id="getMemberList" resultType="MemberDTO" parameterType="Pager">
+		select * from
+		(select rownum R, N.* from 
+		(select * from member_info where 
+		<choose>
+			<when test="kind == 'id'">
+				member_id
+			</when>
+			
+			<when test="kind == 'name'">
+				member_name
+			</when>
+			
+			<otherwise>
+				member_phone
+			</otherwise>
+		</choose>
+		like '%'||#{search}||'%' order by member_num desc) N)
 		where R between #{startRow} and #{lastRow}
+	</select>
+	
+	<select id="getCount" resultType="Long" parameterType="Pager">
+		select count(member_num) from member_info
+		where 
+		<choose>
+			<when test="kind == 'id'">
+				member_id
+			</when>
+			<when test="kind == 'name'">
+				member_name
+			</when>
+			<otherwise>
+				member_phone
+			</otherwise>
+		</choose>
+		like '%' || #{search} || '%'
 	</select>
 	
 	<insert id="setMemberJoin" parameterType="MemberDTO">

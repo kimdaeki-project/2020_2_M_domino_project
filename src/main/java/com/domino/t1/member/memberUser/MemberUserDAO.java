@@ -76,12 +76,18 @@ public class MemberUserDAO implements MemberDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.insert(NAMESPACE+"setMemberJoin", memberDTO);
 	}
+	
 	@Override
-	public List<MemberDTO> getMemberList(MemberDTO memberDTO, Pager pager) throws Exception {
+	public List<MemberDTO> getMemberList(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE+"getMemberList", memberDTO, pager);
+		return sqlSession.selectList(NAMESPACE+"getMemberList", pager);
 	}
 	
+	@Override
+	public long getCount(Pager pager) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+"getCount", pager);
+	}
 	
 
 }

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.domino.t1.member.MemberDTO;
+import com.domino.t1.util.Pager;
 
 import oracle.jdbc.proxy.annotation.Post;
 
@@ -330,11 +331,12 @@ public class MemberUserController {
 	}
 	
 	@GetMapping("memberList")
-	public ModelAndView getMemberList(MemberDTO memberDTO) throws Exception{
+	public ModelAndView getMemberList(Pager pager) throws Exception{
 		System.out.println("Member List");
 		ModelAndView mv = new ModelAndView();
 		
-		List<MemberDTO> ar = memberService.getMemberList(memberDTO);
+		List<MemberDTO> ar = memberService.getMemberList(pager);
+		mv.addObject("pager", pager);
 		
 		mv.addObject("list", ar);
 		mv.setViewName("member/memberList");

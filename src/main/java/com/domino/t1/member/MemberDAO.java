@@ -30,6 +30,8 @@ public interface MemberDAO {
 	
 	public int setMemberJoin(MemberDTO memberDTO) throws Exception;
 	
-	public List<MemberDTO> getMemberList(MemberDTO memberDTO, Pager pager) throws Exception;
+	public List<MemberDTO> getMemberList(Pager pager) throws Exception;
+	
+	public long getCount(Pager pager) throws Exception;
 
 }

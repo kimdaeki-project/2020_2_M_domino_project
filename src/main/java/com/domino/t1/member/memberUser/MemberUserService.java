@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.domino.t1.member.MemberDTO;
 import com.domino.t1.member.MemberService;
+import com.domino.t1.util.Pager;
 
 @Service
 public class MemberUserService implements MemberService{
@@ -87,9 +88,18 @@ public class MemberUserService implements MemberService{
 	}
 
 	@Override
-	public List<MemberDTO> getMemberList(MemberDTO memberDTO) throws Exception {
+	public List<MemberDTO> getMemberList(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
-		return memberDAO.getMemberList(memberDTO);
+		pager.makeRow();
+		pager.setTotalCount(memberDAO.getCount(pager));
+		pager.makePage();
+		return memberDAO.getMemberList(pager);
+	}	
+	
+	@Override
+	public long getCount(Pager pager) throws Exception {
+	
+		return memberDAO.getCount(pager);
 	}
 	
 	
