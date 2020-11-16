@@ -7,6 +7,7 @@
 	<typeAliases>
 		
 		<typeAlias type="java.lang.Long" alias="Long"/>
+		<typeAlias type="com.domino.t1.util.Pager" alias="Pager"></typeAlias>
     
 		<typeAlias type="com.domino.t1.member.MemberDAO" alias="MemberDAO"/>
 		<typeAlias type="com.domino.t1.member.MemberDTO" alias="MemberDTO"/> 
@@ -17,6 +18,12 @@
 		<typeAlias type="com.domino.t1.item.dough.DoughDTO" alias="DoughDTO"/>
 		<typeAlias type="com.domino.t1.item.pizza.PizzaDTO" alias="PizzaDTO"/>
 		<typeAlias type="com.domino.t1.item.topping.ToppingDTO" alias="ToppingDTO"/>
+		
+		<!-- board related aliases -->
+		<typeAlias type="com.domino.t1.board.faq.FaqDTO" alias="FaqDTO"/>
+		<typeAlias type="com.domino.t1.board.qna.QnaDTO" alias="QnaDTO"/>
+		<typeAlias type="com.domino.t1.board.news.dominoNews.DominoNewsDTO" alias="DominoNewsDTO"/>
+		<typeAlias type="com.domino.t1.board.file.BoardFileDTO" alias="BoardFileDTO"/>
 
 	</typeAliases>
 </configuration>

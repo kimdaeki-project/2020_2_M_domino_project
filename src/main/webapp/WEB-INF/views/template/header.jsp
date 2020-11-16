@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<div class="container.fluid" id="header_wrap">
 <header class="container text-center">    
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -36,7 +37,7 @@
 	        <li><a href="#">e-쿠폰</a></li>
 	        <li><a href="#">상품권 선물</a></li>
 	        <li><a href="#">이벤트 제휴</a></li>
-	        <li><a href="#">매장검색</a></li>
+	        <li><a href="/t1/branch/branchSearch">매장검색</a></li>
 	        <li><a href="#" id="nav_more">더보기&or;</a></li>
       </ul>
       
@@ -54,8 +55,8 @@
 	    	<div class="col-sm-2 myNavbar3">
 	    		<a href="#" class="inners_title">고객센터</a>
 	    			<ul>
-				       <li><a href="#">자주하는 질문</a></li>
-					   <li><a href="#">온라인 신문고</a></li>
+				       <li><a href="${pageContext.request.contextPath}/faq/faqList">자주하는 질문</a></li>
+					   <li><a href="${pageContext.request.contextPath}/qna/qnaWrite">온라인 신문고</a></li>
 				    </ul>
 	    	</div>
 	    	 
@@ -73,13 +74,11 @@
 	    	<div class="col-sm-2 myNavbar3">
 	    		<a href="#" class="inners_title">공지사항</a>
 	    			<ul>
-				      <li><a href="#">도미노뉴스</a></li>
-					  <li><a href="#">보도자료</a></li>
+				      <li><a href="${pageContext.request.contextPath}/dominoNews/dominoNewsList">도미노뉴스</a></li>
+					  <li><a href="${pageContext.request.contextPath}/press/PressList">보도자료</a></li>
 				   </ul>
 	    	</div>
  	 </div> 
 </div>
-
-
-
 </header>
+</div>
