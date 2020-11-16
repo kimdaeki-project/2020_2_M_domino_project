@@ -24,6 +24,9 @@
 		<typeAlias type="com.domino.t1.board.news.dominoNews.DominoNewsDTO" alias="DominoNewsDTO"/>
 		<typeAlias type="com.domino.t1.board.file.BoardFileDTO" alias="BoardFileDTO"/>
 
+	
+		<!-- order relates aliases -->
+		<typeAlias type="com.domino.t1.coupon.CouponDTO" alias="CouponDTO"/>
 
 
 		<typeAlias type="com.domino.t1.branchInfo.BranchInfoDTO" alias="BranchInfoDTO"/>
