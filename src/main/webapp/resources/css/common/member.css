@@ -243,3 +243,42 @@ body {
 	font-size: 14px;
 }
 
+dt {
+    width: 230px;
+    padding-left: 40px;
+    font-weight: 600;
+    vertical-align: top;
+    line-height: 1;
+    margin-top: 3px;
+    display: inline-block;
+}
+
+dd {
+    vertical-align: middle;
+    width: calc(100% - 250px);
+    display: inline-block;
+    font-size: 16px;
+    color: #111;
+}
+
+dl {
+    padding-top: 10px;
+    
+}
+
+#checkButt{
+    margin-left: 6px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 16px;
+    width: 110px;
+    font-weight: 400;
+    background: #222;
+    border-color: #222;
+    color: white;
+}
+	
+tr {
+	padding: 30px;
+}
+

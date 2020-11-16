@@ -64,20 +64,28 @@
 		<div></div>
 		<div class="myCheck2">회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시한번 확인합니다.</div>
 	</div>
-	<div class="memberCheck"></div>
+	<div class="memberCheck"></div><br>
 	<form action="./memberCheck" method="post">
 	<div class="container">
-	<table>
 
-		<tr>
-			<td>아이디</td><td><input type="text" name="member_id" value="${member.member_id}" readonly="readonly"></td>
-		</tr>
-		<tr>
-			<td>비밀번호</td><td><input type="password" name="member_pw"><input type="submit" value="확인"></td>
-		</tr>
+
+		<div>
+		<dl>
+			<dt>아이디</dt>
+			<dd><input type="text" name="member_id" value="${member.member_id}" readonly="readonly" style="text-align:center; width:300px; height:42px;"></dd>
+		</dl>
+		<dl>
+			<dt>비밀번호</dt>
+			<dd>
+				<div>
+					<input type="password" name="member_pw" style="text-align:center; width:300px; height:42px;"><input type="submit" value="확인" id="checkButt" style= "width:110px; height:42px;">
+				</div>
+			</dd>
+		</dl>
 		
-		
-	</table>
+			
+
+		</div>
 	</div>
 	</form>
 	
