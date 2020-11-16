@@ -23,7 +23,7 @@
 	
 	<div class="container">
 		<h1>회원가입</h1>
-		<form action="./memberJoin" method="post" id="frm">
+		<form class="form-horizontal" action="./memberJoin" method="post" id="frm">
 	
 				<div class="form-group">
 				<label for="name">이름 </label>

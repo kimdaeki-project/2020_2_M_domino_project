@@ -193,3 +193,53 @@ body {
     letter-spacing: -1px;
     color: #000;
 }
+
+.login{
+	width: 430px;
+	height: 416px;
+	margin: 0 auto;
+	
+}
+
+.idpw{
+	float: right;
+}
+
+.logSelect{
+	list-style-type: none;
+	display: inline-block;
+	width: 210px;
+	height: 60px;
+	text-align: center;
+	margin-top: 30px;
+	
+	
+}
+
+#mLog{
+	border-color: #f5f5f5;
+    border-top: 1px solid #111;
+    border-right: 1px solid #111;
+    border-left: 1px solid #111;
+}
+
+#noLog{
+	border-color: #f5f5f5;
+    border-bottom: 1px solid #111;
+    background-color: #f5f5f5;
+ 
+}
+
+#btnLog{
+	width: 100%;
+    background: #ff143c;
+    border: 1px solid #ff143c;
+    color: white;
+    font-size: 14px;
+}
+
+#btnJoin{
+	background: white;
+	font-size: 14px;
+}
+
