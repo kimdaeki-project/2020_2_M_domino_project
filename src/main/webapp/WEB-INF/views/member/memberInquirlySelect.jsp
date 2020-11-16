@@ -22,11 +22,39 @@
 	<br>
 	
 	<ul id="select">
-		<li>
-		<a href="./memberLevel">매니아 등급</a> ㅣ 
-		<a href="./memberOrder">주문 내역</a> ㅣ 
-		<a href="#">쿠폰함</a> ㅣ 
-		<a href="./memberEquirly">1:1 문의</a> ㅣ 
+		<li class="list2">
+		<a href="./memberPage">매니아 등급</a>
+		</li>
+		
+		<li class="list2">
+		 ㅣ 
+		 </li>
+		 
+		 <li class="list2">
+		<a href="./memberOrder">주문 내역</a>
+		 </li> 
+		 
+		 <li class="list2">
+		 ㅣ 
+		 </li>
+		   
+		 <li class="list2">
+		<a href="#">쿠폰함</a>
+		 </li>
+		  
+		<li class="list2"> 
+		ㅣ 
+		</li> 
+		
+		<li class="list2">
+		<a href="./memberInquirly">1:1 문의</a>
+		</li> 
+		
+		<li class="list2">
+		 ㅣ 
+		 </li> 
+		 
+		 <li class="list2">
 		<a href="./memberCheck">정보 수정</a> 
 		</li>
 	</ul>
@@ -38,7 +66,7 @@
 	
 	
 	<div class="container">
-	<h3 id="inq_num">${dto.inq_num}</h3>
+	<h3 id="inq_num" class="none">${dto.inq_num}</h3>
 	<table class="memberCheck">
 	
 		<tr>

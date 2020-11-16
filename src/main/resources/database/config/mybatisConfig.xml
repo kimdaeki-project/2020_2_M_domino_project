@@ -10,7 +10,8 @@
 		<typeAlias type="com.domino.t1.util.Pager" alias="Pager"></typeAlias>
     
 		<typeAlias type="com.domino.t1.member.MemberDAO" alias="MemberDAO"/>
-		<typeAlias type="com.domino.t1.member.MemberDTO" alias="MemberDTO"/>    
+		<typeAlias type="com.domino.t1.member.MemberDTO" alias="MemberDTO"/> 
+		<typeAlias type="com.domino.t1.member.memberUser.MemberUserDTO" alias="MemberUserDTO"/>    
     
 		<!-- item related aliases -->
 		<typeAlias type="com.domino.t1.item.ItemDTO" alias="ItemDTO"/>
@@ -26,5 +27,6 @@
 		
 		<typeAlias type="com.domino.t1.branchInfo.BranchInfoDTO" alias="BranchInfoDTO"/>
 
+		<typeAlias type="com.domino.t1.branchInfo.BranchInfoDTO" alias="BranchInfoDTO"/>
 	</typeAliases>
 </configuration>

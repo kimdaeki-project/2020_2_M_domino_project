@@ -22,23 +22,50 @@
 	<br>
 	
 	<ul id="select">
-		<li>
-		<a href="./memberPage">매니아 등급</a> ㅣ 
-		<a href="./memberOrder">주문 내역</a> ㅣ 
-		<a href="#">쿠폰함</a> ㅣ 
-		<a href="./memberInquirly">1:1 문의</a> ㅣ 
+		<li class="list2">
+		<a href="./memberPage">매니아 등급</a>
+		</li>
+		
+		<li class="list2">
+		 ㅣ 
+		 </li>
+		 
+		 <li class="list2">
+		<a href="#">주문 내역</a>
+		 </li> 
+		 
+		 <li class="list2">
+		 ㅣ 
+		 </li>
+		   
+		 <li class="list2">
+		<a href="#">쿠폰함</a>
+		 </li>
+		  
+		<li class="list2"> 
+		ㅣ 
+		</li> 
+		
+		<li class="list2">
+		<a href="./memberInquirly">1:1 문의</a>
+		</li> 
+		
+		<li class="list2">
+		 ㅣ 
+		 </li> 
+		 
+		 <li class="list2">
 		<a href="./memberCheck">정보 수정</a> 
 		</li>
 	</ul>
 	<div class="myLevel">
-		<div class="myLevel2">
-			<span>황바울</span>
-			<strong>REGULAR</strong>
-		</div>
-		
-		<div class="myOrder"></div>
+		<h4 id="mName">${member.member_name}님</h4>
+		<div class="myCheck"><h1 id="mLevel">${member.member_level}</h1></div>
+		<div></div>
+		<div class="myCheck2">등급별 혜택보기></div>
 	</div>
-	
+	<h4>PREMIUN 등급으로 업그레이드하려면?</h4>
+	<div class="memberCheck"></div>
 	</div>
 <c:import url="../template/footer.jsp"></c:import>
 </body>
