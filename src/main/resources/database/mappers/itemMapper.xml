@@ -7,7 +7,7 @@
 	<select id="getItemListByCategory" parameterType="ItemDTO" resultType="ItemDTO">
 		SELECT * 
 		FROM item
-		WHERE category = #{category}
+		WHERE item_category = #{item_category}
 	</select>
 	<select id="getOne" parameterType="ItemDTO" resultType="ItemDTO">
 		SELECT *
