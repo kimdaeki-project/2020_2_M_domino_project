@@ -278,7 +278,72 @@ dl {
     color: white;
 }
 	
-tr {
-	padding: 30px;
+
+.labelUpdate{
+	width: 250px;
+	height: 16px;
+	padding: 30px;;
+	display: inline-block;
 }
 
+#labelCheck{
+	width: 800px;
+	height: 90px;
+	display: inline-block;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#check5{
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+
+#check1{
+	margin-top: 15px;
+	
+}
+
+#check2{
+	margin-bottom: 10px;
+}
+
+#check3{
+	margin-bottom: 10px;
+}
+
+#check4{
+	margin-top: 10px;
+}
+
+#check6{
+	margin-bottom: 10px;
+}
+
+.memAgg{
+	display: inline-block;
+}
+
+.memberAgg{
+	width: 600px;
+	height: 100px;
+	display: inline-block;
+}
+
+.checkButt{
+	margin-left: 6px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 16px;
+    width: 110px;
+    font-weight: 400;
+    background: #222;
+    border-color: #222;
+    color: white;
+	
+}
+
+.tAtea{
+	width: 650px;
+	height: 295px;
+}

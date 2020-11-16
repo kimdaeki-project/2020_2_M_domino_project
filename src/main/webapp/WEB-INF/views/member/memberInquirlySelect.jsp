@@ -65,35 +65,48 @@
 	</div>
 	
 	
-	<div class="container">
-	<h3 id="inq_num" class="none">${dto.inq_num}</h3>
-	<table class="memberCheck">
-	
-		<tr>
-			<td>아이디</td><td>${member.member_id}</td>
-		</tr>
-		<tr>
-			<td>연락처</td><td>${member.member_phone}</td>
-		</tr>
-		<tr>
-			<td>이메일</td><td>${member.member_email}</td>
-		</tr>
-		<tr>
-			<td>문의유형</td><td>${dto.inq_type}</td>
-		</tr>
-		<tr>
-			<td>문의내용</td><td><textarea rows="10" cols="40" name="inq_contents" readonly="readonly">${dto.inq_contents}</textarea></td>
-		</tr>
-		<tr>
-			<td>답변</td><td><textarea rows="10" cols="40" name="inq_contents" readonly="readonly"></textarea></td>
-		</tr>
-		
-		
-	</table>
-	</div>
-	<input type="button" value="삭제">
-	<input type="button" value="목록">
+			<div class="container">
+			<form action="./memberUpdate" method="post" class="form-horizontal">
+			<div class="form-group">
+				<label for="name" class="labelUpdate">이름 </label>
+				<span>${member.member_name}</span>
+			</div>
+			
+			<div class="form-group">
+				<label for="id" class="labelUpdate">아이디 </label>
+			 	<span>${member.member_id}</span>
+			</div>
+			
+			<div class="form-group">
+				<label for="email" class="labelUpdate">이메일 </label>
+				<span>${member.member_email}</span>
+			</div>	
+			
+			<div class="form-group">
+				<label for="inqType" class="labelUpdate">문의유형 </label>
+				<span>${dto.inq_type}</span>
+			</div>
+			
+			<div class="form-group">
+				<label for="shop" class="labelUpdate">매장 검색 </label>
+				<span>${dto.inq_shop} : ${dto.inq_location}</span>
+			</div>
+			
+			<div class="form-group">
+				<label for="contents" class="labelUpdate">문의내용 </label>
+				<span><textarea rows="10" cols="30" name="inq_contents" readonly="readonly" class="tAtea">${dto.inq_contents}</textarea></span>
+			</div>
+			
+			<div class="form-group">
+				<label for="reply" class="labelUpdate">답변 </label>
+				<span><textarea rows="10" cols="30" name="inq_contents" readonly="readonly" class="tAtea"></textarea></span>
+			</div>
+			
+	<a href="./memberInquirlyDelete" class="btn btn-default">삭제</a>
+	<a href="./memberInquirly" class="btn btn-default">목록</a>
 
+	</form>
+	</div>
 	
 	
 	
