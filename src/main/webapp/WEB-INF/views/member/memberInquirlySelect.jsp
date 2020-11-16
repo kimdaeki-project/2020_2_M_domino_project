@@ -94,12 +94,12 @@
 			
 			<div class="form-group">
 				<label for="contents" class="labelUpdate">문의내용 </label>
-				<span><textarea rows="10" cols="30" name="inq_contents" readonly="readonly" class="tAtea">${dto.inq_contents}</textarea></span>
+				<span><textarea rows="10" cols="30" name="inq_contents" readonly="readonly" class="tArea">${dto.inq_contents}</textarea></span>
 			</div>
 			
 			<div class="form-group">
 				<label for="reply" class="labelUpdate">답변 </label>
-				<span><textarea rows="10" cols="30" name="inq_contents" readonly="readonly" class="tAtea"></textarea></span>
+				<span><textarea rows="10" cols="30" name="inq_contents" readonly="readonly" class="tArea"></textarea></span>
 			</div>
 			
 	<a href="./memberInquirlyDelete" class="btn btn-default">삭제</a>
