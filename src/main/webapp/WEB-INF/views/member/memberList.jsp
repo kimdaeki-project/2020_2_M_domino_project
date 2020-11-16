@@ -14,15 +14,16 @@
 </head>
 <body>
 
-	<h1>Member List</h1>
+	
 	
 	<div class="container">
+	<h1>회원 정보</h1>
 	<table class="table table-hober">
 		<tr>
-			<td>1</td>
-			<td>2</td>
-			<td>3</td>
-			<td>4</td>
+			<td>아이디</td>
+			<td>패스워드</td>
+			<td>이름</td>
+			<td>휴대전화</td>
 			
 		</tr>
 		
