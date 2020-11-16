@@ -2,6 +2,8 @@ package com.domino.t1.member;
 
 import java.util.List;
 
+import com.domino.t1.util.Pager;
+
 public interface MemberDAO {
 	
 	public MemberDTO getMemberSearch(MemberDTO memberDTO) throws Exception;
@@ -28,6 +30,6 @@ public interface MemberDAO {
 	
 	public int setMemberJoin(MemberDTO memberDTO) throws Exception;
 	
-	public List<MemberDTO> getMemberList(MemberDTO memberDTO) throws Exception;
+	public List<MemberDTO> getMemberList(MemberDTO memberDTO, Pager pager) throws Exception;
 
 }

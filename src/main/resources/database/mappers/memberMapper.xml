@@ -6,7 +6,10 @@
 <mapper namespace="com.domino.t1.member.MemberDAO">
 
 	<select id="getMemberList" resultType="MemberUserDTO">
-		select * from member_info
+		select * from 	
+		(select rownum R, N. * from 
+		(select * from member_info order by num desc) N)
+		where R between #{startRow} and #{lastRow}
 	</select>
 	
 	<insert id="setMemberJoin" parameterType="MemberDTO">

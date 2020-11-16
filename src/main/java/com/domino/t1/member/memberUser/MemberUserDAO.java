@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.domino.t1.member.MemberDAO;
 import com.domino.t1.member.MemberDTO;
+import com.domino.t1.util.Pager;
 
 @Repository
 public class MemberUserDAO implements MemberDAO{
@@ -76,9 +77,9 @@ public class MemberUserDAO implements MemberDAO{
 		return sqlSession.insert(NAMESPACE+"setMemberJoin", memberDTO);
 	}
 	@Override
-	public List<MemberDTO> getMemberList(MemberDTO memberDTO) throws Exception {
+	public List<MemberDTO> getMemberList(MemberDTO memberDTO, Pager pager) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE+"getMemberList", memberDTO);
+		return sqlSession.selectList(NAMESPACE+"getMemberList", memberDTO, pager);
 	}
 	
 	
