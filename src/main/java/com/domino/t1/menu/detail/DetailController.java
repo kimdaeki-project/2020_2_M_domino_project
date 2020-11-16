@@ -25,14 +25,25 @@ public class DetailController {
 	@GetMapping("pizzaDetail")
 	public ModelAndView getPizzaDetail(PizzaDTO pizzaDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		pizzaDTO = detailService.getOne(pizzaDTO);		
-		List<DoughDTO> availableDoughList = detailService.getAvailableDoughList(pizzaDTO);			
+		pizzaDTO = detailService.getOne(pizzaDTO);	
 		mv.addObject("pizzaDTO", pizzaDTO);
+		
+		List<DoughDTO> availableDoughList = detailService.getAvailableDoughList(pizzaDTO);			
+		mv.addObject("doughList", availableDoughList);
 		
 		Map<String, List<ToppingDTO>> toppingMap = detailService.getAvailableToppingMap(pizzaDTO);
 		mv.addAllObjects(toppingMap);
 		
-		mv.addObject("doughList", availableDoughList);
+		ItemDTO itemDTO = new ItemDTO();
+		itemDTO.setItem_category("sidedish");
+		List<ItemDTO> sideDishList = detailService.getItemListByCategory(itemDTO);
+		mv.addObject("sideDishList", sideDishList);
+		
+		itemDTO.setItem_category("etc");
+		List<ItemDTO> etcList = detailService.getItemListByCategory(itemDTO);
+		mv.addObject("etcList", etcList);
+		
+		mv.addObject("category", "pizza");
 		mv.setViewName("menu/detail/pizzaDetail");
 		return mv;
 	}
