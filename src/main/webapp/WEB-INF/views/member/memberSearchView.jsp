@@ -12,36 +12,37 @@
   <script src="../resources/js/header.js"></script>
 <c:import url="../template/header.jsp"></c:import>
 
+<style type="text/css">
+	#select li a{
+		font-size: 17px;
+	}
+</style>
+
 </head>
 <body>
 
-	
-	
 	<div class="container">
-	<h1>아이디/비밀번호 찾기</h1><br>
-		<div class="searchBar">
-			<ul>
-				<li class="list2">
-				<a>아이디 찾기</a>
-				</li>
-				<li class="list2">
-				ㅣ
-				</li>	
-				<li class="list2">
-				<a>비밀번호 찾기</a>
-				</li>	
-			</ul>
+		<div class="order-title-wrap">
+		<h2 class="order-title">아이디/비밀번호 찾기</h2>
+			<div class="depth-area">
+				<ol>
+					<li><a href="http://localhost/t1">홈</a></li>
+					<li><strong>아이디/비밀번호 찾기</strong></li>
+				</ol>
+			</div>
 		</div>
-			<div class="memberCheck"></div><br>
-			<h3>고객님의 정보와 일치하는 아이디 목록입니다.</h3><br>
-			<h3>아이디 : ${dto.member_id}</h3><h3>가입일 : ${dto.member_date}</h3><br>
-			<button type="button" class="btn btn-info btn-lg" id="logBtn">로그인</button>
-			
 		
-	
-	
-	
-	
+		<ul id="select" style="padding: 20px 0; border-bottom: 2px solid black;">
+			<li>
+				<a href="./memberSearch">아이디 찾기</a> ㅣ 
+				<a href="#">비밀번호 찾기</a> 
+			</li>
+		</ul>
+
+		<h3>고객님의 정보와 일치하는 아이디 목록입니다.</h3><br>
+		<h3>아이디 : ${dto.member_id}</h3><h3>가입일 : ${dto.member_date}</h3><br>
+		<button type="button" class="btn btn-info btn-lg" id="logBtn">로그인</button>
+			
 	</div>
 <c:import url="../template/footer.jsp"></c:import>
 </body>

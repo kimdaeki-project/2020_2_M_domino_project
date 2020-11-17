@@ -11,22 +11,68 @@
   <script src="../resources/js/header.js"></script>
  
   <style type="text/css">
-  	.detail_page{
-		border-bottom: 2px solid black;
-		padding: 20px 0;
-	}		
-	.detail_page span{
-		float: right;
-		font-size: 15px;
-		padding: 1% 0;
-	}
+  		a{
+			color: black;
+		}	
 		
-	.detail_page_Link {	
-		text-align: left;
-		color: black;
-		padding: 0;
-	}
-	
+		.order-title-wrap{
+			position: relative;
+		    margin-top: 50px;
+		}
+		
+		.order-title{
+			margin: 0px;
+			padding: 0px;
+			box-sizing: border-box;
+			font-size: 32px;
+			color: black;
+			font-weight: 400;
+		}
+		
+		.depth-area{
+			position: absolute;
+			right: 0;
+			
+		}
+		
+		.depth-area > ol{
+			font-size: 0;
+				
+		}
+		
+		.depth-area li{
+			display: inline-block;
+		    font-size: 13px;
+		    color: #888888;	
+		}
+		
+		.depth-area > strong{	
+			color: #111;	
+		}
+		
+		.depth-area li:before{	
+			display: inline-block;
+		    content: '';
+		    margin: 3px 8px 2px 6px;
+		    display: inline-block;
+		    width: 6px;
+		    height: 6px;
+		    border-style: solid;
+		    border-color: transparent #888888 #888888 transparent;
+		    border-width: 0 1px 1px 0;
+		    -webkit-transform: rotate(-45deg);
+		    -ms-transform: rotate(-45deg);
+			transform: rotate(-45deg);
+		}
+		
+		.depth-area li:nth-child(1):before{
+			
+			display: none;
+		}
+		
+		#select li a{
+			font-size: 17px;
+		}	
 	.select_header{
 		padding:20px 30px; 
 		border-bottom: 1px solid #ddd
@@ -83,20 +129,33 @@
 
 <div class="container">
 	
-	<div class="detail_page">
-		<c:choose>
-			<c:when test="${news eq 'dominoNews'}">
-				<h2>공지사항<span style="font-size: 12px;">홈>공지사항>도미노뉴스</span></h2>
-			</c:when>
-			<c:when test="${news eq 'press'}">
-				<h2>공지사항<span style="font-size: 12px;">홈>공지사항>보도자료</span></h2>
-			</c:when>
-		</c:choose>			
-		<div class="detail_page_Link">
-			<a href="${pageContext.request.contextPath}/dominoNews/dominoNewsList">도미노 뉴스</a>
-			<a href="${pageContext.request.contextPath}/press/pressList">보도자료</a>
-		</div>
-	</div>
+		 <div class="order-title-wrap">
+			<h2 class="order-title">공지사항</h2>
+				<div class="depth-area">
+					<ol>
+						<li><a href="http://localhost/t1">홈</a></li>
+						<li><a href="${pageContext.request.contextPath}/news/dominoNewsList">공지사항</a></li>
+						
+						<c:choose>
+							<c:when test="${news eq 'dominoNews'}">
+								<li><strong>도미노뉴스</strong></li>
+							</c:when>
+							
+							<c:when test="${news eq 'press'}">
+								<li><strong>보도자료</strong></li>
+							</c:when>
+							
+						</c:choose>	
+					</ol>
+				</div>
+			</div>
+			
+			<ul id="select" style="padding: 20px 0; border-bottom: 2px solid black;">
+				<li>
+					<a href="${pageContext.request.contextPath}/dominoNews/dominoNewsList">도미노뉴스</a> ㅣ 
+					<a href="${pageContext.request.contextPath}/press/pressList">보도자료</a>   
+				</li>
+			</ul>
 
 	<div>
 		<div class="select_header"> 

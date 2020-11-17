@@ -11,21 +11,70 @@
   <script src="../resources/js/header.js"></script>
 
 	<style type="text/css">
-		.detail_page{
-			border-bottom: 2px solid black;
-			padding: 20px 0;
-		}		
-		.detail_page span{
-			float: right;
-			font-size: 15px;
-			padding: 1% 0;
-		}
+		a{
+	color: black;
+}	
+
+.order-title-wrap{
+	position: relative;
+    margin-top: 50px;
+}
+
+.order-title{
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-size: 32px;
+	color: black;
+	font-weight: 400;
+}
+
+.depth-area{
+	position: absolute;
+	right: 0;
+	
+}
+
+.depth-area > ol{
+	font-size: 0;
 		
-		.detail_page_Link {	
-			text-align: left;
-			color: black;
-			padding: 0;
-		}
+}
+
+.depth-area li{
+	display: inline-block;
+    font-size: 13px;
+    color: #888888;	
+}
+
+.depth-area > strong{	
+	color: #111;	
+}
+
+.depth-area li:before{	
+	display: inline-block;
+    content: '';
+    margin: 3px 8px 2px 6px;
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-style: solid;
+    border-color: transparent #888888 #888888 transparent;
+    border-width: 0 1px 1px 0;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.depth-area li:nth-child(1):before{
+	
+	display: none;
+}
+
+
+#select li a{
+	font-size: 17px;
+}	
+
 		
 		.qna_input{
 			border-bottom: 2px solid #f5f5f5;
@@ -93,14 +142,24 @@
 	<c:import url="../template/header.jsp"></c:import>
 	
 	<div class="container">
-	
-	<div class="detail_page">
-			<h2>고객센터<span style="font-size: 12px;">홈>고객센터>온라인 신문고</span></h2>
-					
-			<div class="detail_page_Link">
-				<a href="#">자주하는 질문</a><a href="#">온라인신문고</a>
+	 <div class="order-title-wrap">
+		<h2 class="order-title">고객센터</h2>
+			<div class="depth-area">
+				<ol>
+					<li><a href="http://localhost/t1">홈</a></li>
+					<li><a href="${pageContext.request.contextPath}/faq/faqList">고객센터</a></li>
+					<li><strong>온라인신문고</strong></li>
+				</ol>
 			</div>
-	  </div>
+		</div>
+	
+		<ul id="select" style="padding: 20px 0; border-bottom: 2px solid black;">
+			<li>
+				<a href="${pageContext.request.contextPath}/faq/faqList">자주하는질문</a> ㅣ 
+				<a href="${pageContext.request.contextPath}/qna/qnaWrite">온라인신문고</a>  
+			</li>
+		</ul>	
+		
 	
 	<div style="padding: 20px 0;">
 		<p style="font-weight: bold;">도미노피자를 이용하시면서 느꼈던 불편한 점이나 건의사항, 제품에 대한 의견을 남겨주시면 성심껏 답변해드리겠습니다.<br>

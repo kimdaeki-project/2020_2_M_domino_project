@@ -12,52 +12,38 @@
   <script src="../resources/js/header.js"></script>
 <c:import url="../template/header.jsp"></c:import>
 
+<style type="text/css">
+	#select li a{
+		font-size: 17px;
+	}
+</style>
+
+
 </head>
 <body>
-
-	
-	
 	<div class="container">
-	<h1>나의정보</h1>
-	<br>
 	
-	<ul id="select">
-		<li class="list2">
-		<a href="./memberPage">매니아 등급</a>
-		</li>
-		
-		<li class="list2">
-		 ㅣ 
-		 </li>
-		 
-		 <li class="list2">
-		<a href="./memberOrder">주문 내역</a>
-		 </li> 
-		 
-		 <li class="list2">
-		 ㅣ 
-		 </li>
-		   
-		 <li class="list2">
-		<a href="#">쿠폰함</a>
-		 </li>
-		  
-		<li class="list2"> 
-		ㅣ 
-		</li> 
-		
-		<li class="list2">
-		<a href="./memberInquirly">1:1 문의</a>
-		</li> 
-		
-		<li class="list2">
-		 ㅣ 
-		 </li> 
-		 
-		 <li class="list2">
-		<a href="./memberCheck">정보 수정</a> 
+	<div class="order-title-wrap">
+		<h2 class="order-title">나의정보</h2>
+			<div class="depth-area">
+				<ol>
+					<li><a href="http://localhost/t1">홈</a></li>
+					<li><a href="./memberPage">나의정보</a></li>
+					<li><strong>1:1문의</strong></li>
+				</ol>
+			</div>
+		</div>
+	
+	<ul id="select" style="padding: 20px 0;">
+		<li>
+		<a href="../member/memberPage">매니아 등급</a> ㅣ 
+		<a href="../member/memberOrder">주문 내역</a> ㅣ 
+		<a href="#">쿠폰함</a> ㅣ 
+		<a id="inq" href="./memberInquirly">1:1 문의</a> ㅣ 
+		<a href="../member/memberCheck">정보 수정</a> 
 		</li>
 	</ul>
+	
 	<div class="myLevel">
 		<div class="myCheck">${member.member_name}님께서 문의하신 내용입니다</div>
 		<div></div>
