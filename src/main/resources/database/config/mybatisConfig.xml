@@ -8,10 +8,13 @@
 		
 		<typeAlias type="java.lang.Long" alias="Long"/>
 		<typeAlias type="com.domino.t1.util.Pager" alias="Pager"></typeAlias>
+		
     
 		<typeAlias type="com.domino.t1.member.MemberDAO" alias="MemberDAO"/>
+		<typeAlias type="com.domino.t1.member.memberInquirly.MemberInquirlyDAO" alias="MemberInquirlyDAO"/>
 		<typeAlias type="com.domino.t1.member.MemberDTO" alias="MemberDTO"/> 
-		<typeAlias type="com.domino.t1.member.memberUser.MemberUserDTO" alias="MemberUserDTO"/>    
+		<typeAlias type="com.domino.t1.member.memberUser.MemberUserDTO" alias="MemberUserDTO"/>  
+		<typeAlias type="com.domino.t1.member.memberInquirly.MemberInquirlyDTO" alias="MemberInquirlyDTO"/>  
     
 		<!-- item related aliases -->
 		<typeAlias type="com.domino.t1.item.ItemDTO" alias="ItemDTO"/>
@@ -23,6 +26,7 @@
 		<typeAlias type="com.domino.t1.board.faq.FaqDTO" alias="FaqDTO"/>
 		<typeAlias type="com.domino.t1.board.qna.QnaDTO" alias="QnaDTO"/>
 		<typeAlias type="com.domino.t1.board.news.dominoNews.DominoNewsDTO" alias="DominoNewsDTO"/>
+		<typeAlias type="com.domino.t1.board.news.press.PressDTO" alias="PressDTO"/>
 		<typeAlias type="com.domino.t1.board.file.BoardFileDTO" alias="BoardFileDTO"/>
 		
 		<!-- order related aliases -->
@@ -34,4 +38,5 @@
 		<typeAlias type="com.domino.t1.address.pickup.AddressPickupDTO" alias="AddressPickupDTO"/>
 		
 	</typeAliases>
+	
 </configuration>

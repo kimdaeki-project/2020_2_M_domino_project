@@ -9,14 +9,15 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.domino.t1.member.MemberDTO;
+import com.domino.t1.member.memberInquirly.MemberInquirlyDTO;
+import com.domino.t1.util.Pager;
 
 import oracle.jdbc.proxy.annotation.Post;
 
@@ -106,47 +107,6 @@ public class MemberUserController {
 		
 	}
 	
-	@GetMapping("memberInquirlySelect")
-	public ModelAndView getOne(MemberDTO memberDTO) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		System.out.println("member select");
-		memberDTO = memberService.getOne(memberDTO);
-		
-		mv.addObject("dto", memberDTO);
-		mv.setViewName("member/memberInquirlySelect");
-		
-		
-		return mv;
-	}
-	
-	@PostMapping("memberInquirly")
-	public ModelAndView setInqBoardWrite(MemberDTO memberDTO) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		
-		int result = memberService.setInqBoardWrite(memberDTO);
-		String message="문의 작성을 실패하였습니다.";
-		if(result>0) {
-			message ="문의 작성을 완료하였습니다.";
-		}
-		
-		mv.addObject("msg", message);
-		mv.addObject("path", "./memberInquirly");
-		
-		mv.setViewName("common/result");
-		
-		return mv;
-	}
-	
-	@GetMapping("memberInquirly")
-	public ModelAndView inqBoard(HttpSession session) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		System.out.println("member/memberInquirly");
-		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		List<MemberDTO> ar = memberService.getInqBoardList(memberDTO);
-		mv.addObject("list", ar);
-		mv.setViewName("member/memberInquirly");
-		return mv;
-	}
 	
 	@PostMapping("memberUpdate")
 	public ModelAndView setMemberUpdate(MemberDTO memberDTO, HttpSession session) throws Exception{
@@ -272,12 +232,12 @@ public class MemberUserController {
 	}
 	
 	@PostMapping("memberLogin")
-	public ModelAndView getMemberLogin(MemberDTO memberDTO, String remember, HttpServletResponse response ,HttpSession session) throws Exception{
+	public ModelAndView getMemberLogin(MemberInquirlyDTO memberInquirlyDTO, String remember, HttpServletResponse response ,HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
 		
 		if(remember != null) {
-			Cookie cookie = new Cookie("remember", memberDTO.getMember_id());
+			Cookie cookie = new Cookie("remember", memberInquirlyDTO.getMember_id());
 			
 			response.addCookie(cookie);
 		}else {
@@ -287,10 +247,10 @@ public class MemberUserController {
 			response.addCookie(cookie);
 		}
 		
-		memberDTO = memberService.getMemberLogin(memberDTO);
+		memberInquirlyDTO = memberService.getMemberLogin(memberInquirlyDTO);
 		
-		if(memberDTO != null) {
-			session.setAttribute("member", memberDTO);
+		if(memberInquirlyDTO != null) {
+			session.setAttribute("member", memberInquirlyDTO);
 			mv.setViewName("redirect:../");
 		}else {
 			mv.addObject("msg","로그인 실패");
@@ -329,11 +289,12 @@ public class MemberUserController {
 	}
 	
 	@GetMapping("memberList")
-	public ModelAndView getMemberList(MemberDTO memberDTO) throws Exception{
+	public ModelAndView getMemberList(Pager pager) throws Exception{
 		System.out.println("Member List");
 		ModelAndView mv = new ModelAndView();
 		
-		List<MemberDTO> ar = memberService.getMemberList(memberDTO);
+		List<MemberDTO> ar = memberService.getMemberList(pager);
+		mv.addObject("pager", pager);
 		
 		mv.addObject("list", ar);
 		mv.setViewName("member/memberList");

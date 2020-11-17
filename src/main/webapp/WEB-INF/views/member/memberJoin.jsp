@@ -23,104 +23,93 @@
 	
 	<div class="container">
 		<h1>회원가입</h1>
-		<form action="./memberJoin" method="post" id="frm">
+		<form class="form-horizontal" action="./memberJoin" method="post" id="frm">
 	
 				<div class="form-group">
-				<label for="name">이름 </label>
-				<input type="text" id="name" name="member_name" class="empty"> 
+				<label for="name" class="labelUpdate">이름 </label>
+				<input type="text" id="name" name="member_name" class="empty" style="text-align:center; width:500px; height:42px;"> 
 				<div class="emptyResult"></div>
 			</div>
 			
 			<div class="form-group">
-				<label for="id">아이디 </label>
-				<input type="text" id="id" name="member_id">
+				<label for="id" class="labelUpdate">아이디 </label>
+				<input type="text" id="id" name="member_id" style="text-align:center; width:500px; height:42px;">
 				<div id="idResult"></div>
 			</div>
 			
 			<div class="form-group">
-				<label for="pw">비밀번호 </label>
-				<input type="password" id="pw" name="member_pw">
+				<label for="pw" class="labelUpdate">비밀번호 </label>
+				<input type="password" id="pw" name="member_pw" style="text-align:center; width:500px; height:42px;">
 			</div>
 			
 			<div class="form-group">
-				<label for="pw2">비밀번호 확인 </label>
-				<input type="password" id="pw2" name="member_pw2">
+				<label for="pw2" class="labelUpdate">비밀번호 확인 </label>
+				<input type="password" id="pw2" name="member_pw2" style="text-align:center; width:500px; height:42px;">
 				<div id="pwResult"></div>
 			</div>
 			
 			<div class="form-group">
-				<label for="date">생년월일 </label>
-				<input type="date" id="date" name="member_date" class="empty">
+				<label for="date" class="labelUpdate">생년월일 </label>
+				<input type="date" id="date" name="member_date" class="empty" style="text-align:center; width:500px; height:42px;">
 				<div class="emptyResult"></div>
 			</div>
 			
 			
 			<div class="form-group">
-				<label for="phone">휴대전화 </label>
-				<input type="text" name="member_phone" id="phone">
-				<input type="button" id="btnPhone" value="중복확인">
+				<label for="phone" class="labelUpdate">휴대전화 </label>
+				<input type="text" name="member_phone" id="phone" style="text-align:center; width:500px; height:42px;">
+				<input type="button" id="btnPhone" value="중복확인" class="checkButt" style= "width:110px; height:42px;">
 				<div id="phoneResult"></div>
 			</div>
 			
 			<div class="form-group">
-				<label for="eamil">이메일 </label>
-				<input type="text" name="member_email" id="email">
-				<input type="button" id="btnEmail" value="중복확인">
+				<label for="eamil" class="labelUpdate">이메일 </label>
+				<input type="email" name="member_email" id="email" style="text-align:center; width:500px; height:42px;">
+				<input type="button" id="btnEmail" value="중복확인" class="checkButt" style= "width:110px; height:42px;">
 				<div id="emailResult"></div>
 			</div>
 			
 			<div class="form-group level">
-				<label for="phome">등급 </label>
-				<input type="text" name="member_level" value="REGULAR">
+				<label for="level" class="labelUpdate">등급 </label>
+				<input type="text" name="member_level" value="REGULAR" style="text-align:center; width:500px; height:42px;">
 			</div>
 			
 			<div class="form-group">
-				<label for="agg">개인정보 유효기간 선택 </label>
-  				<label class="radio-inline"><input type="radio" name="member_pi_date" value=1>1년</label>
-				<label class="radio-inline"><input type="radio" name="member_pi_date" value=3>3년</label>
-				<label class="radio-inline"><input type="radio" name="member_pi_date" value=5>5년</label>
+				<label for="agg" class="labelUpdate">개인정보 유효기간 선택 </label>
+				<div class="radioSel">
+  					<label class="radio-inline"><input type="radio" name="member_pi_date" value=1>1년</label>
+					<label class="radio-inline"><input type="radio" name="member_pi_date" value=3>3년</label>
+					<label class="radio-inline"><input type="radio" name="member_pi_date" value=5>5년</label>
+				</div>
 			</div>
 			
 			<div class="form-group">
-				<label for="aggAll">약관 및 광고성 정보수신 전체 동의 </label>
-				<div class="checkbox">
+				<label for="aggAll" class="labelUpdate">약관 및 광고성 정보수신 전체 동의 </label>
+				<div class="memberAgg" id="chAll">
   					<label><input type="checkbox" value=1 id="checkAll">전체 동의하기</label>
 				</div>
+			</div>	
 				
-				<label for="aggAll">약관 전체동의 </label>
-				<div class="checkbox">
-  					<label><input type="checkbox" value=1 id="checkAll2">전체 동의하기</label>
-				</div>
-  				<div class="checkbox">
-  					<label><input type="checkbox" value=1 id="check1" class="chk2" name="member_pi_agg">개인정보 수집 및 이용동의(필수)</label>
-				</div>
-				
-				<div class="checkbox">
- 					 <label><input type="checkbox" value=1 id="check2" class="chk2" name="member_clause_agg">이용약관 동의(필수)</label>
-				</div>
-				
-				<div class="checkbox disabled">
-  					<label><input type="checkbox" value=1 id="check3" class="chk2" name="member_locate_agg">위치기반 서비스 약관 동의(필수)</label>
+				<div class="form-group">
+					<label for="aggAll" class="labelUpdate">약관 전체동의</label>
+					<div class="memberAgg">
+  					<label><input type="checkbox" value=1 id="checkAll2">전체 동의하기</label><br>
+  					<label><input type="checkbox" value=1 id="check1" class="chk2" name="member_pi_agg">개인정보 수집 및 이용동의(필수)</label><br>
+ 					<label><input type="checkbox" value=1 id="check2" class="chk2" name="member_clause_agg">이용약관 동의(필수)</label><br>
+					<label><input type="checkbox" value=1 id="check3" class="chk2" name="member_locate_agg">위치기반 서비스 약관 동의(필수)</label>
+					</div>
 				</div>
 				
-				<label for="aggAll">광고성 정보 수신 전체 동의 </label>
-				<div class="checkbox">
-  					<label><input type="checkbox" value=1 id="checkAll3">전체 동의하기</label>
-				</div>
-  				<div class="checkbox">
-  					<label><input type="checkbox" value=1 id="check4" class="chk" name="member_msg_agg">문자 메세지(선택)</label>
-				</div>
-				
-				<div class="checkbox">
- 					 <label><input type="checkbox" value=1 id="check5" class="chk" name="member_email_agg">이메일(선택)</label>
-				</div>
-				
-				<div class="checkbox">
-  					<label><input type="checkbox" value=1 id="check6" class="chk" name="member_post_agg">DM 우편(최근 배달주소로 배송)(선택)</label>
+			<div class="form-group">
+				<label for="aggAll" class="labelUpdate">광고성 정보 수신 전체 동의 </label>
+				<div class="memberAgg" id="aggAll">
+  					<label><input type="checkbox" value=1 id="checkAll3">전체 동의하기</label><br>
+  					<label><input type="checkbox" value=1 id="check4" class="chk" name="member_msg_agg">문자 메세지(선택)</label><br>
+ 					 <label><input type="checkbox" value=1 id="check5" class="chk" name="member_email_agg">이메일(선택)</label><br>
+  					<label><input type="checkbox" value=1 id="check6" class="chk" name="member_post_agg">DM 우편(최근 배달주소로 배송)(선택)</label>	
 				</div>
 			</div>
-			
-			<input type="button" id="btn" value="가입하기">
+			<input type="button" id="btn" value="가입하기" class="checkButt" style= "width:110px; height:42px;">
 		
 		</form>
 	</div>
