@@ -8,10 +8,9 @@
 		<!-- DB 연결 -->
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
 
-
-
 		<property name="username" value="domino01"></property>
 		<property name="password" value="pizza01"></property>
+
     
 
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
