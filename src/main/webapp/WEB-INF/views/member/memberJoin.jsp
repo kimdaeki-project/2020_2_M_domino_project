@@ -12,6 +12,32 @@
 		display: none;
 	}
 	
+	.detail_page{
+			border-bottom: 2px solid black;
+			padding: 20px 0;
+	}
+			
+	.detail_page span{
+		float: right;
+		font-size: 15px;
+		padding: 1% 0;
+	}
+	
+	.join_input{
+			border-bottom: 2px solid #f5f5f5;
+			padding: 2% 0;
+		}
+		
+	.join_input input{
+		height: 42px;
+	}
+		
+	.join_input .control-label{
+		padding: 0.5% 0 0 2%;
+		text-align: left;
+		font-size: 17px;
+	}
+	
 </style>
   <c:import url="../template/bootstrap.jsp"></c:import>
   <link href ="../resources/css/common/default.css" rel="stylesheet">
@@ -22,53 +48,77 @@
 <body>
 	
 	<div class="container">
-		<h1>회원가입</h1>
+		<div class="detail_page">
+		<h2>회원가입<span style="font-size: 12px;">홈>회원가입</span></h2>			
+		</div>
+		
+		<div style="padding: 0;">
 		<form class="form-horizontal" action="./memberJoin" method="post" id="frm">
-	
-				<div class="form-group">
-				<label for="name" class="labelUpdate">이름 </label>
-				<input type="text" id="name" name="member_name" class="empty" style="text-align:center; width:500px; height:42px;"> 
-				<div class="emptyResult"></div>
-			</div>
 			
-			<div class="form-group">
-				<label for="id" class="labelUpdate">아이디 </label>
-				<input type="text" id="id" name="member_id" style="text-align:center; width:500px; height:42px;">
-				<div id="idResult"></div>
-			</div>
-			
-			<div class="form-group">
-				<label for="pw" class="labelUpdate">비밀번호 </label>
-				<input type="password" id="pw" name="member_pw" style="text-align:center; width:500px; height:42px;">
-			</div>
-			
-			<div class="form-group">
-				<label for="pw2" class="labelUpdate">비밀번호 확인 </label>
-				<input type="password" id="pw2" name="member_pw2" style="text-align:center; width:500px; height:42px;">
-				<div id="pwResult"></div>
-			</div>
-			
-			<div class="form-group">
-				<label for="date" class="labelUpdate">생년월일 </label>
-				<input type="date" id="date" name="member_date" class="empty" style="text-align:center; width:500px; height:42px;">
-				<div class="emptyResult"></div>
-			</div>
-			
-			
-			<div class="form-group">
-				<label for="phone" class="labelUpdate">휴대전화 </label>
-				<input type="text" name="member_phone" id="phone" style="text-align:center; width:500px; height:42px;">
-				<input type="button" id="btnPhone" value="중복확인" class="checkButt" style= "width:110px; height:42px;">
-				<div id="phoneResult"></div>
-			</div>
-			
-			<div class="form-group">
-				<label for="eamil" class="labelUpdate">이메일 </label>
-				<input type="email" name="member_email" id="email" style="text-align:center; width:500px; height:42px;">
-				<input type="button" id="btnEmail" value="중복확인" class="checkButt" style= "width:110px; height:42px;">
-				<div id="emailResult"></div>
-			</div>
-			
+			<div class="col-sm-12 join_input">
+			    <label class="control-label col-sm-2 join_text" for="name">이름</label>
+			    <div class="col-sm-4">
+			       <input type="text" id="name" name="member_name" class="form-control empty" >
+			       <div class="emptyResult"></div>
+			    </div>
+			 </div>
+			 
+			 <div class="col-sm-12 join_input">
+			    <label class="control-label col-sm-2 join_text" for="id">아이디</label>
+			    <div class="col-sm-4">
+			       <input type="text" id="id" name="member_id" class="form-control empty" >
+			      <div id="idResult"></div>
+			    </div>
+			 </div>
+			 
+			 <div class="col-sm-12 join_input">
+			    <label class="control-label col-sm-2 join_text" for="pw">비밀번호</label>
+			    <div class="col-sm-4">
+			       <input type="password" id="pw" name="member_pw" class="form-control empty" >
+			    </div>
+			 </div>
+			 
+			  <div class="col-sm-12 join_input">
+			    <label class="control-label col-sm-2 join_text" for="pw2">비밀번호 확인</label>
+			    <div class="col-sm-4">
+			       <input type="password" id="pw2" name="member_pw2" class="form-control empty" >
+			       <div id="pwResult"></div>
+			    </div>
+			 </div>
+			 
+			 <div class="col-sm-12 join_input">
+			    <label class="control-label col-sm-2 join_text" for="date">생년월일</label>
+			    <div class="col-sm-4">
+			       <input type="date" id="date" name="member_date" class="form-contro lempty" >
+			       <div class="emptyResult"></div>
+			    </div>
+			 </div>
+			 
+			 <div class="col-sm-12 join_input">
+			    <label class="control-label col-sm-2 join_text" for="phone">휴대전화 </label>
+			    <div class="col-sm-4">
+			       <input type="text" name="member_phone" id="phone">
+			       <input type="button" id="btnPhone" value="중복확인" class="checkButt" style= "width:110px; height:42px;">
+			      <div id="phoneResult"></div>
+			    </div>
+			 </div>
+		
+			  <div class="col-sm-12 join_input">
+			    <label class="control-label col-sm-2 join_text" for="email">이메일 </label>
+			    <div class="col-sm-4">
+			      <input type="email" name="member_email" id="email" >
+			      <input type="button" id="btnEmail" value="중복확인" class="checkButt">
+			      <div id="emailResult"></div>
+			    </div>
+			 </div>
+			 
+			 
+			   <div class="form-group level">
+					<label for="level" class="labelUpdate">등급 </label>
+					<input type="text" name="member_level" value="REGULAR" style="text-align:center; width:500px; height:42px;">
+				</div>
+			 
+			 
 			<div class="form-group level">
 				<label for="level" class="labelUpdate">등급 </label>
 				<input type="text" name="member_level" value="REGULAR" style="text-align:center; width:500px; height:42px;">
@@ -112,6 +162,7 @@
 			<input type="button" id="btn" value="가입하기" class="checkButt" style= "width:110px; height:42px;">
 		
 		</form>
+		</div>
 	</div>
 
 <c:import url="../template/footer.jsp"></c:import>
@@ -148,9 +199,6 @@
 	if($("input[type=checkbox]").prop("checked", false)) {
 		$(".chk").val(0);
 	}
-	
-	
-
 	
 	var idCheck=false;
 	var pwCheck=false;
@@ -217,7 +265,7 @@
 				$("#idResult").html(str);
 			});
 		}else{
-			$("#idResult").html("ID는  필수 항복입니다.")
+			$("#idResult").html("ID는  필수 항목입니다.")
 			$("#idResult").removeClass("idCheck0").addClass("idCheck1");
 		}
 	});

@@ -279,14 +279,6 @@ dl {
 }
 	
 
-.labelUpdate{
-	width: 250px;
-	height: 16px;
-	padding: 30px;;
-	display: inline-block;
-	vertical-align: top
-}
-
 #labelCheck{
 	width: 800px;
 	height: 90px;

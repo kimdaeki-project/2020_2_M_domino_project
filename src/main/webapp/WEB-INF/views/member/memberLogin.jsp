@@ -11,32 +11,73 @@
   <link href ="../resources/css/common/member.css" rel="stylesheet">
   <script src="../resources/js/header.js"></script>
 <c:import url="../template/header.jsp"></c:import>
+
+<style type="text/css">
+	.detail_page{
+			border-bottom: 2px solid black;
+			padding: 20px 0;
+	}
+			
+	.detail_page span{
+		float: right;
+		font-size: 15px;
+		padding: 1% 0;
+	}
+	
+	.login_top_text{
+		width:430px; 
+		height:42px;
+		text-align: center;
+	}
+	
+	.login_top_text span{
+		 font-size: 20px; 
+		 font-weight: bold;
+		
+	}
+	
+	#btnLog, #btnJoin, .login2{
+		border: 1px solid #ddd;
+	}
+	
+	.login{
+		padding-top: 60px;
+		padding-bottom: 40px;
+	}
+	
+	.login2{
+		padding-left: 5px;
+	}
+	
+	.checkbox{
+		padding: 10px 0;
+	}
+</style>
+
 </head>
 <body>
 
 	
 	<div class="container">
-	<h1>로그인</h1><br>
-	<div class="memberCheck"></div>
-	<br>
+	
+	<div class="detail_page">
+		<h2>로그인<span style="font-size: 12px;">홈>로그인</span></h2>			
+	</div>
+
 	<div class="login">
-	<ul>
-		<li class="logSelect" id="mLog">
-		<a>회원 로그인</a>
-		</li>
-		
-		<li class="logSelect" id="noLog">
-		<a>비회원 주문</a>
-		</li>
-		
-	</ul><br>
+	
+	<div class="login_top_text">
+		<span>회원 로그인</span>
+	</div>	
+	
+	<br>
 	<form action="./memberLogin" method="post" class="form-horizontal">
 	<div>
-		<input type="text" name="member_id" value="${cookie.remember.value}" class="login2" style="text-align:center; width:430px; height:42px;">
+		<input type="text" name="member_id" value="${cookie.remember.value}" class="login2" placeholder="아이디" style="width:430px; height:42px;">
 	</div>	
 	<br>	
 	<div>
-		<input type="password" name="member_pw" class="login2" width="430" height="42" style="text-align:center; width:430px; height:42px;">
+		<input type="password" name="member_pw" class="login2" width="430" height="42" placeholder="비밀번호" style="width:430px; height:42px;">
 	</div>
 	<br>
 	<div class="checkbox">
