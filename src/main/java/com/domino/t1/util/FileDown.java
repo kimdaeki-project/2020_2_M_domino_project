@@ -15,8 +15,6 @@ import org.springframework.web.servlet.view.AbstractView;
 
 import com.domino.t1.board.file.BoardFileDTO;
 
-
-
 @Component
 public class FileDown extends AbstractView{
 	
@@ -42,7 +40,7 @@ public class FileDown extends AbstractView{
 		String downName = URLEncoder.encode(boardFileDTO.getOri_Name(), "UTF-8");
 		
 		//header설정
-		response.setHeader("Content-Disposition", "attachment;file_Name=\""+downName+"\"");
+		response.setHeader("Content-Disposition", "attachment;fileName=\""+downName+"\"");
 		response.setHeader("Content-Transfer-Encoding", "binary");
 		
 		//Client 전송

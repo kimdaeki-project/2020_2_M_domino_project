@@ -3,8 +3,77 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-<mapper namespace="com.domino.t1.sample">
+<mapper namespace="com.domino.t1.board.news.press.PressDAO">
+		
+		<insert id="setInsertFile" parameterType="BoardFileDTO">
+    		insert into pressFile values(board_seq.nextval, #{board_num}, #{file_Name}, #{ori_Name}) 	
+    	</insert>
+  
+    	<update id="setUpdate" parameterType="PressDTO">
+    		update press set board_title=#{board_title}, board_contents=#{board_contents} where board_num=#{board_num}
+    	</update>
+    	
+    	<update id="setPressHits" parameterType="Long">
+    		update press set hit=hit+1 where board_num=#{board_num}
+    	</update>
 
+    	<delete id="setDelete" parameterType="PressDTO">
+    		delete press where board_num=#{board_num}
+    	</delete>
+    	
+    	<resultMap type ="PressDTO" id="getOneResult">
+    		<id column="board_num" property="board_num"/>
+    		<result column="board_title" property="board_title"/>
+    		<result column="board_writer" property="board_writer"/>
+    		<result column="board_contents" property="board_contents"/>
+    		<result column="regDate" property="regDate"></result>
+    		<result column="hit" property="hit"></result>
+    		<collection property="boardFileDTOs" ofType="BoardFileDTO" javaType="java.util.List" >
+    			<id column="file_Num" property="file_Num"></id>
+    			<result column="file_Name" property="file_Name"/>
+    			<result column="ori_Name" property="ori_Name"/>
+    		</collection>
+    	</resultMap>
+    
+    	<select id="getOne" parameterType="PressDTO" resultMap="getOneResult">
+    		select P.*, PF.*
+			from press P left join pressFile PF
+			on P.board_num = PF.board_num
+			where P.board_num=#{board_num}
+    	</select>
+    	
+    	<select id="getNum" resultType="Long">
+    		select board_seq.nextval from dual
+    	</select>
+    
+   		 <insert id="setInsert" parameterType="PressDTO">
+   			 <selectKey keyProperty="board_num" resultType="Long" order="BEFORE">
+   		 		select board_seq.nextval from dual
+   			 </selectKey>
+   		 	insert into press values(#{board_num}, #{board_title}, #{board_writer}, #{board_contents}, sysdate, 0)
+   		 </insert>
+  
+    	<select id="getList" resultType="PressDTO" parameterType="Pager">
+			select * from 
+			(select rownum R, P.* from 
+			(select * from press where 
+			<choose>
+				<when test="kind =='title'">(board_title like '%'||#{search}||'%')</when>
+				<when test="kind =='contents'">(board_contents like '%'||#{search}||'%')</when>
+				<otherwise>(board_title like '%'||#{search}||'%' or board_contents like '%'||#{search}||'%')</otherwise>
+			</choose>
+			 order by board_num desc) P) where R between #{startRow} and #{lastRow}
+    	</select>	
+    	
+    	<select id = "getCount" resultType="Long" parameterType="Pager">
+    		select count(board_num) from press
+    		where 
+    		<choose>
+    			<when test="kind =='title'">(board_title like '%'||#{search}||'%')</when>
+				<when test="kind =='contents'">(board_contents like '%'||#{search}||'%')</when>
+				<otherwise>(board_title like '%'||#{search}||'%' or board_contents like '%'||#{search}||'%')</otherwise>
+    		</choose>
+    	</select>
 	
 
 </mapper>
