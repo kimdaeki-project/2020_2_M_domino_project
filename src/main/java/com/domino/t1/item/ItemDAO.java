@@ -11,13 +11,13 @@ public class ItemDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE = "com.domino.t1.item.ItemDTO.";
+	private final String NAMESPACE = "com.domino.t1.item.ItemDAO.";
 	
 	public List<ItemDTO> getItemListByCategory(ItemDTO itemDTO) throws Exception{
-		return sqlSession.selectList(NAMESPACE+"getItemListByCategory");
+		return sqlSession.selectList(NAMESPACE+"getItemListByCategory", itemDTO);
 	}
 	
 	public ItemDTO getOne(ItemDTO itemDTO) throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"getOne");
+		return sqlSession.selectOne(NAMESPACE+"getOne", itemDTO);
 	}
 }

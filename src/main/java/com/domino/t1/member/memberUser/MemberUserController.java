@@ -1,29 +1,110 @@
-package com.domino.t1.member;
+package com.domino.t1.member.memberUser;
 
 import java.util.List;
 
-import javax.jws.WebParam.Mode;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.domino.t1.member.MemberDTO;
+
 import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequestMapping("/member/**")
-public class MemberController {
+public class MemberUserController {
 	
 	@Autowired
-	private MemberService memberService;
+	private MemberUserService memberService;
+	
+	@PostMapping("jusoPopup")
+	public ModelAndView getJusoPopup2() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("member/jusoPopup");
+		return mv;
+	}
+	
+	@GetMapping("jusoPopup")
+	public ModelAndView getJusoPopup() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("member/jusoPopup");
+		return mv;
+	}
+	
+	@PostMapping("Sample")
+	public ModelAndView getSampleoPopup2() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("member/Sample");
+		return mv;
+	}
+	
+	@GetMapping("Sample")
+	public ModelAndView getSampleoPopup() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("member/Sample");
+		return mv;
+	}
+	
+	@GetMapping("memberSearchView")
+	public ModelAndView getMemberSearchView() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("view");
+		
+		mv.setViewName("member/memberSearchView");
+		return mv;
+	}
+	
+	@PostMapping("memberSearch")
+	public ModelAndView getMemberSearch(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		memberDTO = memberService.getMemberSearch(memberDTO);
+		
+		mv.addObject("dto", memberDTO);
+		mv.setViewName("member/memberSearchView");
+		
+		return mv;
+	}
+	
+	
+	@GetMapping("memberSearch")
+	public ModelAndView getMemberSearch() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("Search");
+		
+		mv.setViewName("member/memberSearch");
+		return mv;
+		
+	}
+	
+	@GetMapping("memberDelete")
+	public ModelAndView setMemberDelete(HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("Delete");
+		
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		
+		int result = memberService.setMemberDelete(memberDTO);
+		
+		session.invalidate();
+		mv.setViewName("redirect:../");
+		
+		return mv;
+		
+	}
 	
 	@GetMapping("memberInquirlySelect")
 	public ModelAndView getOne(MemberDTO memberDTO) throws Exception{

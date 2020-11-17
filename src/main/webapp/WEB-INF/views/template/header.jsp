@@ -31,6 +31,7 @@
 	</nav>
 </header>
 
+
 <header class="header2 lnb" style="border-bottom: 1px solid #e4e4e4;">
 	<div class="container text-center">
 	<div class="col-sm-12" id="myNavbar2">
@@ -86,5 +87,6 @@
 	 	 </div>
 	</div>
 	</div>
+
 </header>
 </div>

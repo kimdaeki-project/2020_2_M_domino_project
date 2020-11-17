@@ -165,7 +165,7 @@
 		<div class="discount-step">                  
 			<ul>
 				<li id="myCoupon" class="active">
-					<a href="javascript:changePrmt('myCoupon');" class="type-brd5">도미노 온라인 쿠폰 선택</a>
+					<a href = "javascript:myCoupon()" class="type-brd5">도미노 온라인 쿠폰 선택</a>
 				</li>
 				<li id="dcPrmt" class="active">
 					<a href="javascript:changePrmt('dcPrmt');" class="type-brd5"><span>[고객감사]피자 25%(배달)</span></a>
@@ -358,6 +358,14 @@
 				}
 			});
 		});
+	
+	
+    function myCoupon(){
+        var url = "./myCoupon";
+        var name = "popup test";
+        var option = "width = 900px, height = 650px , top = 100px, left = 400px, location = no, scrollbars = no, toolbars = no, status = no"
+        window.open(url, name, option);
+    }
 </script>
 </body>
 </html>

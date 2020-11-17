@@ -28,8 +28,8 @@
 	
 	<div class="checkbox">
 	 	 <label><input type="checkbox" name="remember">이이디저장</label>
-	 	<a>아이디 찾기</a>
-	 	<a>비밀번호 찾기</a>
+	 	<a href="./memberSearch">아이디 찾기</a>
+	 	<a href="">비밀번호 찾기</a>
 	</div>
 		
 	<button type="submit">로그인</button>
