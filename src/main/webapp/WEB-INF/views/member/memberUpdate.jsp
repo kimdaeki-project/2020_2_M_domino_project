@@ -23,7 +23,7 @@
 	
 	<ul id="select">
 		<li>
-		<a href="./memberLevel">매니아 등급</a> ㅣ 
+		<a href="./memberPage">매니아 등급</a> ㅣ 
 		<a href="./memberOrder">주문 내역</a> ㅣ 
 		<a href="#">쿠폰함</a> ㅣ 
 		<a href="../memberInq/memberInquirly">1:1 문의</a> ㅣ 
@@ -35,7 +35,7 @@
 		<div></div>
 		<div class="myCheck2">회원정보를 정확히 기입하셔야 주문이나 이벤트에 대한 불이익이 없습니다.</div>
 	</div>
-	
+	</div>
 	
 		
 		<div class="container">
