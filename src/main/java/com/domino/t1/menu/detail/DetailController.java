@@ -55,8 +55,8 @@ public class DetailController {
 		return mv;
 	}
 	
-	@PostMapping("toCart")
-	public void setCartItem() throws Exception {
-		
-	}
+//	@PostMapping("toCart")
+//	public void setCartItem() throws Exception {
+//		
+//	}
 }
