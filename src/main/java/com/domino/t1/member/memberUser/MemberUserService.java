@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.domino.t1.member.MemberDTO;
 import com.domino.t1.member.MemberService;
+import com.domino.t1.member.memberInquirly.MemberInquirlyDTO;
 import com.domino.t1.util.Pager;
 
 @Service
@@ -25,24 +26,6 @@ public class MemberUserService implements MemberService{
 	public int setMemberDelete(MemberDTO memberDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return memberDAO.setMemberDelete(memberDTO);
-	}
-
-	@Override
-	public MemberDTO getOne(MemberDTO memberDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return memberDAO.getOne(memberDTO);
-	}
-
-	@Override
-	public List<MemberDTO> getInqBoardList(MemberDTO memberDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return memberDAO.getInqBoardList(memberDTO);
-	}
-
-	@Override
-	public int setInqBoardWrite(MemberDTO memberDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return memberDAO.setInqBoardWrite(memberDTO);
 	}
 
 	@Override
@@ -76,9 +59,9 @@ public class MemberUserService implements MemberService{
 	}
 
 	@Override
-	public MemberDTO getMemberLogin(MemberDTO memberDTO) throws Exception {
+	public MemberInquirlyDTO getMemberLogin(MemberInquirlyDTO memberInquirlyDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return memberDAO.getMemberLogin(memberDTO);
+		return memberDAO.getMemberLogin(memberInquirlyDTO);
 	}
 
 	@Override

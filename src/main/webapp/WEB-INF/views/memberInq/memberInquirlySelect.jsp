@@ -59,14 +59,14 @@
 		</li>
 	</ul>
 	<div class="myLevel">
-		<div class="myCheck">개인 정보 입력 안내문</div>
+		<div class="myCheck">${member.member_name}님께서 문의하신 내용입니다</div>
 		<div></div>
-		<div class="myCheck2">회원정보를 정확히 기입하셔야 주문이나 이벤트에 대한 불이익이 없습니다.</div>
+		<div class="myCheck2">${member.member_name}님께서 문의하신 내용은 총 0건입니다.</div>
 	</div>
-	
-	
+	<div class="memberCheck"></div><br>
 			<div class="container">
-			<form action="./memberUpdate" method="post" class="form-horizontal">
+			
+			<input type="number" value="${dto.inq_num}" name="inq_num" class="none">
 			<div class="form-group">
 				<label for="name" class="labelUpdate">이름 </label>
 				<span>${member.member_name}</span>
@@ -101,11 +101,10 @@
 				<label for="reply" class="labelUpdate">답변 </label>
 				<span><textarea rows="10" cols="30" name="inq_contents" readonly="readonly" class="tArea"></textarea></span>
 			</div>
-			
-	<a href="./memberInquirlyDelete" class="btn btn-default">삭제</a>
-	<a href="./memberInquirly" class="btn btn-default">목록</a>
+	<input type="button" value="삭제" id="checkButt" style= "width:110px; height:42px;" class="inqDel">		
+	<input type="button" value="목록" id="checkButt" style= "width:110px; height:42px;" class="inqList">		
 
-	</form>
+
 	</div>
 	
 	
@@ -113,5 +112,15 @@
 	</div>
 <c:import url="../template/footer.jsp"></c:import>
 </body>
+<script type="text/javascript">
+	$(".inqDel").click(function() {
+		location.href = "./memberInquirlyDelete?inq_num=${dto.inq_num}";
+	});
+
+	$(".inqList").click(function() {
+		location.href = "./memberInquirly";
+	});
+
+</script>
 
 </html>

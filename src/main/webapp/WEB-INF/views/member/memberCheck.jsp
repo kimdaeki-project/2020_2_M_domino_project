@@ -47,7 +47,7 @@
 		</li> 
 		
 		<li class="list2">
-		<a href="./memberInquirly">1:1 문의</a>
+		<a href="../memberInq/memberInquirly">1:1 문의</a>
 		</li> 
 		
 		<li class="list2">

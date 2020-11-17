@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.domino.t1.member.MemberDAO;
 import com.domino.t1.member.MemberDTO;
+import com.domino.t1.member.memberInquirly.MemberInquirlyDTO;
 import com.domino.t1.util.Pager;
 
 @Repository
@@ -15,7 +16,8 @@ public class MemberUserDAO implements MemberDAO{
 	
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE = "com.domino.t1.member.MemberDAO.";
+	private final String NAMESPACE = "com.domino.t1.member.memberUser.MemberUserDAO.";
+	
 	@Override
 	public MemberDTO getMemberSearch(MemberDTO memberDTO) throws Exception {
 		// TODO Auto-generated method stub
@@ -26,21 +28,7 @@ public class MemberUserDAO implements MemberDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.delete(NAMESPACE+"setMemberDelete", memberDTO);
 	}
-	@Override
-	public MemberDTO getOne(MemberDTO memberDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne(NAMESPACE+"getOne", memberDTO);
-	}
-	@Override
-	public List<MemberDTO> getInqBoardList(MemberDTO memberDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE+"getInqBoardList", memberDTO);
-	}
-	@Override
-	public int setInqBoardWrite(MemberDTO memberDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.insert(NAMESPACE+"setInqBoardWrite", memberDTO);
-	}
+
 	@Override
 	public int setMemberUpdate(MemberDTO memberDTO) throws Exception {
 		// TODO Auto-generated method stub
@@ -67,9 +55,9 @@ public class MemberUserDAO implements MemberDAO{
 		return sqlSession.selectOne(NAMESPACE+"getMemberIdCheck", memberDTO);
 	}
 	@Override
-	public MemberDTO getMemberLogin(MemberDTO memberDTO) throws Exception {
+	public MemberInquirlyDTO getMemberLogin(MemberInquirlyDTO memInquirlyDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(NAMESPACE+"getMemberLogin", memberDTO);
+		return sqlSession.selectOne(NAMESPACE+"getMemberLogin", memInquirlyDTO);
 	}
 	@Override
 	public int setMemberJoin(MemberDTO memberDTO) throws Exception {

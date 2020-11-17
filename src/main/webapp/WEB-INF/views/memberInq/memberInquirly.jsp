@@ -23,11 +23,11 @@
 	
 	<ul id="select">
 		<li>
-		<a href="./memberPage">매니아 등급</a> ㅣ 
-		<a href="./memberOrder">주문 내역</a> ㅣ 
+		<a href="../member/memberPage">매니아 등급</a> ㅣ 
+		<a href="../member/memberOrder">주문 내역</a> ㅣ 
 		<a href="#">쿠폰함</a> ㅣ 
 		<a id="inq" href="./memberInquirly">1:1 문의</a> ㅣ 
-		<a href="./memberCheck">정보 수정</a> 
+		<a href="../member/memberCheck">정보 수정</a> 
 		</li>
 	</ul>
 	<div class="myLevel">
