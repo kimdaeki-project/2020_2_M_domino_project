@@ -69,15 +69,16 @@
 	  
 	  	 <div class="col-sm-6 order_wrap">
 	  	  
-	      <a href="#">
+	      <a href="${pageContext.request.contextPath}/address/delivery">
 	      <img alt="" src="${pageContext.request.contextPath}/resources/images/index/order1.png" style="display: block;">
 	      <span id="order1" class="order_text1">배달 주문 &ogt;</span></a>
 	       <p class="order_text2">등급별 최대 30%</p>
 	    </div>
 	    
 	     <div class="col-sm-6 order_wrap">
+	      <a href="${pageContext.request.contextPath}/address/pickup">
 	      <img alt="" src="${pageContext.request.contextPath}/resources/images/index/order2.png" style="display: block;">
-	      <a href="#"><span id="order2" class="order_text1">포장 주문 &ogt;</span></a>
+	      <span id="order2" class="order_text1">포장 주문 &ogt;</span></a>
 	      <p class="order_text2">등급별 최대 40%</p>
 	    </div>
 	    

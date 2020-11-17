@@ -6,11 +6,12 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.domino.t1.MyTestCase;
+import com.domino.t1.member.memberUser.MemberUserDAO;
 
-public class MemberDAOTest extends MyTestCase{
+public class MemberUserDAOTest extends MyTestCase{
 
 	@Autowired
-	private MemberDAO memberDAO;
+	private MemberUserDAO memberDAO;
 	
 	@Test
 	public void memberJoinTest() throws Exception{

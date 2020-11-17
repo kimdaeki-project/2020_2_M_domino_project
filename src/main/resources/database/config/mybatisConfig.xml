@@ -10,7 +10,8 @@
 		<typeAlias type="com.domino.t1.util.Pager" alias="Pager"></typeAlias>
     
 		<typeAlias type="com.domino.t1.member.MemberDAO" alias="MemberDAO"/>
-		<typeAlias type="com.domino.t1.member.MemberDTO" alias="MemberDTO"/>    
+		<typeAlias type="com.domino.t1.member.MemberDTO" alias="MemberDTO"/> 
+		<typeAlias type="com.domino.t1.member.memberUser.MemberUserDTO" alias="MemberUserDTO"/>    
     
 		<!-- item related aliases -->
 		<typeAlias type="com.domino.t1.item.ItemDTO" alias="ItemDTO"/>
@@ -23,11 +24,11 @@
 		<typeAlias type="com.domino.t1.board.qna.QnaDTO" alias="QnaDTO"/>
 		<typeAlias type="com.domino.t1.board.news.dominoNews.DominoNewsDTO" alias="DominoNewsDTO"/>
 		<typeAlias type="com.domino.t1.board.file.BoardFileDTO" alias="BoardFileDTO"/>
-
-	
-		<!-- order relates aliases -->
-		<typeAlias type="com.domino.t1.coupon.CouponDTO" alias="CouponDTO"/>
-
+		
+		<typeAlias type="com.domino.t1.branchInfo.BranchInfoDTO" alias="BranchInfoDTO"/>
+		
+		<typeAlias type="com.domino.t1.address.delivery.AddressDeliveryDTO" alias="AddressDeliveryDTO"/>
+		<typeAlias type="com.domino.t1.address.pickup.AddressPickupDTO" alias="AddressPickupDTO"/>
 		
 	</typeAliases>
 </configuration>

@@ -22,27 +22,55 @@
 	<br>
 	
 	<ul id="select">
-		<li>
-		<a href="./memberPage">매니아 등급</a> ㅣ 
-		<a href="./memberOrder">주문 내역</a> ㅣ 
-		<a href="#">쿠폰함</a> ㅣ 
-		<a href="./memberInquirly">1:1 문의</a> ㅣ 
+		<li class="list2">
+		<a href="./memberPage">매니아 등급</a>
+		</li>
+		
+		<li class="list2">
+		 ㅣ 
+		 </li>
+		 
+		 <li class="list2">
+		<a href="./memberOrder">주문 내역</a>
+		 </li> 
+		 
+		 <li class="list2">
+		 ㅣ 
+		 </li>
+		   
+		 <li class="list2">
+		<a href="#">쿠폰함</a>
+		 </li>
+		  
+		<li class="list2"> 
+		ㅣ 
+		</li> 
+		
+		<li class="list2">
+		<a href="./memberInquirly">1:1 문의</a>
+		</li> 
+		
+		<li class="list2">
+		 ㅣ 
+		 </li> 
+		 
+		 <li class="list2">
 		<a href="./memberCheck">정보 수정</a> 
 		</li>
 	</ul>
+	
 	<div class="myLevel">
 		<div class="myCheck">본인여부 확인</div>
 		<div></div>
 		<div class="myCheck2">회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시한번 확인합니다.</div>
 	</div>
-	
+	<div class="memberCheck"></div>
 	<form action="./memberCheck" method="post">
-	<table class="memberCheck">
+	<div class="container">
+	<table>
+
 		<tr>
 			<td>아이디</td><td><input type="text" name="member_id" value="${member.member_id}" readonly="readonly"></td>
-		</tr>
-		<tr>
-			<td></td><td></td>
 		</tr>
 		<tr>
 			<td>비밀번호</td><td><input type="password" name="member_pw"><input type="submit" value="확인"></td>
@@ -50,6 +78,7 @@
 		
 		
 	</table>
+	</div>
 	</form>
 	
 	</div>
