@@ -71,7 +71,7 @@
 	</div>
 
 	<div class="text-center">
-		<strong><h3 style="margin-top: 20px;">회원로그인</h3></strong>
+		<h3 style="margin-top: 20px;">회원로그인</h3>
 		<form action="./memberLogin" method="post" class="form-horizontal" style="padding: 20px;">
 		<div>
 			<input type="text" name="member_id" value="${cookie.remember.value}" class="login2" placeholder="아이디" style="width:430px; height:42px;">
@@ -97,6 +97,9 @@
 		<div></div><br>
 		<button type="button" style="text-align:center; width:430px; height:58px;" id="btnJoin">회원가입</button>
 		</form>
+		
+		<a href="https://kauth.kakao.com/oauth/authorize?client_id=e1f63ee684f17ca5170508741bb253d4&redirect_uri=http://localhost/t1/kakao/kakaoLogin&response_type=code">
+		카카오</a>
 	</div>
 	
 	</div>
