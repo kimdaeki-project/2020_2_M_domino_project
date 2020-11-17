@@ -18,7 +18,6 @@ public class FaqController {
 	
 	@GetMapping("faqList")
 	public ModelAndView getList(FaqDTO faqDTO) throws Exception{
-		System.out.println("C"+faqDTO.getFaq_type());
 		ModelAndView mv = new ModelAndView();
 		List<FaqDTO> ar = faqService.getList(faqDTO);
 		mv.addObject("list", ar);
@@ -38,13 +37,18 @@ public class FaqController {
 	public ModelAndView setInsert(FaqDTO faqDTO) throws Exception{
 	
 		int result = faqService.setInsert(faqDTO);
+		
+		String message="Write Fail";
 		if(result>0) {
-			System.out.println("write scucess");
+			message = "Write Success";
 		}
-		
 		ModelAndView mv = new ModelAndView();
-		return mv;
+	
+		mv.addObject("msg", message);
+		mv.addObject("path", "./faqList");
 		
+		mv.setViewName("common/result");
+		return mv;	
 	}
 
 }

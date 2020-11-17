@@ -17,7 +17,6 @@ public class FaqDAO {
 	private final String NAMESPACE="com.domino.t1.faq.FaqDAO.";
 	
 	public List<FaqDTO> getList(FaqDTO faqDTO) throws Exception{
-		System.out.println("D"+ faqDTO.getFaq_type());
 		return sqlSession.selectList(NAMESPACE+"getList", faqDTO);
 	}
 	

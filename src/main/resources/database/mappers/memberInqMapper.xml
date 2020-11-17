@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.domino.t1.member.memberInquirly.MemberInquirlyDAO">
+
+	<delete id="setInqDelete" parameterType="MemberInquirlyDTO">
+		delete member_inquirly where inq_num = #{inq_num}
+	</delete>
+	
+	<insert id="setInqBoardWrite" parameterType="MemberInquirlyDTO">
+		insert into member_inquirly values(#{member_num} ,member_inquirly_seq.nextval, #{inq_title}, #{inq_contents},
+		sysdate, #{inq_state}, #{inq_type}, #{inq_shop}, #{inq_location})
+	</insert>
+	
+	<select id="getInqBoardList" resultType="MemberInquirlyDTO">
+		select * from member_inquirly where member_num=#{member_num} order by inq_num desc
+	</select>
+	
+	<select id="getOne" resultType="MemberInquirlyDTO" parameterType="MemberInquirlyDTO">
+		select * from member_inquirly where inq_num=#{inq_num}
+	</select>
+	
+</mapper>

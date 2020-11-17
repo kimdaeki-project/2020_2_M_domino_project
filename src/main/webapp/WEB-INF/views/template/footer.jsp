@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <footer class="container-fluid text-center">
 	<div class="container text-center">
-	      <div class="row"> 
+	      <div class="row footer_wrap"> 
 	      
 	   		 <div class="col-sm-8 footer_order">
 	   		 	<img alt="" src="${pageContext.request.contextPath}/resources/images/common/logo2.png">
@@ -29,11 +29,11 @@
 			</div>
 			
 			 <div class="col-sm-4 footer_cont app_box">
-				<p>DOWNLOAD APP</p>
 				<p>
-					<a href="#"><img src="${pageContext.request.contextPath}/resources/images/common/icon_apple.png" alt=""></a>
-					<a href="#"><img src="${pageContext.request.contextPath}/resources/images/common/icon_android.png" alt=""></a>
+					<a href="https://itunes.apple.com/kr/app/dominopija-domino-pizza-korea/id371008429?mt=8"><img src="${pageContext.request.contextPath}/resources/images/common/icon_apple.png" alt=""></a>
+					<a href="https://play.google.com/store/apps/details?id=kr.co.d2.dominos"><img src="${pageContext.request.contextPath}/resources/images/common/icon_android.png" alt=""></a>		
 				</p>
+				<p>DOWNLOAD APP</p>
 			</div>
 			
 			<div class="col-sm-8 footer_info">
@@ -43,7 +43,8 @@
 				<p>문의 : webmaster@dominos.co.kr</p>
 				<p>Copyright ⓒ Domino’s Pizza. All rights reserved.</p>
 				<br>
-				<p class="notice">청오디피케이㈜의 사전 서면동의 없이 도미노피자 사이트(PC, 모바일, 앱)의 일체의 정보, 콘텐츠 및 UI 등을 상업적 목적으로 전재, 전송, 스크래핑 등 무단 사용할 수 없습니다.</p>
+				<p class="notice">청오디피케이㈜의 사전 서면동의 없이 도미노피자 사이트(PC, 모바일, 앱)의 일체의 정보, 콘텐츠 및 UI 등을 상업적 목적으로 <br>
+				전재, 전송, 스크래핑 등 무단 사용할 수 없습니다.</p>
 			</div>
 			
 			 <div class="col-sm-4 footer_cont sns_box">
@@ -51,13 +52,13 @@
 					<li><a href="http://blog.naver.com/dominostory"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/icon_blog.png"></a></li>
 					<li><a href="https://www.instagram.com/dominostory/"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/icon_insta.png"></a></li>
 					<li><a href="https://www.facebook.com/dominostory/"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/icon_facebook.png"></a></li>
-					<li><a href="https://www.facebook.com/dominostory/"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/icon_youtube.png"></a></li>
+					<li><a href="https://www.youtube.com/user/dominostory3082"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/icon_youtube.png"></a></li>
 					<li><a href="https://twitter.com/dominostory"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/icon_twitter.png"></a></li>
 				</ul>	
 			</div>	 
 	   		</div>	
 	   </div>		
-	   		
+	   
 	   		<div class="col-sm-12 footer_award">
 	   		<div class="container text-center">
 				<ul>

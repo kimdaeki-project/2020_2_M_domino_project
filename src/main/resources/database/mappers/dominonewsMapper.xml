@@ -10,8 +10,12 @@
     	</insert>
   
     	<update id = "setUpdate" parameterType="DominoNewsDTO">
-    		update domino_news set title=#{board_title}, contents=#{board_contents} where board_num=#{board_num}
+    		update domino_news set board_title=#{board_title}, board_contents=#{board_contents} where board_num=#{board_num}
     	</update>
+    	
+    	<update id="setNewsHits" parameterType="Long">
+    		update domino_news set hit=hit+1 where board_num=#{board_num}
+    	</update> 
 
     	<delete id ="setDelete" parameterType="DominoNewsDTO">
     		delete domino_news where board_num=#{board_num}
@@ -33,7 +37,7 @@
     
     	<select id="getOne" parameterType="DominoNewsDTO" resultMap="getOneResult">
     		select D.*, NF.*
-			from dommino_news D left join newsFile NF
+			from domino_news D left join newsFile NF
 			on D.board_num = NF.board_num
 			where D.board_num=#{board_num}
     	</select>
@@ -54,22 +58,20 @@
 			(select rownum R, D.* from 
 			(select * from domino_news where 
 			<choose>
-				<when test="kind =='title'">title</when>
-				<when test="kind =='writer'">writer</when>
-				<otherwise>contents</otherwise>
+				<when test="kind =='title'">(board_title like '%'||#{search}||'%')</when>
+				<when test="kind =='contents'">(board_contents like '%'||#{search}||'%')</when>
+				<otherwise>(board_title like '%'||#{search}||'%' or board_contents like '%'||#{search}||'%')</otherwise>
 			</choose>
-			 like '%'||#{search}||'%' order by board_num desc) D)
-			where R between #{startRow} and #{lastRow}
+			 order by board_num desc) D) where R between #{startRow} and #{lastRow}
     	</select>	
     	
     	<select id = "getCount" resultType="Long" parameterType="Pager">
     		select count(board_num) from domino_news
     		where 
     		<choose>
-    			<when test="kind =='title'">title</when>
-				<when test="kind =='writer'">writer</when>
-				<otherwise>contents</otherwise>
+    			<when test="kind =='title'">(board_title like '%'||#{search}||'%')</when>
+				<when test="kind =='contents'">(board_contents like '%'||#{search}||'%')</when>
+				<otherwise>(board_title like '%'||#{search}||'%' or board_contents like '%'||#{search}||'%')</otherwise>
     		</choose>
-    		 like '%'||#{search}||'%'
     	</select>
 </mapper>

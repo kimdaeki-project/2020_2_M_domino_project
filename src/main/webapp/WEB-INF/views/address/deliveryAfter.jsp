@@ -52,16 +52,21 @@
 						<div class="addr-list">
 							<ul>
 								<li>
-									<div class="notyet">
-										<p class="title"><img alt="" src="../resources/images/address/sp_alert_t1.png"> 배달 주소를 등록해주세요.</p>
-										<a href="#" class="btn-type-brd2" id="add_addr">
-											+ 배달 주소 등록
-										</a>
+									<div class="reg_addr">
+										
 									</div>
 								</li>
 							</ul>
-							<div class="addr-limit">
-								* 배달 주소는 최대 10개까지만 등록 가능합니다.
+							<div class="add-addr-wrap">
+								<a href="#" class="btn-type-brd2" id="add_addr">
+									+ 배달 주소 등록
+								</a>
+								<div class="addr-limit">
+									* 배달 주소는 최대 10개까지만 등록 가능합니다.
+								</div>
+							</div>
+							<div class="addr-btn">
+								
 							</div>
 						</div>
 					</div>
