@@ -102,7 +102,7 @@
 				
 			<div class="form-group">
 				<label for="aggAll" class="labelUpdate">광고성 정보 수신 전체 동의 </label>
-				<div class="memberAgg">
+				<div class="memberAgg" id="aggAll">
   					<label><input type="checkbox" value=1 id="checkAll3">전체 동의하기</label><br>
   					<label><input type="checkbox" value=1 id="check4" class="chk" name="member_msg_agg">문자 메세지(선택)</label><br>
  					 <label><input type="checkbox" value=1 id="check5" class="chk" name="member_email_agg">이메일(선택)</label><br>
