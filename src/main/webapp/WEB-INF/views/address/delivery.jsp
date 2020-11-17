@@ -42,7 +42,7 @@
 					<div class="tab-content" id="delivery">
 						<div class="spot-area">
 							<span class="spot left-spot">
-								<img alt="" src="../resources/images/address/sp_deli_spot_t1.png">밖에서 도미노피자 먹고 싶을 땐?
+								<img alt="" src="../resources/images/address/sp_deli_spot_t1.png" style="width: 23px; height: 24px;">밖에서 도미노피자 먹고 싶을 땐?
 							</span>
 							
 							<a href="#" class="spot right-spot">

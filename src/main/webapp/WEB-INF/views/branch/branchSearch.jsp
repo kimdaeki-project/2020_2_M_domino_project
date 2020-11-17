@@ -140,6 +140,7 @@
 			</div>
 		</div>
 	</div>
+	<!-- ===== 전체매장보기 javascript ===== -->
 	<div class="view-all-branch" id="view-all-branch">
 		<div class="view-all-popup">
 			<div class="view-all-header">

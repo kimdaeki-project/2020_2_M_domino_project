@@ -21,7 +21,9 @@ public class AddressController {
 	public ModelAndView delivery(MemberAddressDTO memberAddressDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
+//		mv.addObject("order", "delivery");
 		mv.setViewName("address/delivery");
+		System.out.println("delivery");
 		
 		return mv;
 	}
@@ -30,7 +32,9 @@ public class AddressController {
 	public ModelAndView pickup(BranchInfoDTO branchInfoDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
+//		mv.addObject("order", "pickup");
 		mv.setViewName("address/pickup");
+		System.out.println("pickup");
 		
 		return mv;
 		
