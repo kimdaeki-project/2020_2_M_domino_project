@@ -30,11 +30,11 @@ public class MemberInquirlyController {
 		if(result > 0) {
 			message = "문의 삭제를 완료하였습니다.";
 			
-			mv.addObject("msg", message);
-			mv.setViewName("common/result");
 		}
-		
-			mv.setViewName("redirect:./memberInquirly");
+			mv.addObject("msg", message);
+			mv.addObject("path", "./memberInquirly");
+			mv.setViewName("common/result");
+			
 		return mv;
 	}
 	

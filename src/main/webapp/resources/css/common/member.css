@@ -284,6 +284,7 @@ dl {
 	height: 16px;
 	padding: 30px;;
 	display: inline-block;
+	vertical-align: top
 }
 
 #labelCheck{
@@ -328,6 +329,7 @@ dl {
 	width: 600px;
 	height: 100px;
 	display: inline-block;
+	padding-top: 30px;
 }
 
 .checkButt{
@@ -347,3 +349,22 @@ dl {
 	width: 650px;
 	height: 295px;
 }
+
+.divText{
+	width: 700px;
+	height: 300px;
+	display: inline-block;
+}
+
+.radioSel{
+	width: 300px;
+	height: 60px;
+	display: inline-block;
+	padding-top: 20px;
+	padding-bottom: 30px;
+}
+
+#chAll{
+	padding-top: 25px;
+}
+

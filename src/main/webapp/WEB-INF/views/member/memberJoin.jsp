@@ -76,14 +76,16 @@
 			
 			<div class="form-group">
 				<label for="agg" class="labelUpdate">개인정보 유효기간 선택 </label>
-  				<label class="radio-inline"><input type="radio" name="member_pi_date" value=1>1년</label>
-				<label class="radio-inline"><input type="radio" name="member_pi_date" value=3>3년</label>
-				<label class="radio-inline"><input type="radio" name="member_pi_date" value=5>5년</label>
+				<div class="radioSel">
+  					<label class="radio-inline"><input type="radio" name="member_pi_date" value=1>1년</label>
+					<label class="radio-inline"><input type="radio" name="member_pi_date" value=3>3년</label>
+					<label class="radio-inline"><input type="radio" name="member_pi_date" value=5>5년</label>
+				</div>
 			</div>
 			
 			<div class="form-group">
 				<label for="aggAll" class="labelUpdate">약관 및 광고성 정보수신 전체 동의 </label>
-				<div class="memberAgg">
+				<div class="memberAgg" id="chAll">
   					<label><input type="checkbox" value=1 id="checkAll">전체 동의하기</label>
 				</div>
 			</div>	

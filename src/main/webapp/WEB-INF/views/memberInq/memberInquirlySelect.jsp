@@ -93,13 +93,18 @@
 			</div>
 			
 			<div class="form-group">
-				<label for="contents" class="labelUpdate">문의내용 </label>
-				<span><textarea rows="10" cols="30" name="inq_contents" readonly="readonly" class="tArea">${dto.inq_contents}</textarea></span>
+				<label for="title" class="labelUpdate">제목 </label>
+				<span>${dto.inq_title}</span>
 			</div>
 			
 			<div class="form-group">
-				<label for="reply" class="labelUpdate">답변 </label>
-				<span><textarea rows="10" cols="30" name="inq_contents" readonly="readonly" class="tArea"></textarea></span>
+				<label for="contents" class="labelUpdate" id="inqCon">문의내용 </label>
+				<div class="divText"><textarea rows="10" cols="30" name="inq_contents" readonly="readonly" class="tArea">${dto.inq_contents}</textarea></div>
+			</div>
+			
+			<div class="form-group">
+				<label for="reply" class="labelUpdate" id="inqCon2">답변 </label>
+			   <div class="divText"><textarea rows="10" cols="30" name="inq_contents" readonly="readonly" class="tArea"></textarea></div>
 			</div>
 	<input type="button" value="삭제" id="checkButt" style= "width:110px; height:42px;" class="inqDel">		
 	<input type="button" value="목록" id="checkButt" style= "width:110px; height:42px;" class="inqList">		
