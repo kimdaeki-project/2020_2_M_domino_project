@@ -12,22 +12,19 @@
 
 	<style type="text/css">
 		.detail_page{
-			margin-top: 2%;
 			border-bottom: 2px solid black;
-			margin-bottom: 1%;
+			padding: 20px 0;
 		}		
-		.detail_page h2 span{
+		.detail_page span{
 			float: right;
 			font-size: 15px;
 			padding: 1% 0;
 		}
 		
-		.detail_page_Link a{	
+		.detail_page_Link {	
 			text-align: left;
 			color: black;
-			float: left;
-			font-size: 16px;
-			padding: 1% 0;
+			padding: 0;
 		}
 		
 		.qna_input{
@@ -55,10 +52,38 @@
 		
 		.qna_input_file input{
 			float: right;
+			}
+		
+		.emptyResult{
+			padding: 10px 0;
 		}
 		
+		.qna_btn{
+			width: 240px;
+			height: 50px;
+			text-align: center;
+			line-height: 50px;
+			border: 1px solid #ccc;
+			color: white;
+		}
+		
+		#qna_reset_btn{
+			background-color: #222222;
+		}
+		
+   		#qna_write_btn{
+   			background-color: #ff143c;
+   		}
+   		
 		.privacy_chk *{
 			display: inline-block;
+		}
+	
+		.Check0{
+			color: blue;
+		}
+		.Check1{
+			color: red;
 		}
 		
 		
@@ -66,21 +91,24 @@
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
-	<div class="container detail_page">
-		<h2>고객센터<span>홈>매장검색</span></h2>
-		
-		<span class="detail_page_Link">
-		<a href="${pageContext.request.contextPath}/faq/faqList">자주하는 질문</a> <a href="${pageContext.request.contextPath}/qna/qnaWrite">온라인신문고</a>
-		</span>
-	</div>
 	
 	<div class="container">
+	
+	<div class="detail_page">
+			<h2>고객센터<span style="font-size: 12px;">홈>고객센터>온라인 신문고</span></h2>
+					
+			<div class="detail_page_Link">
+				<a href="#">자주하는 질문</a><a href="#">온라인신문고</a>
+			</div>
+	  </div>
+	
+	<div style="padding: 20px 0;">
 		<p style="font-weight: bold;">도미노피자를 이용하시면서 느꼈던 불편한 점이나 건의사항, 제품에 대한 의견을 남겨주시면 성심껏 답변해드리겠습니다.<br>
 		※주문 취소/변경과 같은 긴급한 요청은 매장으로 연락 부탁드립니다.</p>
 		<p class="txt_faq" style="color:red;">도미노피자 고객만족센터 <strong>080-860-3082</strong></p>
 	</div>
 	
-	<div class="container">
+	<div>
 		<div class="col-sm-12" style="max-height: 180px; overflow-y: scroll; background: #f5f5f5; padding: 2%; font-size: 14px;">
 			개인정보보호정책은 청오디피케이㈜에서 운영하는 도미노피자 홈페이지 서비스(이하 도미노)를 이용하는 고객님의 개인정보 보호를 위하여, 
 			개인정보 수집의 목적과 그 정보의 정책적 , 시스템적 보안에 관한 규정입니다.<br><br>
@@ -110,7 +138,7 @@
 		
 		<div class="col-sm-12" style="padding-top: 1%;">
 			<div class="privacy_chk" class="col-sm-3" style="float: right; padding: 0;">
-				<div class="form">
+				<div class="form agree_form">
 					<div class="chk-box">
 						<input type="radio" id="agree_yes" name="agree">
 						<label for="agree_yes" class="checkbox"></label>
@@ -128,27 +156,30 @@
 	
 	</div>
 	
-	<div class="container" style="margin-top:2%; border-top: 2px solid black; padding: 0;">
-		<form class="form-horizontal" action="./qnaWrite" method="post" enctype="multipart/form-data">
+	<div style="margin-top:2%; border-top: 2px solid black; padding: 0;">
+		<form class="form-horizontal" id="frm" action="./qnaWrite" method="post" enctype="multipart/form-data">
 			  
 			  <div class="col-sm-12 qna_input">
 			    <label class="control-label col-sm-2" for="board_writer">이름<span>*</span></label>
 			    <div class="col-sm-4">
-			       <input type="text" class="form-control" id="board_writer" name="board_writer" >
+			       <input type="text" class="form-control empty" id="board_writer" name="board_writer" >
+			       <div class="emptyResult writerResult"></div>
 			    </div>
 			  </div>
   				
   			  <div class="col-sm-12 qna_input">
 				  <label class="control-label col-sm-2" for="phone">휴대전화<span>*</span></label>
 				  <div class="col-sm-6">
-				  <input type="text" class="form-control" id="phone" name="phone">
+				  <input type="text" class="form-control empty" id="phone" name="phone">
+				  <div class="emptyResult phoneResult"></div>
 				  </div>
 			  </div>
 			 
   			  <div class="col-sm-12 qna_input">
 				  <label class="control-label col-sm-2" for="email">이메일<span>*</span></label>
 				  <div class="col-sm-6">
-				  <input type="text" class="form-control" id="email" name="email">
+				  <input type="text" class="form-control empty" id="email" name="email">
+				  <div class="emptyResult emailResult"></div>
 				  </div>
 			   </div>
   			
@@ -157,6 +188,7 @@
 				    <label class="control-label col-sm-2" for="qna_type">유형분류<span>*</span></label>
 				    <div class="col-sm-6">
 				    <input type="text" class="form-control empty" id="qna_type" name="qna_type">
+				    <div class="emptyResult typeResult"></div>
 				    </div>
 			   </div>
   
@@ -164,7 +196,8 @@
   			   <div class="col-sm-12 qna_input">
 				    <label class="control-label col-sm-2" for="branch_info">매장선택<span>*</span></label>
 				    <div class="col-sm-6">
-				     <input type="text" class="form-control empty" id="branch_info" name="branch_info">
+				    <input type="text" class="form-control empty" id="branch_info" name="branch_info">
+				    <div class="emptyResult branchResult"></div>
 				    </div>
 			   </div>
     
@@ -172,7 +205,7 @@
     		  	<div class="col-sm-12 qna_input">
 				    <label class="control-label col-sm-2" for="order_num">주문번호</label>
 				    <div class="col-sm-4">
-				    <input type="text" class="form-control empty" id="order_num" name="order_num">
+				    <input type="text" class="form-control" id="order_num" name="order_num">
 				    </div>
 				</div>
     
@@ -180,13 +213,16 @@
 				    <label class="control-label col-sm-2" for="board_title">제목<span>*</span></label>
 				    <div class="col-sm-6">
 				         <input type="text" class="form-control empty" id="board_title" name="board_title">
+				    	 <div class="emptyResult titleResult"></div>
 				    </div>
 				</div>
     
-    			<div class="col-sm-12 qna_input">
+    			<div class="col-sm-12 qna_input qna_contents">
 				    <label class="control-label col-sm-2" for="board_contents">글작성<span>*</span></label>
+				  
 				    <div class="col-sm-6">
-  						<textarea class="form-control" rows="15" id="board_contents" name="board_contents"></textarea>
+  						<textarea class="empty" rows="15" id="board_contents" name="board_contents" style="width: 540px; overflow-y: scroll; border: 1px solid #ccc;" ></textarea>
+						<div class="emptyResult contentsResult"></div>
 					</div>
 			    </div>
 			    
@@ -201,13 +237,89 @@
 				</div>
 			    
 			    <div class="col-sm-12" style="padding: 2%; text-align: center;">
-			    <button type="reset" class="btn btn-default">다시쓰기</button>
-   				<button type="submit" class="btn btn-danger">보내기</button>
+			    <button type="button" id="qna_reset_btn" class="qna_btn">다시쓰기</button>
+   				<button type="button" id="qna_write_btn" class="qna_btn">보내기</button>
    				</div>
 	</form>
+	</div>
 	</div>
 	
  	<c:import url="../template/footer.jsp"></c:import>
 	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script> 
+	<script>
+	
+		$("#qna_write_btn").click(function(){
+			agreeCheck();
+			emptyCheck();
+			if(emptyCheckResult&&agreeCheckResult){
+				$("#frm").submit();
+			}
+		});
+	
+		var agreeCheckResult = true;
+		function agreeCheck() {
+			agreeCheckResult = true;
+			if($("#agree_yes").is(":checked") == false){
+				 agreeCheckResult = false;
+		         alert("약관동의를 해주세요");
+		         return;
+				}
+		}
+	
+		var emptyCheckResult = true;
+		function emptyCheck(){
+			emptyCheckResult=true;
+			$(".emptyResult").removeClass("Check1");
+			$(".emptyResult").html('');
+			$(".empty").each(function(){
+				if($("#board_writer").val().length==0){emptyCheckResult=false; $(".writerResult").html("이름을 입력해주세요.");
+				$(".emptyResult").addClass("Check1"); $("#board_writer").focus(); return false; }
+				
+				if($("#phone").val().length==0){emptyCheckResult=false; $(".phoneResult").html("휴대전화번호를 입력해주세요."); 
+				$(".emptyResult").addClass("Check1"); $("#phone").focus(); return false; }
+				
+				if($("#email").val().length==0){emptyCheckResult=false; $(".eamilResult").html("※등록결과 및 답변은 이메일로 알려드리오니, 정확한 이메일을 기재하여 주시기 바랍니다."); 
+				$(".emptyResult").addClass("Check1"); $("#email").focus(); return false; }
+				
+				if($("#qna_type").val().length==0){emptyCheckResult=false; $(".typeResult").html("유형을 선택하세요."); 
+				$(".emptyResult").addClass("Check1"); $("#qna_type").focus(); return false; }
+				
+				if($("#branch_info").val().length==0){emptyCheckResult=false;  $(".branchResult").html("매장을 선택하세요."); 
+				$(".emptyResult").addClass("Check1"); $("#branch_info").focus(); return false; }
+				
+				if($("#board_title").val().length==0){emptyCheckResult=false;  $(".titleResult").html("제목을 입력해주세요."); 
+				$(".emptyResult").addClass("Check1");  $("#board_title").focus(); return false; }
+				
+				if($("#board_contents").val().length==0){emptyCheckResult=false;  $(".contentsResult").html("내용을 입력해주세요."); 
+				$(".emptyResult").addClass("Check1");  $("#board_contents").focus(); return false; }
+			});
+		}
+		
+		
+		$(document).ready(function(){
+			$("#qna_reset_btn").click(function(){
+				if(confirm("작성된 내용이 다 지워집니다") == true){
+					$("#frm").each(function(){
+						this.reset();
+					});
+				}
+				else{
+					return;
+				}
+			});
+		});
+		
+		
+	
+
+
+	
+		
+		
+	</script>
+	
+	
+		
 </body>
 </html>

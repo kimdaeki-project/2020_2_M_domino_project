@@ -11,7 +11,6 @@
 	</bean>	
 		<!-- DB 연결 -->
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
-
 		<property name="username" value="${user}"></property>
 		<property name="password" value="${password}"></property>
     
