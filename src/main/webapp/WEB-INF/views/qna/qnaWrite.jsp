@@ -52,12 +52,33 @@
 		
 		.qna_input_file input{
 			float: right;
+			}
+		
+		.emptyResult{
+			padding: 10px 0;
 		}
 		
+		.qna_btn{
+			width: 240px;
+			height: 50px;
+			text-align: center;
+			line-height: 50px;
+			border: 1px solid #ccc;
+			color: white;
+		}
+		
+		#qna_reset_btn{
+			background-color: #222222;
+		}
+		
+   		#qna_write_btn{
+   			background-color: #ff143c;
+   		}
+   		
 		.privacy_chk *{
 			display: inline-block;
 		}
-		
+	
 		.Check0{
 			color: blue;
 		}
@@ -117,7 +138,7 @@
 		
 		<div class="col-sm-12" style="padding-top: 1%;">
 			<div class="privacy_chk" class="col-sm-3" style="float: right; padding: 0;">
-				<div class="form">
+				<div class="form agree_form">
 					<div class="chk-box">
 						<input type="radio" id="agree_yes" name="agree">
 						<label for="agree_yes" class="checkbox"></label>
@@ -142,7 +163,7 @@
 			    <label class="control-label col-sm-2" for="board_writer">이름<span>*</span></label>
 			    <div class="col-sm-4">
 			       <input type="text" class="form-control empty" id="board_writer" name="board_writer" >
-			       <div class="emptyResult"></div>
+			       <div class="emptyResult writerResult"></div>
 			    </div>
 			  </div>
   				
@@ -150,7 +171,7 @@
 				  <label class="control-label col-sm-2" for="phone">휴대전화<span>*</span></label>
 				  <div class="col-sm-6">
 				  <input type="text" class="form-control empty" id="phone" name="phone">
-				  <div class="emptyResult"></div>
+				  <div class="emptyResult phoneResult"></div>
 				  </div>
 			  </div>
 			 
@@ -158,7 +179,7 @@
 				  <label class="control-label col-sm-2" for="email">이메일<span>*</span></label>
 				  <div class="col-sm-6">
 				  <input type="text" class="form-control empty" id="email" name="email">
-				  <div class="emptyResult"></div>
+				  <div class="emptyResult emailResult"></div>
 				  </div>
 			   </div>
   			
@@ -167,7 +188,7 @@
 				    <label class="control-label col-sm-2" for="qna_type">유형분류<span>*</span></label>
 				    <div class="col-sm-6">
 				    <input type="text" class="form-control empty" id="qna_type" name="qna_type">
-				    <div class="emptyResult"></div>
+				    <div class="emptyResult typeResult"></div>
 				    </div>
 			   </div>
   
@@ -176,7 +197,7 @@
 				    <label class="control-label col-sm-2" for="branch_info">매장선택<span>*</span></label>
 				    <div class="col-sm-6">
 				    <input type="text" class="form-control empty" id="branch_info" name="branch_info">
-				    <div class="emptyResult"></div>
+				    <div class="emptyResult branchResult"></div>
 				    </div>
 			   </div>
     
@@ -192,15 +213,16 @@
 				    <label class="control-label col-sm-2" for="board_title">제목<span>*</span></label>
 				    <div class="col-sm-6">
 				         <input type="text" class="form-control empty" id="board_title" name="board_title">
-				    	 <div class="emptyResult"></div>
+				    	 <div class="emptyResult titleResult"></div>
 				    </div>
 				</div>
     
-    			<div class="col-sm-12 qna_input">
+    			<div class="col-sm-12 qna_input qna_contents">
 				    <label class="control-label col-sm-2" for="board_contents">글작성<span>*</span></label>
+				  
 				    <div class="col-sm-6">
-  						<textarea class="form-control empty" rows="15" id="board_contents" name="board_contents"></textarea>
-						<div class="emptyResult"></div>
+  						<textarea class="empty" rows="15" id="board_contents" name="board_contents" style="width: 540px; overflow-y: scroll; border: 1px solid #ccc;" ></textarea>
+						<div class="emptyResult contentsResult"></div>
 					</div>
 			    </div>
 			    
@@ -215,8 +237,8 @@
 				</div>
 			    
 			    <div class="col-sm-12" style="padding: 2%; text-align: center;">
-			    <button type="button" id="qna_reset_btn" class="btn btn-default">다시쓰기</button>
-   				<button type="button" id="qna_write_btn" class="btn btn-danger">보내기</button>
+			    <button type="button" id="qna_reset_btn" class="qna_btn">다시쓰기</button>
+   				<button type="button" id="qna_write_btn" class="qna_btn">보내기</button>
    				</div>
 	</form>
 	</div>
@@ -224,43 +246,56 @@
 	
  	<c:import url="../template/footer.jsp"></c:import>
 	
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script> 
 	<script>
 	
-		var agreeCheck = true;
-		$(document).ready(function(){
-			$("#qna_write_btn").click(function(){
-				 if($("#agree_yes").is(":checked") == false){
-	                    alert("약관동의를 해주세요");
-	                    agreeCheck = false;
-	                    return;
-	                }
-			});
-		});
-		
-		var emptyCheckResult = true;
-		
 		$("#qna_write_btn").click(function(){
+			agreeCheck();
 			emptyCheck();
-			if(emptyCheckResult&&agreeCheck){
+			if(emptyCheckResult&&agreeCheckResult){
 				$("#frm").submit();
 			}
-			});
-		
-			
+		});
+	
+		var agreeCheckResult = true;
+		function agreeCheck() {
+			agreeCheckResult = true;
+			if($("#agree_yes").is(":checked") == false){
+				 agreeCheckResult = false;
+		         alert("약관동의를 해주세요");
+		         return;
+				}
+		}
+	
+		var emptyCheckResult = true;
 		function emptyCheck(){
 			emptyCheckResult=true;
 			$(".emptyResult").removeClass("Check1");
 			$(".emptyResult").html('');
 			$(".empty").each(function(){
-				var data = $(this).val();
-				if(data==''){
-					emptyCheckResult=false;
-					$(this).next().html("필수항목 입니다");
-					$(".emptyResult").addClass("Check1");
-				}
+				if($("#board_writer").val().length==0){emptyCheckResult=false; $(".writerResult").html("이름을 입력해주세요.");
+				$(".emptyResult").addClass("Check1"); $("#board_writer").focus(); return false; }
+				
+				if($("#phone").val().length==0){emptyCheckResult=false; $(".phoneResult").html("휴대전화번호를 입력해주세요."); 
+				$(".emptyResult").addClass("Check1"); $("#phone").focus(); return false; }
+				
+				if($("#email").val().length==0){emptyCheckResult=false; $(".eamilResult").html("※등록결과 및 답변은 이메일로 알려드리오니, 정확한 이메일을 기재하여 주시기 바랍니다."); 
+				$(".emptyResult").addClass("Check1"); $("#email").focus(); return false; }
+				
+				if($("#qna_type").val().length==0){emptyCheckResult=false; $(".typeResult").html("유형을 선택하세요."); 
+				$(".emptyResult").addClass("Check1"); $("#qna_type").focus(); return false; }
+				
+				if($("#branch_info").val().length==0){emptyCheckResult=false;  $(".branchResult").html("매장을 선택하세요."); 
+				$(".emptyResult").addClass("Check1"); $("#branch_info").focus(); return false; }
+				
+				if($("#board_title").val().length==0){emptyCheckResult=false;  $(".titleResult").html("제목을 입력해주세요."); 
+				$(".emptyResult").addClass("Check1");  $("#board_title").focus(); return false; }
+				
+				if($("#board_contents").val().length==0){emptyCheckResult=false;  $(".contentsResult").html("내용을 입력해주세요."); 
+				$(".emptyResult").addClass("Check1");  $("#board_contents").focus(); return false; }
 			});
 		}
+		
 		
 		$(document).ready(function(){
 			$("#qna_reset_btn").click(function(){
@@ -274,7 +309,17 @@
 				}
 			});
 		});
+		
+		
+	
+
+
+	
+		
+		
 	</script>
 	
+	
+		
 </body>
 </html>

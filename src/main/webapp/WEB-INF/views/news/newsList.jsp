@@ -76,7 +76,18 @@
 		.list_write a{
 			color: white;
 			font-size: 17px;
-			
+		}
+		
+		.pageNum{
+			text-align: center;
+		}
+		
+		.pageNum a{
+			color: #888888;
+		}
+		
+		#pageNums{
+			padding: 5px;
 		}
 		
 	
@@ -158,13 +169,13 @@
 	</div>
 </div>
 
-	<div>
+	<div class="pageNum">
 	 	<c:if test="${pager.beforeCheck}">
 	 		<a href="./${news}List?curPage=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">[이전]</a>
 	 	</c:if>
 	 	
 		<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-			<a href="./${news}List?curPage=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a>
+			<a href="./${news}List?curPage=${i}&kind=${pager.kind}&search=${pager.search}" id="pageNums">${i}</a>
 		</c:forEach> 
 		
 		<c:if test="${pager.nextCheck}"> <!--true면 현재블럭이 마지막블럭이 아님 -->
