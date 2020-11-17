@@ -332,7 +332,8 @@ html.fixed, body.fixed {
     background: #fff;
     border: 1px solid #ccc;
     vertical-align: middle;
-    margin-top: -2px; }
+    
+	}
   .chk-box:nth-of-type(n+2) {
     margin-left: 25px; }
   .chk-box input[type="checkbox"] + .checkbox:before, .chk-box input[type="checkbox"] + .checkbox:after {

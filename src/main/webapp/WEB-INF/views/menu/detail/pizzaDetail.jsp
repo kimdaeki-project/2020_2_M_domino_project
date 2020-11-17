@@ -16,7 +16,89 @@
 <body>
 <c:import url="../../template/header.jsp"></c:import>
 <div class="container">
+<script type="text/javascript">
+	// item_id, item_name, cart_quantity, item_price, [item_size]
+ 	var pizzaCart = ["${pizzaDTO.item_id}", "${pizzaDTO.item_name}", "1", "${pizzaDTO.pizza_price_l}", "L"]
+	var doughCart = ["${doughList[0].item_id}","${doughList[0].dough_name_short}","1", "${doughList[0].item_price}"]
+	var toppingCart = []
+	var sideDishCart = []
+	var etcCart = []
+	
+	var doughCount = 0
+	var totalPrice = updateTotalPrice()
 
+	
+	function updateTotalPrice(){
+		var toppingSum = getArrayPriceSum(toppingCart)
+		var pizzaSum = pizzaCart[2]*(parseInt(pizzaCart[3]) + parseInt(doughCart[3]) + parseInt(toppingSum))
+		var sideDishSum = getArrayPriceSum(sideDishCart)
+		var etcSum = getArrayPriceSum(etcCart)
+		var tot = pizzaSum + sideDishSum + etcSum
+		$(document).ready(function(){
+			$("#total-price").text(tot)
+		})
+		return tot
+	}
+	
+	function updateCartArray(input, cart){
+		var id = input.siblings(".item-id-data").val()
+		var quantity = input.val()
+		// 이미 담긴 제품은 수량만 변경 
+		for(i=0; i < cart.length; i++){
+			if(cart[i][0] == id){
+				cart[i][2] = quantity
+				return null
+			}
+		}
+		// 처음 담긴 제품은 배열에 항목 추가 
+		var name = input.siblings(".item-name-data").val()		
+		var price = input.siblings(".item-price-data").val()	
+		cart.push([id, name, quantity, price])
+	}
+	
+	
+	function updateCartBox(cartBox, cartArray){
+		cartBox.empty()
+		for(i=0; i < cartArray.length; i++){
+			var item = cartArray[i]
+			var name = item[1]
+			var quantity = item[2]
+			if(quantity < 1){
+				continue
+			}
+			var price = item[3]
+			cartBox.append('<p class="box-item">- '+name+'(+'+price+'원)x'+quantity+'</p>')
+		}
+	}
+	
+	function getCartArray(category){
+		if(["main","cheese","after"].includes(category)){
+			return toppingCart
+		}else if(category == "side-dish-list"){
+			return sideDishCart
+		}else{
+			return etcCart
+		}
+	}
+	
+	function getCartBoxId(category){
+		if(["main","cheese","after"].includes(category)){
+			return "topping-cart-box"
+		}else if(category == "side-dish-list"){
+			return "side-dish-cart-box"
+		}else{
+			return "etc-cart-box"
+		}		
+	}
+	
+	function getArrayPriceSum(arr){
+		var tot = 0
+		for(i=0; i < arr.length; i++){
+			tot += arr[i][3] * arr[i][2]
+		}
+		return tot
+	}
+</script>
 	<div class="col-sm-6 item-desc-container">
 		<img src="/t1/resources/images/menu/pizza/${pizzaDTO.item_image}" alt="${pizzaDTO.item_name}" class="main-item-image">	
 	</div>
@@ -33,29 +115,38 @@
 			<div>
 				<form id="frm-size-option">
 					<div class="btn-wrap">
-						<input type="radio" value="l" name="item_size" class="size-checkbox" id="size_l" checked/>
-						<label for="size_l" class="btn-size-option">L ${pizzaDTO.pizza_price_l}원</label>
+						<input type="radio" value="L" name="item_size" class="size-checkbox" id="size_l" checked="checked" hidden="hidden"/>
+						<label for="size_l" class="btn-size-option checked-btn" value="${pizzaDTO.pizza_price_l}">L ${pizzaDTO.pizza_price_l}원</label>
 					</div>
 					<div class="btn-wrap">
-						<input type="radio" value="m" name="item_size" class="size-checkbox" id="size_m"/>
-						<label for="size_m" class="btn-size-option">M ${pizzaDTO.pizza_price_m}원</label>
+						<input type="radio" value="M" name="item_size" class="size-checkbox" id="size_m" hidden="hidden"/>
+						<label for="size_m" class="btn-size-option" value="${pizzaDTO.pizza_price_m}">M ${pizzaDTO.pizza_price_m}원</label>
 					</div>				
 				</form>
 			
 			</div>	
 			
 	<script type="text/javascript">	
+		// default setting for size option: Large
+		
+		
 		$(".btn-size-option").click(function(){
 			if($(this).prev().attr("checked") != "checked"){
+				$(".size-checkbox").attr("checked", false)
 				$(this).prev().attr("checked", "checked")
-							
+				$(".btn-size-option").toggleClass("checked-btn")
+				// update pizzaCart
+				pizzaCart[3] = $(this).attr("value") //price
+				pizzaCart[4] = $(this).prev().val() //size
+				// update cart's pizza size info
+				$("#pizza-price").text(pizzaCart[3])
+				$("#size-option").text(pizzaCart[4])
 			}
-			if(!$(this).hasClass("checked")){
-				$(this).addClass("checked")	
-			}
-			
+			totalPrice = updateTotalPrice()
 		})
-	</script>			
+		
+
+	</script>							
 				
 		</div>
 		<div class="option-box" id="dough-option-wrap">
@@ -66,21 +157,110 @@
 				<form id="frm-dough-option">
 					<!-- default checked item: first item on the list -->
 					<c:forEach items="${doughList}" var="dto">
-						<div>
-							<input type="radio" name="dough_id" value="${dto.dough_id}"/>
-							<label class="dough-checkbox"></label>
+						<div class="dough-item-wrap">
+							<input type="radio" name="dough-id" value="${dto.item_id}" class="dough-checkbox"/>
+							<input type="hidden" class="dough-name-short" value="${dto.dough_name_short}"/>
+							<input type="hidden" class="dough-price" value="${dto.item_price}"/>
 							<label class="dough-info">
-								<span>${dto.item_name}</span>							
+								<span> ${dto.item_name}</span>							
 									<c:if test="${dto.item_price > 0}">
-										<em class="dough-option-price">+${dto.item_price}원</em>
+										<em class="dough-info-price">+${dto.item_price}원</em>
 									</c:if>		
 							</label>							
 						</div>
 					</c:forEach>
 				</form>				
 			</div>
+<script type="text/javascript">
+	// set the first item as default dough
+	$(".dough-item-wrap:eq(0)").children(".dough-checkbox").attr("checked", "checked")
+	$(".dough-item-wrap:eq(0)").addClass("checked")
+	var defaultName = $(".dough-item-wrap:eq(0)").find(".dough-name-short").val()
+	var defaultPrice = $(".dough-item-wrap:eq(0)").find(".dough-price").val()
+	$(document).ready(function(){
+		changeDoughOptionOnCart(defaultName, defaultPrice)
+	})
+	
+	
+	$(".dough-checkbox").click(function(){
+		$(".dough-checkbox").attr("checked", false)
+		$(this).attr("checked", "checked")
+		$(".dough-item-wrap").removeClass("checked")
+		$(this).parent().addClass("checked")
+		// update doughCart
+		doughCart[0] = $(this).val()
+		doughCart[1] = $(this).siblings(".dough-name-short").val()
 		
+		var price = $(this).siblings(".dough-price").val()
+		if(price == null){
+			price = 0
+		}		
+		doughCart[3] = price		
+		//update cart's dough subtotal
+		changeDoughOptionOnCart(doughCart[1], doughCart[3])
+		//updata cart's total price
+		totalPrice = updateTotalPrice()
+	})
+	
+	// set dough price tag on the cart if price exists
+	function changeDoughOptionOnCart(name, price){
+		$("#dough-option-name").text(name)
+		if(price > 0){
+			$("#dough-option-price").text("(+"+price+"원)")
+		}else{
+			$("#dough-option-price").text("")
+		}
+	}
+	
+</script>		
 		</div>
+		<div class="option-box" id="quantity-option-wrap">
+			<div class="option-title-wrap">
+				<p>수량 선택</p>
+			</div>
+				<div class="pizza-quantity-input-group input-group">
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-default" min="1" id="pizza-quantity-btn-minus" disabled>-</button>
+					</span> 
+					<input type="text" class="form-control pizza-quantity-input" value="1" id="pizza-quantity-option" disabled /> 
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-default" id="pizza-quantity-btn-plus">+</button>
+					</span>
+				</div>
+
+			</div>
+<script>
+	$("#pizza-quantity-btn-minus").click(function() {
+		var quantity = $("#pizza-quantity-option").val()	
+		if(quantity <= parseInt($(this).attr("min"))+1){
+			$(this).attr("disabled", true)
+		}		
+		// update pizza input box's value
+		$("#pizza-quantity-option").val(quantity-1)
+		// update pizzaCart
+		pizzaCart[2] = quantity-1
+		// update cart's pizza quantity
+		$("#pizza-quantity").text(pizzaCart[2])
+		// update cart's total price
+		totalPrice = updateTotalPrice()
+	})
+	
+	$("#pizza-quantity-btn-plus").click(function() {
+		var quantity = $("#pizza-quantity-option").val()
+		$("#pizza-quantity-btn-minus").attr("disabled", false)	
+		
+		quantity = parseInt(quantity)+1
+		// update pizza input box's value
+		$("#pizza-quantity-option").val(quantity)	
+		// update pizzaCart
+		pizzaCart[2] = quantity
+		// update cart's pizza quantity
+		$("#pizza-quantity").text(pizzaCart[2])
+		// update cart's total price
+		totalPrice = updateTotalPrice()
+	})	
+</script>		
+		
 		<div class="option-box" id="topping-option-wrap">
 			<div class="option-title-wrap">
 				<p>토핑 추가</p>
@@ -93,70 +273,313 @@
 					<li class="col-sm-4 topping-tab"><a data-toggle="tab" href="#after">애프터</a></li>
 				</ul>
 				
-				<div class="tab-content">
-					<div id="main" class="tab-pane fade in active topping-list">
+				<div class="item-list-content tab-content">
+					<div id="main" class="option-list tab-pane fade in active">
 						<ul>
 							<c:forEach items="${main}" var="dto">
-								<li class="option-item">
+							
+								<li class="option-item row">
 									<div class="option-item-image-wrap col-sm-3">
 										<img src="/t1/resources/images/menu/topping/${dto.item_image}" alt="${dto.item_name}" class="option-item-image">
 									</div>
-									<div class="option-item-content col-sm-9">
-										<div class="option-item-info">
-											<p>${dto.item_name}</p>
-											<p>${dto.item_price}</p>
-										</div>
-										<div class="option-item-quantity">
-											
-										</div>
+									<div class="option-item-content col-sm-5">
+										<p>${dto.item_name}</p>
+										<p>${dto.item_price}</p>
 									</div>
-									
+									<div class="option-item-quantity col-sm-4">
+								<!-- quantity button -->
+										<div class="input-group">
+											<span class="input-group-btn">
+												<button type="button" class="btn btn-default btn-minus" min="0" disabled>-</button>
+											</span>
+											<input type="text" class="form-control quantity-input" value="0" disabled/>
+											<input type="hidden" class="item-name-data" value="${dto.item_name }">
+											<input type="hidden" class="item-price-data" value="${dto.item_price }">
+											<input type="hidden" class="item-id-data" value="${dto.item_id }">
+											<span class="input-group-btn">
+												<button type="button" class="btn btn-default btn-plus">+</button>
+											</span>	
+										</div>
+										
+										
+									</div>
+													
+								</li>
+							</c:forEach>
+						</ul>
+					</div>								
+					
+					<div id="cheese" class="option-list tab-pane fade ">
+						<ul>
+							<c:forEach items="${cheese}" var="dto">
+							
+								<li class="option-item row">
+									<div class="option-item-image-wrap col-sm-3">
+										<img src="/t1/resources/images/menu/topping/${dto.item_image}" alt="${dto.item_name}" class="option-item-image">
+									</div>
+									<div class="option-item-content col-sm-5">
+										<p>${dto.item_name}</p>
+										<p>${dto.item_price}</p>
+									</div>
+									<div class="option-item-quantity col-sm-4">
+								<!-- quantity button -->
+										<div class="input-group">
+											<span class="input-group-btn">
+												<button type="button" class="btn btn-default btn-minus" min="0" disabled>-</button>
+											</span>
+											<input type="text" class="form-control quantity-input" value="0" disabled/>
+											<input type="hidden" class="item-name-data" value="${dto.item_name }">
+											<input type="hidden" class="item-price-data" value="${dto.item_price }">
+											<input type="hidden" class="item-id-data" value="${dto.item_id }">
+											<span class="input-group-btn">
+												<button type="button" class="btn btn-default btn-plus">+</button>
+											</span>	
+										</div>
+										
+										
+									</div>
+													
 								</li>
 							</c:forEach>
 						</ul>
 					</div>
-					<div id="cheese" class="tab-pane fade topping-list">
-						<h3>cheese topping here</h3>
+					<div id="after" class="option-list tab-pane fade">
 						<ul>
-							<li>
-								cheese 
-							</li>
-							<li>
-								whooa
-							</li>
-						</ul>
-					</div>
-					<div id="after" class="tab-pane fade topping-list">
-						<h3>after topping here</h3>
-						<ul>
-							<li>
-								파마산  
-							</li>
-							<li>
-								콰트로 치즈 퐁듀~~ 
-							</li>
+							<c:forEach items="${after}" var="dto">
+							
+								<li class="option-item row">
+									<div class="option-item-image-wrap col-sm-3">
+										<img src="/t1/resources/images/menu/topping/${dto.item_image}" alt="${dto.item_name}" class="option-item-image">
+									</div>
+									<div class="option-item-content col-sm-5">
+										<p>${dto.item_name}</p>
+										<p>${dto.item_price}</p>
+									</div>
+									<div class="option-item-quantity col-sm-4">
+								<!-- quantity button -->
+										<div class="input-group">
+											<span class="input-group-btn">
+												<button type="button" class="btn btn-default btn-minus" min="0" disabled>-</button>
+											</span> 
+											<input type="text" class="form-control quantity-input" value="0" disabled /> 
+											<input type="hidden" class="item-name-data" value="${dto.item_name }"> 
+											<input type="hidden" class="item-price-data" value="${dto.item_price }"> 
+											<input type="hidden" class="item-id-data" value="${dto.item_id }"> 
+											<span class="input-group-btn">
+												<button type="button" class="btn btn-default btn-plus">+</button>
+											</span>
+										</div>										
+									</div>												
+								</li>
+							</c:forEach>
 						</ul>
 					</div>					
 				</div>
 			</div>
 		</div>
-		<div class="option-box" id="sidedish-option-wrap">
-			<h1>aaaaaa</h1>
+			<div class="option-box" id="sidedish-option-wrap">
+			
+				<div class="option-title-wrap">
+					<p>사이드디시</p>
+				</div>
+				<div id="side-dish-list" class="option-list item-list-content">
+						<ul>
+						<c:forEach items="${sideDishList}" var="dto">
+	
+							<li class="option-item row">
+								<div class="option-item-image-wrap col-sm-3">
+									<img src="/t1/resources/images/menu/sidedish/${dto.item_image}"
+										alt="${dto.item_name}" class="option-item-image">
+								</div>
+								<div class="option-item-content col-sm-5">
+									<p>${dto.item_name}</p>
+									<p>${dto.item_price}</p>
+								</div>
+								<div class="option-item-quantity col-sm-4">
+									<!-- quantity button -->
+									<div class="input-group">
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-default btn-minus" min="0" disabled>-</button>
+										</span> 
+										<input type="text" class="form-control quantity-input" value="0" disabled /> 
+										<input type="hidden" class="item-name-data" value="${dto.item_name }"> 
+										<input type="hidden" class="item-price-data" value="${dto.item_price }"> 
+										<input type="hidden" class="item-id-data" value="${dto.item_id }"> 
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-default btn-plus">+</button>
+										</span>									
+									</div>
+								</div>
+							</li>
+						</c:forEach>
+					</ul>	
+				</div>			
+			</div>
+			<div class="option-box" id="etc-option-wrap">		
+				<div class="option-title-wrap">
+					<p>음료&amp;기타</p>
+				</div>
+				<div id="etc-list" class="item-list-content option-list">
+						<ul>
+						<c:forEach items="${etcList}" var="dto">
+	
+							<li class="option-item row">
+								<div class="option-item-image-wrap col-sm-3">
+									<img src="/t1/resources/images/menu/etc/${dto.item_image}"
+										alt="${dto.item_name}" class="option-item-image">
+								</div>
+								<div class="option-item-content col-sm-5">
+									<p>${dto.item_name}</p>
+									<p>${dto.item_price}</p>
+								</div>
+								<div class="option-item-quantity col-sm-4">
+									<!-- quantity button -->
+									<div class="input-group">
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-default btn-minus" min="0" disabled>-</button>
+										</span> 
+										<input type="text" class="form-control quantity-input" value="0" disabled /> 
+										<input type="hidden" class="item-name-data" value="${dto.item_name }"> 
+										<input type="hidden" class="item-price-data" value="${dto.item_price }"> 
+										<input type="hidden" class="item-id-data" value="${dto.item_id }"> 
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-default btn-plus">+</button>
+										</span>
+									</div>
+								</div>
+							</li>
+						</c:forEach>
+					</ul>	
+				</div>			
+			</div>
+		</div>
+</div>	
+
+
+<script type="text/javascript">
+	
+	$(".btn-minus").click(function(){
+		var input = $(this).parent().siblings(".quantity-input")
+		var quantity = input.val()	
+		if(quantity <= parseInt($(this).attr("min"))+1){
+			$(this).attr("disabled", true)
+		}
+		quantity = quantity - 1
+		input.val(quantity)
+		// update item's cart array
+		var category = $(this).closest(".option-list").attr("id")
+		var cartArray = getCartArray(category)
+		updateCartArray(input, cartArray)
+		// update cart subtotal box
+		var cartBox = $("#" + getCartBoxId(category))
+		updateCartBox(cartBox, cartArray)
+		totalPrice = updateTotalPrice()
+	})
+	
+	
+	$(".btn-plus").click(function(){
+		var input = $(this).parent().siblings(".quantity-input")
+		var quantity = input.val()	
+		$(this).parent().parent().find(".btn-minus").attr("disabled", false)			
+		input.val(parseInt(quantity)+1)		
+		// update item's cart array
+		var category = $(this).closest(".option-list").attr("id")
+		var cartArray = getCartArray(category)
+		updateCartArray(input, cartArray)
+		// update cart subtotal box
+		var cartBox = $("#" + getCartBoxId(category))
+		updateCartBox(cartBox, cartArray)	
+		totalPrice = updateTotalPrice()
+	})
+</script>	
+
+
+<nav class="navbar navbar-fixed-bottom" id="item-cart-container">
+	<div class="item-subtotal-container">
+	<c:if test="${category == 'pizza'}">
+		<p class="subtotal-title">피자</p>
+		<p class="subtotal-item">${pizzaDTO.item_name}(
+		<!-- pizza-price: 피자 전체 가격 소계 역할 함 -->
+			<span id="pizza-price">${pizzaDTO.pizza_price_l }</span>
+			원) x 
+			<span id="pizza-quantity" value="1">1</span>
+		</p>
+		<div>
+			<p class="subtotal-item">- 도우/사이즈:
+				<span id="dough-option">
+					<span id="dough-option-name"></span>
+					<span id="dough-option-price"></span>
+				</span>
+				/
+				<span id="size-option">L</span>			
+			</p>
+		</div>
+		<div class="subtotal-box" id="topping-cart-box">		
+		</div>
+	</c:if>	
+	</div>
+	
+	<div class="item-subtotal-container">
+		<p class="subtotal-title">사이드디시</p>
+		<div class="subtotal-box" id="side-dish-cart-box">
+		
 		</div>
 	</div>
-</div>	
-<nav class="navbar navbar-fixed-bottom" id="item-cart-container">
-	<div class="container">
-		<h1>pizza time!!</h1>
+	<div class="item-subtotal-container">
+		<p class="subtotal-title">음료&amp;기타</p>
+		<div class="subtotal-box" id="etc-cart-box">
+		
+		</div>
 	</div>
-	<div class="container">
-	</div>
-	<div class="container">
-	</div>
-	<div class="container">
+	<div class="item-total-container">
+		<span class="subtotal-title">총 금액</span>
+		<span id="total-price"></span>
+		<span>원</span>
+		<div>
+			<div class="btn-checkout" id="btn-order-now">바로 주문</div>
+			<div class="btn-checkout" id="btn-to-cart">장바구니 담기</div>
+		</div>
 	</div>
 </nav>
+<script type="text/javascript">
+	
+	$("#btn-order-now").click(function(){
+		// 장바구니 데이터 DB 저장 후 관련 cart_group_id 쿠키로 저장 
+		// + 바로 주문 여부도 쿠키에 저장 
+	})
+	
+	$("#btn-to-cart").click(function(){
+		var member_id = "${member.member_id}";
+		// not logged in -> to login page
+		console.log(member_id)
+		if(member_id == ""){
+				location.href = '/t1/member/memberLogin'
+				alert("로그인이 필요한 기능입니다.")			
+		}else{
+			$.post(
+				"/t1/cart/addToCart",{
+					"pizzaCart[]":pizzaCart.toString(), 
+					"doughCart[]":doughCart.toString(),
+					"toppingCart[]":toppingCart.toString(),
+					"sideDishCart[]":sideDishCart.toString(),
+					"etcCart[]":etcCart.toString()
+					},
+				function(result){
+						var answer = window.confirm("물건이 장바구니에 담겼습니다. 장바구니로 이동할까요?")
+						if(answer){
+							$.get("/t1/menu/list/pizzaList", function(){})
+							alert("ㅇㅋ")
+						}else{
+							$.get("/t1/menu/list/pizzaList", function(){})
+							alert("ㅠㅜ")
+						}
+					}
+			)
+			.fail(alert("오류: 장바구니 담기에 실패했습니다. 문제가 지속될 경우 관리자에게 문의 바랍니다."))			
+		}		
+	})
 
+</script>
 
 
 

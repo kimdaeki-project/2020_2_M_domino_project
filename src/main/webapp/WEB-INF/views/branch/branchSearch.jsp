@@ -1,8 +1,4 @@
 
-<%@page import="oracle.jdbc.driver.DBConversion"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.Connection"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -31,7 +27,7 @@
 				</div>
 				<div class="store-wrap">
 					<div class="btn-wrap">
-						<a href="#"><button type="button" class="all-btn btn btn-dark">전체매장 보기</button></a>
+						<button type="button" class="btn-type v4" id="viewAll">전체매장 보기</button>	
 					</div>
 					<div class="store-map-area">
 						<div class="store-map-wrap">
@@ -44,12 +40,12 @@
 						<div class="store-search">
 							<!-- 탭 선택 -->
 							<div class="tab">
-							  <button class="tablinks search-tab" onclick="openSearch(event, 'search1')" id="defaultOpen">지역검색</button>
-							  <button class="tablinks search-tab" onclick="openSearch(event, 'search2')">매장명</button>
+							  <button class="tablinks search-tab t1" onclick="openSearch(event, 'search1')" id="defaultOpen">지역검색</button>
+							  <button class="tablinks search-tab t2" onclick="openSearch(event, 'search2')">매장명</button>
 							</div>
 							<!-- 탭 선택 -->
 							
-							<!-- ============================= [ 지역검색 ============================= -->
+							<!-- ===== [ 지역검색 ===== -->
 							<div class="tabcontent" id="search1">
 								<div class="address-wrap branch">
 									<div class="form-group srch-type">
@@ -89,9 +85,9 @@
 									</div>
 								</div>
 							</div>
-							<!-- ============================= 지역검색 ] ============================= -->
+							<!-- ===== 지역검색 ] ===== -->
 							
-							<!-- ============================= [ 매장명 검색 ============================= -->
+							<!-- ===== [ 매장명 검색 ===== -->
 							<div class="tabcontent" id="search2">
 								<div class="address-wrap branch">
 									<div class="form-group srch-type">
@@ -116,9 +112,9 @@
 									</div>
 								</div>	
 							</div><!--  -->
-							<!-- ============================= 매장명 검색 ] ============================= -->
+							<!-- ===== 매장명 검색 ] ===== -->
 							
-							<!-- ============================= [ 매장 리스트 ============================= -->
+							<!-- ===== [ 매장 리스트 ===== -->
 							<div class="row branch-addr-result">
 								<div class="column branch-result-list">
 									<dl>
@@ -136,7 +132,7 @@
 									</div>
 								</div>
 							</div>
-							<!-- ============================= 매장 리스트 ] ============================= -->
+							<!-- ===== 매장 리스트 ] ===== -->
 							
 						</div> <!-- 탭 선택 최상위 div -->
 					</div> <!-- store-map-area -->
@@ -144,10 +140,97 @@
 			</div>
 		</div>
 	</div>
+	<!-- ===== 전체매장보기 javascript ===== -->
+	<div class="view-all-branch" id="view-all-branch">
+		<div class="view-all-popup">
+			<div class="view-all-header">
+				<h2>전체 매장 보기</h2>
+			</div>
+			<div class="view-all-map">
+				<div class="all-map-area" id="all-map"></div>
+			</div>
+		</div>
+	</div>
 </div> <!-- container -->
 
-<!-- ========================= 검색탭 javascript ========================= -->
+<!-- ===== 전체매장보기 javascript ===== -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8359d6b1a5e0267b346e7ce57922d7f4&libraries=services"></script>
+<script>
 
+	var viewAllBranch = document.getElementById("view-all-branch")
+	var btn = document.getElementById("viewAll");
+	
+	$("#viewAll").click(function(){
+	
+		viewAllBranch.style.display = "block";
+		
+		var mapContainer = document.getElementById("all-map"), // 지도를 표시할 div  
+		    mapOption = { 
+		        center: new kakao.maps.LatLng(37.564713, 126.993173), // 지도의 중심좌표
+		    	level: 3 // 지도의 확대 레벨
+			};
+
+		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		/* */  
+		// 마커를 표시할 위치와 title 객체 배열입니다 
+		var positions = [
+		    {
+		        title: '개포점', 
+		        latlng: new kakao.maps.LatLng(37.475518, 127.047214)
+		    },
+		    {
+		        title: '논현점', 
+		        latlng: new kakao.maps.LatLng(37.510734, 127.023298)
+		    },
+		    {
+		        title: '미아점', 
+		        latlng: new kakao.maps.LatLng(37.617072, 127.022029)
+		    },
+		    {
+		        title: '번동점',
+		        latlng: new kakao.maps.LatLng(37.635334, 127.030114)
+		    },
+		    {
+		        title: '명동점',
+		        latlng: new kakao.maps.LatLng(37.564713, 126.993173)
+		    }
+		];
+		
+		var imageSrc = '/t1/resources/images/branch/ico_spot.png' // 마커이미지의 주소입니다    
+	    
+		for (var i = 0; i < positions.length; i ++) {
+			
+		    var imageSize = new kakao.maps.Size(40, 52), // 마커이미지의 크기입니다
+		    imageOption = {offset: new kakao.maps.Point(0, 0)}
+		    
+			// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
+			
+			// 마커를 생성합니다
+			var marker = new kakao.maps.Marker({
+	
+				// 마커가 지도 위에 표시되도록 설정합니다
+				map: map,
+				
+				position: positions[i].latlng, // 마커를 표시할 위치
+		        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+		         
+			    image: markerImage // 마커이미지 설정 
+			})
+		    
+		}
+		
+	}) 
+	
+	window.onclick = function(event) {
+	  if (event.target == viewAllBranch) {
+	    viewAllBranch.style.display = "none";
+	  }
+	}
+
+</script>
+
+<!-- ===== 검색탭 javascript ===== -->
 <script type="text/javascript">
 
 	function openSearch(evt, searchTab) {
@@ -175,7 +258,7 @@
 	
 </script>
    
-<!-- ========================= 지도 javascript ========================= -->
+<!-- ===== 지도 javascript ===== -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8359d6b1a5e0267b346e7ce57922d7f4&libraries=services"></script>
 <script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -205,9 +288,9 @@
 	marker.setMap(map);  
 	
 </script>
-<!-- ========================= 지도 ========================= -->
+<!-- ===== 지도 ===== -->
 
-<!-- ============ footer ============ -->
+<!-- ===== footer ===== -->
 <c:import url="../template/footer.jsp"></c:import>
 
 </body>

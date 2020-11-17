@@ -9,18 +9,14 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/order/**")
 public class OrderController {
 
-	@GetMapping("info")
+	@GetMapping("orderInfo")
 	public ModelAndView orderWrite() {
 		ModelAndView mv = new ModelAndView();
-		
-		
-		mv.setViewName("order/info");
+				
+		mv.setViewName("order/orderInfo");
 		
 		return mv;
 		
-		
 	}
-	
-	
 	
 }

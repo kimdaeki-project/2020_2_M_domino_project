@@ -12,8 +12,8 @@
 
 	<style type="text/css">
 		.detail_page{
-			margin-top: 2%;
 			border-bottom: 2px solid black;
+			padding: 20px 0;
 		}		
 		.detail_page span{
 			float: right;
@@ -24,6 +24,7 @@
 		.detail_page_Link {	
 			text-align: left;
 			color: black;
+			padding: 0;
 		}
 	
 		.faqnav ul{
@@ -39,30 +40,55 @@
 			font-weight: bold;
 		}
 		
+		.faq_control{
+			width: 100px;
+			height: 50px;
+			background-color: #222222;
+			text-align: center;
+			line-height: 50px;
+			font-size: 18px;
+			margin-top: 10px;
+		}
+	
+		.faq_control a{
+			color: white;
+			font-weight: bold;
+		}
+		
+		.faq_question, .faq_answer{
+			border-bottom:  1px solid #888; height: 80px; padding: 15px 10px;
+		} 
+		
+		#selected {
+			background-color: #222222;
+		}
 	
 	</style>
 </head>
 <body>
 
 	<c:import url="../template/header.jsp"></c:import>
-	<div class="container detail_page">
-		<h2>고객센터<span>홈>매장검색</span></h2>
-		
-		<div class="container detail_page_Link" style="padding-bottom: 2%;">
-		<a href="#">자주하는 질문</a>|<a href="">온라인신문고</a>
-		</div>
-	</div>
 	
-	<div class="container" style="padding: 1% 0";>
-		<div class="container" style="border-bottom: 1px solid #888; margin-bottom: 3%; padding: 1% 0 2% 0;">
+	<div class="container">
+	
+	  <div class="detail_page">
+			<h2>공지사항<span style="font-size: 12px;">홈>고객센터>자주하는질문</span></h2>
+					
+			<div class="detail_page_Link">
+				<a href="#">자주하는 질문</a><a href="#">온라인 신문고</a>
+			</div>
+	  </div>
+	
+	
+	  <div style="padding: 1% 0";>
+		 <div style="border-bottom: 1px solid #888; margin-bottom: 3%; padding: 1% 0 2% 0;">
 			<p>도미노피자에 대한 궁금증을 바로 확인하실 수 있습니다.</p>
 			<p class="txt_faq">도미노피자 고객만족센터 <a href="#">080-860-3082</a></p>
-		</div>
-
-									
-			<div class="container faqnav">
+		 </div>
+					
+		 <div class="faqnav">
 			  <ul class="nav nav-pills nav-justified">
-			   		<li class="active"><a href="${pageContext.request.contextPath}/faq/faqList?faq_type=1">피자 주문하기</a></li>
+			   		<li><a href="${pageContext.request.contextPath}/faq/faqList?faq_type=1">피자 주문하기</a></li>
 					<li><a href="${pageContext.request.contextPath}/faq/faqList?faq_type=2">주문확인</a></li>
 					<li><a href="${pageContext.request.contextPath}/faq/faqList?faq_type=3">포장 주문</a></li>
 					<li><a href="${pageContext.request.contextPath}/faq/faqList?faq_type=4">피자 선물하기</a></li>
@@ -74,43 +100,54 @@
 					<li><a href="${pageContext.request.contextPath}/faq/faqList?faq_type=7">홈페이지 관련</a></li>
 					<li><a href="${pageContext.request.contextPath}/faq/faqList?faq_type=8">배달서비스 평가</a></li>
 			  </ul>
-			</div>
+		 </div>
 			
 	</div>
 	
-	<div class="container" style="border-top: 2px solid black;">
+	<div style="border-top: 2px solid black;">
 	
 		<c:forEach items="${list}" var="dto" varStatus="vs">
-			<div class="col-sm-12" style="border-bottom:  1px solid #888; height: 80px; padding: 1% 0;">
+			<div class="col-sm-12 faq_question">
 				 <div class="col-sm-12">
-				 	${dto.board_title} ${dto.faq_type} <a href="#" class="btn faq_more" style="float: right">&or;</a>
+				 	<strong style="color:#238ece; padding-right: 10px;">Q</strong> 
+				 	<strong style="color:black;"> <a href=# class="faq_title">${dto.board_title}</a> </strong>
+				 	<a href="#" class="btn faq_more" style="float: right">&or;</a>
 				 </div>
 			 </div>	 
 			 
-			 <div class="col-sm-12 faq_contents" style="background-color: #f5f5f5; height: 80px;">
-				 	${dto.board_contents}
+			 <div class="col-sm-12 faq_answer" style="background-color: #f5f5f5;">
+			 	<div class="col-sm-12">
+				 	<strong style="color:#ff143c;  padding-right: 10px;">A</strong>
+				 	<strong style="color:black;"> ${dto.board_contents} </strong>
+				 </div>
 			 </div>		
 		 </c:forEach>	
 	</div>
 	
-	<a href="./faqWrite" class="btn btn-danger">faqWrite</a>
+	
+	<div  class="faq_control" style="float: right;">
+		<a href="./faqWrite">글작성</a>
+	</div>
+	
+	</div>
+
  	<c:import url="../template/footer.jsp"></c:import>
 	
 	<script>
-	$(document).ready(function(){
-  	$(".nav-tabs a").click(function(){
-   		 $(this).tab('show');
-  	});
-	});
-	</script>
-	
-	<script type="text/javascript">
-	 $(function(){
-			$('.faq_contents').hide();
-			$('.faq_more').click(function(){
-				$('.faq_contents').slideToggle();
-			});
+		$(document).ready(function(){
+	  	$(".faqnav li a").click(function(){
+	  		 $(this).attr("id","selected");
+	   		 $(this).tab('show');
+	  	});
 		});
+		
+		 $(function(){ 
+				$('.faq_answer').hide();
+				$('.faq_more').click(function(){
+					$('.faq_answer').slideToggle();
+			});
+		 });
+
 	</script>
 </body>
 </html>

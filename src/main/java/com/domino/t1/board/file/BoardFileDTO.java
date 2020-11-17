@@ -3,7 +3,7 @@ package com.domino.t1.board.file;
 public class BoardFileDTO {
 	
 	private long file_Num;
-	private long board_Num;
+	private long board_num;
 	private String file_Name;
 	private String ori_Name;
 	
@@ -13,11 +13,11 @@ public class BoardFileDTO {
 	public void setFile_Num(long file_Num) {
 		this.file_Num = file_Num;
 	}
-	public long getBoard_Num() {
-		return board_Num;
+	public long getBoard_num() {
+		return board_num;
 	}
-	public void setBoard_Num(long board_Num) {
-		this.board_Num = board_Num;
+	public void setBoard_num(long board_num) {
+		this.board_num = board_num;
 	}
 	public String getFile_Name() {
 		return file_Name;

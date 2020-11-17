@@ -1,0 +1,266 @@
+@charset "UTF-8";
+
+body{
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	background-color: #f2f2f2;
+
+}
+
+.coupon-name{
+	width: 100%;
+	height: 70px;
+	background-color: white;
+	text-align: center;
+}
+
+.coupon-name h1{	
+	margin-top: 0;
+	padding-top: 10px;
+	
+}
+
+.coupon-list{
+	
+	display: grid;
+    width: 500px;
+    height: 310px;
+    background-color: white;
+}
+	
+}
+
+.chk-box {
+  text-align: left;
+   }
+  .chk-box input[type="checkbox"],
+  .chk-box input[type="radio"] {
+    display: none; }
+  .chk-box label {
+    position: relative;
+    cursor: pointer;
+    font-size: 12px;
+    color: black;
+     }
+  .chk-box .checkbox {
+    display: inline-block;
+    position: relative;
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    background: #fff;
+    border: 1px solid #ccc;
+    vertical-align: middle;}
+  .chk-box:nth-of-type(n+2) {
+    margin-top: 10px; }
+  .chk-box input[type="checkbox"] + .checkbox:before, .chk-box input[type="checkbox"] + .checkbox:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    border-radius: 15px;
+    -webkit-transform-origin: left;
+    transform-origin: left;
+    -webkit-transition: all 150ms;
+    transition: all 150ms; }
+  .chk-box input[type="checkbox"] + .checkbox:before {
+    -webkit-transform: translate(4px, 7px) rotate(45deg);
+    transform: translate(4px, 7px) rotate(45deg);
+    -webkit-transition-delay: 100ms;
+    transition-delay: 100ms; }
+  .chk-box input[type="checkbox"] + .checkbox:after {
+    -webkit-transform: translate(8px, 12px) rotate(-45deg);
+    transform: translate(8px, 12px) rotate(-45deg);
+    -webkit-transition-delay: 0ms;
+    transition-delay: 0ms; }
+  .chk-box input[type="checkbox"]:checked ~ .checkbox:before, .chk-box input[type="checkbox"]:checked ~ .checkbox:after {
+    background: #fff; }
+  .chk-box input[type="checkbox"]:checked ~ .checkbox:before {
+    width: 7px; }
+  .chk-box input[type="checkbox"]:checked ~ .checkbox:after {
+    width: 11px; }
+  .chk-box.selected .checkbox {
+    border: 2px solid #ff143c; }
+  .chk-box.selected input[type="checkbox"] + .checkbox {
+    background: #ff143c;
+    border-color: #ff143c; }
+  .chk-box input[type="radio"] + .checkbox {
+    border-radius: 100%; }
+    .chk-box input[type="radio"] + .checkbox:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 0;
+      border-radius: 100%;
+      width: 10px;
+      height: 10px;
+      background: #fff;
+      -webkit-transition: all 150ms;
+      transition: all 150ms; }
+  .chk-box input[type="radio"]:checked ~ .checkbox:after {
+    width: 10px;
+    height: 10px;
+    background: #ff143c; }
+  .chk-box input[type="radio"]:checked + .checkbox + label {
+    color: #ff143c; }
+  .chk-box input[type="checkbox"]:checked ~ .checkbox:before,
+  .chk-box input[type="radio"]:checked ~ .checkbox:before {
+    transition-delay: 0ms; }
+  .chk-box input[type="checkbox"]:checked ~ .checkbox:after,
+  .chk-box input[type="radio"]:checked ~ .checkbox:after {
+    transition-delay: 100ms; }
+ 
+  .chk-box.v3 .checkbox, .chk-box.v4 .checkbox {
+    background-color: #ff143c;
+    border-color: #ff143c; }
+  .chk-box.v3.selected input[type="checkbox"] + .checkbox, .chk-box.selected.v4 input[type="checkbox"] + .checkbox {
+    background-color: #222;
+    border-color: #222; }
+  .chk-box.v3.selected label, .chk-box.selected.v4 label {
+    color: #ff143c; }
+  
+ .coupon-main{
+  	margin-top : 30px;
+  	padding-left: 30px;
+  	
+  
+  }
+  
+.coupon-info{
+	
+	padding-left: 30px;
+	
+}
+  
+.title-type{
+	padding-top: 20px;
+	margin-bottom: 0;		
+}
+
+.title-type h4{
+	margin-bottom: 0;
+	
+}
+
+
+.coupon-pay{
+	
+    width: 300px;
+    height: 310px;
+    background-color: white;
+    position: absolute;
+    display: inline-block;
+    right: 30px;
+
+	
+	
+}
+
+.total-step{
+	padding: 20px 30px 0;
+	
+}
+
+.title-type2{
+	
+	padding: 0 15px 0 0;
+	
+}
+
+
+
+.total-wrap .total-step dl dt{
+	
+	display: inline-block;
+	font-size: 16px;
+    color: #111;
+    font-weight: bold;	
+}
+
+.total-wrap .total-step dl dd{
+	
+	display: inline-block;
+	font-size: 20px;
+    color: #888888;
+    text-align: right;
+}
+
+ul{
+	list-style: none;
+	padding-left: 2px;
+	margin-top: 0px;
+}
+
+li{
+	font-size: 13px;
+    color: #888888;
+    position: relative;
+    padding-left: 19px;
+    line-height: 20px;		
+}
+
+.discount{
+	margin-bottom: 0;
+}
+#totalDiscount{
+	
+	color: red;
+	
+}
+
+.prmtName{
+	font-size: 8px;
+	
+}
+
+.total{
+	
+	border-top : 1px solid #888888;
+	
+}
+
+#totalPricePay{
+	 
+	font-size: 25px;
+	color: black;
+	
+}
+
+.btn-wrap{
+		width:100%;
+	margin: 0 auto;
+	padding: 30px 0;
+
+}
+
+.btn-type1{
+	
+	background-color: red;
+  	color: white;
+  	padding: 17px 92.8px;
+  	text-decoration: none;
+  	cursor: pointer;
+  	font-size: 18px;
+	
+}
+
+.text_type0{
+	padding: 30px 0 10px 50px;
+	font-size: 10px;
+	
+	
+}
+
+.list_text_v2 li{
+	padding-left: 60px;
+	font-size: 5px;
+	line-height: 1.5;
+	
+}
+
+
+  
