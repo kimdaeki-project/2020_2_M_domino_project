@@ -28,8 +28,6 @@
 		<!-- order relates aliases -->
 		<typeAlias type="com.domino.t1.coupon.CouponDTO" alias="CouponDTO"/>
 
-
-		<typeAlias type="com.domino.t1.branchInfo.BranchInfoDTO" alias="BranchInfoDTO"/>
 		
 	</typeAliases>
 </configuration>
