@@ -22,12 +22,14 @@ public class CartController {
 	private CartService cartService;
 	
 	@PostMapping("addToCart")
-	public void setCartItems(HttpSession session, @RequestParam Map<String, List<String>> params) {
+	public void setCartItems(HttpSession session, @RequestParam List<String> pizzaCart) {
 		MemberDTO sessionDTO = (MemberDTO) session.getAttribute("member");
 		String member_id = sessionDTO.getMember_id();
 		System.out.println(member_id);
-		List<String> l1 = params.get("pizzaCart");
-		System.out.println(l1);
+		for(String s : pizzaCart) {
+			System.out.println(s);
+		}
+		
 		
 	}
 }
