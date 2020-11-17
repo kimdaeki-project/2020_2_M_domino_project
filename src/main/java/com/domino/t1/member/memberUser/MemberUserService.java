@@ -19,7 +19,7 @@ public class MemberUserService implements MemberService{
 	@Override
 	public MemberDTO getMemberSearch(MemberDTO memberDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return memberDAO.getMemberCheck(memberDTO);
+		return memberDAO.getMemberSearch(memberDTO);
 	}
 
 	@Override

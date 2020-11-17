@@ -64,7 +64,7 @@
 			
 			<div class="form-group">
 				<label for="eamil" class="labelUpdate">이메일 </label>
-				<input type="text" name="member_email" id="email" style="text-align:center; width:500px; height:42px;">
+				<input type="email" name="member_email" id="email" style="text-align:center; width:500px; height:42px;">
 				<input type="button" id="btnEmail" value="중복확인" class="checkButt" style= "width:110px; height:42px;">
 				<div id="emailResult"></div>
 			</div>
