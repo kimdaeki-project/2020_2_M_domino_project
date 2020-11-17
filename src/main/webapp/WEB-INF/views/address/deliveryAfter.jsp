@@ -49,7 +49,7 @@
 								<span>DOMINO SPOT 배달</span><i class="material-icons">chevron_right</i>
 							</a>
 						</div>
-						<div class="addr-list">
+						<div class="addr-list-plus">
 							<ul>
 								<li>
 									<div class="reg_addr">

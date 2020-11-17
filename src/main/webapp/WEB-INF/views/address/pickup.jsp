@@ -72,117 +72,124 @@
 	
 	<!-- ===== 포장매장등록 popup html ===== -->
 	<div class="pop-layer" id="pop-layer">
-		<div class="pop-regBranch">
-			<div class="pop-header">
+		<div class="pop-wrap pop-regBranch">
+			<div class="pop-title-wrap pop-header">
 				<h2 class="pop-title">포장 매장 등록</h2>
+				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 			</div>
-			<div class="store-map-wrap">
-				<div class="store-map" id="map">
-				<div id="map"></div>
-				</div>
-			</div>
+			<div class="pop-content">
+				<div class="store-map-area">
+					<!-- map -->
+					<div class="store-map-wrap">
+						<div class="store-map">
+							<div class="map-canvas" id="map"></div><!--  -->
+						</div>
+					</div>
+					
+					<!-- 탭 선택 최상위 div -->
+					<div class="store-search">
+						<!-- 탭 선택 -->
+						<div class="tab">
+						  <button class="tablinks search-tab t1" onclick="openSearch(event, 'search1')" id="defaultOpen">지역검색</button>
+						  <button class="tablinks search-tab t2" onclick="openSearch(event, 'search2')">매장명</button>
+						</div>
+						<!-- 탭 선택 -->
+						
+						<!-- ===== [ 지역검색 ===== -->
+						<div class="tabcontent" id="search1">
+							<div class="address-wrap branch">
+								<div class="form-group srch-type">
+									<div class="form-item region" id="form-region-first">
+										<div class="select-region">
+											<select id="region1" name="region1">
+												<c:forEach var="dto" items="${dto.region1}">
+													<option value="0" selected>시/도</option>
+													<option value="1"></option>
+													
+												</c:forEach>
+											</select>
+										</div>
+									</div>
+									<div class="form-item region">
+										<div class="select-region">
+											<select id="region2">
+												<option>구/군</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-item region" id="btn-search">
+										<button type="button" class="btn-search">
+											<img src="../resources/images/branch/sp_search_t1.png">
+										</button>
+									</div>
+								</div>
+								<div class="spcl-sale-branch">
+									<div class="switch-btn" id="spcl_toggle">
+										<label class="switch">
+										  <input type="checkbox">
+										  <span class="slider round"></span>
+										</label>
+										<p>특별할인 진행 전체 매장</p>
+									</div>
+									<p class="spcl-info"><a href="#">이용안내</a></p>
+								</div>
+							</div>
+						</div>
+						<!-- ===== 지역검색 ] ===== -->
+						
+						<!-- ===== [ 매장명 검색 ===== -->
+						<div class="tabcontent" id="search2">
+							<div class="address-wrap branch">
+								<div class="form-group srch-type">
+									<div class="form-item" id="search_branch">
+										<input type="text" id="branch_name" placeholder="매장명을 입력하세요.">
+									</div>
+									<div class="form-region" id="btn-search">
+										<button type="button" class="btn-search">
+											<img src="../resources/images/branch/sp_search_t1.png">
+										</button>
+									</div>
+								</div>
+								<div class="spcl-sale-branch">
+									<div class="switch-btn" id="spcl_toggle">
+										<label class="switch">
+										  <input type="checkbox">
+										  <span class="slider round"></span>
+										</label>
+										<p>특별할인 진행 전체 매장</p>
+									</div>
+									<p class="spcl-info"><a href="#">이용안내</a></p>
+								</div>
+							</div>	
+						</div><!--  -->
+						<!-- ===== 매장명 검색 ] ===== -->
+						
+						<!-- ===== [ 매장 리스트 ===== -->
+						<div class="row branch-addr-result">
+							<div class="column branch-result-list">
+								<dl>
+									<dt></dt>
+									<dd></dd>
+									<dd></dd>
+								</dl>
+								<div class="salenames">
+									<div class="sale1"></div>
+									<div class="sale2"></div>
+								</div>
+								<div class="br-detail">
+									<a href="#" class="btn type1">상세보기</button></a>
+									<a href="#" class="btn type2">방문포장</button></a>
+								</div>
+							</div>
+						</div>
+						<!-- ===== 매장 리스트 ] ===== -->
+						
+					</div> <!-- 탭 선택 최상위 div -->
+				</div> <!-- store-map-area -->
+			</div>	<!-- pop-content -->
 			
-			<!-- 탭 선택 최상위 div -->
-			<div class="store-search">
-				<!-- 탭 선택 -->
-				<div class="tab">
-				  <button class="tablinks search-tab t1" onclick="openSearch(event, 'search1')" id="defaultOpen">지역검색</button>
-				  <button class="tablinks search-tab t2" onclick="openSearch(event, 'search2')">매장명</button>
-				</div>
-				<!-- 탭 선택 -->
-				
-				<!-- ===== [ 지역검색 ===== -->
-				<div class="tabcontent" id="search1">
-					<div class="address-wrap branch">
-						<div class="form-group srch-type">
-							<div class="form-region" id="form-region-first">
-								<div class="select-region">
-									<select id="region1" name="region1">
-										<c:forEach var="dto" items="${dto.region1}">
-											<option value="0" selected>시/도</option>
-											<option value="1"></option>
-											
-										</c:forEach>
-									</select>
-								</div>
-							</div>
-							<div class="form-region">
-								<div class="select-region">
-									<select id="region2">
-										<option>구/군</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-region" id="btn-search">
-								<button type="button" class="btn-search">
-									<img src="../resources/images/branch/sp_search_t1.png">
-								</button>
-							</div>
-						</div>
-						<div class="spcl-sale-branch">
-							<div class="switch-btn" id="spcl_toggle">
-								<label class="switch">
-								  <input type="checkbox">
-								  <span class="slider round"></span>
-								</label>
-								<p>특별할인 진행 전체 매장</p>
-							</div>
-							<p class="spcl-info"><a href="#">이용안내</a></p>
-						</div>
-					</div>
-				</div>
-				<!-- ===== 지역검색 ] ===== -->
-				
-				<!-- ===== [ 매장명 검색 ===== -->
-				<div class="tabcontent" id="search2">
-					<div class="address-wrap branch">
-						<div class="form-group srch-type">
-							<div class="form-item" id="search_branch">
-								<input type="text" id="branch_name" placeholder="매장명을 입력하세요.">
-							</div>
-							<div class="form-region" id="btn-search">
-								<button type="button" class="btn-search">
-									<img src="../resources/images/branch/sp_search_t1.png">
-								</button>
-							</div>
-						</div>
-						<div class="spcl-sale-branch">
-							<div class="switch-btn" id="spcl_toggle">
-								<label class="switch">
-								  <input type="checkbox">
-								  <span class="slider round"></span>
-								</label>
-								<p>특별할인 진행 전체 매장</p>
-							</div>
-							<p class="spcl-info"><a href="#">이용안내</a></p>
-						</div>
-					</div>	
-				</div><!--  -->
-				<!-- ===== 매장명 검색 ] ===== -->
-				
-				<!-- ===== [ 매장 리스트 ===== -->
-				<div class="row branch-addr-result">
-					<div class="column branch-result-list">
-						<dl>
-							<dt></dt>
-							<dd></dd>
-							<dd></dd>
-						</dl>
-						<div class="salenames">
-							<div class="sale1"></div>
-							<div class="sale2"></div>
-						</div>
-						<div class="br-detail">
-							<a href="#" class="btn type1">상세보기</button></a>
-							<a href="#" class="btn type2">방문포장</button></a>
-						</div>
-					</div>
-				</div>
-				<!-- ===== 매장 리스트 ] ===== -->
-				
-			</div> <!-- 탭 선택 최상위 div -->
-		</div>
-	</div>
+		</div>	<!-- pop-wrap -->
+	</div>	<!-- pop-layer -->
 	<!-- ===== 포장매장등록 popup html ===== -->	
 	
 </div><!-- container -->
@@ -194,6 +201,11 @@
 	$("#add_addr").click(function () {
 		viewSearch.style.display = "block";
 	})
+	
+	function closeNav() {
+	  document.getElementById("mySidenav").style.width = "0";
+	}
+	
 </script>
 
 <!-- ===== 검색탭 javascript ===== -->
