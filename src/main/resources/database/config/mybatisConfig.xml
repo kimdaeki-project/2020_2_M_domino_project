@@ -25,11 +25,13 @@
 		<typeAlias type="com.domino.t1.board.news.dominoNews.DominoNewsDTO" alias="DominoNewsDTO"/>
 		<typeAlias type="com.domino.t1.board.news.press.PressDTO" alias="PressDTO"/>
 		<typeAlias type="com.domino.t1.board.file.BoardFileDTO" alias="BoardFileDTO"/>
+		<typeAlias type="com.domino.t1.coupon.CouponDTO" alias="CouponDTO"/>
 		
 		<typeAlias type="com.domino.t1.branchInfo.BranchInfoDTO" alias="BranchInfoDTO"/>
 		
 		<typeAlias type="com.domino.t1.address.delivery.AddressDeliveryDTO" alias="AddressDeliveryDTO"/>
 		<typeAlias type="com.domino.t1.address.pickup.AddressPickupDTO" alias="AddressPickupDTO"/>
+		
 		
 	</typeAliases>
 </configuration>
