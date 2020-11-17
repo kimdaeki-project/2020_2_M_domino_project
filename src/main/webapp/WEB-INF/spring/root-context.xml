@@ -12,8 +12,10 @@
 		<!-- DB 연결 -->
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
 
+
 		<property name="username" value="${user}"></property>
 		<property name="password" value="${password}"></property>
+
     
 		<property name="url" value="${url}"></property>
 		<property name="driverClassName" value="${driver}"></property>
