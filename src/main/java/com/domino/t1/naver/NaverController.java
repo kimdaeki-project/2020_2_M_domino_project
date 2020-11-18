@@ -16,6 +16,22 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 * Handles requests for the application home page.
 */
 
+import java.io.IOException;
+import javax.servlet.http.HttpSession;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import com.github.scribejava.core.model.OAuth2AccessToken;
+/**
+* Handles requests for the application home page.
+*/
+
 @Controller
 public class NaverController {
 /* NaverLoginBO */
@@ -26,7 +42,7 @@ private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
 this.naverLoginBO = naverLoginBO;
 }
 //로그인 첫 화면 요청 메소드
-@RequestMapping(value = "/naverLogin", method = { RequestMethod.GET, RequestMethod.POST })
+@RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })
 public String login(Model model, HttpSession session) {
 /* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
 String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
@@ -35,7 +51,7 @@ String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 System.out.println("네이버:" + naverAuthUrl);
 //네이버
 model.addAttribute("url", naverAuthUrl);
-return "naverLogin";
+return "login";
 }
 //네이버 로그인 성공시 callback호출 메소드
 @RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
@@ -58,19 +74,32 @@ JSONObject jsonObj = (JSONObject) obj;
 //Top레벨 단계 _response 파싱
 JSONObject response_obj = (JSONObject)jsonObj.get("response");
 //response의 nickname값 파싱
+String id = (String)response_obj.get("id");
+String age = (String)response_obj.get("age");
+String name = (String)response_obj.get("name");
 String nickname = (String)response_obj.get("nickname");
-System.out.println(nickname);
+String email = (String)response_obj.get("email");
+String birthday = (String)response_obj.get("birthday");
+
+System.out.println("----------------"+id);
+System.out.println("----------------"+nickname);
+System.out.println("----------------"+email);
+System.out.println("----------------"+age);
+System.out.println("----------------"+name);
+System.out.println("----------------"+birthday);
+
+
 //4.파싱 닉네임 세션으로 저장
 session.setAttribute("sessionId",nickname); //세션 생성
 model.addAttribute("result", apiResult);
-return "naverLogin";
+return "index";
 }
 //로그아웃
 @RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
 public String logout(HttpSession session)throws IOException {
 System.out.println("여기는 logout");
 session.invalidate();
-return "redirect:index.jsp";
+return "redirect:/";
 }
 }
 

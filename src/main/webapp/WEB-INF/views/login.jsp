@@ -15,10 +15,10 @@ pageEncoding="UTF-8"%>
 <c:when test="${sessionId != null}">
 <h2> 네이버 아이디 로그인 성공하셨습니다!! </h2>
 <h3>'${sessionId}' 님 환영합니다! </h3>
-<h3><a href="naverLogout">로그아웃</a></h3>
+<h3><a href="logout">로그아웃</a></h3>
 </c:when>
 <c:otherwise>
-<form action="naverLogin.userdo" method="post" name="frm" style="width:470px;">
+<form action="login.userdo" method="post" name="frm" style="width:470px;">
 <h2>로그인</h2>
 <input type="text" name="id" id="id" class="w3-input w3-border" placeholder="아이디" value="${id}"> <br>
 <input type="password" id="pwd" name="pwd" class="w3-input w3-border" placeholder="비밀번호" > <br>
@@ -34,3 +34,4 @@ pageEncoding="UTF-8"%>
 </center>
 </body>
 </html>
+
