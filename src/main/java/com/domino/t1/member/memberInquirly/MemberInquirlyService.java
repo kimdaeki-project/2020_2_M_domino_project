@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.domino.t1.address.AddressDTO;
 import com.domino.t1.member.MemberDTO;
 
 @Service
@@ -22,9 +23,9 @@ public class MemberInquirlyService {
 		return memberInquirlyDAO.getOne(memberInquirlyDTO);
 	}
 
-	public List<MemberInquirlyDTO> getInqBoardList(MemberInquirlyDTO memberInquirlyDTO) throws Exception {
+	public List<AddressDTO> getInqBoardList(AddressDTO addressDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return memberInquirlyDAO.getInqBoardList(memberInquirlyDTO);
+		return memberInquirlyDAO.getInqBoardList(addressDTO);
 	}
 
 	

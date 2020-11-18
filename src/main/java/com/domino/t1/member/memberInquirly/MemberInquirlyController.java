@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.domino.t1.address.AddressDTO;
 import com.domino.t1.member.MemberDTO;
 
 @Controller
@@ -72,14 +73,14 @@ public class MemberInquirlyController {
 	}
 	
 	@GetMapping("memberInquirly")
-	public ModelAndView inqBoard(HttpSession session) throws Exception{
+	public ModelAndView inqBoardList(HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		System.out.println("member/memberInquirly");
 		
-		MemberInquirlyDTO memberInquirlyDTO = (MemberInquirlyDTO) session.getAttribute("member");
+		AddressDTO addressDTO = (AddressDTO) session.getAttribute("member");
 			
 		
-		List<MemberInquirlyDTO> ar = memberInquirlyService.getInqBoardList(memberInquirlyDTO);
+		List<AddressDTO> ar = memberInquirlyService.getInqBoardList(addressDTO);
 		
 		mv.addObject("list", ar);
 		mv.setViewName("memberInq/memberInquirly");
