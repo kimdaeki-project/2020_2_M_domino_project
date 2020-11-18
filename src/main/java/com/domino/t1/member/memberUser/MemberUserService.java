@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.domino.t1.address.AddressDAO;
+import com.domino.t1.address.AddressDTO;
 import com.domino.t1.member.MemberDTO;
 import com.domino.t1.member.MemberService;
 import com.domino.t1.member.memberInquirly.MemberInquirlyDTO;
@@ -59,9 +61,9 @@ public class MemberUserService implements MemberService{
 	}
 
 	@Override
-	public MemberInquirlyDTO getMemberLogin(MemberInquirlyDTO memberInquirlyDTO) throws Exception {
+	public AddressDTO getMemberLogin(AddressDTO addressDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return memberDAO.getMemberLogin(memberInquirlyDTO);
+		return memberDAO.getMemberLogin(addressDTO);
 	}
 
 	@Override

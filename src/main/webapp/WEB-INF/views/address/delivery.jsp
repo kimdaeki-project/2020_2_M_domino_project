@@ -67,8 +67,9 @@
 									</table>
 								</div>
 								<input type="submit" value="배달 주소 등록 확인" id="deliveryBtn">
-							</form>
 										
+							</form>
+								
 									</div>
 									
 								</li>
@@ -86,9 +87,12 @@
 </div><!-- container -->
 
 <script>
+
 	$("#deliveryBtn").click(function() {
+	
 		location.href = "./deliveryAfter?member_num=${member.member_num}";
 	});
+	
 
 // Add active class to the current button (highlight it)
 	var header = document.getElementById("select");

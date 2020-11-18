@@ -6,7 +6,7 @@
 <mapper namespace="com.domino.t1.address.AddressDAO">
 
 	<select id="getMemberAddress" parameterType="AddressDTO" resultType="AddressDTO">
-		select * from member_address where member_num = #{member_num}
+		select * from member_address where member_num = #{member_num} order by member_num desc
 	</select>
 
 	<insert id="setMemberAddress" parameterType="AddressDTO">
