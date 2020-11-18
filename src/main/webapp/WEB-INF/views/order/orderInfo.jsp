@@ -64,7 +64,7 @@
 					</div>
 					<!-- 배달 -->
 					<div class="deli-info">
-						<div class="address">배달주소 위치</div>
+						<div class="address">${address.roadFullAddr}</div>
 						<div class="store">
 							<span>지점</span> 전화번호
 						</div>

@@ -1,10 +1,15 @@
 package com.domino.t1.order;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.domino.t1.address.AddressDTO;
+import com.domino.t1.member.MemberDTO;
 import com.domino.t1.member.memberUser.MemberUserDTO;
 import com.domino.t1.member.memberUser.MemberUserService;
 
@@ -12,14 +17,24 @@ import com.domino.t1.member.memberUser.MemberUserService;
 @RequestMapping(value = "/order/**")
 public class OrderController {
 	
-	private MemberUserService memberUserService;
-	
+	@Autowired
+	private OrderService orderService; 
 
 	@GetMapping("orderInfo")
-	public ModelAndView orderWrite(MemberUserDTO memberUserDTO) {
+	public ModelAndView orderWrite(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		mv.setViewName("order/orderInfo");
+		
+		AddressDTO addressDTO = (AddressDTO)session.getAttribute("member");
+		addressDTO = orderService.getOne(addressDTO);
+		if(addressDTO != null) {			
+			mv.addObject("address", addressDTO);
+			mv.setViewName("order/orderInfo");	
+		}else {
+			mv.addObject("msg", "로그인 바랍니다.");
+			mv.addObject("path", "./memberLogin");
+			mv.setViewName("common/result");
+		}
 		
 		return mv;
 		
