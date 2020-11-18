@@ -56,8 +56,11 @@
 									<div class="notyet">
 										<p class="title"><img alt="" src="../resources/images/address/sp_alert_t1.png"> 배달 주소를 등록해주세요.</p>
 							<form action="./delivery" name="form" id="form" method="post">
+							
+								<a href="#" onclick="goPopup();" class="btn-type-brd2" id="add_addr">
+										+ 배달 주소 등록
+								</a>
 
-								<input type="button" onClick="goPopup();" value="배달 주소 등록"/>
 								<div id="list"></div>
 								<div id="callBackDiv">
 									<input type="number" value="${member.member_num}" name="member_num" class="none">
@@ -85,7 +88,7 @@
 	</div><!-- content -->
 </div><!-- container -->
 
-<script>
+<script type="text/javascript">
 	$("#deliveryBtn").click(function() {
 		location.href = "./deliveryAfter?member_num=${member.member_num}";
 	});
@@ -145,6 +148,7 @@
 			document.form.emdNo.value = emdNo;
 			
 	}
+	
 
 	
 </script>

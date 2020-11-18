@@ -63,7 +63,6 @@ public class AddressController {
 	public ModelAndView delivery() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-//		mv.addObject("order", "delivery");
 		mv.setViewName("address/delivery");
 		System.out.println("delivery");
 		
@@ -74,7 +73,6 @@ public class AddressController {
 	public ModelAndView pickup(BranchInfoDTO branchInfoDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-//		mv.addObject("order", "pickup");
 		mv.setViewName("address/pickup");
 		System.out.println("pickup");
 		

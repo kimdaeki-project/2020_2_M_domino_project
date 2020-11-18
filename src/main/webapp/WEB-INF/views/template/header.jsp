@@ -40,7 +40,7 @@
 		        <li><a href="#">e-쿠폰</a></li>
 		        <li><a href="#">상품권 선물</a></li>
 		        <li><a href="#">이벤트 제휴</a></li>
-		        <li><a href="#">매장검색</a></li>
+		        <li><a href="${pageContext.request.contextPath}/branch/branchSearch">매장검색</a></li>
 		        <li style="float: right; padding-right: 0;"><a href="#" id="nav_more">더보기&or;</a></li>
 	      </ul>
 	      
