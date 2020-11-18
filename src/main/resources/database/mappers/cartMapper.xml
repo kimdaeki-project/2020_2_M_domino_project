@@ -3,8 +3,17 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-<mapper namespace="com.domino.t1.sample">
-
+<mapper namespace="com.domino.t1.cart.CartDAO">
+	<select id="getCartList" parameterType="MemberDTO" resultType="CartDTO">
+		
+	</select>
+	<insert id="setCartItem" parameterType="MemberDTO">
 	
-
+	</insert>
+	<insert id="setCartItemWithCartGroupId" parameterType="MemberDTO">
+	
+	</insert>
+	<select id="getMaxCartGroupId" parameterType="MemberDTO" resultType="Long">
+	
+	</select>
 </mapper>
