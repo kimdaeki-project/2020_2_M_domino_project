@@ -34,5 +34,8 @@
 		<typeAlias type="com.domino.t1.address.delivery.AddressDeliveryDTO" alias="AddressDeliveryDTO"/>
 		<typeAlias type="com.domino.t1.address.pickup.AddressPickupDTO" alias="AddressPickupDTO"/>
 		
+		<!-- cart related aliases -->
+		<typeAlias type="com.domino.t1.cart.CartDTO" alias="CartDTO" />
+		<typeAlias type="com.domino.t1.cart.CartDAO" alias="CartDAO" />
 	</typeAliases>
 </configuration>
