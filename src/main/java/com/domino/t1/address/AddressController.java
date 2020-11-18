@@ -62,7 +62,7 @@ public class AddressController {
 		int result = addressService.setMemberAddress(addressDTO);
 		
 		
-		mv.setViewName("address/deliveryAfter");
+		mv.setViewName("redirect:./deliveryAfter");
 		
 		return mv;
 	}
