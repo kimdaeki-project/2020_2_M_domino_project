@@ -27,39 +27,7 @@ public class MemberUserController {
 	
 	@Autowired
 	private MemberUserService memberService;
-	
-	@PostMapping("jusoPopup")
-	public ModelAndView getJusoPopup2() throws Exception{
-		ModelAndView mv = new ModelAndView();
 		
-		mv.setViewName("member/jusoPopup");
-		return mv;
-	}
-	
-	@GetMapping("jusoPopup")
-	public ModelAndView getJusoPopup() throws Exception{
-		ModelAndView mv = new ModelAndView();
-		
-		mv.setViewName("member/jusoPopup");
-		return mv;
-	}
-	
-	@PostMapping("Sample")
-	public ModelAndView getSampleoPopup2() throws Exception{
-		ModelAndView mv = new ModelAndView();
-		
-		mv.setViewName("member/Sample");
-		return mv;
-	}
-	
-	@GetMapping("Sample")
-	public ModelAndView getSampleoPopup() throws Exception{
-		ModelAndView mv = new ModelAndView();
-		
-		mv.setViewName("member/Sample");
-		return mv;
-	}
-	
 	@GetMapping("memberSearchView")
 	public ModelAndView getMemberSearchView() throws Exception{
 		ModelAndView mv = new ModelAndView();

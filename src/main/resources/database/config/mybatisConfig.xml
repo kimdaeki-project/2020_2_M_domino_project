@@ -37,6 +37,7 @@
 		
 		<typeAlias type="com.domino.t1.address.delivery.AddressDeliveryDTO" alias="AddressDeliveryDTO"/>
 		<typeAlias type="com.domino.t1.address.pickup.AddressPickupDTO" alias="AddressPickupDTO"/>
+		<typeAlias type="com.domino.t1.address.AddressDTO" alias="AddressDTO"/>
 		
 		
 	</typeAliases>
