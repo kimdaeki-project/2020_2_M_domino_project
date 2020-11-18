@@ -12,52 +12,37 @@
   <script src="../resources/js/header.js"></script>
 <c:import url="../template/header.jsp"></c:import>
 
+<style type="text/css">
+	#select li a{
+		font-size: 17px;
+	}
+</style>
+
 </head>
 <body>
 
-	
-	
 	<div class="container">
-	<h1>나의정보</h1>
-	<br>
-	
-	<ul id="select">
-		<li class="list2">
-		<a href="./memberPage">매니아 등급</a>
-		</li>
+		<div class="order-title-wrap">
+		<h2 class="order-title">나의정보</h2>
+			<div class="depth-area">
+				<ol>
+					<li><a href="http://localhost/t1">홈</a></li>
+					<li><a href="./memberPage">나의정보</a></li>
+					<li><strong>매니아등급</strong></li>
+				</ol>
+			</div>
+		</div>
 		
-		<li class="list2">
-		 ㅣ 
-		 </li>
-		 
-		 <li class="list2">
-		<a href="#">주문 내역</a>
-		 </li> 
-		 
-		 <li class="list2">
-		 ㅣ 
-		 </li>
-		   
-		 <li class="list2">
-		<a href="#">쿠폰함</a>
-		 </li>
-		  
-		<li class="list2"> 
-		ㅣ 
-		</li> 
+		<ul id="select" style="padding: 20px 0;">
+			<li>
+				<a href="./memberPage">매니아 등급</a> ㅣ 
+				<a href="./memberOrder">주문 내역</a> ㅣ 
+				<a href="#">쿠폰함</a> ㅣ 
+				<a href="../memberInq/memberInquirly">1:1 문의</a> ㅣ 
+				<a href="./memberCheck">정보 수정</a> 
+			</li>
+		</ul>
 		
-		<li class="list2">
-		<a href="./memberInquirly">1:1 문의</a>
-		</li> 
-		
-		<li class="list2">
-		 ㅣ 
-		 </li> 
-		 
-		 <li class="list2">
-		<a href="./memberCheck">정보 수정</a> 
-		</li>
-	</ul>
 	<div class="myLevel">
 		<h4 id="mName">${member.member_name}님</h4>
 		<div class="myCheck"><h1 id="mLevel">${member.member_level}</h1></div>
@@ -65,7 +50,11 @@
 		<div class="myCheck2">등급별 혜택보기></div>
 	</div>
 	<h4>PREMIUN 등급으로 업그레이드하려면?</h4>
-	<div class="memberCheck"></div>
+	
+	<div style="padding: 10px 0; border-top: 2px solid black;" >
+		내용
+	</div>
+	
 	</div>
 <c:import url="../template/footer.jsp"></c:import>
 </body>

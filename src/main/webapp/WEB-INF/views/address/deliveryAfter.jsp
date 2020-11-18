@@ -53,7 +53,13 @@
 							<ul>
 								<li>
 									<div class="reg_addr">
-										
+										<table>
+											<c:forEach items="${list}" var="dto">
+											<tr>
+												<td>${dto.roadFullAddr}</td>
+											</tr>
+											</c:forEach>
+										</table>
 									</div>
 								</li>
 							</ul>

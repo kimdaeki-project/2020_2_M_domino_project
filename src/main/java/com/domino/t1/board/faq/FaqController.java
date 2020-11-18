@@ -38,9 +38,9 @@ public class FaqController {
 	
 		int result = faqService.setInsert(faqDTO);
 		
-		String message="Write Fail";
+		String message="작성 실패했습니다.";
 		if(result>0) {
-			message = "Write Success";
+			message = "작성 성공했습니다.";
 		}
 		ModelAndView mv = new ModelAndView();
 	

@@ -12,22 +12,34 @@
   <script src="../resources/js/header.js"></script>
 <c:import url="../template/header.jsp"></c:import>
 
+<style type="text/css">
+	#select li a{
+		font-size: 17px;
+	}
+</style>
+
 </head>
 <body>
 
-	
-	
 	<div class="container">
-	<h1>나의정보</h1>
-	<br>
+	<div class="order-title-wrap">
+		<h2 class="order-title">나의정보</h2>
+			<div class="depth-area">
+				<ol>
+					<li><a href="http://localhost/t1">홈</a></li>
+					<li><a href="./memberPage">나의정보</a></li>
+					<li><strong>1:1문의</strong></li>
+				</ol>
+			</div>
+		</div>
 	
-	<ul id="select">
+	<ul id="select" style="padding: 20px 0;">
 		<li>
-		<a href="./memberPage">매니아 등급</a> ㅣ 
-		<a href="./memberOrder">주문 내역</a> ㅣ 
+		<a href="../member/memberPage">매니아 등급</a> ㅣ 
+		<a href="../member/memberOrder">주문 내역</a> ㅣ 
 		<a href="#">쿠폰함</a> ㅣ 
 		<a id="inq" href="./memberInquirly">1:1 문의</a> ㅣ 
-		<a href="./memberCheck">정보 수정</a> 
+		<a href="../member/memberCheck">정보 수정</a> 
 		</li>
 	</ul>
 	<div class="myLevel">
@@ -36,7 +48,7 @@
 		<div class="myCheck2">${member.member_name}님께서 문의하신 내용은 총 0건입니다.</div>
 	</div>
 	
-	<div class="container">
+	<div>
 	<table class="table table-hober">
 		<tr>
 			<td>번호</td><td>제목</td><td>등록일</td><td>처리상태</td>
@@ -52,8 +64,11 @@
 		</c:forEach>
 	</table>
 		
-	  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">문의하기</button>
-
+	<div style="text-align: center;">	
+	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="width: 120px;">
+		문의하기
+	</button>
+	</div>
 
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -125,7 +140,6 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-         
         </div>
       </div>
     </div>
