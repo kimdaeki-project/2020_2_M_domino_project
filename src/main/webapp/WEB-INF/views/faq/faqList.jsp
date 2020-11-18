@@ -10,29 +10,79 @@
   <link href ="../resources/css/common/default.css" rel="stylesheet">
   <script src="../resources/js/header.js"></script>
 
-	<style type="text/css">
-		.detail_page{
-			border-bottom: 2px solid black;
-			padding: 20px 0;
-		}		
-		.detail_page span{
-			float: right;
-			font-size: 15px;
-			padding: 1% 0;
+<style type="text/css">
+		a{
+			color: black;
+		}	
+		
+		.order-title-wrap{
+			position: relative;
+		    margin-top: 50px;
 		}
 		
-		.detail_page_Link {	
-			text-align: left;
+		.order-title{
+			margin: 0px;
+			padding: 0px;
+			box-sizing: border-box;
+			font-size: 32px;
 			color: black;
-			padding: 0;
+			font-weight: 400;
 		}
-	
+		
+		.depth-area{
+			position: absolute;
+			right: 0;
+			
+		}
+		
+		.depth-area > ol{
+			font-size: 0;
+				
+		}
+		
+		.depth-area li{
+			display: inline-block;
+		    font-size: 13px;
+		    color: #888888;	
+		}
+		
+		.depth-area > strong{	
+			color: #111;	
+		}
+		
+		.depth-area li:before{	
+			display: inline-block;
+		    content: '';
+		    margin: 3px 8px 2px 6px;
+		    display: inline-block;
+		    width: 6px;
+		    height: 6px;
+		    border-style: solid;
+		    border-color: transparent #888888 #888888 transparent;
+		    border-width: 0 1px 1px 0;
+		    -webkit-transform: rotate(-45deg);
+		    -ms-transform: rotate(-45deg);
+			transform: rotate(-45deg);
+		}
+		
+		.depth-area li:nth-child(1):before{
+			
+			display: none;
+		}
+		
+		#select li a{
+			font-size: 17px;
+		}	
+		
 		.faqnav ul{
 			background-color: #f5f5f5; 
 			border: none;
 			margin-bottom: 3px;
 		}
 		
+		.txt_faq{
+			color: red;
+		}
 		
 		.faqnav ul a{
 			font-size: 16px;
@@ -70,16 +120,25 @@
 	<c:import url="../template/header.jsp"></c:import>
 	
 	<div class="container">
-	
-	  <div class="detail_page">
-			<h2>공지사항<span style="font-size: 12px;">홈>고객센터>자주하는질문</span></h2>
-					
-			<div class="detail_page_Link">
-				<a href="#">자주하는 질문</a><a href="#">온라인 신문고</a>
+	  <div class="order-title-wrap">
+		<h2 class="order-title">고객센터</h2>
+			<div class="depth-area">
+				<ol>
+					<li><a href="http://localhost/t1">홈</a></li>
+					<li><a href="${pageContext.request.contextPath}/faq/faqList">고객센터</a></li>
+					<li><strong>자주하는질문</strong></li>
+				</ol>
 			</div>
-	  </div>
-	
-	
+		</div>
+		
+		<ul id="select" style="padding: 20px 0; border-bottom: 2px solid black;">
+			<li>
+				<a href="${pageContext.request.contextPath}/faq/faqList">자주하는질문</a> ㅣ 
+				<a href="${pageContext.request.contextPath}/qna/qnaWrite">온라인신문고</a>  
+			</li>
+		</ul>	
+		
+
 	  <div style="padding: 1% 0";>
 		 <div style="border-bottom: 1px solid #888; margin-bottom: 3%; padding: 1% 0 2% 0;">
 			<p>도미노피자에 대한 궁금증을 바로 확인하실 수 있습니다.</p>

@@ -12,27 +12,32 @@
   <script src="../resources/js/header.js"></script>
 <c:import url="../template/header.jsp"></c:import>
 
+<style type="text/css">
+	#select li a{
+		font-size: 17px;
+	}
+</style>
+
 </head>
 <body>
 
-	
-	
 	<div class="container">
-	<h1>아이디/비밀번호 찾기</h1><br>
-		<div class="searchBar">
-			<ul>
-				<li class="list2">
-				<a>아이디 찾기</a>
-				</li>
-				<li class="list2">
-				ㅣ
-				</li>	
-				<li class="list2">
-				<a>비밀번호 찾기</a>
-				</li>	
-			</ul>
+	<div class="order-title-wrap">
+		<h2 class="order-title">아이디/비밀번호 찾기</h2>
+			<div class="depth-area">
+				<ol>
+					<li><a href="http://localhost/t1">홈</a></li>
+					<li><strong>아이디/비밀번호 찾기</strong></li>
+				</ol>
+			</div>
 		</div>
-			<div class="memberCheck"></div>
+		
+		<ul id="select" style="padding: 20px 0; border-bottom: 2px solid black;">
+			<li>
+				<a href="./memberSearch">아이디 찾기</a> ㅣ 
+				<a href="#">비밀번호 찾기</a> 
+			</li>
+		</ul>
 			
 		<div class="loginType">
 		<div>

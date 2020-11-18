@@ -51,9 +51,9 @@ public class DominoNewsController {
 		int result = dominoNewsService.setInsert(newsDTO, files, session);
 		System.out.println("RESULT: " + result);
 		
-		String message="Write Fail";
+		String message="작성 실패했습니다.";
 		if(result>0) {
-			message = "Write Success";
+			message = "작성 성공했습니다.";
 		}
 		ModelAndView mv = new ModelAndView();
 	
@@ -124,9 +124,9 @@ public class DominoNewsController {
 		ModelAndView mv = new ModelAndView();
 		int result = dominoNewsService.setDelete(newsDTO);
 		
-		String message="Delete Fail";
+		String message="삭제 실패했습니다.";
 		if(result>0) {
-			message = "Delete Success";
+			message = "삭제 성공했습니다.";
 		}
 	
 		mv.addObject("msg", message);
@@ -151,9 +151,9 @@ public class DominoNewsController {
 	public ModelAndView setUpdate(NewsDTO newsDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		int result =  dominoNewsService.setUpdate(newsDTO);
-		String message="Update Fail";
+		String message="수정 실패했습니다.";
 		if(result>0) {
-			message = "Update Success";
+			message = "수정 성공했습니다.";
 		}
 		mv.addObject("msg", message);
 		mv.addObject("path", "./dominoNewsList");
