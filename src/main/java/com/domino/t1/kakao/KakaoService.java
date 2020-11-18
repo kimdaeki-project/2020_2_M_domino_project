@@ -28,7 +28,7 @@ public class KakaoService {
                 URL url = new URL(reqURL);
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-               
+
                 //    POST 요청을 위해 기본값이 false인 setDoOutput을 true로
 
                 conn.setRequestMethod("POST");
@@ -57,7 +57,7 @@ public class KakaoService {
                     result += line;
                 }
                 System.out.println("response body : " + result);
-                
+
                 //    Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
                 JsonParser parser = new JsonParser();
                 JsonElement element = parser.parse(result);
@@ -77,7 +77,7 @@ public class KakaoService {
 
             return access_Token;
         }
-        
+
         public HashMap<String, Object> getUserInfo (String access_Token) {
 
             //    요청하는 클라이언트마다 가진 정보가 다를 수 있기에 HashMap타입으로 선언
@@ -125,5 +125,5 @@ public class KakaoService {
 
             return userInfo;
         }
-        
+
 }

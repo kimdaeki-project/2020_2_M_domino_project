@@ -98,8 +98,25 @@
 		<button type="button" style="text-align:center; width:430px; height:58px;" id="btnJoin">회원가입</button>
 		</form>
 		
+	
 		<a href="https://kauth.kakao.com/oauth/authorize?client_id=e1f63ee684f17ca5170508741bb253d4&redirect_uri=http://localhost/t1/kakao/kakaoLogin&response_type=code">
 		카카오</a>
+
+
+<!--  
+
+		 <c:if test="${userId eq null}">
+	        <a href="https://kauth.kakao.com/oauth/authorize?client_id=e1f63ee684f17ca5170508741bb253d4&redirect_uri=http://localhost/t1/kakao/kakaoLogin&response_type=code">
+		          	카카오
+		    </a>
+	    </c:if>
+	    
+	    <c:if test="${userId ne null}">
+	        <h1>로그인 성공입니다</h1>
+	        <input type="button" value="로그아웃" onclick="location.href='/logout'">
+   		 </c:if>
+		
+		-->
 	</div>
 	
 	</div>

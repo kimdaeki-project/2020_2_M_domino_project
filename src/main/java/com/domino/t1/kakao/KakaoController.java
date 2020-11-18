@@ -24,6 +24,6 @@ public class KakaoController {
         System.out.println("###userInfo#### : " + userInfo.get("email"));
         System.out.println("###nickname#### : " + userInfo.get("nickname"));
         System.out.println("###profile_image#### : " + userInfo.get("profile_image"));
-        return "testPage";
+        return "index";
     }
 }
