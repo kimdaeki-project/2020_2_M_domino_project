@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.domino.t1.member.memberUser.MemberUserDTO;
 import com.domino.t1.member.memberUser.MemberUserService;
 
 @Controller
@@ -15,7 +16,7 @@ public class OrderController {
 	
 
 	@GetMapping("orderInfo")
-	public ModelAndView orderWrite() {
+	public ModelAndView orderWrite(MemberUserDTO memberUserDTO) {
 		ModelAndView mv = new ModelAndView();
 		
 		mv.setViewName("order/orderInfo");
