@@ -87,11 +87,6 @@
 						</dd>
 					</dl>
 
-
-
-
-
-
 					<dl>
 						<dt class="dt1">이름</dt>
 						<dd>
