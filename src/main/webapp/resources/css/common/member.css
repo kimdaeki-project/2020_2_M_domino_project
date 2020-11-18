@@ -1,6 +1,60 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Roboto:wght@300&display=swap');  
+	
+.order-title-wrap{
+	position: relative;
+    margin-top: 50px;
+}
 
+.order-title{
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-size: 32px;
+	color: black;
+	font-weight: 400;
+}
+
+.depth-area{
+	position: absolute;
+	right: 0;
+	
+}
+
+.depth-area > ol{
+	font-size: 0;
+		
+}
+
+.depth-area li{
+	display: inline-block;
+    font-size: 13px;
+    color: #888888;	
+}
+
+.depth-area > strong{	
+	color: #111;	
+}
+
+.depth-area li:before{	
+	display: inline-block;
+    content: '';
+    margin: 3px 8px 2px 6px;
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-style: solid;
+    border-color: transparent #888888 #888888 transparent;
+    border-width: 0 1px 1px 0;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.depth-area li:nth-child(1):before{
+	
+	display: none;
+}
   
  .idCheck0 {
 		color: blue;
@@ -33,12 +87,10 @@
  .emailCheck1 {
 		color: red;
 	}	
-	
-
 		
 .myLevel{
 	background-color: black;
-	width: 1170px;
+	width: 1140px;
 	height: 283px;
 	padding: 46px 0px 57px 80px;
 	margin-bottom: 40px;
@@ -121,7 +173,7 @@
 .btn{
 	height: 40px;
     width: 200px;
-  	 background: #222;
+  	background: #222;
     border-color: #222;
     color: white;
 }
