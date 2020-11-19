@@ -969,8 +969,19 @@
 		background-color: #111111;
 	}
 	
+	.addChk{
+		float: left;
+		padding-bottom: 30px;
+				
+	}
 	
+	#delAdd{
+		margin-left: 100px;
+	}
 	
+
+	
+
 	
 	
 	

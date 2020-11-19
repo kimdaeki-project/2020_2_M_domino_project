@@ -88,12 +88,6 @@
 
 <script>
 
-	$("#deliveryBtn").click(function() {
-	
-		location.href = "./deliveryAfter?member_num=${member.member_num}";
-	});
-	
-
 // Add active class to the current button (highlight it)
 	var header = document.getElementById("select");
 	var btns = header.getElementsByClassName("order-btn");

@@ -13,6 +13,10 @@ public class AddressDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.domino.t1.address.AddressDAO.";
 	
+	public int setAddressDelete(AddressDTO addressDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setAddressDelete", addressDTO);
+	}
+	
 	public List<AddressDTO> getMemberAddress(AddressDTO addressDTO) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getMemberAddress", addressDTO);
 	}

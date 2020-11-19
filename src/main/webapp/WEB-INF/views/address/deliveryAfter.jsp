@@ -51,18 +51,19 @@
 						</div>
 						<div class="addr-list">
 							<ul>
-								<li>
+								<li class="addLine">
 									<div class="reg_addr">
-										<table>
 											<c:forEach items="${list}" var="dto">
-											<tr>
-												<td>${dto.roadFullAddr}</td>
-											</tr>
+												<div class="addChk"><input type="radio" value="${dto.address_num}" name="roadFullAddr" id="adNum">${dto.roadFullAddr}<input type="button" value="X" class="delAdd"></div>
+												
 											</c:forEach>
-										</table>
+																				
 									</div>
+									
 								</li>
+														
 							</ul>
+							
 							<div class="add-addr-wrap">
 								<a href="#" class="btn-type-brd2" id="add_addr">
 									+ 배달 주소 등록
@@ -84,6 +85,14 @@
 
 <script>
 // Add active class to the current button (highlight it)
+	
+	$(".delAdd").click(function() {
+		var num = $("#adNum").val();
+		location.href = "./addressDelete?address_num="+num;
+		
+	});
+
+
 	var header = document.getElementById("select");
 	var btns = header.getElementsByClassName("order-btn");
 	for (var i = 0; i < btns.length; i++) {

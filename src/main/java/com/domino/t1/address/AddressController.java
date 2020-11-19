@@ -39,6 +39,17 @@ public class AddressController {
 		return mv;
 	}
 	
+	@GetMapping("addressDelete")
+	public ModelAndView setAddressDelete(AddressDTO addressDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("Address Delete");
+		int result = addressService.setAddressDelete(addressDTO);
+		
+		
+		mv.setViewName("redirect:./deliveryAfter");
+		return mv;
+	} 
+	
 	@GetMapping("deliveryAfter")
 	public ModelAndView deliveryAfrer(HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -62,7 +73,7 @@ public class AddressController {
 		int result = addressService.setMemberAddress(addressDTO);
 		
 		
-		mv.setViewName("address/deliveryAfter");
+		mv.setViewName("redirect:./deliveryAfter");
 		
 		return mv;
 	}
