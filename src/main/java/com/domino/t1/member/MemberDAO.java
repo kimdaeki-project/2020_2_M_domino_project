@@ -2,6 +2,7 @@ package com.domino.t1.member;
 
 import java.util.List;
 
+import com.domino.t1.address.AddressDTO;
 import com.domino.t1.member.memberInquirly.MemberInquirlyDTO;
 import com.domino.t1.util.Pager;
 
@@ -21,7 +22,7 @@ public interface MemberDAO {
 	
 	public MemberDTO getMemberIdCheck(MemberDTO memberDTO) throws Exception;
 	
-	public MemberInquirlyDTO getMemberLogin(MemberInquirlyDTO memberInquirlyDTO) throws Exception;
+	public AddressDTO getMemberLogin(AddressDTO addressDTO) throws Exception;
 	
 	public int setMemberJoin(MemberDTO memberDTO) throws Exception;
 	

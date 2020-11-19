@@ -1,8 +1,8 @@
 package com.domino.t1.address;
 
-import com.domino.t1.member.MemberDTO;
+import com.domino.t1.member.memberInquirly.MemberInquirlyDTO;
 
-public class AddressDTO extends MemberDTO{
+public class AddressDTO extends MemberInquirlyDTO{
 	
 	private String roadFullAddr;
 	

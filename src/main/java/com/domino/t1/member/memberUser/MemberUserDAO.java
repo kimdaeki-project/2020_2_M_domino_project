@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.domino.t1.address.AddressDTO;
 import com.domino.t1.member.MemberDAO;
 import com.domino.t1.member.MemberDTO;
 import com.domino.t1.member.memberInquirly.MemberInquirlyDTO;
@@ -55,9 +56,9 @@ public class MemberUserDAO implements MemberDAO{
 		return sqlSession.selectOne(NAMESPACE+"getMemberIdCheck", memberDTO);
 	}
 	@Override
-	public MemberInquirlyDTO getMemberLogin(MemberInquirlyDTO memInquirlyDTO) throws Exception {
+	public AddressDTO getMemberLogin(AddressDTO addressDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(NAMESPACE+"getMemberLogin", memInquirlyDTO);
+		return sqlSession.selectOne(NAMESPACE+"getMemberLogin", addressDTO);
 	}
 	@Override
 	public int setMemberJoin(MemberDTO memberDTO) throws Exception {

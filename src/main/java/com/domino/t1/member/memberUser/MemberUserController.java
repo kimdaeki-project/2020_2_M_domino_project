@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.domino.t1.address.AddressDTO;
 import com.domino.t1.member.MemberDTO;
 import com.domino.t1.member.memberInquirly.MemberInquirlyDTO;
 import com.domino.t1.util.Pager;
 
 import oracle.jdbc.proxy.annotation.Post;
+import oracle.security.o3logon.a;
 
 @Controller
 @RequestMapping("/member/**")
@@ -200,12 +202,12 @@ public class MemberUserController {
 	}
 	
 	@PostMapping("memberLogin")
-	public ModelAndView getMemberLogin(MemberInquirlyDTO memberInquirlyDTO, String remember, HttpServletResponse response ,HttpSession session) throws Exception{
+	public ModelAndView getMemberLogin(AddressDTO addressDTO, String remember, HttpServletResponse response ,HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
 		
 		if(remember != null) {
-			Cookie cookie = new Cookie("remember", memberInquirlyDTO.getMember_id());
+			Cookie cookie = new Cookie("remember", addressDTO.getMember_id());
 			
 			response.addCookie(cookie);
 		}else {
@@ -215,10 +217,10 @@ public class MemberUserController {
 			response.addCookie(cookie);
 		}
 		
-		memberInquirlyDTO = memberService.getMemberLogin(memberInquirlyDTO);
+		addressDTO = memberService.getMemberLogin(addressDTO);
 		
-		if(memberInquirlyDTO != null) {
-			session.setAttribute("member", memberInquirlyDTO);
+		if(addressDTO != null) {
+			session.setAttribute("member", addressDTO);
 			mv.setViewName("redirect:../");
 		}else {
 			mv.addObject("msg","로그인 실패");

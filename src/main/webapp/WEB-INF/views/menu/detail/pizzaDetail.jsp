@@ -557,26 +557,28 @@
 				alert("로그인이 필요한 기능입니다.")			
 		}else{
 			$.post(
-				"/t1/cart/addToCart",{
-					"pizzaCart[]":pizzaCart.toString(), 
-					"doughCart[]":doughCart.toString(),
-					"toppingCart[]":toppingCart.toString(),
-					"sideDishCart[]":sideDishCart.toString(),
-					"etcCart[]":etcCart.toString()
+				"/t1/cart/addToCart/pizzaDetail",{
+					"pizzaCart":pizzaCart.toString(),
+					"doughCart":doughCart.toString(),
+					"toppingCart":toppingCart.toString(),
+					"sideDishCart":sideDishCart.toString(),
+					"etcCart":etcCart.toString()
 					},
-				function(result){
-						var answer = window.confirm("물건이 장바구니에 담겼습니다. 장바구니로 이동할까요?")
-						if(answer){
-							$.get("/t1/menu/list/pizzaList", function(){})
-							alert("ㅇㅋ")
-						}else{
-							$.get("/t1/menu/list/pizzaList", function(){})
-							alert("ㅠㅜ")
+					function(result){
+						if(result < 1){
+							alert("오류: 장바구니 담기에 실패했습니다. 문제가 지속될 경우 관리자에게 문의 바랍니다.")	
+							return
 						}
-					}
-			)
-			.fail(alert("오류: 장바구니 담기에 실패했습니다. 문제가 지속될 경우 관리자에게 문의 바랍니다."))			
-		}		
+						var answer = window.confirm("물건이 장바구니에 담겼습니다. 장바구니로 이동할까요?")
+						if(answer){						
+							location.href = "/t1/cart/detail"
+							
+						}else{
+							location.href = "/t1/menu/list/pizzaList"
+						}
+					
+					})//end of $.post	
+		}//end of else(logged in) statement
 	})
 
 </script>

@@ -2,6 +2,8 @@ package com.domino.t1.address;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.domino.t1.branchInfo.BranchInfoDTO;
 import com.domino.t1.member.MemberDTO;
 import com.domino.t1.member.address.MemberAddressDTO;
+import com.domino.t1.member.memberInquirly.MemberInquirlyDTO;
 
 @Controller
 @RequestMapping("/address/**")
@@ -37,11 +40,14 @@ public class AddressController {
 	}
 	
 	@GetMapping("deliveryAfter")
-	public ModelAndView deliveryAfrer(AddressDTO addressDTO) throws Exception{
+	public ModelAndView deliveryAfrer(HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		System.out.println("DA");
+		
+		AddressDTO addressDTO = (AddressDTO)session.getAttribute("member");
 		
 		List<AddressDTO> ar = addressService.getMemberAddress(addressDTO);
-		
+	
 		mv.addObject("list", ar);
 		mv.setViewName("address/deliveryAfter");
 		
@@ -55,6 +61,8 @@ public class AddressController {
 		System.out.println("delivery 2");
 		int result = addressService.setMemberAddress(addressDTO);
 		
+		
+		mv.setViewName("address/deliveryAfter");
 		
 		return mv;
 	}

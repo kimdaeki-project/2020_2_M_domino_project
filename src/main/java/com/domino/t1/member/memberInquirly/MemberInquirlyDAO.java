@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.domino.t1.address.AddressDTO;
 import com.domino.t1.member.MemberDTO;
 
 @Repository
@@ -24,9 +25,9 @@ public class MemberInquirlyDAO {
 		return sqlSession.selectOne(NAMESPACE+"getOne", memberInquirlyDTO);
 	}
 	
-	public List<MemberInquirlyDTO> getInqBoardList(MemberInquirlyDTO memberInquirlyDTO) throws Exception {
+	public List<AddressDTO> getInqBoardList(AddressDTO addressDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE+"getInqBoardList", memberInquirlyDTO);
+		return sqlSession.selectList(NAMESPACE+"getInqBoardList", addressDTO);
 	}
 	
 	public int setInqBoardWrite(MemberInquirlyDTO memberInquirlyDTO) throws Exception {
