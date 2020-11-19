@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,23 +15,29 @@
 
 
 <script type="text/javascript">
+	$(document).ready(
+			function() {
+				$("#recipient").change(
+						function() {
+							if ($("#recipient").is(":checked")) {
+								$("#order_name").val("${member.member_name}")
+										.attr('readonly', true);
+								$(".tel1").val(
+										"${member.member_phone}"
+												.substring(4, 8)).attr(
+										'readonly', true);
+								$(".tel2").val(
+										"${member.member_phone}".substring(9,
+												14)).attr('readonly', true);
 
-	$(document).ready(function() {
-		$("#recipient").change(function() {
-			if ($("#recipient").is(":checked")) {
-				$("#order_name").val("${member.member_name}").attr('readonly',true);
-				$(".tel1").val("${member.member_phone}".substring(4,8)).attr('readonly',true);
-				$(".tel2").val("${member.member_phone}".substring(9,14)).attr('readonly',true);
-				
-			} else {
-				$("#order_name").val("").attr('readonly',false);
-				$(".tel1").val("").attr('readonly',false);
-				$(".tel2").val("").attr('readonly',false);
-			}
-		});
-	});
-
-
+							} else {
+								$("#order_name").val("")
+										.attr('readonly', false);
+								$(".tel1").val("").attr('readonly', false);
+								$(".tel2").val("").attr('readonly', false);
+							}
+						});
+			});
 </script>
 
 
@@ -92,7 +98,7 @@
 						<dd>
 							<div class="form-item">
 								<input type="text" id="order_name" name="order_name"
-									maxlength="10" >
+									maxlength="10">
 							</div>
 						</dd>
 					</dl>
@@ -104,9 +110,10 @@
 								<div class="form-group2 select-group">
 									<div class="form-item">
 										<input type="text" id="tel2" name="order_phone" value="010"
-											readonly="readonly"> <input type="text" id="tel2" class="tel1"
-											name="order_phone" maxlength="4"> <input type="text"
-											id="tel2" class="tel2" name="order_phone" maxlength="4">
+											readonly="readonly"> <input type="text" id="tel2"
+											class="tel1" name="order_phone" maxlength="4"> <input
+											type="text" id="tel2" class="tel2" name="order_phone"
+											maxlength="4">
 									</div>
 								</div>
 							</div>
@@ -192,11 +199,114 @@
 						</h3>
 					</div>
 					<div class="guide-box4">&#42;가장 높은 할인율의 혜택으로 자동 적용하였습니다.</div>
+
+					<!-- Modal -->
+					<div class="modal fade" id="myModal" role="dialog">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content coupon-main">
+
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title"
+										style="text-align: center; font-size: 20px; font-weight: bold;">도미노
+										온라인 쿠폰</h4>
+								</div>
+
+								<div class="col-sm-8"
+									style="padding: 20px 0; background-color: #f2f2f2;">
+									<div
+										style="background-color: white; height: 350px; border: 20px solid #f2f2f2; border-bottom: 0;">
+										<p
+											style="font-size: 17px; font-weight: bold; padding-left: 30px; padding-top: 30px;">도미노
+											온라인 쿠폰</p>
+										<div class="form" style="padding: 20px 10">
+											<div class="form-item">
+												<div class="chk-box" style="margin-left: 25px;">
+													<input type="radio" id="coupon1" name="coupon"> <label
+														class="checkbox" for="coupon1"></label> <label
+														for="coupon1">[REGULAR쿠폰] 배달 피자 20% 할인(유효기간:
+														2020-11-01 ~ 2020-11-30)</label>
+												</div>
+												<div class="chk-box">
+													<input type="radio" id="coupon2" name="coupon"> <label
+														class="checkbox" for="coupon2"></label> <label
+														for="coupon2"> [마이키친] REGULAR 배달 20% 할인(유효기간:
+														2020-11-01 ~ 2020-11-30)</label>
+												</div>
+												<div class="chk-box">
+													<input type="radio" id="coupon3" name="coupon"> <label
+														class="checkbox" for="coupon3"></label> <label
+														for="coupon3"> [첫 주문]스타 셰프 컬렉션 L 배달 1만원(유효기간:
+														2020-11-13 ~ 2021-01-07)</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-sm-4"
+									style="padding: 20px 0; background-color: #f2f2f2; text-align: center;">
+									<div class="coupon-pay"
+										style="background-color: white; height: 300px; border: 20px solid #f2f2f2;">
+										<div class="title-type2">
+											<h4>최종 결제 금액</h4>
+										</div>
+										<dl>
+											<dt>총 상품 금액</dt>
+											<dd class="totalPrice">38,900원</dd>
+										</dl>
+										<dl class="discount">
+											<dt>총 할인 금액</dt>
+											<dd id="totalDiscount">10,000원</dd>
+										</dl>
+										<hr>
+										<!--할인 적용한 쿠폰명-->
+										<ul class="apply applyBox">
+											<li class="prmtName">-> [첫 주문]스타 셰프 컬렉션 L 배달 1만원</li>
+										</ul>
+										<!--//할인 적용한 쿠폰명-->
+										<dl class="total">
+											<dt>총 결제 금액</dt>
+											<dd id="totalPricePay">28,900원</dd>
+										</dl>
+									</div>
+
+									<div>
+										<div class="btn-wrap"
+											style="background-color: #ff143c; height: 50px; width: 260px; margin: 0 auto;">
+											<a href="#" class="btn-type1"
+												style="line-height: 50px; color: white; font-size: 18px;">쿠폰
+												적용하기</a>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="modal-footer" style="background-color: #f2f2f2;">
+									<div class="col-sm-8" style="text-align: left; padding: 20px;">
+										<div id="myCupnInfo" class="notice_box"
+											style="display: block;">
+											<div class="text_type0">유의사항</div>
+											<h5>피자 주문 시, 각 쿠폰에 따른 피자 구매 금액을 할인해 드리며 매니아 쿠폰은 피자 최대
+												4판까지만</h5>
+											<h5>할인이 적용됩니다.(피자 판 이상 구매시 매니아 쿠폰 할인 적용불가) ROYAL 및 VIP
+												등급에게만</h5>
+											<h5>발급되는 생일 50% 할인 쿠폰은 방문포장 전용이며, 피자 1판에만 적용 가능합니다.</h5>
+											<h5>(생일축하 50%할인 적용 후 피자를 2판이상 담을 경우 적용된 할인은 자동으로 취소됩니다.)
+											</h5>
+											<h5>SET 메뉴 주문 시에는 쿠폰 사용이 불가능 합니다.</h5>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
 					<div class="discount-step">
 						<ul>
-							<li id="myCoupon" class="active"><a
-								href="javascript:myCoupon()" class="type-brd5">도미노 온라인 쿠폰 선택</a>
-							</li>
+							<li id="myCoupon" class="active"><a href="#"
+								class="type-brd5" data-toggle="modal" data-target="#myModal">도미노
+									온라인 쿠폰 선택</a></li>
 							<li id="dcPrmt" class="active"><a
 								href="javascript:changePrmt('dcPrmt');" class="type-brd5"><span>[고객감사]피자
 										25%(배달)</span></a></li>

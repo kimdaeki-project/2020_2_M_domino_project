@@ -26,6 +26,8 @@ public class OrderController {
 		
 		
 		AddressDTO addressDTO = (AddressDTO)session.getAttribute("member");
+		
+		
 		addressDTO = orderService.getOne(addressDTO);			
 			mv.addObject("address", addressDTO);
 			mv.setViewName("order/orderInfo");	
