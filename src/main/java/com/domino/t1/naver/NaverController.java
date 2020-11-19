@@ -16,6 +16,7 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 @Controller
 		public class NaverController {
 		/* NaverLoginBO */
+		
 		private NaverLoginBO naverLoginBO;
 		private String apiResult = null;
 		@Autowired
@@ -41,36 +42,32 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 		System.out.println("여기는 callback");
 		OAuth2AccessToken oauthToken;
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
-		//1. 로그인 사용자 정보를 읽어온다.
-		apiResult = naverLoginBO.getUserProfile(oauthToken); //String형식의 json데이터
-		/** apiResult json 구조
-		{"resultcode":"00",
-		"message":"success",
-		"response":{"id":"33666449","nickname":"shinn****","age":"20-29","gender":"M","email":"sh@naver.com","name":"\uc2e0\ubc94\ud638"}}
-		**/
-		//2. String형식인 apiResult를 json형태로 바꿈
-		JSONParser parser = new JSONParser();
-		Object obj = parser.parse(apiResult);
-		JSONObject jsonObj = (JSONObject) obj;
-		//3. 데이터 파싱
-		//Top레벨 단계 _response 파싱
-		JSONObject response_obj = (JSONObject)jsonObj.get("response");
-		//response의 nickname값 파싱
-		String id = (String)response_obj.get("id");
-		String nickname = (String)response_obj.get("nickname");
-		String email = (String)response_obj.get("email");
-
-		System.out.println("----------------"+id);
-		System.out.println("----------------"+nickname);
-		System.out.println("----------------"+email);
-
-		
-		//4.파싱 닉네임 세션으로 저장
-		session.setAttribute("sessionId",id); //세션 생성
-		session.setAttribute("sessionNick",nickname);
-		session.setAttribute("sessionEmail",email);
-		model.addAttribute("result", apiResult);
-		return "member/memberJoin2";
+			
+			//1. 로그인 사용자 정보를 읽어온다.
+			apiResult = naverLoginBO.getUserProfile(oauthToken); //String형식의 json데이터
+			/** apiResult json 구조
+			{"resultcode":"00",
+			"message":"success",
+			"response":{"id":"33666449","nickname":"shinn****","age":"20-29","gender":"M","email":"sh@naver.com","name":"\uc2e0\ubc94\ud638"}}
+			**/
+			//2. String형식인 apiResult를 json형태로 바꿈
+			JSONParser parser = new JSONParser();
+			Object obj = parser.parse(apiResult);
+			JSONObject jsonObj = (JSONObject) obj;
+			//3. 데이터 파싱
+			//Top레벨 단계 _response 파싱
+			JSONObject response_obj = (JSONObject)jsonObj.get("response");
+			//response의 nickname값 파싱
+			String id = (String)response_obj.get("id");
+			String nickname = (String)response_obj.get("nickname");
+			String email = (String)response_obj.get("email");
+			
+			//4.파싱 닉네임 세션으로 저장
+			session.setAttribute("sessionId",id); //세션 생성
+			session.setAttribute("sessionNick",nickname);
+			session.setAttribute("sessionEmail",email);
+			model.addAttribute("result", apiResult);
+			return "member/memberJoin2";
 		}
 		
 		//로그아웃
