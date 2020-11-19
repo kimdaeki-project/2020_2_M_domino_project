@@ -11,7 +11,6 @@ public class CartDTO extends ItemDTO{
 	
 
 	// private long item_id;
-
 	
 	// for dough
 	private String dough_short_name;
