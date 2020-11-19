@@ -18,6 +18,9 @@
  			border: 1px solid red;
  			margin-left: 30px;
  		}
+ 		.item-data{
+ 			margin: auto 5px;
+ 		}
     </style>
   
 </head>
@@ -33,8 +36,16 @@
 					<div class="item-group-box">
 						<c:forEach items="${pizzaGroup}" var="dto">
 							<div class="pizza-option-box">
-							 	<span class="item-data">장바구니 그룹 id: ${dto.cart_group_id}</span>	
-								<span class="item-data">이름: ${dto.item_name}</span>	
+							 	<span class="item-data">장바구니 그룹 id: ${dto.cart_group_id}</span>								
+								<c:choose>
+									<c:when test="${dto.item_category == 'dough'}">
+										<span class="item-data">도우: ${dto.dough_short_name}</span>
+									</c:when>
+									<c:otherwise>
+										<span class="item-data">이름: ${dto.item_name}</span>	
+									</c:otherwise>
+								</c:choose>
+								
 								<span class="item-data">카테고리: ${dto.item_category}</span>
 								<span class="item-data">${dto.item_price}원</span>
 								<span class="item-data">수량: ${dto.cart_quantity}</span>	
@@ -42,9 +53,8 @@
 									<span class="item-data">사이즈: ${dto.item_size}</span>	
 								</c:if>
 											
-							</div>														
+							</div>													
 						</c:forEach>
-			
 					</div>			
 				</c:forEach>
 			<h2>피자와 무관한 제품들(사이드디시 + 음료&amp;기타)</h2>		
@@ -54,8 +64,7 @@
 							<span class="item-data">이름: ${dto.item_name}</span>	
 							<span class="item-data">카테고리: ${dto.item_category}</span>
 							<span class="item-data">${dto.item_price}원</span>
-							<span class="item-data">수량: ${dto.cart_quantity}</span>	
-							<span class="item-data">사이즈: ${dto.item_size}</span>						
+							<span class="item-data">수량: ${dto.cart_quantity}</span>						
 						</div>														
 					</c:forEach>						
 		</div>

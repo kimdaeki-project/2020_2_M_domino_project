@@ -24,12 +24,6 @@
 
 <c:import url="../template/header.jsp"></c:import>
 <div>	
-	<div class="container">
-		<h1>테스트 데이터 확인용</h1>
-		
-
-	
-	</div>
 
 	<div class="container">
 		<h1>장바구니</h1>

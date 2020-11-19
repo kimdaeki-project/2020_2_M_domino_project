@@ -1,6 +1,7 @@
 package com.domino.t1.cart;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.domino.t1.item.ItemDTO;
 import com.domino.t1.member.MemberDTO;
@@ -98,8 +100,7 @@ public class CartController {
 		for(int i=0; i<totalItem; i++) {
 			list.add(Arrays.copyOfRange(arr, i*size, (i+1)*size));
 		}
-
-
+		return list;
 	}
 
 	@GetMapping("toCheckout")

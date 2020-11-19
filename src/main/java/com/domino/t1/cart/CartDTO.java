@@ -4,8 +4,7 @@ import com.domino.t1.item.ItemDTO;
 
 public class CartDTO extends ItemDTO{
 	private long cart_item_id;
-	private String member_id;
-	// private long item_id;
+	private long member_num;
 	private long cart_group_id;
 	private long cart_quantity;
 	private String item_size;
@@ -35,12 +34,7 @@ public class CartDTO extends ItemDTO{
 	public void setCart_item_id(long cart_item_id) {
 		this.cart_item_id = cart_item_id;
 	}
-	public String getMember_id() {
-		return member_id;
-	}
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
-	}
+
 	public long getCart_group_id() {
 		return cart_group_id;
 	}
