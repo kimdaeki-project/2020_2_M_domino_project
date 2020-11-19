@@ -87,5 +87,17 @@ public class MemberUserService implements MemberService{
 		return memberDAO.getCount(pager);
 	}
 	
+	@Override
+	public MemberDTO getMemberSearchPw(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return memberDAO.getMemberSearchPw(memberDTO);
+	}
+	
+	@Override
+	public int setPassword(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return memberDAO.setPassword(memberDTO);
+	}
+	
 	
 }

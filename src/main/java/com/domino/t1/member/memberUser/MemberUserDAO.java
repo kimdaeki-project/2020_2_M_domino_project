@@ -78,5 +78,17 @@ public class MemberUserDAO implements MemberDAO{
 		return sqlSession.selectOne(NAMESPACE+"getCount", pager);
 	}
 	
+	@Override
+	public MemberDTO getMemberSearchPw(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+"getMemberSearchPw", memberDTO);
+	}
+	
+	@Override
+	public int setPassword(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(NAMESPACE+"setPassword", memberDTO);
+	}
+	
 
 }

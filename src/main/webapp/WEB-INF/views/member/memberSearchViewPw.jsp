@@ -39,16 +39,31 @@
 			</li>
 		</ul>
 
-		<h3>고객님의 정보와 일치하는 아이디 목록입니다.</h3><br>
-		<h3>아이디 : ${dto.member_id}</h3><h3>가입일 : ${dto.member_date}</h3><br>
-		<button type="button" class="btn btn-info btn-lg" id="logBtn">로그인</button>
+		<form action="./setPassword" method="post">
+		<input type="text" value="${dto.member_id}" name="member_id" class="none">
+		<div>
+			<div>
+			<dl>
+				<dt>새 비밀번호</dt>
+				<dd><input type="password" name="member_pw2" style="text-align:center; width:300px; height:42px;"></dd>
+			</dl>
+			<dl>
+				<dt>새 비밀번호 확인</dt>
+				<dd>
+					<div>
+						<input type="password" name="member_pw" style="text-align:center; width:300px; height:42px;"><input type="submit" value="확인" id="checkButt" style= "width:110px; height:42px;">
+					</div>
+				</dd>
+			</dl>
+			</div>
+		</div>
+	</form>
+		
 			
 	</div>
 <c:import url="../template/footer.jsp"></c:import>
 </body>
 <script type="text/javascript">
-	$("#logBtn").click(function() {
-		location.href = "./memberLogin"
-	})
+
 </script>
 </html>

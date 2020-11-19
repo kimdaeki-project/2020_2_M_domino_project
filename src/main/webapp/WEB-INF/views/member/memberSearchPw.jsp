@@ -143,6 +143,7 @@
       </div>
     </div>
   </div>
+  
 	<c:forEach items="${dto}" var="list">
 		<input type="text" value="${list.member_id}" class="memId" id="noneView">
 	</c:forEach>
@@ -151,8 +152,9 @@
 	$(".btn-lg").click(function() {
 		var id = $(".inputId").val();
 		var mid = $(".memId").val();
+		
 		if(id !== '' && id == mid){
-			alert("존재하는 아이디입니다.")
+			alert("존재하는 아이디입니다. 비밀번호 찾기를 진행합니다.")
 			
 		}else{
 			alert("존재하는 아이디를 입력하세요")

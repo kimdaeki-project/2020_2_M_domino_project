@@ -29,5 +29,9 @@ public interface MemberDAO {
 	public List<MemberDTO> getMemberList(Pager pager) throws Exception;
 	
 	public long getCount(Pager pager) throws Exception;
+	
+	public MemberDTO getMemberSearchPw(MemberDTO memberDTO) throws Exception;
+	
+	public int setPassword (MemberDTO memberDTO) throws Exception;
 
 }

@@ -30,10 +30,32 @@ public class MemberUserController {
 	@Autowired
 	private MemberUserService memberService;
 	
+	@PostMapping("setPassword")
+	public ModelAndView setPassword(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = memberService.setPassword(memberDTO);
+		
+		mv.setViewName("member/memberLogin");
+		
+		return mv;
+	}
+	
+	@GetMapping("memberSearchViewPw")
+	public ModelAndView getMemberSearchViewPw() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+	}
+	
 	@PostMapping("memberSearchPw")
-	public ModelAndView getMemberSearchPw() throws Exception{
+	public ModelAndView getMemberSearchPw(MemberDTO memberDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		System.out.println("search pw post");
+		
+		memberDTO = memberService.getMemberSearchPw(memberDTO);
+		
+		mv.addObject("dto", memberDTO);
+		mv.setViewName("member/memberSearchViewPw");
 		
 		return mv;
 	}
