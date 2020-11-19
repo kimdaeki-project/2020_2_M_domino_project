@@ -54,7 +54,7 @@
 								<li>
 									<div class="notyet">
 										<p class="title"><img alt="" src="../resources/images/address/sp_alert_t1.png">포장 매장을 등록해주세요.</p>
-										<a href="#" class="btn-type-brd2" id="add_addr" onclick="document.getElementById('pop-layer').style.display='block'">
+										<a href="#" class="btn-type-brd2" id="add_addr" onclick="popMap()">
 											+ 포장 매장 등록
 										</a>
 									</div>
@@ -71,11 +71,11 @@
 	</div><!-- content -->
 	
 	<!-- ===== 포장매장등록 popup, pickup_search.css ===== -->
-	<div class="pop-layer" id="pop-layer">
+	<div class="pop-layer" id="pop-map">
 		<div class="pop-wrap pop-regBranch">
 			<div class="pop-title-wrap pop-header">
 				<h2 class="pop-title">포장매장 등록</h2>
-				<a href="#" class="closebtn" onclick="document.getElementById('pop-layer').style.display='none'">&times;</a>
+				<a href="#" class="closebtn" onclick="document.getElementById('pop-map').style.display='none'">&times;</a>
 			</div>
 			<div class="pop-content">
 				<div class="store-map-area">
@@ -196,7 +196,11 @@
 
 <script type="text/javascript"> <!-- 팝업 모달 close -->
 
-	var viewSearch = document.getElementById("pop-layer")
+	var viewSearch = document.getElementById("pop-map")
+	
+	function popMap() {
+		viewSearch.style.display='block'
+	}
 	
 	window.onclick = function(event) {
 	  if (event.target == viewSearch) {
