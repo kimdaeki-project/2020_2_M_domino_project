@@ -75,14 +75,14 @@
 		<div class="pop-wrap pop-regBranch">
 			<div class="pop-title-wrap pop-header">
 				<h2 class="pop-title">포장매장 등록</h2>
-				<a href="#" class="closebtn" id="pop-layer" onclick="document.getElementById('pop-layer').style.display='none'">&times;</a>
+				<a href="#" class="closebtn" onclick="document.getElementById('pop-layer').style.display='none'">&times;</a>
 			</div>
 			<div class="pop-content">
 				<div class="store-map-area">
 					<!-- map -->
 					<div class="store-map-wrap">
 						<div class="store-map">
-							<div class="map-canvas" id="map"></div>
+							<div class="map-canvas" id="map" style="width: 750px; height: 920px;"></div>
 						</div>
 					</div>
 					
@@ -236,7 +236,7 @@
    
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8359d6b1a5e0267b346e7ce57922d7f4&libraries=services"></script>
-<script type="text/javascript"><!-- ===== 지도 javascript ===== -->
+<script><!-- ===== 지도 javascript ===== -->
 
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	mapOption = { 
@@ -246,11 +246,15 @@
 	
 	//지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 	var map = new kakao.maps.Map(mapContainer, mapOption); 
-	    
+	/*     
 	mapContainer.style.width = '750px';
-	mapContainer.style.height = '1000px';
-	
-	map.relayout();
+	mapContainer.style.height = '920px';
+	 */
+    $("#add_addr").click(function() {
+        $("#map").toggle();
+        map.relayout();
+        map.setCenter(new daum.maps.LatLng(37.564713, 126.993173))
+    });
 	
 	var imageSrc = '/t1/resources/images/branch/ico_spot.png', // 마커이미지의 주소입니다    
     imageSize = new kakao.maps.Size(40, 52), // 마커이미지의 크기입니다
