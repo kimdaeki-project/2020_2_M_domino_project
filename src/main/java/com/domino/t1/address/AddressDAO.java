@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.domino.t1.branchInfo.BranchInfoDTO;
+
 @Repository
 public class AddressDAO {
 	
@@ -20,6 +22,14 @@ public class AddressDAO {
 	public int setMemberAddress(AddressDTO addressDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"setMemberAddress", addressDTO);
 		
+	}
+	
+	public List<BranchInfoDTO> getBranchInfo(BranchInfoDTO branchInfoDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getBranchInfo", branchInfoDTO);
+	}
+	
+	public int setBranchInfo(BranchInfoDTO branchInfoDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setBranchInfo", branchInfoDTO);
 	}
 
 }

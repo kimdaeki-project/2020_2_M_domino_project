@@ -31,11 +31,11 @@
 					<div class="sel-order-wrap">
 						<div class="sel-order-way" id="select"> 
 							<div class="order-btn order1">
-								<a href="./delivery" class="active">배달 주문</a>
+								<a href="./delivery">배달 주문</a>
 							</div>
 							<div class="mid-bar"></div>
 							<div class="order-btn order2">
-								<a href="./pickup">포장 주문</a>
+								<a href="./pickup" class="active">포장 주문</a>
 							</div>
 						</div>
 					</div>

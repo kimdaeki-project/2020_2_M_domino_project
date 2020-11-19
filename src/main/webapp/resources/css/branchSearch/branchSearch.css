@@ -368,6 +368,12 @@
 		background-color: #8080c0;
 	}
 	
+	.branch-addr-result dl > dt {
+		width: 200px;
+		height: 16px;
+		
+	}
+	
 	.branch-addr-result .salenames {
 		position: absolute;
 	    right: 0;

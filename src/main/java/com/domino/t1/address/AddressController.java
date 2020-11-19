@@ -77,8 +77,30 @@ public class AddressController {
 		return mv;
 	}
 	
+	@GetMapping("pickupAfter")
+	public ModelAndView pickupAfter() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		System.out.println("pickupAfter");
+		mv.setViewName("address/pickupAfter");
+		
+		return mv;
+	}
+	
+	@PostMapping("pickupAfter")
+	public ModelAndView pickupAfter(BranchInfoDTO branchInfoDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		System.out.println("pickup after");
+		int result = addressService.setBranchInfo(branchInfoDTO);
+		
+		mv.setViewName("address/pickupAfter");
+		
+		return mv;
+	}
+	
 	@GetMapping("pickup")
-	public ModelAndView pickup(BranchInfoDTO branchInfoDTO) throws Exception {
+	public ModelAndView pickup() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
 		mv.setViewName("address/pickup");
