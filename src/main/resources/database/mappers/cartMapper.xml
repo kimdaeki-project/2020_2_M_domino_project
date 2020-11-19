@@ -2,9 +2,55 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
-<mapper namespace="com.domino.t1.sample">
 
-	
+<mapper namespace="com.domino.t1.cart.CartDAO">
+	<!-- resultMap needed -->
+<!-- 	<resultMap type="CartDTO" id="getCartItemList">
+		<
+	</resultMap> -->
 
+	<select id="getCartList" parameterType="MemberDTO" resultType="CartDTO">
+		SELECT * FROM cart
+		WHERE member_num = #{member_num}
+	</select>
+	<insert id="setCartItem" parameterType="CartDTO">
+		INSERT INTO cart VALUES(
+			cart_seq.NEXTVAL,
+			#{member_num},
+			#{item_id},
+			MAX(SELECT
+					CASE
+						WHEN (SELECT MAX(cart_group_id)
+							FROM cart
+							WHERE member_num = #{member_num})
+							IS NULL THEN 1
+					 	ELSE (SELECT MAX(cart_group_id)+1
+					 		FROM cart
+					 		WHERE member_num = #{member_num})
+					END AS cart_group_id
+				FROM cart
+				WHERE member_num = #{member_num}),
+			#{cart_quantity},
+			#{item_size, jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="setCartItemWithCartGroupId" parameterType="CartDTO">
+		INSERT INTO cart VALUES(
+			cart_seq.NEXTVAL,
+			#{member_num},
+			#{item_id},
+			#{cart_group_id},
+			#{cart_quantity},
+			#{item_size, jdbcType=VARCHAR}
+			)
+	</insert>
+	<select id="getMaxCartGroupId" parameterType="MemberDTO" resultType="Long">
+		SELECT
+			CASE
+				WHEN MAX(cart_group_id) IS NULL THEN 0
+			 	ELSE MAX(cart_group_id)
+			END AS max_cart_group_id
+		FROM cart
+		WHERE member_num = #{member_num}
+	</select>
 </mapper>
