@@ -42,7 +42,7 @@
 					<div class="tab-content" id="delivery">
 						<div class="spot-area">
 							<span class="spot left-spot">
-								<img alt="" src="../resources/images/address/sp_deli_spot_t1.png" style="width: 23px; height: 24px;">밖에서 도미노피자 먹고 싶을 땐?
+								<img alt="" src="../resources/images/address/sp_deli_spot_t1.png">밖에서 도미노피자 먹고 싶을 땐?
 							</span>
 							
 							<a href="#" class="spot right-spot">
@@ -51,26 +51,23 @@
 						</div>
 						<div class="addr-list-plus">
 							<ul>
-								<li class="addLine">
+								<li>
 									<div class="reg_addr">
+										<table>
 											<c:forEach items="${list}" var="dto">
-												<div class="addChk"><input type="radio" value="${dto.address_num}" name="roadFullAddr" id="adNum">${dto.roadFullAddr}<input type="button" value="X" class="delAdd"></div>
-												
+											<tr>
+												<td>${dto.roadFullAddr}</td>
+											</tr>
 											</c:forEach>
-																				
+										</table>
 									</div>
-									
 								</li>
-														
 							</ul>
-							
 							<div class="add-addr-wrap">
-								<a href="#" onclick="goPopup();"  class="btn-type-brd2" id="add_addr">
+								<a href="#" onclick="goPopup();" class="btn-type-brd2" id="add_addr">
 									+ 배달 주소 등록
 								</a>
-								<div class="addr-limit">
-									* 배달 주소는 최대 10개까지만 등록 가능합니다.
-								</div>
+								<div class="addr-limit">* 배달 주소는 최대 10개까지만 등록 가능합니다.</div>
 							</div>
 							<div class="addr-btn">
 								<p class="title-type4 ask-deli">해당 배달주소로 주문을 진행 하시겠습니까?</p>
@@ -84,16 +81,8 @@
 	</div><!-- content -->
 </div><!-- container -->
 
-<script>
+<script type="text/javascript">
 // Add active class to the current button (highlight it)
-	
-	$(".delAdd").click(function() {
-		var num = $("#adNum").val();
-		location.href = "./addressDelete?address_num="+num;
-		
-	});
-
-
 	var header = document.getElementById("select");
 	var btns = header.getElementsByClassName("order-btn");
 	for (var i = 0; i < btns.length; i++) {
@@ -103,6 +92,54 @@
 	  this.className += " active";
 	  });
 	}
+
+/////// 도로명주소 api ////////
+
+	// opener관련 오류가 발생하는 경우 아래 주석을 해지하고, 사용자의 도메인정보를 입력합니다. ("팝업API 호출 소스"도 동일하게 적용시켜야 합니다.)
+	//document.domain = "abc.go.kr";
+
+	function goPopup(){
+		// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+		var pop = window.open("/t1/address/jusoPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+		
+		// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+	    //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
+	}
+
+
+	function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
+			// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+			document.form.roadFullAddr.value = roadFullAddr;
+			document.form.roadAddrPart1.value = roadAddrPart1;
+			document.form.roadAddrPart2.value = roadAddrPart2;
+			document.form.addrDetail.value = addrDetail;
+			document.form.engAddr.value = engAddr;
+			document.form.jibunAddr.value = jibunAddr;
+			document.form.zipNo.value = zipNo;
+			document.form.admCd.value = admCd;
+			document.form.rnMgtSn.value = rnMgtSn;
+			document.form.bdMgtSn.value = bdMgtSn;
+			document.form.detBdNmList.value = detBdNmList;
+			/** 2017년 2월 추가제공 **/
+			document.form.bdNm.value = bdNm;
+			document.form.bdKdcd.value = bdKdcd;
+			document.form.siNm.value = siNm;
+			document.form.sggNm.value = sggNm;
+			document.form.emdNm.value = emdNm;
+			document.form.liNm.value = liNm;
+			document.form.rn.value = rn;
+			document.form.udrtYn.value = udrtYn;
+			document.form.buldMnnm.value = buldMnnm;
+			document.form.buldSlno.value = buldSlno;
+			document.form.mtYn.value = mtYn;
+			document.form.lnbrMnnm.value = lnbrMnnm;
+			document.form.lnbrSlno.value = lnbrSlno;
+			/** 2017년 3월 추가제공 **/
+			document.form.emdNo.value = emdNo;
+			
+	}
+
+
 </script>
 
 <!-- ===== footer ===== -->
