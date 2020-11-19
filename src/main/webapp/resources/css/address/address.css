@@ -196,6 +196,16 @@
 		font-weight: 600;
 		line-height: 30px;
 	}
+		
+	.addChk{
+		float: left;
+		padding-bottom: 30px;
+				
+	}
+	
+	#delAdd{
+		margin-left: 100px;
+	}
 	
 	.add-addr-wrap {
 		width: 100%;
