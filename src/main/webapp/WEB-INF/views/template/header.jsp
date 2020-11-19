@@ -14,7 +14,7 @@
 	    <div class="collapse navbar-collapse" id="myNavbar1" style="padding: 0;">
 	      <ul class="nav navbar-nav navbar-right">
 	      <c:choose>
-	      	<c:when test="${not empty member}">
+	      	<c:when test="${not empty member or sessionId != null}">
 	       		<li><a href="${pageContext.request.contextPath}/member/memberLogout"><span class="glyphicon"></span> 로그아웃</a></li>
 	       		<li><a href="${pageContext.request.contextPath}/member/memberPage"><span class="glyphicon"></span> 나의정보</a></li>
 	       		<li><a href="#"><span class="glyphicon"></span><img src="${pageContext.request.contextPath}/resources/images/common/cart_icon.png"></a></li> 	    		
@@ -22,7 +22,7 @@
 	      		
 	      	<c:otherwise> 
 	      		<li><a href="${pageContext.request.contextPath}/member/memberLogin"><span class="glyphicon"></span> 로그인</a></li>
-	       		<li><a href="${pageContext.request.contextPath}/member/memberJoin"><span class="glyphicon"></span> 회원가입</a></li>	
+	      		<li><a href="${pageContext.request.contextPath}/member/memberSelectJoin"><span class="glyphicon"></span>회원가입</a></li>
 	      	</c:otherwise>
 	      </c:choose>
 	        
@@ -30,7 +30,6 @@
 	    </div>
 	</nav>
 </header>
-
 
 <header class="header2 lnb" style="border-bottom: 1px solid #e4e4e4;">
 	<div class="container text-center">

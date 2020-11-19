@@ -288,6 +288,13 @@ public class MemberUserController {
 		return mv;
 	}
 	
+	@GetMapping("memberSelectJoin")
+	public ModelAndView getMemberSelectJoin() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/memberSelectJoin");
+		return mv;
+	}
+	
 	@GetMapping("memberList")
 	public ModelAndView getMemberList(Pager pager) throws Exception{
 		System.out.println("Member List");
