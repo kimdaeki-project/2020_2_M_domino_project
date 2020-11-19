@@ -92,7 +92,7 @@
 								<div class="address-wrap branch">
 									<div class="form-group srch-type">
 										<div class="form-item" id="search_branch">
-											<input type="text" id="branch_name" placeholder="매장명을 입력하세요.">
+											<input type="text" id="branch_name" placeholder="	매장명을 입력하세요.">
 										</div>
 										<div class="form-region" id="btn-search">
 											<button type="button" class="btn-search">
@@ -118,13 +118,23 @@
 							<div class="row branch-addr-result">
 								<div class="column branch-result-list">
 									<dl>
-										<dt></dt>
-										<dd></dd>
-										<dd></dd>
+										<dt>매장명<span class="tel">매장 전화번호</span></dt>
+										<dd class="br-addr">매장 주소</dd>
+										<dd class="hash">
+											<span>
+												특별 세일 1
+												<br>
+												특별 세일 2
+											</span>
+										</dd>
 									</dl>
 									<div class="salenames">
-										<div class="sale1"></div>
-										<div class="sale2"></div>
+										<div class="sale1">
+											<span>세일1<br>11<br>122</span>
+										</div>
+										<div class="sale2">
+											<span>세일2<br>11<br>122</span>
+										</div>
 									</div>
 									<div class="br-detail">
 										<a href="#" class="btn type1">상세보기</button></a>
