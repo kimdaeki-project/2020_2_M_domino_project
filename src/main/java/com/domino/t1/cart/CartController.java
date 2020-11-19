@@ -2,6 +2,8 @@ package com.domino.t1.cart;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,10 +80,10 @@ public class CartController {
 	@GetMapping("detail")
 	public ModelAndView getCartDetailPage(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		MemberDTO sessionDTO = (MemberDTO) session.getAttribute("member");
-		String memberId = sessionDTO.getMember_id();
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		// get CartDTO list of the user
-		
+		List<CartDTO> arr = cartService.getCartList(memberDTO);
+		mv.addObject("cartList", arr);
 		mv.setViewName("cart/detail");
 		return mv;
 	}
