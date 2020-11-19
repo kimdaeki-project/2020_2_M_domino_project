@@ -40,9 +40,6 @@
 		<typeAlias type="com.domino.t1.address.AddressDTO" alias="AddressDTO"/>
 		
 		
-		<!-- cart related aliases -->
-		<typeAlias type="com.domino.t1.cart.CartDTO" alias="CartDTO" />
-		<typeAlias type="com.domino.t1.cart.CartDAO" alias="CartDAO" />
 	</typeAliases>
 	
 </configuration>
