@@ -54,9 +54,10 @@
 								<li class="addLine">
 									<div class="reg_addr">
 											<c:forEach items="${list}" var="dto">
-												<div class="addChk"><input type="radio" value="${dto.roadFullAddr}" name="roadFullAddr">${dto.roadFullAddr}<input type="button" value="X" id="delAdd"></div>
+												<div class="addChk"><input type="radio" value="${dto.address_num}" name="roadFullAddr" id="adNum">${dto.roadFullAddr}<input type="button" value="X" class="delAdd"></div>
 												
-											</c:forEach>										
+											</c:forEach>
+																				
 									</div>
 									
 								</li>
@@ -84,6 +85,14 @@
 
 <script>
 // Add active class to the current button (highlight it)
+	
+	$(".delAdd").click(function() {
+		var num = $("#adNum").val();
+		location.href = "./addressDelete?address_num="+num;
+		
+	});
+
+
 	var header = document.getElementById("select");
 	var btns = header.getElementsByClassName("order-btn");
 	for (var i = 0; i < btns.length; i++) {
