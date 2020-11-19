@@ -26,15 +26,10 @@ public class OrderController {
 		
 		
 		AddressDTO addressDTO = (AddressDTO)session.getAttribute("member");
-		addressDTO = orderService.getOne(addressDTO);
-		if(addressDTO != null) {			
+		addressDTO = orderService.getOne(addressDTO);			
 			mv.addObject("address", addressDTO);
 			mv.setViewName("order/orderInfo");	
-		}else {
-			mv.addObject("msg", "로그인 바랍니다.");
-			mv.addObject("path", "./memberLogin");
-			mv.setViewName("common/result");
-		}
+
 		
 		return mv;
 		
