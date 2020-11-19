@@ -92,7 +92,7 @@
 								<div class="address-wrap branch">
 									<div class="form-group srch-type">
 										<div class="form-item" id="search_branch">
-											<input type="text" id="branch_name" placeholder="매장명을 입력하세요.">
+											<input type="text" id="branch_name" placeholder="	매장명을 입력하세요.">
 										</div>
 										<div class="form-region" id="btn-search">
 											<button type="button" class="btn-search">

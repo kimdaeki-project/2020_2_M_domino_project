@@ -78,8 +78,10 @@ public class AddressController {
 	}
 	
 	@GetMapping("pickupAfter")
-	public ModelAndView pickupAfter() throws Exception {
+	public ModelAndView pickupAfter(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		
+//		BranchInfoDTO branchInfoDTO = (BranchInfoDTO)session.getAttribute();
 		
 		System.out.println("pickupAfter");
 		mv.setViewName("address/pickupAfter");
