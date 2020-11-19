@@ -34,6 +34,7 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 		model.addAttribute("url", naverAuthUrl);
 		return "member/memberSelectJoin";
 		}
+		
 		//네이버 로그인 성공시 callback호출 메소드
 		@RequestMapping(value = "member/memberJoin2", method = { RequestMethod.GET, RequestMethod.POST })
 		public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws IOException, ParseException {
@@ -55,10 +56,19 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 		//Top레벨 단계 _response 파싱
 		JSONObject response_obj = (JSONObject)jsonObj.get("response");
 		//response의 nickname값 파싱
+		String id = (String)response_obj.get("id");
 		String nickname = (String)response_obj.get("nickname");
-		System.out.println(nickname);
+		String email = (String)response_obj.get("email");
+
+		System.out.println("----------------"+id);
+		System.out.println("----------------"+nickname);
+		System.out.println("----------------"+email);
+
+		
 		//4.파싱 닉네임 세션으로 저장
-		session.setAttribute("sessionId",nickname); //세션 생성
+		session.setAttribute("sessionId",id); //세션 생성
+		session.setAttribute("sessionNick",nickname);
+		session.setAttribute("sessionEmail",email);
 		model.addAttribute("result", apiResult);
 		return "member/memberJoin2";
 		}
