@@ -5,6 +5,10 @@
     
 <mapper namespace="com.domino.t1.cart.CartDAO">
 	<!-- resultMap needed -->
+<!-- 	<resultMap type="CartDTO" id="getCartItemList">
+		<
+	</resultMap> -->
+	
 	<select id="getCartList" parameterType="MemberDTO" resultType="CartDTO">
 		SELECT * FROM cart
 		WHERE member_num = #{member_num}
@@ -14,10 +18,15 @@
 			cart_seq.NEXTVAL, 
 			#{member_num}, 
 			#{item_id},
-			(SELECT 
+			MAX(SELECT 
 					CASE
-						WHEN MAX(cart_group_id) IS NULL THEN 1
-					 	ELSE MAX(cart_group_id)+1
+						WHEN (SELECT MAX(cart_group_id) 
+							FROM cart 
+							WHERE member_num = #{member_num}) 
+							IS NULL THEN 1
+					 	ELSE (SELECT MAX(cart_group_id)+1
+					 		FROM cart
+					 		WHERE member_num = #{member_num})
 					END AS cart_group_id
 				FROM cart
 				WHERE member_num = #{member_num}),

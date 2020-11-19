@@ -44,7 +44,7 @@ public class CartController {
 		ArrayList<String[]> itemGroupCart = new ArrayList<String[]>();
 		itemGroupCart.addAll(toArrayList(sideDishCart, 4));
 		itemGroupCart.addAll(toArrayList(etcCart, 4));
-		int result2 = cartService.setPizzaGroupCart(itemGroupCart, memberDTO);
+		int result2 = cartService.setItemGroupCart(itemGroupCart, memberDTO);
 		
 		// 나중에 꼭 트랜잭션 처리 해주기!!!! 
 		int result = 0;
@@ -68,7 +68,7 @@ public class CartController {
 		ArrayList<String[]> itemGroupCart = new ArrayList<String[]>();
 		itemGroupCart.addAll(toArrayList(sideDishCart, 4));
 		itemGroupCart.addAll(toArrayList(etcCart, 4));
-		int result = cartService.setPizzaGroupCart(itemGroupCart, memberDTO);
+		int result = cartService.setItemGroupCart(itemGroupCart, memberDTO);
 		
 		// 나중에 꼭 트랜잭션 처리 해주기!!!! 
 
@@ -85,10 +85,11 @@ public class CartController {
 		List<CartDTO> arr = cartService.getCartList(memberDTO);
 		mv.addObject("cartList", arr);
 		mv.setViewName("cart/detail");
+		
 		return mv;
 	}
 	
-	public ArrayList<String[]> toArrayList(String[] arr, int size){
+	public List<String[]> toArrayList(String[] arr, int size){
 		ArrayList<String[]> list = new ArrayList<String[]>();
 		int totalItem = arr.length/size;
 		for(int i=0; i<totalItem; i++) {
