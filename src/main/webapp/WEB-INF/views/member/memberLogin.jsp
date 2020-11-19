@@ -97,6 +97,11 @@
 		<div></div><br>
 		<button type="button" style="text-align:center; width:430px; height:58px;" id="btnJoin">회원가입</button>
 		</form>
+		
+		<div id="naver_id_login" style="text-align:center"><a href="${url}">
+			<img width="223" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/></a></div>
+		<br>
+		
 	</div>
 	
 	</div>
