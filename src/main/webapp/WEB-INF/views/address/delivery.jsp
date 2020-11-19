@@ -66,7 +66,7 @@
 										
 									</table>
 								</div>
-								<input type="submit" value="배달 주소 등록 확인" id="deliveryBtn">
+								<input type="button" value="배달 주소 등록 확인" id="deliveryBtn">
 										
 							</form>
 								
@@ -90,6 +90,20 @@
 
 // Add active class to the current button (highlight it)
 
+	$("#deliveryBtn").click(function() {
+		var road = $("#roadFullAddr").val();
+		
+		if(road == '') {
+			alert("배달 주소를 입력해주세요")
+			location.href = "./delivery";
+			
+		}else{
+			$("#form").submit();
+		}
+		
+
+		
+	});
 	
 	var header = document.getElementById("select");
 	var btns = header.getElementsByClassName("order-btn");

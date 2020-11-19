@@ -74,16 +74,10 @@ public class AddressController {
 		
 		String message = "배달 주소를 입력해주세요.";
 		System.out.println("Result : "+result);
-		if (result > 0) {
+		
 			mv.setViewName("redirect:./deliveryAfter");
-		}
-			mv.addObject("msg", message);
-			mv.addObject("path", "../");
+		
 			
-			mv.setViewName("common/result");
-		
-		
-	
 		
 		return mv;
 	}
