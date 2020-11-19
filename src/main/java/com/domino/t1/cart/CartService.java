@@ -21,11 +21,11 @@ public class CartService {
 	
 	public int setPizzaGroupCart(List<String[]> arr, MemberDTO memberDTO) throws Exception {
 		//index:{ 0:pizza, 1:dough [2부터는 topping]}
-		String memberId = memberDTO.getMember_id();
+		long memberNum = memberDTO.getMember_num();
 		long cartGroupId = cartDAO.getMaxCartGroupId(memberDTO) + 1;
 		for(String[] item: arr) {
 			CartDTO cartDTO = new CartDTO();
-			cartDTO.setMember_id(memberId);
+			cartDTO.setMember_num(memberNum);
 			cartDTO.setItem_id(Long.parseLong(item[0]));
 			cartDTO.setCart_group_id(cartGroupId);
 			cartDTO.setCart_quantity(Long.parseLong(item[2]));
@@ -40,10 +40,10 @@ public class CartService {
 	}
 	
 	public int setItemGroupCart(List<String[]> arr, MemberDTO memberDTO) throws Exception {
-		String memberId = memberDTO.getMember_id();
+		long memberNum = memberDTO.getMember_num();
 		for(String[] item: arr) {
 			CartDTO cartDTO = new CartDTO();
-			cartDTO.setMember_id(memberId);
+			cartDTO.setMember_num(memberNum);
 			cartDTO.setItem_id(Long.parseLong(item[0]));
 			cartDTO.setCart_quantity(Long.parseLong(item[2]));
 			cartDAO.setCartItem(cartDTO);

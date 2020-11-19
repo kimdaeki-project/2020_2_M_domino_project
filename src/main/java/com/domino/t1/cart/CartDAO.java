@@ -16,7 +16,7 @@ public class CartDAO {
 	private final String NAMESPACE = "com.domino.t1.cart.CartDAO.";
 	
 	public List<CartDTO> getCartList(MemberDTO memberDTO) throws Exception {
-		return sqlSession.selectList(NAMESPACE+"getCartList");
+		return sqlSession.selectList(NAMESPACE+"getCartList", memberDTO);
 	}
 	
 	public int setCartItem(CartDTO cartDTO) {

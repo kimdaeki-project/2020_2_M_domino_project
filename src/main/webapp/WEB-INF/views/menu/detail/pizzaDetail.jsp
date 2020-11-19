@@ -549,10 +549,10 @@
 	})
 	
 	$("#btn-to-cart").click(function(){
-		var member_id = "${member.member_id}";
+		var member_num = "${member.member_num}";
 		// not logged in -> to login page
-		console.log(member_id)
-		if(member_id == ""){
+		console.log(member_num)
+		if(member_num == ""){
 				location.href = '/t1/member/memberLogin'
 				alert("로그인이 필요한 기능입니다.")			
 		}else{
