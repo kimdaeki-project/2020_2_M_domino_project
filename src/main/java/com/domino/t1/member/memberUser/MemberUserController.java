@@ -29,6 +29,18 @@ public class MemberUserController {
 	
 	@Autowired
 	private MemberUserService memberService;
+	
+	@GetMapping("memberSearchPw")
+	public ModelAndView getMemberSearchPw(Pager pager) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("search pw");
+		
+		List<MemberDTO> ar = memberService.getMemberList(pager);
+		
+		mv.addObject("dto", ar);
+		mv.setViewName("member/memberSearchPw");
+		return mv;
+	}
 		
 	@GetMapping("memberSearchView")
 	public ModelAndView getMemberSearchView() throws Exception{

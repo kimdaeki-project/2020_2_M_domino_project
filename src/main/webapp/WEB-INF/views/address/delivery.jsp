@@ -94,10 +94,10 @@
 		var road = $("#roadFullAddr").val();
 		
 		if(road == '') {
-			alert("배달 주소를 입력해주세요")
-			location.href = "./delivery";
-			
-		}else{
+				alert("배달 주소를 입력해주세요")
+				location.href = "./delivery";
+				
+			}else{
 			$("#form").submit();
 		}
 		
