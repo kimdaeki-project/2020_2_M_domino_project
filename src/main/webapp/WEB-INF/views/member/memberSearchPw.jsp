@@ -113,7 +113,7 @@
           <h4 class="modal-title">회원정보 인증</h4>
         </div>
         <div class="modal-body">
-        <form action="./memberSearch" method="post">
+        <form action="./memberSearchPw" method="post">
         <table>
 		<tr>
 			<td>이름</td><td><input type="text" name="member_name"></td>
@@ -133,7 +133,7 @@
 			<td>휴대전화</td><td><input type="text" name="member_phone"></td>
 		</tr>		
 		</table>
-		<button type="submit" class="btn-default">아이디 찾기</button>
+		<button type="submit" class="btn-default">비밀번호 찾기</button>
 		</form>
         </div>
         <div class="modal-footer">

@@ -30,6 +30,14 @@ public class MemberUserController {
 	@Autowired
 	private MemberUserService memberService;
 	
+	@PostMapping("memberSearchPw")
+	public ModelAndView getMemberSearchPw() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("search pw post");
+		
+		return mv;
+	}
+	
 	@GetMapping("memberSearchPw")
 	public ModelAndView getMemberSearchPw(Pager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();
