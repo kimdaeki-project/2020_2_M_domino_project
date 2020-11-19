@@ -76,7 +76,7 @@
 							</ul>
 							
 							<div class="addr-limit">
-								* 배달 주소는 최대 10개까지만 등록 가능합니다.
+							* 배달 주소는 최대 10개까지만 등록 가능합니다.
 							</div>
 						</div>
 					</div>
@@ -89,6 +89,8 @@
 <script>
 
 // Add active class to the current button (highlight it)
+
+	
 	var header = document.getElementById("select");
 	var btns = header.getElementsByClassName("order-btn");
 	for (var i = 0; i < btns.length; i++) {

@@ -72,8 +72,18 @@ public class AddressController {
 		System.out.println("delivery 2");
 		int result = addressService.setMemberAddress(addressDTO);
 		
+		String message = "배달 주소를 입력해주세요.";
+		System.out.println("Result : "+result);
+		if (result > 0) {
+			mv.setViewName("redirect:./deliveryAfter");
+		}
+			mv.addObject("msg", message);
+			mv.addObject("path", "../");
+			
+			mv.setViewName("common/result");
 		
-		mv.setViewName("redirect:./deliveryAfter");
+		
+	
 		
 		return mv;
 	}

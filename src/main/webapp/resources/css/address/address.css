@@ -150,6 +150,7 @@
 	.tab-content .addr-list {
 		width: 100%;
 		height: auto;
+		padding:10px 105px ;
 		display: inline-block;
 	}
 	
@@ -172,14 +173,13 @@
 	
 	.addr-list .reg_addr {
 		width: 100%;
-		height: 104px;
 		margin: 20px 0;
-		text-align: center;
 		margin-bottom: 20px;
 		font-size: 20px;
 		color: #111;
 		font-weight: 600;
 		line-height: 30px;
+		
 	}
 	
 	.add-addr-wrap {
@@ -206,7 +206,7 @@
 	
 	.add-addr-wrap .addr-limit {
 		display: inline-block;
-		width: 251.94px;
+		width: 260px;
 		height: 55px;
 		color: #FF752D;
 		font-size: 14px;
@@ -593,7 +593,7 @@
 	/**/
 	.tab-content .addr-list {
 		width: 100%;
-		height: 249px;
+		
 		display: inline-block;
 	}
 	
@@ -964,6 +964,7 @@
 		background-color: #888888;
 		margin-right: 4px;
 	}
+	
 	.br-detail .btn.type2 {
 		display: inline-block;
 		background-color: #111111;
@@ -971,12 +972,17 @@
 	
 	.addChk{
 		float: left;
+		width: 100%;
 		padding-bottom: 30px;
 				
 	}
 	
 	#delAdd{
 		margin-left: 100px;
+	}
+	
+	.delAdd{
+		float: right;
 	}
 	
 

@@ -50,8 +50,7 @@
 							</a>
 						</div>
 						<div class="addr-list">
-							<ul>
-								<li class="addLine">
+						
 									<div class="reg_addr">
 											<c:forEach items="${list}" var="dto">
 												<div class="addChk"><input type="radio" value="${dto.address_num}" name="roadFullAddr" id="adNum">${dto.roadFullAddr}<input type="button" value="X" class="delAdd"></div>
@@ -59,11 +58,9 @@
 											</c:forEach>
 																				
 									</div>
-									
-								</li>
-														
-							</ul>
-							
+						</div>
+						<div>		
+
 							<div class="add-addr-wrap">
 								<a href="#" class="btn-type-brd2" id="add_addr">
 									+ 배달 주소 등록
