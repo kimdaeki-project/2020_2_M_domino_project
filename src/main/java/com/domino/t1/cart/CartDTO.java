@@ -9,16 +9,6 @@ public class CartDTO extends ItemDTO{
 	private long cart_group_id;
 	private long cart_quantity;
 	private String item_size;
-	
-	// for dough
-	private String dough_short_name;
-	
-	public String getDough_short_name() {
-		return dough_short_name;
-	}
-	public void setDough_short_name(String dough_short_name) {
-		this.dough_short_name = dough_short_name;
-	}
 	public long getCart_item_id() {
 		return cart_item_id;
 	}

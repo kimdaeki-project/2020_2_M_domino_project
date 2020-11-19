@@ -28,7 +28,6 @@
 		<typeAlias type="com.domino.t1.board.news.dominoNews.DominoNewsDTO" alias="DominoNewsDTO"/>
 		<typeAlias type="com.domino.t1.board.news.press.PressDTO" alias="PressDTO"/>
 		<typeAlias type="com.domino.t1.board.file.BoardFileDTO" alias="BoardFileDTO"/>
-		<typeAlias type="com.domino.t1.coupon.CouponDTO" alias="CouponDTO"/>
 		
 		<!-- order related aliases -->
 		<typeAlias type="com.domino.t1.coupon.CouponDTO" alias="CouponDTO"/>
@@ -39,10 +38,6 @@
 		<typeAlias type="com.domino.t1.address.pickup.AddressPickupDTO" alias="AddressPickupDTO"/>
 		<typeAlias type="com.domino.t1.address.AddressDTO" alias="AddressDTO"/>
 		
-		
-		<!-- cart related aliases -->
-		<typeAlias type="com.domino.t1.cart.CartDTO" alias="CartDTO" />
-		<typeAlias type="com.domino.t1.cart.CartDAO" alias="CartDAO" />
 	</typeAliases>
 	
 </configuration>

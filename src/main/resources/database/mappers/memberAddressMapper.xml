@@ -5,12 +5,16 @@
     
 <mapper namespace="com.domino.t1.address.AddressDAO">
 
+	<delete id="setAddressDelete" parameterType="AddressDTO">
+		delete member_address where address_num = #{address_num} 
+	</delete>
+
 	<select id="getMemberAddress" parameterType="AddressDTO" resultType="AddressDTO">
-		select * from member_address where member_num = #{member_num} order by member_num desc
+		select * from member_address where member_num = #{member_num} order by address_num desc
 	</select>
 
 	<insert id="setMemberAddress" parameterType="AddressDTO">
-		insert into member_address values(#{member_num}, #{roadFullAddr})
+		insert into member_address values(#{member_num}, #{roadFullAddr}, address_num_seq.nextval)
 	</insert>
 
 </mapper>

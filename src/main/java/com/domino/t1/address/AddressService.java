@@ -13,6 +13,10 @@ public class AddressService {
 	@Autowired
 	private AddressDAO addressDAO;
 	
+	public int setAddressDelete(AddressDTO addressDTO) throws Exception{
+		return addressDAO.setAddressDelete(addressDTO);
+	}
+	
 	public List<AddressDTO> getMemberAddress(AddressDTO addressDTO) throws Exception{
 		return addressDAO.getMemberAddress(addressDTO);
 	}
