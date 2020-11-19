@@ -11,24 +11,19 @@
 	.level {
 		display: none;
 	}
-	
 	.join_input{
 			border-bottom: 2px solid #f5f5f5;
 			padding: 2% 0;
 		}
-		
 	.join_input input{
 		height: 42px;
-	}
-		
+	}	
 	.join_text{
 		padding-left: 0;
 		text-align: left;
 		font-size: 17px;
 	}
-	
-	
-	
+
 </style>
   <c:import url="../template/bootstrap.jsp"></c:import>
   <link href ="../resources/css/common/default.css" rel="stylesheet">
@@ -55,7 +50,15 @@
 			<div class="col-sm-12 join_input">
 			    <label class="col-sm-2 join_text" for="name">이름</label>
 			    <div class="col-sm-4">
-			       <input type="text" id="name" name="member_name" class="form-control empty" >
+			    	<c:choose>
+						<c:when test="${sessionNick != null}">
+						  <input type="text" id="name" name="member_name" class="form-control empty" value="${sessionNick}" readonly="readonly">
+						</c:when>
+						
+						<c:otherwise>
+							<input type="text" id="name" name="member_name" class="form-control empty">
+						</c:otherwise>
+					</c:choose>
 			       <div class="emptyResult"></div>
 			    </div>
 			 </div>
@@ -63,7 +66,15 @@
 			 <div class="col-sm-12 join_input">
 			    <label class="col-sm-2 join_text" for="id">아이디</label>
 			    <div class="col-sm-4">
-			       <input type="text" id="id" name="member_id" class="form-control empty" >
+			    	<c:choose>
+						<c:when test="${sessionId != null}">
+						  <input type="text" id="id" name="member_id" class="form-control empty" value="${sessionId}" readonly="readonly">
+						</c:when>
+						
+						<c:otherwise>
+						  <input type="text" id="id" name="member_id" class="form-control empty">
+						</c:otherwise>
+					</c:choose> 
 			      <div id="idResult"></div>
 			    </div>
 			 </div>
@@ -71,14 +82,30 @@
 			 <div class="col-sm-12 join_input">
 			    <label class="col-sm-2 join_text" for="pw">비밀번호</label>
 			    <div class="col-sm-4">
-			       <input type="password" id="pw" name="member_pw" class="form-control empty" >
+			    	<c:choose>
+						<c:when test="${sessionId != null}">
+						  <input type="password" id="pw" name="member_pw" class="form-control empty" value="${sessionId}" readonly="readonly">
+						</c:when>
+						
+						<c:otherwise>
+						  <input type="password" id="pw" name="member_pw" class="form-control empty">
+						</c:otherwise>
+					</c:choose>
 			    </div>
 			 </div>
 			 
 			  <div class="col-sm-12 join_input">
 			    <label class="col-sm-2 join_text" for="pw2">비밀번호 확인</label>
 			    <div class="col-sm-4">
-			       <input type="password" id="pw2" name="member_pw2" class="form-control empty" >
+			    	<c:choose>
+						<c:when test="${sessionId != null}">
+						  <input type="password" id="pw2" name="member_pw2" class="form-control empty" value="${sessionId}" readonly="readonly">
+						</c:when>
+						
+						<c:otherwise>
+						 <input type="password" id="pw2" name="member_pw2" class="form-control empty" >
+						</c:otherwise>
+					</c:choose>
 			       <div id="pwResult"></div>
 			    </div>
 			 </div>
@@ -103,12 +130,18 @@
 			  <div class="col-sm-12 join_input">
 			    <label class="col-sm-2 join_text" for="email">이메일 </label>
 			    <div class="col-sm-4">
-			      <input type="email" name="member_email" id="email" >
-			      <input type="button" id="btnEmail" value="중복확인" class="checkButt">
+			    	<c:choose>
+						<c:when test="${sessionEmail != null}">
+						   <input type="email" name="member_email" id="email" class="form-control empty" value="${sessionEmail}" readonly="readonly">
+						</c:when>
+						<c:otherwise>
+						  <input type="email" name="member_email" id="email" class="form-control empty" >
+						  <input type="button" id="btnEmail" value="중복확인" class="checkButt">
+						</c:otherwise>
+					</c:choose>
 			      <div id="emailResult"></div>
 			    </div>
 			 </div>
-			 
 			 
 			 <div class="form-group level">
 				<label for="level" class="labelUpdate">등급 </label>
@@ -172,6 +205,7 @@
 </body>
 <script type="text/javascript">
 
+
 	$("#checkAll2").click(function() {
 		if($("#checkAll2").is(":checked")){
 			$(".chk2").prop("checked",true);
@@ -202,6 +236,9 @@
 	if($("input[type=checkbox]").prop("checked", false)) {
 		$(".chk").val(0);
 	}
+
+	
+if(${sessionId = null}){
 	
 	var idCheck=false;
 	var pwCheck=false;
@@ -318,6 +355,46 @@
 			$("#emailResult").removeClass("emailCheck0").addClass("emailCheck1");
 		}
 	});
+	
+}
+else{
+	
+	$("#btn").click(function() {
+		emptyCheck();
+		if(phoneCheck&&dateCheckResult){
+			$("#frm").submit();
+		}else {
+			alert("필수 항목을 입력해주세요.")
+		}
+	});
+	
+	$("#btnPhone").click(function () {
+		phoneCheck=false;
+		var phone = $("#phone").val();
+		if(phone !=''){
+			$.get("./memberPhoneCheck?member_phone="+phone,function(data){
+				data=data.trim();
+				var str = "중복된  전화번호 입니다."
+				
+				$("phoneResult").removeClass("phoneCheck0").addClass("phoneCheck1");
+				if(data==0){
+					str="사용 가능한 전화번호 입니다.";
+					$("#phoneResult").removeClass("phoneCheck1").addClass("phoneCheck0");
+					phoneCheck=true;
+				}
+				$("#phoneResult").html(str);
+			});
+		}else{
+			$("#phoneResult").html("전화번호를  입력후 중복검사를 해주세요.");
+			$("#phoneResult").removeClass("phoneCheck0").addClass("phoneCheck1");
+		}
+	});
+	
+	
+	
+	
+	
+}
 
 
 

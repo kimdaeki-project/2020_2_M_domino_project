@@ -22,7 +22,7 @@
 	      
 	      	<c:otherwise> 
 	      		<li><a href="${pageContext.request.contextPath}/member/memberLogin"><span class="glyphicon"></span> 로그인</a></li>
-	       		<li><a href="${pageContext.request.contextPath}/member/memberJoin"><span class="glyphicon"></span> 회원가입</a></li>	
+	       		<li><a href="#" data-toggle="modal" data-target="#myModalJoin"><span class="glyphicon"></span> 회원가입</a></li>	
 	      	</c:otherwise>
 	      </c:choose>
 	        
@@ -30,6 +30,34 @@
 	    </div>
 	</nav>
 </header>
+
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModalJoin" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <div><a href="${pageContext.request.contextPath}/member/memberJoin"><span class="glyphicon"></span>회원가입</a></div>
+          <div><a href="${pageContext.request.contextPath}/login">소셜 회원가입</a></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+
+
 
 
 <header class="header2 lnb" style="border-bottom: 1px solid #e4e4e4;">
