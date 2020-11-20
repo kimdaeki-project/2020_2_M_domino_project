@@ -87,7 +87,7 @@ public class CartController {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		// get CartDTO list of the user
-		List<CartDTO> arr = cartService.getCartList(memberDTO);
+		List<CartDTO> arr = cartService.getCartItemList(memberDTO);
 		mv.addObject("cartList", arr);
 		mv.setViewName("cart/detail");
 
@@ -103,8 +103,8 @@ public class CartController {
 		return list;
 	}
 
-	@GetMapping("toCheckout")
-	public ModelAndView toCheckoutPage(HttpSession session) throws Exception {
+	@GetMapping("toCheckoutTest")
+	public ModelAndView toCheckoutPageTest(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		long memberNum = 999;
@@ -136,7 +136,7 @@ public class CartController {
 				cartDTO.setItem_size("M");
 			}
 			if(i == 1) {
-				cartDTO.setDough_short_name("도우 짧은이름1");
+				cartDTO.setDough_name_short("도우 짧은이름1");
 			}
 			pizzaGroup1.add(cartDTO);
 		}
@@ -187,7 +187,7 @@ public class CartController {
 				cartDTO.setItem_size("L");
 			}
 			if(i == 1) {
-				cartDTO.setDough_short_name("도우 짧은이름2");
+				cartDTO.setDough_name_short("도우 짧은이름2");
 			}
 			pizzaGroup2.add(cartDTO);
 		}

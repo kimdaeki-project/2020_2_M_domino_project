@@ -13,8 +13,8 @@ public class CartService {
 	@Autowired
 	private CartDAO cartDAO;
 
-	public List<CartDTO> getCartList(MemberDTO memberDTO) throws Exception {
-		return cartDAO.getCartList(memberDTO);
+	public List<CartDTO> getCartItemList(MemberDTO memberDTO) throws Exception {
+		return cartDAO.getCartItemList(memberDTO);
 	}
 
 	public int setPizzaGroupCart(List<String[]> arr, MemberDTO memberDTO) throws Exception {
