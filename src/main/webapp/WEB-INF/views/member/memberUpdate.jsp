@@ -152,15 +152,15 @@
 		var pw2 = $("#pw2").val();
 		pwCheck=false;
 		if(pw2==''){
-			$("#pwSetResult").html("비밀번호를 변경하려면 입력하세요.");
+			$("#pwSetResult").html("비밀번호를 변경하려면 입력하세요.변경하지 않으려면 공백");
 			$("#pwSetResult").removeClass("pwCheck0").addClass("pwCheck1");
 			pwCheck=true;
 		}else if(pw1 == pw2){
-			$("#pwSetResult").html("Password가 일치 합니다");
+			$("#pwSetResult").html("비밀번호가 일치 합니다");
 			$("#pwSetResult").removeClass("pwCheck1").addClass("pwCheck0");
 			pwCheck=true;
 		}else {
-			$("#pwSetResult").html("Password가 일치 하지 않습니다");
+			$("#pwSetResult").html("비밀번호가 일치 하지 않습니다");
 			$("#pwSetResult").removeClass("pwCheck0").addClass("pwCheck1");
 		}
 	});
