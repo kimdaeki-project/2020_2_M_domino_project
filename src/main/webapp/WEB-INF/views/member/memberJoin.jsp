@@ -278,7 +278,7 @@
 				
 				$("phoneResult").removeClass("phoneCheck0").addClass("phoneCheck1");
 				if(data==0){
-					str="사용 가능한 전화번호 입니다.";
+					str="중복되지 않은 전화번호 입니다.";
 					$("#phoneResult").removeClass("phoneCheck1").addClass("phoneCheck0");
 					phoneCheck=true;
 				}
@@ -301,7 +301,7 @@
 				
 				$("emailResult").removeClass("emailCheck0").addClass("emailCheck1");
 				if(data==0){
-					str="사용 가능한 이메일 입니다.";
+					str="중복되지 않은 이메일 입니다.";
 					$("#emailResult").removeClass("emailCheck1").addClass("emailCheck0");
 					emailCheck=true;
 				}
@@ -331,11 +331,11 @@
 		idExpCheck=false;
 		if(!passRule.test($("input[id='id']").val())) {
 			idExpCheck=false;
-		 	alert("사용할 수 없는 아이디")
+		 	alert("형식에 맞지않는 아이디입니다.")
 	    
 		}else{
 			idExpCheck=true;
-			alert("사용할 수 있는 아이디")
+			alert("사용할 수 있는 아이디입니다.")
 		}
 		
 	});
@@ -344,11 +344,11 @@
 		pwExpCheck=false;
 		if(!regexPw.test($("input[id='pw2']").val())) {
 			pwExpCheck=false;
-		 	alert("사용할 수 없는 비밀번호")
+		 	alert("형식에 맞지않는 비밀번호입니다.")
 	    
 		}else{
 			pwExpCheck=true;
-			alert("사용할 수 있는 비밀번호")
+			alert("사용할 수 있는 비밀번호입니다.")
 		}
 	});
 	
@@ -356,7 +356,7 @@
 		phoneExpCheck=false;
 		if(!regExpPhone.test($("input[id='phone']").val())) {
 			phoneExpCheck=false;
-		 	alert("사용할 수 없는 전화번호 형식입니다.")
+		 	alert("형식에 맞지않는 전화번호입니다.")
 	    
 		}else{
 			phoneExpCheck=true;
@@ -369,7 +369,7 @@
 		emailExpCheck=false;
 		if(!regExpEmail.test($("input[id='email']").val())) {
 			emailExpCheck=false;
-		 	alert("사용할 수 없는 이메일 형식입니다.")
+		 	alert("형식에 맞지않는 이메일입니다.")
 	    
 		}else{
 			emailExpCheck=true;

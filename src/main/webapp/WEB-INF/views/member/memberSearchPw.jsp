@@ -164,7 +164,7 @@
   </div>
   
 	<c:forEach items="${dto}" var="list">
-		<input type="text" value="${list.member_id}" class="memId" id="">
+		<input type="text" value="${list.member_id}" class="memId" id="noneView">
 	</c:forEach>
 	
 <script type="text/javascript">

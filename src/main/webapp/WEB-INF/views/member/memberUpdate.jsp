@@ -74,12 +74,12 @@
 			
 		<div class="form-group update_input">
 			<label for="pw2" class="labelUpdate">새 비밀번호 </label>
-			<input type="password" id="pw1">
+			<input type="password" id="pw1" placeholder="특수문자, 문자 , 숫자  8~15자리 이내의 암호">
 		</div>
 			
 		<div class="form-group update_input">
 			<label for="pw3" class="labelUpdate">새 비밀번호 확인 </label>
-			<input type="password" name="member_pw" id="pw2">
+			<input type="password" name="member_pw" id="pw2" placeholder="특수문자, 문자 , 숫자  8~15자리 이내의 암호">
 			<div id="pwSetResult"></div>
 		</div>
 			
