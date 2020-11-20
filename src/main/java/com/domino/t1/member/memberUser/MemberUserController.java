@@ -35,7 +35,7 @@ public class MemberUserController {
 		ModelAndView mv = new ModelAndView();
 		int result = memberService.setPassword(memberDTO);
 		
-		mv.setViewName("member/memberLogin");
+		mv.setViewName("redirect:./memberLogin");
 		
 		return mv;
 	}
@@ -53,9 +53,17 @@ public class MemberUserController {
 		System.out.println("search pw post");
 		
 		memberDTO = memberService.getMemberSearchPw(memberDTO);
+		String message = "입력한 정보가 틀립니다. 다시 확인해주세요.";
+		if(memberDTO != null) {
+			mv.addObject("dto", memberDTO);
+			mv.setViewName("member/memberSearchViewPw");
+		}else {
+			mv.addObject("msg", message);
+			mv.addObject("path", "./memberSearchPw");
+			mv.setViewName("common/result");
+		}
 		
-		mv.addObject("dto", memberDTO);
-		mv.setViewName("member/memberSearchViewPw");
+		
 		
 		return mv;
 	}
@@ -86,8 +94,17 @@ public class MemberUserController {
 		ModelAndView mv = new ModelAndView();
 		memberDTO = memberService.getMemberSearch(memberDTO);
 		
-		mv.addObject("dto", memberDTO);
-		mv.setViewName("member/memberSearchView");
+		String message = "입력한 정보가 틀립니다. 다시 확인해주세요.";
+		if(memberDTO != null) {
+			mv.addObject("dto", memberDTO);
+			mv.setViewName("member/memberSearchView");
+			
+		}else {
+			mv.addObject("msg", message);
+			mv.addObject("path", "./memberSearch");
+			mv.setViewName("common/result");
+		}
+		
 		
 		return mv;
 	}
