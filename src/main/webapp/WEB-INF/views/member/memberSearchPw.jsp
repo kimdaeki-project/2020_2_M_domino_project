@@ -164,23 +164,33 @@
   </div>
   
 	<c:forEach items="${dto}" var="list">
-		<input type="text" value="${list.member_id}" class="memId" id="noneView">
+		<input type="text" value="${list.member_id}" class="memId" id="">
 	</c:forEach>
 	
 <script type="text/javascript">
-	$(".btn-lg").click(function() {
-		var id = $(".inputId").val();
-		var mid = $(".memId").val();
+	
+	$(".btn-lg").click(function () {
 		
-		if(id !== '' && id == mid){
-			alert("존재하는 아이디입니다. 비밀번호 찾기를 진행합니다.")
-			
+		var id = $(".inputId").val();
+		
+		if(id !=''){
+			$.get("./memberIdCheck?member_id="+id,function(data){
+				if (data==1){
+				data=data.trim();
+				alert("존재하는 아이디입니다. 비밀번호 찾기를 진행합니다.")
+				}else if(data==0){
+					alert("존재하는 아이디를 입력하세요");
+					location.href = "./memberSearchPw";
+				}
+				
+			});
 		}else{
-			alert("존재하는 아이디를 입력하세요")
+			alert("아이디를 입력해주세요.")
 			location.href = "./memberSearchPw";
 		}
-		
 	});
+
+
 	
 	$("#checkButt").click(function () {
 		var name = $("#member_name").val();

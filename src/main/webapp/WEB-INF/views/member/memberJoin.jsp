@@ -254,7 +254,7 @@
 				
 				$("idResult").removeClass("idCheck0").addClass("idCheck1");
 				if(data==0){
-					str="사용 가능한 ID 입니다.";
+					str="중복되지 않은 ID 입니다.";
 					$("#idResult").removeClass("idCheck1").addClass("idCheck0");
 					idCheck=true;
 				}
