@@ -157,6 +157,12 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8359d6b1a5e0267b346e7ce57922d7f4&libraries=services"></script>
 <script>
 
+	var pop-layer = document.getElementById("")
+	$(".btn-type-brd2").click(function(){
+	
+	pop-layer.style.display = "block"});
+
+
 	var viewAllBranch = document.getElementById("view-all-branch")
 	var btn = document.getElementById("viewAll");
 	
@@ -286,6 +292,15 @@
 	
 	// 마커가 지도 위에 표시되도록 설정합니다
 	marker.setMap(map);  
+	
+	var viewAllBranch = document.getElementById("view-all-branch")
+	var pop-layer = document.getElementsByVClassName("pop-layer")
+	
+	setTimeout(function() {
+	    map.relayout();
+	    map.setCenter(new kakao.maps.LatLng(lat, lng));
+	    // map.setLevel(2); 필요하면 레벨조정
+	}, 100);
 	
 </script>
 <!-- ===== 지도 ===== -->
