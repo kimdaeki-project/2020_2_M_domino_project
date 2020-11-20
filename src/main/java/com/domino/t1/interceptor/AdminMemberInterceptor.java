@@ -12,7 +12,7 @@ import com.domino.t1.member.MemberDTO;
 
 
 @Component
-public class NewsMemberInterceptor extends HandlerInterceptorAdapter {
+public class AdminMemberInterceptor extends HandlerInterceptorAdapter {
 	
  @Override
 public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)

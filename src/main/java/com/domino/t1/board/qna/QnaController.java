@@ -20,9 +20,6 @@ public class QnaController {
 	@Autowired
 	private QnaService qnaService;
 	
-	@Autowired
-	private FileSaver fileSaver;
-	
 	@GetMapping("qnaWrite")
 	public ModelAndView setInsert() throws Exception{
 		ModelAndView mv = new ModelAndView();
