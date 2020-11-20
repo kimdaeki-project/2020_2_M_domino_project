@@ -42,7 +42,7 @@
 					<div class="tab-content" id="pickup">
 						<div class="spot-area">
 							<span class="spot left-spot">
-								<img alt="`" src="../resources/images/address/sp_driving_pu_t1.png" style="width: 27px; height: 19px;">도미노 드라이빙 픽업 서비스 이용
+								<img alt="" src="../resources/images/address/sp_driving_pu_t1.png" style="width: 27px; height: 19px;">도미노 드라이빙 픽업 서비스 이용
 							</span>
 							
 							<a href="#" class="spot right-spot">
@@ -82,7 +82,7 @@
 					<!-- map -->
 					<div class="store-map-wrap">
 						<div class="store-map">
-							<div class="map-canvas" id="map" style="width: 750px; height: 920px;"></div>
+							<div class="map-canvas" id="map"></div>
 						</div>
 					</div>
 					
@@ -142,7 +142,7 @@
 							<div class="address-wrap branch">
 								<div class="form-group srch-type">
 									<div class="form-item" id="search_branch">
-										<input type="text" id="branch_name" placeholder="매장명을 입력하세요.">
+										<input type="text" id="branch_name" placeholder="	매장명을 입력하세요.">
 									</div>
 									<div class="form-region" id="btn-search">
 										<button type="button" class="btn-search">
@@ -197,7 +197,7 @@
 <script type="text/javascript"> <!-- 팝업 모달 close -->
 
 	var viewSearch = document.getElementById("pop-map")
-	
+	/*  */
 	function popMap() {
 		viewSearch.style.display='block'
 	}
@@ -250,12 +250,8 @@
 	
 	//지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 	var map = new kakao.maps.Map(mapContainer, mapOption); 
-	/*     
-	mapContainer.style.width = '750px';
-	mapContainer.style.height = '920px';
-	 */
+	
     $("#add_addr").click(function() {
-        $("#map").toggle();
         map.relayout();
         map.setCenter(new daum.maps.LatLng(37.564713, 126.993173))
     });
