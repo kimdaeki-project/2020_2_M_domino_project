@@ -63,7 +63,7 @@
 			 <div class="col-sm-12 join_input">
 			    <label class="col-sm-2 join_text" for="id">아이디</label>
 			    <div class="col-sm-4">
-			       <input type="text" id="id" name="member_id" class="form-control empty" >
+			       <input type="text" id="id" name="member_id" class="form-control empty" placeholder="숫자와 문자 포함   6~12자리">
 			      <div id="idResult"></div>
 			    </div>
 			 </div>
@@ -71,14 +71,14 @@
 			 <div class="col-sm-12 join_input">
 			    <label class="col-sm-2 join_text" for="pw">비밀번호</label>
 			    <div class="col-sm-4">
-			       <input type="password" id="pw" name="member_pw" class="form-control empty" >
+			       <input type="password" id="pw" name="member_pw" class="form-control empty" placeholder="특수문자 , 문자 , 숫자 포함  8~15자리 이내의 암호">
 			    </div>
 			 </div>
 			 
 			  <div class="col-sm-12 join_input">
 			    <label class="col-sm-2 join_text" for="pw2">비밀번호 확인</label>
 			    <div class="col-sm-4">
-			       <input type="password" id="pw2" name="member_pw2" class="form-control empty" >
+			       <input type="password" id="pw2" name="member_pw2" class="form-control empty" placeholder="특수문자 , 문자 , 숫자 포함  8~15자리 이내의 암호">
 			       <div id="pwResult"></div>
 			    </div>
 			 </div>
@@ -86,7 +86,7 @@
 			 <div class="col-sm-12 join_input">
 			    <label class="col-sm-2 join_text" for="date">생년월일</label>
 			    <div class="col-sm-4">
-			       <input type="date" id="date" name="member_date" class="form-contro lempty" >
+			       <input type="date" id="date" name="member_date" class="form-contro lempty">
 			       <div class="emptyResult"></div>
 			    </div>
 			 </div>
@@ -94,7 +94,7 @@
 			 <div class="col-sm-12 join_input">
 			    <label class="col-sm-2 join_text" for="phone">휴대전화 </label>
 			    <div class="col-sm-4">
-			       <input type="text" name="member_phone" id="phone">
+			       <input type="text" name="member_phone" id="phone" placeholder="ex) 010-xxxx-xxxx">
 			       <input type="button" id="btnPhone" value="중복확인" class="checkButt" style= "width:110px; height:42px;">
 			      <div id="phoneResult"></div>
 			    </div>
@@ -103,7 +103,7 @@
 			  <div class="col-sm-12 join_input">
 			    <label class="col-sm-2 join_text" for="email">이메일 </label>
 			    <div class="col-sm-4">
-			      <input type="email" name="member_email" id="email" >
+			      <input type="email" name="member_email" id="email" placeholder="ex) aaa@gmail.com">
 			      <input type="button" id="btnEmail" value="중복확인" class="checkButt">
 			      <div id="emailResult"></div>
 			    </div>
@@ -204,10 +204,10 @@
 	
 	$("#btn").click(function() {
 		emptyCheck();
-		if(idCheck && pwCheck && phoneCheck && emailCheck && emptyCheckResult){
+		if(idCheck && pwCheck && phoneCheck && emailCheck && emptyCheckResult && idExpCheck && pwExpCheck && phoneExpCheck && emailExpCheck){
 			$("#frm").submit();
 		}else {
-			alert("필수 항목을 입력해주세요.")
+			alert("필수 항목을 입력 및 입력 형식을 지켜주세요.")
 		}
 	});
 	
@@ -312,6 +312,67 @@
 		}
 	});
 
+	var passRule = /^[A-Za-z0-9]{6,12}$/;//아이디 정규식 숫자와 문자 포함 형태의 6~12자리 이내의 아이디 정규식
+	var regexPw = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;// 비밀번호 정규식 특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식
+	var regExpEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
+	var regExpPhone = /^\d{3}-\d{3,4}-\d{4}$/;//핸드폰 번호 정규식
+	
+	var idExpCheck=false;
+	var pwExpCheck=false
+	var phoneExpCheck=false;
+	var emailExpCheck=false;
+	
+	$("#id").blur(function() {
+		idExpCheck=false;
+		if(!passRule.test($("input[id='id']").val())) {
+			idExpCheck=false;
+		 	alert("사용할 수 없는 아이디")
+	    
+		}else{
+			idExpCheck=true;
+			alert("사용할 수 있는 아이디")
+		}
+		
+	});
+	
+	$("#pw2").blur(function() {
+		pwExpCheck=false;
+		if(!regexPw.test($("input[id='pw2']").val())) {
+			pwExpCheck=false;
+		 	alert("사용할 수 없는 비밀번호")
+	    
+		}else{
+			pwExpCheck=true;
+			alert("사용할 수 있는 비밀번호")
+		}
+	});
+	
+	$("#phone").blur(function() {
+		phoneExpCheck=false;
+		if(!regExpPhone.test($("input[id='phone']").val())) {
+			phoneExpCheck=false;
+		 	alert("사용할 수 없는 전화번호 형식입니다.")
+	    
+		}else{
+			phoneExpCheck=true;
+			alert("사용할 수 있는 전화번호 형식입니다.")
+		}
+	});
+	
+	
+	$("#email").blur(function() {
+		emailExpCheck=false;
+		if(!regExpEmail.test($("input[id='email']").val())) {
+			emailExpCheck=false;
+		 	alert("사용할 수 없는 이메일 형식입니다.")
+	    
+		}else{
+			emailExpCheck=true;
+			alert("사용할 수 있는 이메일 형식입니다.")
+		}
+	});
+	
+	
 
 
 
