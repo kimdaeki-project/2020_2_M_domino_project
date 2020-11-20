@@ -376,6 +376,7 @@
 	.branch-addr-result dl .tel {
 		margin-left: 5px;
 		font-size: 14px;
+		background-color: #ffff00;
 	}
 	
 	.branch-addr-result dl > .br-addr {

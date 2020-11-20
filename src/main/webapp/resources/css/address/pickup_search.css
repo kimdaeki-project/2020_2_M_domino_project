@@ -304,9 +304,50 @@
 		height: 93px;
 		padding-top: 10px;
 		margin: 0;
-		background-color: #8080c0;
+		background-color: #c0c0c0;
 	}
 	
+	.branch-addr-result dl dt {
+		width: 200px;
+		height: 16px;
+		font-size: 14px;
+		color: #111;
+		background-color: #ff8080;
+		line-height: 1;
+	}
+	
+	.branch-addr-result dl .tel {
+		margin-left: 5px;
+		font-size: 14px;
+		background-color: #ffff00;
+	}
+	
+	.branch-addr-result dl > .br-addr {
+		width: 200px;
+		height: 22px;
+		margin-top: 8px;
+		color: #111;
+		font-size: 14px;
+		line-height: 22px;
+		background-color: #ff8000;
+	}
+	
+	.branch-addr-result dl > .hash {
+		width: 200px;
+		height: 22px;
+		margin-top: 15px;
+		font-size: 14px;
+		line-height: 20px;
+		color: #888888;
+		background-color: #80ffff;
+	}
+	
+	.branch-addr-result dl > .hash > span {
+		display: block;
+		width: 200px;
+		height: 22px;
+	}
+		
 	.branch-addr-result .salenames {
 	    display: inline-block;
 	    right: 0;
@@ -331,6 +372,20 @@
     	background-color: #043088;
 	}
 	
+	.branch-addr-result .salenames div span {
+		position: absolute;
+		width: 100%;
+		height: 48px;
+		background-color: #000;
+		font-size: 12px;
+		color: #fff;
+		line-height: 16px;
+		left: 0;
+	    top: 50%;
+	    transform: translateY(-50%);
+	    text-align: center;
+	}
+		
 	.branch-addr-result .br-detail {
 	    display: inline-block;
 	    width: 401px;
@@ -346,6 +401,7 @@
 		border: none;
     	padding: 0;
     	line-height: 32px;
+    	border-radius: 0;
 	}
 	
 	.br-detail #type1 {

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.domino.t1.branchInfo.BranchInfoDTO;
+import com.domino.t1.branchInfo.BranchInfoService;
 import com.domino.t1.member.MemberDTO;
 import com.domino.t1.member.address.MemberAddressDTO;
 import com.domino.t1.member.memberInquirly.MemberInquirlyDTO;
@@ -22,6 +23,9 @@ public class AddressController {
 	
 	@Autowired
 	private AddressService addressService;
+	/*
+	 * @Autowired private BranchInfoService branchInfoService;
+	 */
 	
 	@PostMapping("jusoPopup")
 	public ModelAndView getJusoPopup2() throws Exception{
@@ -93,22 +97,24 @@ public class AddressController {
 	public ModelAndView pickupAfter(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-//		BranchInfoDTO branchInfoDTO = (BranchInfoDTO)session.getAttribute();
+		BranchInfoDTO branchInfoDTO = (BranchInfoDTO)session.getAttribute("member");
 		
-		System.out.println("pickupAfter");
+		List<BranchInfoDTO> ar = addressService.getBranchInfo(branchInfoDTO);
+	
+		mv.addObject("list", ar);
 		mv.setViewName("address/pickupAfter");
 		
 		return mv;
 	}
 	
-	@PostMapping("pickupAfter")
+	@PostMapping("pickup")
 	public ModelAndView pickupAfter(BranchInfoDTO branchInfoDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		System.out.println("pickup after");
+		System.out.println("go pickup after");
 		int result = addressService.setBranchInfo(branchInfoDTO);
 		
-		mv.setViewName("address/pickupAfter");
+		mv.setViewName("redirect:./pickupAfter");
 		
 		return mv;
 	}
