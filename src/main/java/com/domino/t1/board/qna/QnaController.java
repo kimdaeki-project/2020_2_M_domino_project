@@ -10,12 +10,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.domino.t1.board.file.BoardFileDTO;
+import com.domino.t1.util.FileSaver;
+
 @Controller
 @RequestMapping("/qna/**")
 public class QnaController {
 	
 	@Autowired
 	private QnaService qnaService;
+	
+	@Autowired
+	private FileSaver fileSaver;
 	
 	@GetMapping("qnaWrite")
 	public ModelAndView setInsert() throws Exception{
@@ -41,6 +47,16 @@ public class QnaController {
 		
 		mv.setViewName("common/result");
 		return mv;	
+	}
+	
+	@GetMapping("fileDown")
+	public ModelAndView fileDown(BoardFileDTO boardFileDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		//mv.addObject("news", "press");
+		mv.addObject("fileDTO", boardFileDTO);
+		mv.setViewName("fileDown");
+		return mv;
 	}
 	
 }

@@ -26,6 +26,29 @@
 		<beans:property name="order" value="0"></beans:property>
 	</beans:bean>
 	
+	<beans:bean class="com.domino.t1.interceptor.NewsMemberInterceptor" id="newsMemberInterceptor"></beans:bean>
+	
+	<interceptors>
+	
+		<interceptor>
+			<mapping path="/dominoNews/*"/>
+			<mapping path="/press/*"/>
+			<exclude-mapping path="/dominoNews/dominoNewsList"/>
+			<exclude-mapping path="/dominoNews/dominoNewsSelect"/>
+			<exclude-mapping path="/press/pressList"/>
+			<exclude-mapping path="/press/pressSelect"/>
+			<beans:ref bean="newsMemberInterceptor"></beans:ref>
+		</interceptor>
+	
+	
+	
+	
+	
+	
+	</interceptors>
+	
+	
+	
 	
 	<context:component-scan base-package="com.domino.t1" />
 	

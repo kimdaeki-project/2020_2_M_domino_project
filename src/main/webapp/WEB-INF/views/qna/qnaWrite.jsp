@@ -198,7 +198,7 @@
 		<div class="col-sm-12" style="padding-top: 1%;">
 			<div class="privacy_chk" class="col-sm-3" style="float: right; padding: 0;">
 				<div class="form agree_form">
-					<div class="chk-box">
+					<div class="chk-box agree_chk_box">
 						<input type="radio" id="agree_yes" name="agree">
 						<label for="agree_yes" class="checkbox"></label>
 						<label for="agree_yes">동의함</label>
@@ -322,7 +322,7 @@
 			if($("#agree_yes").is(":checked") == false){
 				 agreeCheckResult = false;
 		         alert("약관동의를 해주세요");
-		         return;
+		         return false;
 				}
 		}
 	
@@ -338,7 +338,7 @@
 				if($("#phone").val().length==0){emptyCheckResult=false; $(".phoneResult").html("휴대전화번호를 입력해주세요."); 
 				$(".emptyResult").addClass("Check1"); $("#phone").focus(); return false; }
 				
-				if($("#email").val().length==0){emptyCheckResult=false; $(".eamilResult").html("※등록결과 및 답변은 이메일로 알려드리오니, 정확한 이메일을 기재하여 주시기 바랍니다."); 
+				if($("#email").val().length==0){emptyCheckResult=false; $(".emailResult").html("※등록결과 및 답변은 이메일로 알려드리오니, 정확한 이메일을 기재하여 주시기 바랍니다."); 
 				$(".emptyResult").addClass("Check1"); $("#email").focus(); return false; }
 				
 				if($("#qna_type").val().length==0){emptyCheckResult=false; $(".typeResult").html("유형을 선택하세요."); 

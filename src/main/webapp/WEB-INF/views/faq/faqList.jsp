@@ -183,10 +183,11 @@
 		 </c:forEach>	
 	</div>
 	
-	
-	<div  class="faq_control" style="float: right;">
-		<a href="./faqWrite">글작성</a>
-	</div>
+	<c:if test="${not empty member and member.member_id eq 'admin'}">
+		<div  class="faq_control" style="float: right;">
+			<a href="./faqWrite">글작성</a>
+		</div>
+	</c:if>
 	
 	</div>
 
