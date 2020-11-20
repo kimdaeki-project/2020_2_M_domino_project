@@ -56,7 +56,7 @@
 		<div class="myCheck2">회원정보를 정확히 기입하셔야 주문이나 이벤트에 대한 불이익이 없습니다.</div>
 	</div>
 	
-	<form action="./memberUpdate" method="post" class="form-horizontal">
+	<form action="./memberUpdate" method="post" class="form-horizontal" id="frm">
 		<div class="form-group update_input">
 			<label for="name" class="labelUpdate">이름 </label>
 			<input type="text" name="member_name" value="${member.member_name}" readonly="readonly">
@@ -74,12 +74,13 @@
 			
 		<div class="form-group update_input">
 			<label for="pw2" class="labelUpdate">새 비밀번호 </label>
-			<input type="password">
+			<input type="password" id="pw1">
 		</div>
 			
 		<div class="form-group update_input">
 			<label for="pw3" class="labelUpdate">새 비밀번호 확인 </label>
 			<input type="password" name="member_pw" id="pw2">
+			<div id="pwSetResult"></div>
 		</div>
 			
 		<div class="form-group update_input">
@@ -116,7 +117,7 @@
 		</div>
 
 	<div style="text-align: center;">
-		<input type="submit" value="수정하기" id="btnUpdate" class="btn btn-default">
+		<input type="button" value="수정하기" id="btnUpdate" class="btn btn-default">
 		<a href="./memberDelete" class="btn btn-default">회원탈퇴</a>
 	</div>
 	
@@ -128,10 +129,41 @@
 
 
 <script type="text/javascript">
+
+	var pwCheck=false;
+
 	$("#btnUpdate").click(function () {
 		if($("#pw2").val()=='') {
 			$("#pw2").val($("#pw").val());
+			pwCheck=true;
+		}
+		
+		if(pwCheck) {
+			$("#frm").submit();
+			alert("정보 수정이 완료되었습니다")
+		}else{
+			alert("비밀번호를 확인해주세요")
 		}
 	});
+	
+	
+	$("#pw2").blur(function() {
+		var pw1 = $("#pw1").val();
+		var pw2 = $("#pw2").val();
+		pwCheck=false;
+		if(pw2==''){
+			$("#pwSetResult").html("비밀번호를 변경하려면 입력하세요.");
+			$("#pwSetResult").removeClass("pwCheck0").addClass("pwCheck1");
+			pwCheck=true;
+		}else if(pw1 == pw2){
+			$("#pwSetResult").html("Password가 일치 합니다");
+			$("#pwSetResult").removeClass("pwCheck1").addClass("pwCheck0");
+			pwCheck=true;
+		}else {
+			$("#pwSetResult").html("Password가 일치 하지 않습니다");
+			$("#pwSetResult").removeClass("pwCheck0").addClass("pwCheck1");
+		}
+	});
+	
 </script>
 </html>
