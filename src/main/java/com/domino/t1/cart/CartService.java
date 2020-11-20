@@ -30,7 +30,7 @@ public class CartService {
 			if(item.length > 4) {
 				cartDTO.setItem_size(item[4]);
 			}
-			cartDAO.setCartItemWithCartGroupId(cartDTO);
+			cartDAO.setCartItem(cartDTO);
 		}
 	// 트랜잭션 처리 필요????
 		int result = 1;
@@ -43,6 +43,7 @@ public class CartService {
 			CartDTO cartDTO = new CartDTO();
 			cartDTO.setMember_num(memberNum);
 			cartDTO.setItem_id(Long.parseLong(item[0]));
+			cartDTO.setCart_group_id(cartDAO.getMaxCartGroupId(memberDTO) + 1);
 			cartDTO.setCart_quantity(Long.parseLong(item[2]));
 			cartDAO.setCartItem(cartDTO);
 		}

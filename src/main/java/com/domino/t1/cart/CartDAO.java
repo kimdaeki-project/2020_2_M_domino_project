@@ -23,11 +23,6 @@ public class CartDAO {
 		return sqlSession.insert(NAMESPACE+"setCartItem", cartDTO);
 	}
 
-	// insert a Cart record with given cart_group_id
-	public int setCartItemWithCartGroupId(CartDTO cartDTO) {
-		return sqlSession.insert(NAMESPACE+"setCartItemWithCartGroupId", cartDTO);
-	}
-
 	// get current maximum cart_group_id from given member's cart
 	public long getMaxCartGroupId(MemberDTO memberDTO) {
 		return sqlSession.selectOne(NAMESPACE+"getMaxCartGroupId", memberDTO);

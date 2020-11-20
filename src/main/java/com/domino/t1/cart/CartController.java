@@ -29,7 +29,7 @@ public class CartController {
 	private DetailService detailService;
 
 	// for pizza detail page -> cart
-	@PostMapping("addToCart/pizzaDetail")
+	@PostMapping("addToCart/pizza")
 	public ModelAndView setCartItems(HttpSession session,
 			@RequestParam String[] pizzaCart,
 			@RequestParam String[] doughCart,
@@ -62,7 +62,7 @@ public class CartController {
 	}
 
 	// for other items's detail page -> cart
-	@PostMapping("addToCart/itemDetail")
+	@PostMapping("addToCart/item")
 	public ModelAndView setCartItems(HttpSession session,
 			@RequestParam String[] sideDishCart,
 			@RequestParam String[] etcCart

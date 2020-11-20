@@ -18,27 +18,6 @@
 			cart_seq.NEXTVAL,
 			#{member_num},
 			#{item_id},
-			MAX(SELECT
-					CASE
-						WHEN (SELECT MAX(cart_group_id)
-							FROM cart
-							WHERE member_num = #{member_num})
-							IS NULL THEN 1
-					 	ELSE (SELECT MAX(cart_group_id)+1
-					 		FROM cart
-					 		WHERE member_num = #{member_num})
-					END AS cart_group_id
-				FROM cart
-				WHERE member_num = #{member_num}),
-			#{cart_quantity},
-			#{item_size, jdbcType=VARCHAR}
-		)
-	</insert>
-	<insert id="setCartItemWithCartGroupId" parameterType="CartDTO">
-		INSERT INTO cart VALUES(
-			cart_seq.NEXTVAL,
-			#{member_num},
-			#{item_id},
 			#{cart_group_id},
 			#{cart_quantity},
 			#{item_size, jdbcType=VARCHAR}
