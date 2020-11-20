@@ -1,5 +1,7 @@
 package com.domino.t1.branchInfo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,21 +17,18 @@ public class BranchInfoController {
 	private BranchInfoService branchInfoService;
 	
 	@GetMapping("branchSearch")
-	public ModelAndView branchSearch(BranchInfoDTO branchInfoDTO) throws Exception {
+	public ModelAndView getRegion1(BranchInfoDTO branchInfoDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-//		branchInfoDTO = branchInfoService.getRegion1(branchInfoDTO);
-//		
-//		System.out.println("branchSearch");
-//		
-//		if(branchInfoDTO != null) {
-//			mv.setViewName("branch/branchSearch");
-//			mv.addObject("dto", branchInfoDTO);
-//			
-//		} else {
-//			mv.setViewName("common/result");
-//			mv.addObject("msg", "No Data");
-//		}
+		
+		System.out.println(branchInfoDTO.getRegion1());
+		
+		List<BranchInfoDTO> ar = branchInfoService.getRegion1(branchInfoDTO);
+		
+		mv.addObject("dto", branchInfoDTO);
+		mv.addObject("region1", ar);
 		mv.setViewName("branch/branchSearch");
+		
+		System.out.println("controller getRegion 2");
 		
 		return mv;
 	}

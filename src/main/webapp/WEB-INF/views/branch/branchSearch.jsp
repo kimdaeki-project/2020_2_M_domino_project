@@ -51,10 +51,10 @@
 									<div class="form-group srch-type">
 										<div class="form-region" id="form-region-first">
 											<div class="select-region">
-												<select id="region1" name="region1">
-													<c:forEach var="dto" items="${dto.region1}">
+												<select id="reg1" name="region1">
+													<c:forEach var="dto" items="${region1}">
 														<option value="0" selected>시/도</option>
-														<option value="1"></option>
+														<option id="reg1-op" value="1">${dto.region1}</option>
 														
 													</c:forEach>
 												</select>
@@ -73,6 +73,7 @@
 											</button>
 										</div>
 									</div>
+															
 									<div class="spcl-sale-branch">
 										<div class="switch-btn" id="spcl_toggle">
 											<label class="switch">
