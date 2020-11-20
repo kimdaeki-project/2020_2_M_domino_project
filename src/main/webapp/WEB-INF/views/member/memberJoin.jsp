@@ -196,6 +196,7 @@
 		$(".chk").val(0);
 	}
 	
+	//회원가입 id, pw, 이메일, 전화번호 중복 및 공백 검사
 	var idCheck=false;
 	var pwCheck=false;
 	var phoneCheck=false;
@@ -311,7 +312,11 @@
 			$("#emailResult").removeClass("emailCheck0").addClass("emailCheck1");
 		}
 	});
-
+	//회원가입 id, pw, 이메일, 전화번호 중복 및 공백 검사
+		
+	
+	//회원가입 유효성 검사
+	
 	var passRule = /^[A-Za-z0-9]{6,12}$/;//아이디 정규식 숫자와 문자 포함 형태의 6~12자리 이내의 아이디 정규식
 	var regexPw = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;// 비밀번호 정규식 특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식
 	var regExpEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
@@ -372,7 +377,7 @@
 		}
 	});
 	
-	
+	//회원가입 유효성 검사
 
 
 

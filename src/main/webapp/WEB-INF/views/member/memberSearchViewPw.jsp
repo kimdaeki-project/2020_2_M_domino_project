@@ -45,13 +45,13 @@
 			<div>
 			<dl>
 				<dt>새 비밀번호</dt>
-				<dd><input type="password" id="member_pw2" name="member_pw2" style="text-align:center; width:300px; height:42px;"></dd>
+				<dd><input placeholder="특수문자, 문자 , 숫자 형태의 8~15자리 이내의 암호" type="password" id="member_pw2" name="member_pw2" style="text-align:center; width:300px; height:42px;"></dd>
 			</dl>
 			<dl>
 				<dt>새 비밀번호 확인</dt>
 				<dd>
 					<div>
-						<input type="password" id="member_pw" name="member_pw" style="text-align:center; width:300px; height:42px;"><input type="button" value="확인" id="checkButt" style= "width:110px; height:42px;">
+						<input placeholder="특수문자, 문자 , 숫자 형태의 8~15자리 이내의 암호" type="password" id="member_pw" name="member_pw" style="text-align:center; width:300px; height:42px;"><input type="button" value="확인" id="checkButt" style= "width:110px; height:42px;">
 						<div id="pwSetResult"></div>
 					</div>
 				</dd>
@@ -67,7 +67,9 @@
 <script type="text/javascript">
 	
     var pwCheck=false;
-	
+    var pwExpCheck=false;
+    var regexPw = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;// 비밀번호 정규식 특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식
+    
 	$("#member_pw").blur(function() {
 		var pw = $("#member_pw").val();
 		var pw2 = $("#member_pw2").val();
@@ -87,13 +89,25 @@
 	});
 	
 	$("#checkButt").click(function() {
-		if(pwCheck){
+		if(pwCheck && pwExpCheck){
 			$("#frm").submit();
 			alert("비밀번호를 재설정하였습니다. 로그인 페이지로 이동합니다.")
 			
 		}else{
 			alert("비밀번호를 다시 확인해주세요.")
 			
+		}
+	});
+	
+	$("#member_pw").blur(function() {
+		pwExpCheck=false;
+		if(!regexPw.test($("input[id='member_pw']").val())) {
+			pwExpCheck=false;
+		 	alert("사용할 수 없는 비밀번호")
+	    
+		}else{
+			pwExpCheck=true;
+			alert("사용할 수 있는 비밀번호")
 		}
 	});
 	
