@@ -54,12 +54,12 @@
 								<li>
 									<div class="notyet">
 										<p class="title"><img alt="" src="../resources/images/address/sp_alert_t1.png">포장 매장을 등록해주세요.</p>
-										<!-- <a href="#" class="btn-type-brd2" id="add_addr" onclick="popMap()">
+										<a href="#" class="btn-type-brd2" id="add_addr" onclick="popMap()">
 											+ 포장 매장 등록
-										</a> -->
-										<button type="button" class="btn-type-brd2" id="add_addr" data-toggle="modal" data-target="#pop-map">
+										</a>
+										<!-- <button type="button" class="btn-type-brd2" id="add_addr" data-toggle="modal" data-target="#pop-map">
 											+ 포장 매장 등록
-										</button>
+										</button> -->
 									</div>
 								</li>
 							</ul>
@@ -74,13 +74,15 @@
 	</div><!-- content -->
 	
 	<!-- ===== 포장매장등록 popup, pickup_search.css ===== -->
-	<div class="pop-layer" id="pop-map" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="pop-layer" id="pop-map">
+	<!-- <div class="pop-layer" id="pop-map" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
 		<div class="pop-wrap pop-regBranch">
 			<div class="pop-title-wrap pop-header">
 				<h2 class="pop-title">포장매장 등록</h2>
+				<a href="#" class="closebtn" id="modal-close">&times;</a>
 				<!-- <a href="#" class="closebtn" onclick="document.getElementById('pop-map').style.display='none'">&times;</a> -->
-				<a href="#" class="closebtn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
-			</div>
+				<!-- <a href="#" class="closebtn" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a>
+			</div> -->
 			<div class="pop-content">
 				<div class="store-map-area">
 					<!-- map -->
@@ -199,7 +201,7 @@
 </div><!-- container -->
 
 <script type="text/javascript"> <!-- 팝업 모달 close -->
-/*
+
 	var viewSearch = document.getElementById("pop-map")
 	
 	function popMap() {
@@ -211,9 +213,15 @@
 	    viewSearch.style.display = "none";
 	  }
 	}
+/*
+$("#add_addr").click(function (){
+	$("#pop-map").modal("show")
+})
 */
 
-
+$("#modal-close").click(function (){
+	$("#pop-map").modal("hide")
+})
 
 </script>
 

@@ -91,7 +91,7 @@
 		width: 433px;
 		height: 920px;
 		display: inline-block;
-	    box-shadow: 3px 7px 35px 0px rgba(0, 0, 0, 0.15);
+	    /* box-shadow: 3px 7px 35px 0px rgba(0, 0, 0, 0.15); */
 	    border-left: none;
     	border-bottom: none;
 	}
