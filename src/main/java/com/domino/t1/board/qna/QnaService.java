@@ -24,10 +24,11 @@ public class QnaService {
 	
 	public int setInsert(QnaDTO qnaDTO, MultipartFile[] files, HttpSession session) throws Exception {
 		// TODO Auto-generated method stub
-	
+		
 		int result = qnaDAO.setInsert(qnaDTO);
 		
 		String path = session.getServletContext().getRealPath("/resources/upload/qna/");
+		System.out.println(path);
 		File file = new File(path);
 	
 		for(int i=0;i<files.length;i++) {
