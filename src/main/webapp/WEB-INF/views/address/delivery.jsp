@@ -57,7 +57,9 @@
 										<p class="title"><img alt="" src="../resources/images/address/sp_alert_t1.png"> 배달 주소를 등록해주세요.</p>
 							<form action="./delivery" name="form" id="form" method="post">
 
-								<input type="button" onClick="goPopup();" value="배달 주소 등록"/>
+								<a href="#" onclick="goPopup();" class="btn-type-brd2" id="add_addr">
+										+ 배달 주소 등록
+								</a>
 								<div id="list"></div>
 								<div id="callBackDiv">
 									<input type="number" value="${member.member_num}" name="member_num" class="none">

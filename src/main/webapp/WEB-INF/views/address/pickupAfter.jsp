@@ -31,52 +31,46 @@
 					<div class="sel-order-wrap">
 						<div class="sel-order-way" id="select"> 
 							<div class="order-btn order1">
-								<a href="./delivery" class="active">배달 주문</a>
+								<a href="./delivery">배달 주문</a>
 							</div>
 							<div class="mid-bar"></div>
 							<div class="order-btn order2">
-								<a href="./pickup">포장 주문</a>
+								<a href="./pickup" class="active">포장 주문</a>
 							</div>
 						</div>
 					</div>
-					<div class="tab-content" id="delivery">
+					<div class="tab-content" id="pickup">
 						<div class="spot-area">
 							<span class="spot left-spot">
-								<img alt="" src="../resources/images/address/sp_deli_spot_t1.png" style="width: 23px; height: 24px;">밖에서 도미노피자 먹고 싶을 땐?
+								<img alt="`" src="../resources/images/address/sp_driving_pu_t1.png" style="width: 27px; height: 19px;">도미노 드라이빙 픽업 서비스 이용
 							</span>
 							
 							<a href="#" class="spot right-spot">
-								<span>DOMINO SPOT 배달</span><i class="material-icons">chevron_right</i>
+								<span>이용안함</span><i class="material-icons">chevron_right</i>
 							</a>
 						</div>
-
-						<div class="addr-list">
-						
-
 						<div class="addr-list-plus">
 							<ul>
-								<li class="addLine">
-
+								<li>
 									<div class="reg_addr">
+										<table>
 											<c:forEach items="${list}" var="dto">
-												<div class="addChk"><input type="radio" value="${dto.address_num}" name="roadFullAddr" id="adNum">${dto.roadFullAddr}<input type="button" value="X" class="delAdd"></div>
-												
+											<tr>
+												<td></td>
+											</tr>
 											</c:forEach>
-																				
+										</table>
 									</div>
-						</div>
-						<div>		
-
+								</li>
+							</ul>
 							<div class="add-addr-wrap">
-								<a href="#" onclick="goPopup();"  class="btn-type-brd2" id="add_addr">
-									+ 배달 주소 등록
+								<a href="#" class="btn-type-brd2" id="add_addr">
+									+ 포장 매장 등록
 								</a>
-								<div class="addr-limit">
-									* 배달 주소는 최대 10개까지만 등록 가능합니다.
-								</div>
+								<div class="addr-limit">* 포장매장은 최대 10개까지만 등록 가능합니다.</div>
 							</div>
 							<div class="addr-btn">
-								<p class="title-type4 ask-deli">해당 배달주소로 주문을 진행 하시겠습니까?</p>
+								<p class="title-type4 ask-deli">해당 매장으로 주문을 진행 하시겠습니까?</p>
 								<a href="../menu/list/pizzaList" class="btn-type enter">선택</a>
 							</div>
 						</div>
@@ -87,16 +81,8 @@
 	</div><!-- content -->
 </div><!-- container -->
 
-<script>
+<script type="text/javascript">
 // Add active class to the current button (highlight it)
-	
-	$(".delAdd").click(function() {
-		var num = $("#adNum").val();
-		location.href = "./addressDelete?address_num="+num;
-		
-	});
-
-
 	var header = document.getElementById("select");
 	var btns = header.getElementsByClassName("order-btn");
 	for (var i = 0; i < btns.length; i++) {
@@ -106,6 +92,7 @@
 	  this.className += " active";
 	  });
 	}
+
 </script>
 
 <!-- ===== footer ===== -->
