@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,13 @@ public class QnaController {
 	
 	@Autowired
 	private QnaService qnaService;
+	
+	@GetMapping("qnaList")
+	public ModelAndView getList() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("qna/qnaList");
+		return mv;	
+	}
 	
 	@GetMapping("qnaWrite")
 	public ModelAndView setInsert() throws Exception{
@@ -50,7 +58,6 @@ public class QnaController {
 	public ModelAndView fileDown(BoardFileDTO boardFileDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
-		//mv.addObject("news", "press");
 		mv.addObject("fileDTO", boardFileDTO);
 		mv.setViewName("fileDown");
 		return mv;

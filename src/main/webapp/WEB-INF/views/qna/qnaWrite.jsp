@@ -216,7 +216,7 @@
 	</div>
 	
 	<div style="margin-top:2%; border-top: 2px solid black; padding: 0;">
-		<form class="form-horizontal" id="frm" action="./qnaWrite" method="post" enctype="multipart/form-data">
+		<form class="form-horizontal" id="frm" action="./qnaList" method="post" enctype="multipart/form-data">
 			  
 			  <div class="col-sm-12 qna_input">
 			    <label class="control-label col-sm-2" for="board_writer">이름<span>*</span></label>
@@ -237,7 +237,7 @@
   			  <div class="col-sm-12 qna_input">
 				  <label class="control-label col-sm-2" for="email">이메일<span>*</span></label>
 				  <div class="col-sm-6">
-				  <input type="text" class="form-control empty" id="email" name="email">
+				  <input type="email" class="form-control empty" id="email" name="email">
 				  <div class="emptyResult emailResult"></div>
 				  </div>
 			   </div>
@@ -310,9 +310,9 @@
     			<div class="col-sm-12 qna_input">
 				    <label class="control-label col-sm-2"  for="photo">첨부파일</label>
 				    <div class="col-sm-4 qna_input_file">
-				    <input type="file" class="form-control" id="photo1" name="photo">
-				    <input type="file" class="form-control" id="photo2" name="photo">
-				    <input type="file" class="form-control" id="photo3" name="photo">
+				     <input class="files" type="file" class="form-control" name="files">
+					 <input class="files" type="file" class="form-control" name="files">
+				 	 <input class="files" type="file" class="form-control" name="files">
 				    </div>
 				</div>
 			    
@@ -323,7 +323,7 @@
 	</form>
 	</div>
 	</div>
-	
+	<a href="./qnaList">목록</a>
  	<c:import url="../template/footer.jsp"></c:import>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script> 
@@ -350,7 +350,7 @@
 	   		}   
 		}
 	
-	//공백&약관동의 검사
+		//공백&약관동의 검사
 		$("#qna_write_btn").click(function(){
 			agreeCheck();
 			emptyCheck();
@@ -414,18 +414,6 @@
 			});
 		});
 		
-		
-		//숫자 검사
-		function checkNum($("#order_num")){
-			var strNum = $("#order_num").val();
-				if (isNaN(strNum)){
-					alert("숫자만 입력하세요");
-					frm.$("#order_num").val("");
-					frm.$("#order_num").focus();
-				return false;
-			}
-			return true;
-		}
 		
 	</script>
 	
