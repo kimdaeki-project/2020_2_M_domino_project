@@ -60,6 +60,13 @@
 												</select>
 											</div>
 										</div>
+										
+										<script type="text/javascript">
+										$("#reg1-op").click(function(){
+											$.ajax({dto.region1})
+										})
+										</script>
+										
 										<div class="form-region">
 											<div class="select-region">
 												<select id="region2">
