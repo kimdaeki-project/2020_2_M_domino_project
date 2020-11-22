@@ -25,8 +25,16 @@
 	.desc-container{
 		display: inline-block;
 	}
+	
+	.delete-item-btn, .delete-topping-btn{
+		cursor:pointer;
+	}
+	
+	.delete-topping-btn{
+		float:right;
+	}
     </style>
-    
+      
   
 </head>
 <body>
@@ -54,53 +62,93 @@
 						<td><button type="button" class="btn btn-warning">전체 삭제</button></td>
 					</tr>	
 				</thead>	
-				<c:forEach items="${cartList}" var="dto">
-					<c:if test="${dto.item_category != 'topping' && dto.item_category != 'dough'}">
-						<tr>
-							<td>
-								<input type="checkbox"/>
-							</td>
-							<td>
-								<div class="item-image-wrapper">
-									<img src="/t1/resources/images/menu/${dto.item_category}/${dto.item_image}" class="item-image"/>
-								</div>
-								<div class="desc-container">
-									<p>${dto.item_name}</p>
-									<c:if test="${dto.item_category == 'pizza'}">
-										<span class="dough-name-short"></span>
-										<span>/${dto.item_size}</span>
-									</c:if>
-									<p>${dto.item_price}원</p>
-								</div>
-							</td>
-							<td>
-								<div class="topping-container">
-									<ul>
-									</ul>
-								</div>
-							</td>
-							<td>
-								<button>-</button>
-								<input type="text" value="${dto.cart_quantity}"/>
-								<button>+</button>
-							</td>
-							<td>${dto.item_price}원</td>
-							<td><p class="item-delete">X</p></td>				
-						</tr>
-					</c:if>		
+			<!-- pizza group items -->
+				<c:forEach items="${pizzaGroupList}" var="pizzaGroup">
+					<tr value="${pizzaGroup[0].cart_group_id}" class="cart-group">
+						<td>
+							<input type="checkbox" checked="checked"/>
+						</td>
+						<td>
+							<div class="item-image-wrapper">
+								<img src="/t1/resources/images/menu/pizza/${pizzaGroup[0].item_image}" class="item-image"/>
+							</div>
+							<div class="desc-container">
+								<p>${pizzaGroup[0].item_name}</p>
+								<p>	
+									<span class="dough-name-short">${pizzaGroup[1].dough_name_short}</span>
+									<span>/${pizzaGroup[0].item_size}</span>
+								</p>
+								<p class="pizza-price">${pizzaGroup[0].item_price}원</p>
+							</div>
+						</td>
+						<td>
+							<div class="topping-container">
+								<ul>
+									<c:forEach items="${pizzaGroup}" var="topping" begin="2">
+										<li class="topping-item">
+											<p>${topping.item_name} (+${topping.item_price}) x <span>${topping.cart_quantity}</span><span class="delete-topping-btn">X</span></p>
+											<input type="hidden" value="${topping.item_price}" class="topping-price"/>
+											<input type="hidden" value="${topping.cart_quantity}" class="topping-quantity"/>
+											<input type="hidden" value="${topping.cart_item_id}" class="topping-cart-item-id"/>
+										</li>
+									</c:forEach>
+								</ul>
+							</div>
+						</td>
+						<td>
+							<button>-</button>
+							<input type="text" value="${pizzaGroup[0].cart_quantity}"/>
+							<button>+</button>
+						</td>
+						<td><span class="item-price"></span>원</td>
+						<td><p class="delete-item-btn">X</p></td>				
+					</tr>	
 				</c:forEach>
-					
+				
+			<!-- Standalone items -->	
+				<c:forEach items="${itemList}" var="item">		
+					<tr value="${item.cart_group_id}" class="cart-group">
+						<td>
+							<input type="checkbox" checked="checked"/>
+						</td>
+						<td>
+							<div class="item-image-wrapper">
+								<img src="/t1/resources/images/menu/${item.item_category}/${item.item_image}" class="item-image"/>
+							</div>
+							<div class="desc-container">
+								<p>${item.item_name}</p>
+								<p>${item.item_price}원</p>
+							</div>
+						</td>
+						<td>
+							<div class="topping-container">
+								<ul>
+								</ul>
+							</div>
+						</td>
+						<td>
+							<button>-</button>
+							<input type="text" value="${item.cart_quantity}"/>
+							<button>+</button>
+						</td>
+						<td><span class="item-price"></span>원</td>
+						<td><p class="delete-item-btn">X</p></td>				
+					</tr>	
+				</c:forEach>					
 			</table>
+		<!-- 총 주문 금액: 체크박스에 체크 되어있는 항목만 합산 -->
 			<div>
 				<div>
 					총 금액 <span id="total-price"></span>
 				</div>
 			</div>
 		</div>
+		
 		<div class="content">
 			<button>+ 메뉴 추가하기</button>
 			<button>주문하기</button>
 		</div>
+		
 		<div>
 			<div class="col-sm-3">
 				<p>유의사항</p>
@@ -117,9 +165,49 @@
 	
 	<c:import url="../template/footer.jsp"></c:import>
 	<script type="text/javascript">	
+	// 제품 삭제 버튼 
+		$(".delete-item-btn").click(function(){
+			var deleteItem = window.confirm("해당 제품을 장바구니에서 삭제하시겠습니까?")
+			if(!deleteItem){
+				return
+			}		
+			var cartGroupId = $(this).closest("tr").attr("value")
+			$.ajax({
+				url:"./delete/item",
+				type:"POST",
+				data:{
+					cart_group_id : cartGroupId
+				},
+				success : function(result){
+					result = result.trim()
+					alert(result)
+					if(result > 0){
+						$(this).parent().remove()
+						/*window.location.reload()*/
+						updateTotalPrice()
+					}else{
+						alert("삭제에 실패했습니다.")
+					}				
+				}
+			})		
+		})
 	
+		$(".delete-topping-btn").click(function(){
+			var deleteTopping = window.confirm("선택하신 토핑을 삭제하시겠습니까?")
+			if(!deleteTopping){
+				return
+			}
+			var cartItemId = $(this).parent().siblings(".topping-cart-item-id").val()
+			alert(cartItemId)
+		})	
+		
+	function updateTotalPrice(){
+		
+	}
+	
+	function updatePizzaPrice(){
+		
+	}
 	</script>
-
-
 </body>
 </html>

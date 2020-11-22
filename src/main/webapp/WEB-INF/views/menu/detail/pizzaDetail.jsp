@@ -100,7 +100,17 @@
 	}
 </script>
 	<div class="col-sm-6 item-desc-container">
-		<img src="/t1/resources/images/menu/pizza/${pizzaDTO.item_image}" alt="${pizzaDTO.item_name}" class="main-item-image">	
+		<div>
+			<img src="/t1/resources/images/menu/pizza/${pizzaDTO.item_image}" alt="${pizzaDTO.item_name}" class="main-item-image">	
+		</div>
+		<div>
+			<div>메인 토핑</div>
+			<div>${pizzaDTO.pizza_toppings}</div>			
+		</div>
+		<div>
+			<div>토핑 원산지</div>
+			<div>${pizzaDTO.pizza_origin}</div>			
+		</div>
 	</div>
 	<div class="col-sm-6 item-option-container">
 		<div class="title-wrap">
