@@ -216,7 +216,7 @@
 	</div>
 	
 	<div style="margin-top:2%; border-top: 2px solid black; padding: 0;">
-		<form class="form-horizontal" id="frm" action="./qnaList" method="post" enctype="multipart/form-data">
+		<form class="form-horizontal" id="frm" action="./qnaWrite" method="post" enctype="multipart/form-data">
 			  
 			  <div class="col-sm-12 qna_input">
 			    <label class="control-label col-sm-2" for="board_writer">이름<span>*</span></label>
@@ -309,7 +309,7 @@
 			    
     			<div class="col-sm-12 qna_input">
 				    <label class="control-label col-sm-2"  for="photo">첨부파일</label>
-				    <div class="col-sm-4 qna_input_file">
+				    <div class="col-sm-4 qna_input_file" style=" padding-left: 0; padding-right: 95px;">
 				     <input class="files" type="file" class="form-control" name="files">
 					 <input class="files" type="file" class="form-control" name="files">
 				 	 <input class="files" type="file" class="form-control" name="files">
@@ -381,7 +381,7 @@
 				if($("#phone").val().length==0){emptyCheckResult=false; $(".phoneResult").html("휴대전화번호를 입력해주세요."); 
 				$(".emptyResult").addClass("Check1"); $("#phone").focus(); return false; }
 				
-				if($("#email").val().length==0){emptyCheckResult=false; $(".emailResult").html("※등록결과 및 답변은 이메일로 알려드리오니, 정확한 이메일을 기재하여 주시기 바랍니다."); 
+				if($("#email").val().length==0){emptyCheckResult=false; $(".emailResult").html("※등록결과 및 답변은 이메일로도 알려드리오니, 정확한 이메일을 기재하여 주시기 바랍니다."); 
 				$(".emptyResult").addClass("Check1"); $("#email").focus(); return false; }
 				
 				if($("#qna_type option:selected").val()==''){emptyCheckResult=false; $(".typeResult").html("유형을 선택하세요."); 

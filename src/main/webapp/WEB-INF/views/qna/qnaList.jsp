@@ -32,12 +32,10 @@
 		.depth-area{
 			position: absolute;
 			right: 0;
-			
 		}
 		
 		.depth-area > ol{
-			font-size: 0;
-				
+			font-size: 0;	
 		}
 		
 		.depth-area li{
@@ -66,7 +64,6 @@
 		}
 		
 		.depth-area li:nth-child(1):before{
-			
 			display: none;
 		}
 		
@@ -118,7 +115,6 @@
 			float: right;
 			text-align: center;
 			line-height: 50px;
-			
 		}
 		
 		.list_write a{
@@ -170,11 +166,11 @@
 		       <div class="input-group" style="margin: 0 auto;">
 		       
 		       		<div class="form-item">
-		       		<select class="col-sm-2" id="sel1" name="kind" style="width: 150px; height: 50px; border-color: #ddd; background-color: white;">
-		       			<option value="title">제목</option>
-		       			<option value="contents">내용</option>
-		       			<option value="tc">제목+내용</option>
-		       		</select>
+			       		<select class="col-sm-2" id="sel1" name="kind" style="width: 150px; height: 50px; border-color: #ddd; background-color: white;">
+			       			<option value="title">제목</option>
+			       			<option value="writer">작성자</option>
+			       			<option value="contents">내용</option>
+			       		</select>
 		       		</div>
 		       		
 		       		<div class="form-item">
@@ -191,8 +187,7 @@
 		       </div>
 		  </form>
   	  </div>
-  
-			
+  		
 	<div class="list_con">
 		<table class="table table-hover">
 			<tr>
@@ -205,7 +200,11 @@
 		<c:forEach items="${list}" var="dto" varStatus="vs">
 			<tr>
 				<td><strong>${dto.board_num}</strong></td>
-				<td><a href="./qnaSelect?board_num=${dto.board_num}"><strong>${dto.board_title}</strong></a></td>
+				<td class="newsTitle"><a href="./qnaSelect?board_num=${dto.board_num}">
+				<c:catch>
+			 	<c:forEach begin="1" end="${dto.depth}">--</c:forEach>
+			 	</c:catch>
+				<strong>${dto.board_title}</strong></a></td>
 				<td><strong>${dto.board_writer}</strong></td>
 				<td><strong>${dto.regDate}</strong></td>
 				
@@ -215,28 +214,28 @@
 		
 		<c:if test="${not empty member and member.member_id eq 'admin'}">
 			<div class="list_write">
-				<a href="./qnaWrite">글쓰기</a>
+				<a href="./qnaWrite">QNA 글쓰기</a>
 			</div>
 		</c:if>
 		
 	</div>
 </div>
 
-<!--  
+ 
 	<div class="pageNum">
 	 	<c:if test="${pager.beforeCheck}">
-	 		<a href="./${news}List?curPage=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">[이전]</a>
+	 		<a href="./qnaList?curPage=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">[이전]</a>
 	 	</c:if>
 	 	
 		<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-			<a href="./${news}List?curPage=${i}&kind=${pager.kind}&search=${pager.search}" id="pageNums">${i}</a>
+			<a href="./qnaList?curPage=${i}&kind=${pager.kind}&search=${pager.search}" id="pageNums">${i}</a>
 		</c:forEach> 
 		
 		<c:if test="${pager.nextCheck}"> 
-			<a href="./${news}List?curPage=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">[다음]</a>
+			<a href="./qnaList?curPage=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">[다음]</a>
 		</c:if>
  	</div>
---> 	
+	
 
  	<c:import url="../template/footer.jsp"></c:import>
 </body>

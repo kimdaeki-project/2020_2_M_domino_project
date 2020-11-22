@@ -11,7 +11,7 @@
   <script src="../resources/js/header.js"></script>
 
 	<style type="text/css">
-			a{
+		a{
 			color: black;
 		}	
 		
@@ -32,12 +32,10 @@
 		.depth-area{
 			position: absolute;
 			right: 0;
-			
 		}
 		
 		.depth-area > ol{
-			font-size: 0;
-				
+			font-size: 0;	
 		}
 		
 		.depth-area li{
@@ -66,7 +64,6 @@
 		}
 		
 		.depth-area li:nth-child(1):before{
-			
 			display: none;
 		}
 		
@@ -118,7 +115,6 @@
 			float: right;
 			text-align: center;
 			line-height: 50px;
-			
 		}
 		
 		.list_write a{

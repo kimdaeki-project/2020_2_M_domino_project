@@ -1,6 +1,7 @@
 package com.domino.t1.board.qna;
 
 import java.io.File;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,8 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.domino.t1.board.file.BoardFileDTO;
-import com.domino.t1.board.news.NewsDTO;
 import com.domino.t1.util.FileSaver;
+import com.domino.t1.util.Pager;
 
 @Service
 public class QnaService {
@@ -28,7 +29,6 @@ public class QnaService {
 		int result = qnaDAO.setInsert(qnaDTO);
 		
 		String path = session.getServletContext().getRealPath("/resources/upload/qna/");
-		System.out.println(path);
 		File file = new File(path);
 	
 		for(int i=0;i<files.length;i++) {
@@ -38,6 +38,7 @@ public class QnaService {
 			MultipartFile multipartFile = files[i];
 			if( multipartFile.getSize() !=0) {
 				String fileName = fileSaver.saveCopy(file, multipartFile);
+				System.out.println("fina::::"+ fileName);
 				BoardFileDTO boardFileDTO = new BoardFileDTO();
 				boardFileDTO.setFile_Name(fileName);
 				boardFileDTO.setOri_Name(multipartFile.getOriginalFilename());
@@ -45,8 +46,34 @@ public class QnaService {
 				qnaDAO.setInsertFile(boardFileDTO);
 			}
 		}
-		
-		return result;
-		
+		return result;	
 	}
+	
+	public int setDelete(QnaDTO qnaDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return qnaDAO.setDelete(qnaDTO);
+	}
+	
+	public List<QnaDTO> getList(Pager pager) throws Exception {
+		pager.makeRow();
+		pager.setTotalCount(qnaDAO.getCount(pager));
+		pager.makePage();
+		return qnaDAO.getList(pager);
+	}
+
+	public QnaDTO getOne(QnaDTO qnaDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return qnaDAO.getOne(qnaDTO);
+	}
+	
+	public int setReply(QnaDTO qnaDTO) throws Exception{
+		int result = qnaDAO.setReplyUpdate(qnaDTO);
+		result = qnaDAO.setReply(qnaDTO);
+		return result;
+	}
+	
+	public int setUpdate(QnaDTO qnaDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return qnaDAO.setUpdate(qnaDTO);
+	}	
 }

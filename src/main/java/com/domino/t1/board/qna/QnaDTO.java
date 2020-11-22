@@ -1,8 +1,10 @@
 package com.domino.t1.board.qna;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.domino.t1.board.BoardDTO;
+import com.domino.t1.board.file.BoardFileDTO;
 
 /**
  * @author user
@@ -20,6 +22,14 @@ public class QnaDTO extends BoardDTO{
 	private long step;
 	private long depth;
 	
+	List<BoardFileDTO> boardFileDTOs;
+
+	public List<BoardFileDTO> getBoardFileDTOs() {
+		return boardFileDTOs;
+	}
+	public void setBoardFileDTOs(List<BoardFileDTO> boardFileDTOs) {
+		this.boardFileDTOs = boardFileDTOs;
+	}
 	public Date getRegDate() {
 		return regDate;
 	}
