@@ -39,7 +39,7 @@
 	<c:import url="../template/header.jsp"></c:import>
 	
 	<div class="container">
- 		<h2>${news} 글 수정</h2>
+ 		<h2 style="text-align: center;">${news} 글 수정</h2>
   		<form id="frm" action="./${news}Update" method="post" enctype="multipart/form-data">
   			 <input type="hidden" name="board_num" value="${dto.board_num}">
 		    <div class="form-group">
@@ -49,7 +49,7 @@
 	    
 		    <div class="form-group">
 		      <label for="writer">Writer</label>
-		      <input type="text" class="form-control" value="${dto.board_writer}" id="writer" name="board_writer">
+		      <input type="text" class="form-control" value="${dto.board_writer}" id="writer" name="board_writer" readonly="readonly">
 		    </div> 
 		    
 		     <div class="form-group">

@@ -46,7 +46,7 @@
 	<c:import url="../template/header.jsp"></c:import>
 	
 	<div class="container">
- 		<h2>${news} 글 작성</h2>
+ 		<h2 style="text-align: center;">${news} 글 작성</h2>
   		<form id="frm" action="./${news}Write" method="post" enctype="multipart/form-data">
   
 		    <div class="form-group">
@@ -56,7 +56,7 @@
 	    
 		    <div class="form-group">
 		      <label for="writer">Writer</label>
-		      <input type="text" class="form-control" value="" id="writer" name="board_writer">
+		      <input type="text" class="form-control" value="${member.member_id}" id="writer" name="board_writer" readonly="readonly">
 		    </div> 
 		    
 		     <div class="form-group">

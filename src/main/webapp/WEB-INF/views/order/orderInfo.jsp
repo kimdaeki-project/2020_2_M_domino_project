@@ -341,7 +341,18 @@
 						<!-- 바로주문 -->
 						<div>
 							<div class="time-info">
-								<div>시간</div>
+								<p class="text">
+									지금 주문하시면,
+									<br>
+									<span>${orderTime}</span>
+									배달될 예정입니다.
+								</p>	
+									<div class="guide-box4 guide-box4-2">*매장 상황에 따라 배달시간이 상이할 수 있습니다.</div>
+								
+								
+								
+								
+								</div>
 							</div>
 						</div>
 						<!-- // 바로주문 -->
