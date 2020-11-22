@@ -99,6 +99,10 @@
 		</form>
 	</div>
 	
+	 <a href = "https://kauth.kakao.com/oauth/authorize?client_id=a78c488c29324b1f75b218bf9e45e8b7&redirect_uri=http://localhost/t1/oauth&response_type=code">
+        	카카오
+    </a>
+     
 	</div>
 	
 	

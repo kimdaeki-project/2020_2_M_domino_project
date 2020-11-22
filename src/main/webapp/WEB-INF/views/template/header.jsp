@@ -21,6 +21,8 @@
 	      	</c:when>
 	      		
 	      	<c:otherwise> 
+	      		 ${sessionScope.token}
+    			 <a href = "${pageContext.request.contextPath}/logout/">카카오로그아웃</a><br>
 	      		<li><a href="${pageContext.request.contextPath}/member/memberLogin"><span class="glyphicon"></span> 로그인</a></li>
 	       		<li><a href="${pageContext.request.contextPath}/member/memberJoin"><span class="glyphicon"></span> 회원가입</a></li>	
 	      	</c:otherwise>
