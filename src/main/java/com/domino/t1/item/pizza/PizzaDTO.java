@@ -9,6 +9,23 @@ public class PizzaDTO extends ItemDTO{
 	private long pizza_price_half;
 	private String pizza_hashtag;
 	private String pizza_type;
+	public String getPizza_toppings() {
+		return pizza_toppings;
+	}
+
+	public void setPizza_toppings(String pizza_toppings) {
+		this.pizza_toppings = pizza_toppings;
+	}
+
+	public String getPizza_origin() {
+		return pizza_origin;
+	}
+
+	public void setPizza_origin(String pizza_origin) {
+		this.pizza_origin = pizza_origin;
+	}
+	private String pizza_toppings;
+	private String pizza_origin;
 	
 	// L(large) is the default setting for pizza size
 	public void setDefaultItemPrice() {

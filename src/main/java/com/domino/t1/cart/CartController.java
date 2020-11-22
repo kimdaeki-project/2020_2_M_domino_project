@@ -3,7 +3,6 @@ package com.domino.t1.cart;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -29,7 +28,7 @@ public class CartController {
 	private DetailService detailService;
 
 	// for pizza detail page -> cart
-	@PostMapping("addToCart/pizzaDetail")
+	@PostMapping("addToCart/pizza")
 	public ModelAndView setCartItems(HttpSession session,
 			@RequestParam String[] pizzaCart,
 			@RequestParam String[] doughCart,
@@ -44,12 +43,12 @@ public class CartController {
 		pizzaGroupCart.add(pizzaCart);
 		pizzaGroupCart.add(doughCart);
 		pizzaGroupCart.addAll(toArrayList(toppingCart, 4));
-		int result1 = cartService.setPizzaGroupCart(pizzaGroupCart, memberDTO);
+		int result1 = cartService.setPizzaGroupItemCart(pizzaGroupCart, memberDTO);
 
 		ArrayList<String[]> itemGroupCart = new ArrayList<String[]>();
 		itemGroupCart.addAll(toArrayList(sideDishCart, 4));
 		itemGroupCart.addAll(toArrayList(etcCart, 4));
-		int result2 = cartService.setItemGroupCart(itemGroupCart, memberDTO);
+		int result2 = cartService.setStandaloneItemCart(itemGroupCart, memberDTO);
 
 		// 나중에 꼭 트랜잭션 처리 해주기!!!!
 		int result = 0;
@@ -62,7 +61,7 @@ public class CartController {
 	}
 
 	// for other items's detail page -> cart
-	@PostMapping("addToCart/itemDetail")
+	@PostMapping("addToCart/item")
 	public ModelAndView setCartItems(HttpSession session,
 			@RequestParam String[] sideDishCart,
 			@RequestParam String[] etcCart
@@ -73,7 +72,7 @@ public class CartController {
 		ArrayList<String[]> itemGroupCart = new ArrayList<String[]>();
 		itemGroupCart.addAll(toArrayList(sideDishCart, 4));
 		itemGroupCart.addAll(toArrayList(etcCart, 4));
-		int result = cartService.setItemGroupCart(itemGroupCart, memberDTO);
+		int result = cartService.setStandaloneItemCart(itemGroupCart, memberDTO);
 
 		// 나중에 꼭 트랜잭션 처리 해주기!!!!
 
@@ -87,11 +86,30 @@ public class CartController {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		// get CartDTO list of the user
-		List<CartDTO> arr = cartService.getCartList(memberDTO);
-		mv.addObject("cartList", arr);
+		List<List<CartDTO>> pizzaGroupList = cartService.getCartPizzaGroupItemList(memberDTO);
+		List<CartDTO> itemList = cartService.getCartStandaloneItemList(memberDTO);
+		mv.addObject("pizzaGroupList", pizzaGroupList);
+		mv.addObject("itemList", itemList);
 		mv.setViewName("cart/detail");
-
 		return mv;
+	}
+	
+	@PostMapping("delete/item")
+	public ModelAndView deleteItem(HttpSession session, CartDTO cartDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();	
+		cartDTO.setMember_num(((MemberDTO)session.getAttribute("member")).getMember_num());
+		int result = cartService.deleteCartGroup(cartDTO);
+		System.out.println("result: "+result);
+		mv.addObject("msg", result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
+	
+	@PostMapping("delete/topping")
+	public int deleteTopping(HttpSession session, long cart_item_id) throws Exception {
+		CartDTO cartDTO = new CartDTO();
+		cartDTO.setCart_item_id(cart_item_id);
+		return cartService.deleteCartItem(cartDTO);		
 	}
 
 	public List<String[]> toArrayList(String[] arr, int size){
@@ -103,8 +121,9 @@ public class CartController {
 		return list;
 	}
 
+// 아직 테스트 데이터만 들어가있음. 
 	@GetMapping("toCheckout")
-	public ModelAndView toCheckoutPage(HttpSession session) throws Exception {
+	public ModelAndView toCheckoutPageTest(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		long memberNum = 999;
@@ -136,7 +155,7 @@ public class CartController {
 				cartDTO.setItem_size("M");
 			}
 			if(i == 1) {
-				cartDTO.setDough_short_name("도우 짧은이름1");
+				cartDTO.setDough_name_short("도우 짧은이름1");
 			}
 			pizzaGroup1.add(cartDTO);
 		}
@@ -187,7 +206,7 @@ public class CartController {
 				cartDTO.setItem_size("L");
 			}
 			if(i == 1) {
-				cartDTO.setDough_short_name("도우 짧은이름2");
+				cartDTO.setDough_name_short("도우 짧은이름2");
 			}
 			pizzaGroup2.add(cartDTO);
 		}

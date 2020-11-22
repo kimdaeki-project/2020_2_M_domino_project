@@ -24,9 +24,18 @@ public class ListController {
 		// get premium type PizzaDTO list
 		PizzaDTO dto= new PizzaDTO();
 		dto.setPizza_type("프리미엄");
-		List<PizzaDTO> arr = listService.getPizzaListByType(dto);
-		mv.addObject("premium", arr);
+		List<PizzaDTO> arr_premium = listService.getPizzaListByType(dto);
+		mv.addObject("premium", arr_premium);
+		
+		// get half and half PizzaDTO list
+		dto.setPizza_type("하프앤하프 시그니처");
+		List<PizzaDTO> arr_half = listService.getPizzaListByType(dto);
+		mv.addObject("half", arr_half);
+		
 		// get classic type PizzaDTO list
+		dto.setPizza_type("클래식");
+		List<PizzaDTO> arr_classic = listService.getPizzaListByType(dto);
+		mv.addObject("classic", arr_classic);
 		
 		mv.addObject("category", "pizza");
 		mv.setViewName("menu/list/pizzaList");

@@ -13,7 +13,7 @@ public class CartDTO extends ItemDTO{
 	// private long item_id;
 
 	// for dough
-	private String dough_short_name;
+	private String dough_name_short;
 
 	public long getMember_num() {
 		return member_num;
@@ -22,11 +22,11 @@ public class CartDTO extends ItemDTO{
 		this.member_num = member_num;
 	}
 
-	public String getDough_short_name() {
-		return dough_short_name;
+	public String getDough_name_short() {
+		return dough_name_short;
 	}
-	public void setDough_short_name(String dough_short_name) {
-		this.dough_short_name = dough_short_name;
+	public void setDough_name_short(String dough_name_short) {
+		this.dough_name_short = dough_name_short;
 	}
 	public long getCart_item_id() {
 		return cart_item_id;
