@@ -93,54 +93,5 @@ public class QnaController {
 		}
 		return mv;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	@GetMapping("qnaDelete")
-	public ModelAndView setDelete(QnaDTO qnaDTO) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		int result = qnaService.setDelete(qnaDTO);
-		
-		String message="삭제 실패했습니다.";
-		if(result>0) {
-			message = "삭제 성공했습니다.";
-		}
-	
-		mv.addObject("msg", message);
-		mv.addObject("path", "./qnaList");
-		
-		mv.setViewName("common/result");
 
-		return mv;	
-	}
-	
-	@GetMapping("qnaUpdate")
-	public ModelAndView setUpdate(QnaDTO qnaDTO, ModelAndView mv) throws Exception{
-		qnaDTO = qnaService.getOne(qnaDTO);
-		mv = new ModelAndView();
-		mv.setViewName("qna/qnaUpdate");
-		mv.addObject("dto", qnaDTO);
-		return mv;
-	}
-	
-	@PostMapping("qnaUpdate")
-	public ModelAndView setUpdate(QnaDTO qnaDTO) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		int result = qnaService.setUpdate(qnaDTO);
-		String message="수정 실패했습니다.";
-		if(result>0) {
-			message = "수정 성공했습니다.";
-		}
-		mv.addObject("msg", message);
-		mv.addObject("path", "./qnaList");
-		mv.setViewName("common/result");
-
-		return mv;	
-	}
-	
 }

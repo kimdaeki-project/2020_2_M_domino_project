@@ -28,28 +28,15 @@ public class QnaDAO {
 		return sqlSession.insert(NAMESPACE+"setInsert", qnaDTO);
 	}
 	
-	public int setUpdate(QnaDTO qnaDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public int setDelete(QnaDTO qnaDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	
 	public List<QnaDTO> getList(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE+"getList", pager);
 	}
 
-	
 	public QnaDTO getOne(QnaDTO qnaDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"getOne", qnaDTO);
 	}
-
 
 	public long getCount(Pager pager) throws Exception {
 		// TODO Auto-generated method stub

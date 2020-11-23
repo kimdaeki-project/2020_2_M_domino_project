@@ -44,7 +44,7 @@
 			<div class="depth-area">
 				<ol>
 					<li><a href="http://localhost/t1">홈</a></li>
-					<li><a href="${pageContext.request.contextPath}/faq/faqList">고객센터</a></li>
+					<li><a href="${pageContext.request.contextPath}/faq/faqList?faq_type=1">고객센터</a></li>
 					<li><strong>온라인신문고</strong></li>
 				</ol>
 			</div>
@@ -52,7 +52,7 @@
 	
 		<ul id="select" style="padding: 20px 0; border-bottom: 2px solid black;">
 			<li>
-				<a href="${pageContext.request.contextPath}/faq/faqList">자주하는질문</a> ㅣ 
+				<a href="${pageContext.request.contextPath}/faq/faqList?faq_type=1">자주하는질문</a> ㅣ 
 				<a href="${pageContext.request.contextPath}/qna/qnaWrite">온라인신문고</a>  
 			</li>
 		</ul>	

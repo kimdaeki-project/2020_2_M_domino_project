@@ -46,11 +46,6 @@ public class QnaService {
 		}
 		return result;
 	}
-		
-	public int setDelete(QnaDTO qnaDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return qnaDAO.setDelete(qnaDTO);
-	}
 	
 	public List<QnaDTO> getList(Pager pager) throws Exception {
 		pager.makeRow();
@@ -64,8 +59,4 @@ public class QnaService {
 		return qnaDAO.getOne(qnaDTO);
 	}
 	
-	public int setUpdate(QnaDTO qnaDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return qnaDAO.setUpdate(qnaDTO);
-	}	
 }

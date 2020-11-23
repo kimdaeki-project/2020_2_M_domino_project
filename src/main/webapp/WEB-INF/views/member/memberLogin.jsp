@@ -71,7 +71,7 @@
 	</div>
 
 	<div class="text-center">
-		<strong><h3 style="margin-top: 20px;">회원로그인</h3></strong>
+		<h3 style="margin-top: 60px;">회원로그인</h3>
 		<form action="./memberLogin" method="post" class="form-horizontal" style="padding: 20px;">
 		<div>
 			<input type="text" name="member_id" value="${cookie.remember.value}" class="login2" placeholder="아이디" style="width:430px; height:42px;">
@@ -100,11 +100,19 @@
 	</div>
 	
 	<div style="text-align: center;">
-		 <a href = "https://kauth.kakao.com/oauth/authorize?client_id=a78c488c29324b1f75b218bf9e45e8b7&redirect_uri=http://localhost/t1/oauth&response_type=code">
-	        	<img style= alt="" src="${pageContext.request.contextPath}/resources/images/common/kakao_logo.png">
-	     </a>
-     </div>
+		<div style="display: inline-block;">
+			 <a href = "https://kauth.kakao.com/oauth/authorize?client_id=a78c488c29324b1f75b218bf9e45e8b7&redirect_uri=http://localhost/t1/oauth&response_type=code">
+		        	<img style="width:215px; height: 50px;"  alt="" src="${pageContext.request.contextPath}/resources/images/common/kakao_logo.png">
+		     </a>
+	     </div>
      
+	     <div id="naver_id_login" style="display: inline-block;">
+	     	<a href="${url}">
+				<img style="width:215px; height: 50px;" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
+			</a>
+		</div>
+	</div>
+ 
 	</div>
 	
 	

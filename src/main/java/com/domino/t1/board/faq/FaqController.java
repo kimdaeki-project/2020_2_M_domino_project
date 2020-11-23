@@ -46,7 +46,7 @@ public class FaqController {
 		ModelAndView mv = new ModelAndView();
 	
 		mv.addObject("msg", message);
-		mv.addObject("path", "./faqList");
+		mv.addObject("path", "./faqList?faq_type=1");
 		
 		mv.setViewName("common/result");
 		return mv;	

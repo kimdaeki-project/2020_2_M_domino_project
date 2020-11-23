@@ -40,10 +40,6 @@
 		like '%' || #{search} || '%'
 	</select>
     	
-	<delete id ="setDelete" parameterType="QnaDTO">
-    		delete qna where board_num=#{board_num}
-    </delete>
-    
 	<select id="getOne" parameterType="QnaDTO" resultMap="getOneResult">
 		select Q.*, QF.* from
 		qna Q left join qnaFile QF

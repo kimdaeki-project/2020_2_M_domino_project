@@ -14,7 +14,7 @@
 	    <div class="collapse navbar-collapse" id="myNavbar1" style="padding: 0;">
 	      <ul class="nav navbar-nav navbar-right">
 	      <c:choose>
-	      	<c:when test="${not empty member or not empty sessionScope.token}">
+	      	<c:when test="${not empty member or not empty sessionScope.token or not empty sessionId}">
 	       		<li><a href="${pageContext.request.contextPath}/member/memberLogout"><span class="glyphicon"></span> 로그아웃</a></li>
 	       		<li><a href="${pageContext.request.contextPath}/member/memberPage"><span class="glyphicon"></span> 나의정보</a></li>
 	       		<li><a href="#"><span class="glyphicon"></span><img src="${pageContext.request.contextPath}/resources/images/common/cart_icon.png"></a></li> 	    		
@@ -25,7 +25,7 @@
 	       		<li><a href="${pageContext.request.contextPath}/member/memberJoin"><span class="glyphicon"></span> 회원가입</a></li>	
 	      	</c:otherwise>
 	      </c:choose>
-	        
+	      
 	      </ul>
 	    </div>
 	</nav>
@@ -58,9 +58,9 @@
 			    	</div>
 			    	
 			    	<div class="col-sm-2 myNavbar3">
-			    		<a href="${pageContext.request.contextPath}/faq/faqList" class="inners_title">고객센터</a>
+			    		<a href="${pageContext.request.contextPath}/faq/faqList?faq_type=1" class="inners_title">고객센터</a>
 			    			<ul>
-						       <li><a href="${pageContext.request.contextPath}/faq/faqList">자주하는 질문</a></li>
+						       <li><a href="${pageContext.request.contextPath}/faq/faqList?faq_type=1">자주하는 질문</a></li>
 							   <li><a href="${pageContext.request.contextPath}/qna/qnaWrite">온라인 신문고</a></li>
 						    </ul>
 			    	</div>
