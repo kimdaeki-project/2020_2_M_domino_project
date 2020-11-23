@@ -28,7 +28,7 @@
 			<div class="depth-area">
 				<ol>
 					<li><a href="http://localhost/t1">홈</a></li>
-					<li><a href="./memberPage">나의정보</a></li>
+					<li><a href="../member/memberPage">나의정보</a></li>
 					<li><strong>1:1문의</strong></li>
 				</ol>
 			</div>

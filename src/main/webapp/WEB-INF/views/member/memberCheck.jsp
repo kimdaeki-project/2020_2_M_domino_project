@@ -55,7 +55,7 @@
 			<div>
 			<dl>
 				<dt>아이디</dt>
-				<dd><input type="text" name="member_id" value="${member.member_id}" readonly="readonly" style="text-align:center; width:300px; height:42px;"></dd>
+				<dd><input type="text" name="member_id" value="${member.member_id}" readonly="readonly" style="text-align:center; width:300px; height:42px; border: 0px;"></dd>
 			</dl>
 			<dl>
 				<dt>비밀번호</dt>

@@ -29,6 +29,10 @@
 	#srcBtn{
 		line-height: 50px;
 	}
+	
+	#notice{
+		color: red;
+	}
 </style>
 
 </head>
@@ -40,7 +44,7 @@
 			<div class="depth-area">
 				<ol>
 					<li><a href="http://localhost/t1">홈</a></li>
-					<li><a href="./memberPage">나의정보</a></li>
+					<li><a href="../memberPage">나의정보</a></li>
 					<li><strong>1:1문의</strong></li>
 				</ol>
 			</div>
@@ -134,67 +138,96 @@
         </div>
         <div class="modal-body">
         <form action="./memberInquirly" method="post">
-         <table class="table table-hober">	
-		<tr>
-			<td>아이디</td><td><input type="text" name="member_name" value="${member.member_id}" readonly="readonly"></td>
-		</tr>
-		<tr>
-			<td>연락처</td><td><input type="text" name="member_id" value="${member.member_phone}" readonly="readonly"></td>
-		</tr>
-		<tr>
-			<td>이메일</td><td><input type="text" id="email" value="${member.member_email}" readonly="readonly"></td>
-		</tr>
-		<tr>
-			<td>문의유형</td>
-			<td>
-				<select name="inq_type">
-					<option value="/main?locale=선택">선택</option>
-					<option value="제품관련">제품관련</option>
-					<option value="배달서비스 관련">배달서비스 관련</option>
-					<option value="직원서비스 관련">직원서비스 관련</option>
-					<option value="콜센타 관련">콜센타 관련</option>
-					<option value="칭찬">칭찬</option>
-					<option value="제안">제안</option>
-					<option value="단순문의">단순문의</option>
-					<option value="기타">기타</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>매장선택</td>
-			<td>
-				<select name="inq_location">
-					<option value="/main?locale=지역선택">지역선택</option>
-					<option value="서울">서울</option>
-				</select><br>
-				<br>
-				<select name="inq_shop">
-					<option value="/main?locale=매장선택">매장선택</option>
-					<option value="가락">가락</option>
-					<option value="가산">가산</option>
-					<option value="마포">마포</option>
-					<option value="마포">강남</option>
-				</select>
-			</td>
-		</tr>
+		
+		<div>
+			<div>
+			<dl>
+				<dd><span id="notice"> * 주문 취소 / 변경과 같은 긴급한 요청은 매장으로 연락 부탁드립니다.</span></dd>
+			</dl>
+			
+			<dl>
+				<dt>아이디</dt>
+				<dd><input type="text" name="member_id" value="${member.member_id}" readonly="readonly" style="border: 0px;"></dd>
+			</dl>
+			<dl>
+				<dt>연락처</dt>
+				<dd><input type="text" name="member_phone" value="${member.member_phone}" readonly="readonly" style="border: 0px;"></dd>
+			</dl>
+			<dl>
+				<dt>이메일</dt>
+				<dd><input type="text" name="member_email" value="${member.member_email}" readonly="readonly" style="border: 0px;"></dd>
+			</dl>			
+					
+			<dl>
+				<dt>문의유형</dt>
+				<dd>
+				
+					<select name="inq_type" style="height: 40px; width: 200px;">
+						<option value="/main?locale=선택">선택</option>
+						<option value="제품관련">제품관련</option>
+						<option value="배달서비스 관련">배달서비스 관련</option>
+						<option value="직원서비스 관련">직원서비스 관련</option>
+						<option value="콜센타 관련">콜센타 관련</option>
+						<option value="칭찬">칭찬</option>
+						<option value="제안">제안</option>
+						<option value="단순문의">단순문의</option>
+						<option value="기타">기타</option>
+					</select>
+					
+				</dd>
+			</dl>
 
-		<tr>
-			<td>제목</td><td><input type="text" name="inq_title"></td>
-		</tr>
-		<tr>
-			<td>문의내용</td><td><textarea rows="10" cols="40" name="inq_contents"></textarea></td>
-		</tr>		
-		</table>
+			<dl>
+				<dt>매장선택</dt>
+				<dd>
+				
+					<select name="inq_location" style="height: 40px; width: 120px;">
+						<option value="/main?locale=지역선택">지역선택</option>
+						<option value="서울">서울</option>
+					</select><br>
+					<br>
+					<select name="inq_shop" style="height: 40px; width: 120px;">
+						<option value="/main?locale=매장선택">매장선택</option>
+						<option value="가락">가락</option>
+						<option value="가산">가산</option>
+						<option value="마포">마포</option>
+						<option value="마포">강남</option>
+					</select>
+					
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt>제목</dt>
+				<dd>
+					<div>
+						<input type="text" name="inq_title" style="text-align:center; width:300px; height:42px;" id="inq_title">
+					</div>
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt>문의내용</dt>
+				<dd>
+					<div>
+						<textarea rows="10" cols="40" name="inq_contents"></textarea>
+					</div>
+				</dd>
+			</dl>				
+			</div>
+		</div>	
+		
 		
 		<input type="text" name="member_num" value="${member.member_num}" class="none">
 		<input type="text" name="inq_state" value="미처리" class="none">
 		
-		 <button type="submit">작성</button>
+		
+		  <input type="submit" value="작성완료" class="checkButt" style="width: 110px;">
 		</form>
 		
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
         </div>
       </div>
     </div>
