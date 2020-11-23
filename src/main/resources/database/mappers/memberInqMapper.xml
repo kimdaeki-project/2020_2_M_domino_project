@@ -5,6 +5,14 @@
     
 <mapper namespace="com.domino.t1.member.memberInquirly.MemberInquirlyDAO">
 
+	<update id="setInqUpdate" parameterType="MemberInquirlyDTO">
+		update member_inquirly set inq_reply = #{inq_reply}, inq_state = #{inq_state} where member_num = #{member_num} and inq_num = #{inq_num} 
+	</update>
+
+	<select id="getInqList" resultType="MemberInquirlyDTO">
+		select * from member_inquirly order by member_num desc
+	</select>
+
 	<delete id="setInqDelete" parameterType="MemberInquirlyDTO">
 		delete member_inquirly where inq_num = #{inq_num}
 	</delete>
@@ -17,7 +25,7 @@
 	<select id="getInqBoardList" resultType="Pager" parameterType="Pager">
 		select * from
 		(select rownum R, N.* from 
-		(select * from member_inquirly where 
+		(select * from member_inquirly where member_num=#{member_num} and
 		<choose>
 			<when test="kind == 'title'">
 				(inq_title like '%'||#{search}||'%')

@@ -24,7 +24,7 @@
 	<div class="container">
 	
 	<div class="order-title-wrap">
-		<h2 class="order-title">나의정보</h2>
+		<h2 class="order-title">회원 문의 정보</h2>
 			<div class="depth-area">
 				<ol>
 					<li><a href="http://localhost/t1">홈</a></li>
@@ -45,34 +45,24 @@
 	</ul>
 	
 	<div class="myLevel">
-		<div class="myCheck">${member.member_name}님께서 문의하신 내용입니다</div>
+		<div class="myCheck">회원 문의 정보 수정</div>
 		<div></div>
-		<div class="myCheck2">${member.member_name}님께서 문의하신 내용은 총 0건입니다.</div>
 	</div>
 	<div class="memberCheck"></div><br>
 			<div class="container">
 			
 			<input type="number" value="${dto.inq_num}" name="inq_num" class="none">
-			
+			<form action="./memberInquirlyUpdate" method="post" id="frm">
 			<div>
 			<div>
 			<dl>
-				<dt>이름</dt>
-				<dd><input type="text" name="member_name" value="${member.member_name}" readonly="readonly" style="border: 0px;"></dd>
-			</dl>
-			
-			<dl>
-				<dt>아이디</dt>
-				<dd><input type="text" name="member_id" value="${member.member_id}" readonly="readonly" style="border: 0px;"></dd>
+				<dt>회원번호</dt>
+				<dd><input type="text" name="member_num" value="${dto.member_num}" readonly="readonly" style="border: 0px;"></dd>
 			</dl>
 			<dl>
-				<dt>연락처</dt>
-				<dd><input type="text" name="member_phone" value="${member.member_phone}" readonly="readonly" style="border: 0px;"></dd>
-			</dl>
-			<dl>
-				<dt>이메일</dt>
-				<dd><input type="text" name="member_email" value="${member.member_email}" readonly="readonly" style="border: 0px;"></dd>
-			</dl>			
+				<dt>글 번호</dt>
+				<dd><input type="text" name="inq_num" value="${dto.inq_num}" readonly="readonly" style="border: 0px;"></dd>
+			</dl>		
 					
 			<dl>
 				<dt>문의유형</dt>
@@ -87,12 +77,17 @@
 					${dto.inq_shop} : ${dto.inq_location}
 				</dd>
 			</dl>
+			<dl>
+				<dt>처리상태</dt>
+				<dd><input type="text" name="inq_state" value="${dto.inq_state}"></dd>
+			</dl>
+			
 			
 			<dl>
 				<dt>제목</dt>
 				<dd>
 					<div>
-						<input type="text" name="member_email" value="${dto.inq_title}" readonly="readonly" style="border: 0px;">
+						<input type="text" name="inq_title" value="${dto.inq_title}"style="border: 0px;">
 					</div>
 				</dd>
 			</dl>
@@ -101,7 +96,7 @@
 				<dt>문의내용</dt>
 				<dd>
 					<div>
-						<textarea rows="10" cols="40" name="inq_contents" class="divText" readonly="readonly">${dto.inq_contents}</textarea>
+						<textarea rows="10" cols="40" name="inq_contents" class="divText">${dto.inq_contents}</textarea>
 					</div>
 				</dd>
 			</dl>
@@ -110,18 +105,18 @@
 				<dt>답변</dt>
 				<dd>
 					<div>
-						<textarea rows="10" cols="40" name="inq_reply" class="divText" readonly="readonly">${dto.inq_reply}</textarea>
+						<textarea rows="10" cols="40" name="inq_reply" class="divText"></textarea>
 					</div>
 				</dd>
 			</dl>								
 			</div>
 		</div>	
-			
-			
-	<input type="button" value="삭제" id="checkButt" style= "width:110px; height:42px;" class="inqDel">		
+		
+					
 	<input type="button" value="목록" id="checkButt" style= "width:110px; height:42px;" class="inqList">		
+	<input type="submit" value="수정완료" id="checkButt" style= "width:110px; height:42px;" class="inqUpdate">	
+	</form>
 	
-
 	</div>
 	
 	
@@ -130,12 +125,11 @@
 <c:import url="../template/footer.jsp"></c:import>
 </body>
 <script type="text/javascript">
-	$(".inqDel").click(function() {
-		location.href = "./memberInquirlyDelete?inq_num=${dto.inq_num}";
-	});
+
+
 
 	$(".inqList").click(function() {
-		location.href = "./memberInquirly";
+		location.href = "./memberInq/memberInquirlyList";
 	});
 
 </script>

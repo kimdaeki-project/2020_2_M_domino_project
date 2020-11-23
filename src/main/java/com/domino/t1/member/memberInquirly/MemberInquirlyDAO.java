@@ -17,6 +17,14 @@ public class MemberInquirlyDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.domino.t1.member.memberInquirly.MemberInquirlyDAO.";
 	
+	public int setInqUpdate(MemberInquirlyDTO memberInquirlyDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setInqUpdate", memberInquirlyDTO);
+	}
+	
+	public List<MemberInquirlyDTO> getInqList(MemberInquirlyDTO memberInquirlyDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getInqList", memberInquirlyDTO);
+	}
+	
 	public int setInqDelete(MemberInquirlyDTO memberInquirlyDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE+"setInqDelete", memberInquirlyDTO);
 	}

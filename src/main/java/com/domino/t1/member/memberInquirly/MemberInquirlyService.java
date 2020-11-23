@@ -15,6 +15,14 @@ public class MemberInquirlyService {
 	@Autowired
 	private MemberInquirlyDAO memberInquirlyDAO;
 	
+	public int setInqUpdate(MemberInquirlyDTO memberInquirlyDTO) throws Exception{
+		return memberInquirlyDAO.setInqUpdate(memberInquirlyDTO);
+	}
+	
+	public List<MemberInquirlyDTO> getInqList(MemberInquirlyDTO memberInquirlyDTO) throws Exception{
+		return memberInquirlyDAO.getInqList(memberInquirlyDTO);
+	}
+	
 	public int setInqDelete(MemberInquirlyDTO memberInquirlyDTO) throws Exception{
 		return memberInquirlyDAO.setInqDelete(memberInquirlyDTO);
 	}

@@ -22,6 +22,41 @@ public class MemberInquirlyController {
 	@Autowired
 	private MemberInquirlyService memberInquirlyService;
 	
+	@PostMapping("memberInquirlyUpdate")
+	public ModelAndView setInqUpdate(MemberInquirlyDTO memberInquirlyDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		int result = memberInquirlyService.setInqUpdate(memberInquirlyDTO);
+		
+		mv.setViewName("redirect:./memberInquirlyList");
+		return mv;
+	} 
+	
+	@GetMapping("memberInquirlyUpdate")
+	public ModelAndView setInqSelect(MemberInquirlyDTO memberInquirlyDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("Inq Update");
+		
+		memberInquirlyDTO = memberInquirlyService.getOne(memberInquirlyDTO);
+		mv.addObject("dto", memberInquirlyDTO);
+		mv.setViewName("memberInq/memberInquirlyUpdate");
+		
+		return mv;
+	}
+	
+	@GetMapping("memberInquirlyList")
+	public ModelAndView getInqList(MemberInquirlyDTO memberInquirlyDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("Inq List");
+		
+		List<MemberInquirlyDTO> ar = memberInquirlyService.getInqList(memberInquirlyDTO);
+		
+		mv.addObject("list", ar);
+		mv.setViewName("memberInq/memberInquirlyList");
+		
+		return mv;
+	}
+	
 	@GetMapping("memberInquirlyDelete")
 	public ModelAndView setInqDelete(MemberInquirlyDTO memberInquirlyDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();

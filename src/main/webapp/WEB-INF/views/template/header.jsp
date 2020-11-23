@@ -13,6 +13,8 @@
 	    
 	    <div class="collapse navbar-collapse" id="myNavbar1" style="padding: 0;">
 	      <ul class="nav navbar-nav navbar-right">
+	      	<li><a href="${pageContext.request.contextPath}/member/memberList"><span class="glyphicon"></span> Admin 회원 정보</a></li>
+	        <li><a href="${pageContext.request.contextPath}/memberInq/memberInquirlyList"><span class="glyphicon"></span> Admin 회원 문의 정보</a></li>
 	      <c:choose>
 	      	<c:when test="${not empty member}">
 	       		<li><a href="${pageContext.request.contextPath}/member/memberLogout"><span class="glyphicon"></span> 로그아웃</a></li>
@@ -25,7 +27,6 @@
 	       		<li><a href="${pageContext.request.contextPath}/member/memberJoin"><span class="glyphicon"></span> 회원가입</a></li>	
 	      	</c:otherwise>
 	      </c:choose>
-	        
 	      </ul>
 	    </div>
 	</nav>

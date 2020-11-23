@@ -16,6 +16,16 @@
 	#select li a{
 		font-size: 17px;
 	}
+	
+	.changePw{
+		margin: 0 auto;
+		padding: 30px;
+	}
+	
+	#pText{
+		font-size: 32px;
+		margin-bottom: 20px;
+	}
 </style>
 
 </head>
@@ -41,17 +51,21 @@
 
 		<form action="./setPassword" method="post" id="frm">
 		<input type="text" value="${dto.member_id}" name="member_id" class="none">
-		<div>
+		<div class="container">
+			<div class="changePw">
+				<p id="pText">비밀번호 변경</p>
+				<p>새로 사용할 비밀번호를 입력하세요</p>
+			</div>
 			<div>
 			<dl>
 				<dt>새 비밀번호</dt>
-				<dd><input placeholder="특수문자, 문자 , 숫자  8~15자리 이내의 암호" type="password" id="member_pw2" name="member_pw2" style="text-align:center; width:300px; height:42px;"></dd>
+				<dd><input placeholder="특수문자, 문자 , 숫자  8~15자리 이내의 암호" type="password" id="member_pw2" name="member_pw2" style="text-align:center; width:320px; height:42px;"></dd>
 			</dl>
 			<dl>
 				<dt>새 비밀번호 확인</dt>
 				<dd>
 					<div>
-						<input placeholder="특수문자, 문자 , 숫자  8~15자리 이내의 암호" type="password" id="member_pw" name="member_pw" style="text-align:center; width:300px; height:42px;"><input type="button" value="확인" id="checkButt" style= "width:110px; height:42px;">
+						<input placeholder="특수문자, 문자 , 숫자  8~15자리 이내의 암호" type="password" id="member_pw" name="member_pw" style="text-align:center; width:320px; height:42px;"><input type="button" value="확인" id="checkButt" style= "width:110px; height:42px;">
 						<div id="pwSetResult"></div>
 					</div>
 				</dd>
