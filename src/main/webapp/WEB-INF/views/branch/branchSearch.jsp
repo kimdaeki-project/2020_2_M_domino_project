@@ -52,11 +52,11 @@
 										<div class="form-region" id="form-region-first">
 											<div class="select-region">
 												<select id="reg1" name="region1">
+													<option value="0" selected>시/도</option>
 													<c:forEach var="dto" items="${region1}">
-														<option value="0" selected>시/도</option>
-														<option value="1">${dto.region1}</option>
-														
-														</c:forEach>
+													<option><c:out value="${dto.region1}"/></option>
+													
+													</c:forEach>
 												</select>
 											</div>
 										</div>

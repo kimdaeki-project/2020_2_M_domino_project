@@ -127,6 +127,8 @@ public class AddressController {
 		mv.setViewName("address/pickup");
 		System.out.println("pickup");
 		
+		BranchInfoDTO branchInfoDTO = new BranchInfoDTO();
+		
 		return mv;
 		
 	}

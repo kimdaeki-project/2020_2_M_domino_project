@@ -20,6 +20,7 @@ public class BranchInfoController {
 	public ModelAndView getRegion1(BranchInfoDTO branchInfoDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
+		System.out.println(branchInfoDTO);
 		System.out.println(branchInfoDTO.getRegion1());
 		
 		List<BranchInfoDTO> ar = branchInfoService.getRegion1(branchInfoDTO);
