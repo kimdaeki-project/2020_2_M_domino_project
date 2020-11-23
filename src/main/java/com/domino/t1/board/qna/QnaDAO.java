@@ -28,14 +28,6 @@ public class QnaDAO {
 		return sqlSession.insert(NAMESPACE+"setInsert", qnaDTO);
 	}
 	
-	public int setReply(QnaDTO qnaDTO)throws Exception{
-		return sqlSession.insert(NAMESPACE+"setReply", qnaDTO);
-	}
-
-	public int setReplyUpdate(QnaDTO qnaDTO)throws Exception{
-		return sqlSession.update(NAMESPACE+"setReplyUpdate", qnaDTO);
-	}
-	
 	public int setUpdate(QnaDTO qnaDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;

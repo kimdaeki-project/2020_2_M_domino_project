@@ -6,9 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
- 
- 
-<title>메일 보내기</title>
+
+ <title>Dominos_t1</title>
+ <c:import url="../template/bootstrap.jsp"></c:import>
+ <link href ="../resources/css/common/default.css" rel="stylesheet">
+ <script src="../resources/js/header.js"></script>
+ <link href ="../resources/css/common/board.css" rel="stylesheet">
+ <link href ="../resources/css/common/qna.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">

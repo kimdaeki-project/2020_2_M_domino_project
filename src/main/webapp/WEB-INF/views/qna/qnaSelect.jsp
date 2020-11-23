@@ -11,6 +11,29 @@
   <script src="../resources/js/header.js"></script>
   <link href ="../resources/css/common/board.css" rel="stylesheet">
   <link href ="../resources/css/common/qna.css" rel="stylesheet">
+  
+  <style type="text/css">
+ 
+  	.qna_control{
+			width: 100px;
+			height: 50px;
+			background-color: #222222;
+			text-align: center;
+			line-height: 50px;
+			font-size: 18px;
+			margin-top: 10px;
+		}
+	
+	  .qna_control a{
+			color: white;
+			font-weight: bold;
+		}
+		
+	#qna_reply_btn{
+		background-color: #222222;
+	}
+  </style>
+  
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
@@ -108,12 +131,23 @@
 				</div>
 			    
 			    <div class="col-sm-12" style="padding: 2%; text-align: center;">
-				 <a href="./qnaReply" class="btn btn-info"> <button type="button" id="qna_reply_btn" class="qna_btn">답글쓰기</button></a>
+				     <button type="button" id="qna_reply_btn" class="qna_btn">답변메일 쓰기</button>
    				</div>
 	</div>
+	
+		<c:if test="${not empty member and member.member_id eq 'admin'}">
+			<div  class="qna_control" style="float: right;">
+				<a href="./qnaList">글목록</a>
+			</div>
+		</c:if>
 	</div>
-	<a href="./qnaList">목록</a>
  	<c:import url="../template/footer.jsp"></c:import>
-		
+	
+	<script type="text/javascript">
+		$("#qna_reply_btn").click(function(){
+			location.href="./qnaReply";
+		})
+	</script>	
+	
 </body>
 </html>

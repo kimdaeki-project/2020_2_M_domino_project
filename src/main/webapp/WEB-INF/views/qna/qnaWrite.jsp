@@ -5,13 +5,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Dominos_t1</title>
   <c:import url="../template/bootstrap.jsp"></c:import>
   <link href ="../resources/css/common/default.css" rel="stylesheet">
   <script src="../resources/js/header.js"></script>
   <link href ="../resources/css/common/board.css" rel="stylesheet">
   <link href ="../resources/css/common/qna.css" rel="stylesheet">
- 
+ 	
+  <style type="text/css">
+  	.qna_control{
+			width: 100px;
+			height: 50px;
+			background-color: #222222;
+			text-align: center;
+			line-height: 50px;
+			font-size: 18px;
+			margin-top: 10px;
+		}
+	
+	  .qna_control a{
+			color: white;
+			font-weight: bold;
+		}
+  </style>
+  
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
@@ -197,8 +214,14 @@
    				</div>
 	</form>
 	</div>
+	
+		<c:if test="${not empty member and member.member_id eq 'admin'}">
+			<div  class="qna_control" style="float: right;">
+				<a href="./qnaList">글목록</a>
+			</div>
+		</c:if>
 	</div>
-	<a href="./qnaList">목록</a>
+
  	<c:import url="../template/footer.jsp"></c:import>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script> 

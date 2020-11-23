@@ -66,12 +66,6 @@ public class QnaService {
 		return qnaDAO.getOne(qnaDTO);
 	}
 	
-	public int setReply(QnaDTO qnaDTO) throws Exception{
-		int result = qnaDAO.setReplyUpdate(qnaDTO);
-		result = qnaDAO.setReply(qnaDTO);
-		return result;
-	}
-	
 	public int setUpdate(QnaDTO qnaDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return qnaDAO.setUpdate(qnaDTO);

@@ -75,24 +75,6 @@ public class QnaController {
 		return mv;
 	}
 	
-	
-	@PostMapping("qnaReply")
-	public ModelAndView setReply(QnaDTO qnaDTO) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		int result = qnaService.setReply(qnaDTO);
-		
-		String message="작성 실패했습니다.";
-		if(result>0) {
-			message = "작성 성공했습니다";
-		}
-	
-		mv.addObject("msg", message);
-		mv.addObject("path", "./qnaList");
-		mv.setViewName("common/result");
-
-		return mv; 
-	}
-	
 	@GetMapping("qnaSelect")
 	public ModelAndView getOne(QnaDTO qnaDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -109,6 +91,13 @@ public class QnaController {
 		}
 		return mv;
 	}
+	
+	
+	
+	
+	
+	
+	
 	
 	@GetMapping("qnaDelete")
 	public ModelAndView setDelete(QnaDTO qnaDTO) throws Exception{

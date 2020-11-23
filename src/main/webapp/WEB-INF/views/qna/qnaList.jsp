@@ -48,20 +48,6 @@
 			padding-left: 70px;
 		}
 		
-		.list_write{
-			width: 100px;
-			height: 50px;
-			background-color: #222222;
-			float: right;
-			text-align: center;
-			line-height: 50px;
-		}
-		
-		.list_write a{
-			color: white;
-			font-size: 17px;
-		}
-		
 		.pageNum{
 			text-align: center;
 		}
@@ -151,12 +137,6 @@
 			</tr>
 		</c:forEach>
 		</table>
-		
-		<c:if test="${not empty member and member.member_id eq 'admin'}">
-			<div class="list_write">
-				<a href="./qnaWrite">QNA 글쓰기</a>
-			</div>
-		</c:if>
 		
 	</div>
 </div>
