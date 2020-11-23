@@ -8,6 +8,11 @@
 <head>
 <title>Insert title here</title>
 <meta charset="utf-8">
+  <!-- jQuery -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+  <!-- iamport.payment.js -->
+  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+  
 <c:import url="../template/bootstrap.jsp"></c:import>
 <link href="../resources/css/common/default.css" rel="stylesheet">
 <link href="../resources/css/order/info.css" rel="stylesheet">
@@ -37,12 +42,7 @@
 							}
 						});
 			});
-	
-	
-	var couponDate = ${coupon.sale_date};
-	// 날짜(일) 더하기
-	couponDate.setDate(couponDate.getDate()+30);
-	
+
 </script>
 
 
@@ -230,7 +230,7 @@
 												<div class="chk-box" style="margin-left: 25px;">
 													<input type="radio" id="coupon${i.index}" name="coupon"> <label
 														class="checkbox" for="coupon${i.index}"></label> <label
-														for="coupon${i.index}">${coupon.sale_name}(${coupon.sale_date}~couponDate)</label>
+														for="coupon${i.index}">${coupon.sale_name}(유효기간:${coupon.sale_date}~${coupon.sale_date_end})</label>
 												</div>
 											</c:forEach>
 											</div>
