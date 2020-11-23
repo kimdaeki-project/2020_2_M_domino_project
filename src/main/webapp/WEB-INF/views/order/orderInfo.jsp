@@ -29,7 +29,6 @@
 								$(".tel2").val(
 										"${member.member_phone}".substring(9,
 												14)).attr('readonly', true);
-
 							} else {
 								$("#order_name").val("")
 										.attr('readonly', false);
@@ -38,6 +37,12 @@
 							}
 						});
 			});
+	
+	
+	var couponDate = ${coupon.sale_date};
+	// 날짜(일) 더하기
+	couponDate.setDate(couponDate.getDate()+30);
+	
 </script>
 
 
@@ -221,24 +226,13 @@
 											온라인 쿠폰</p>
 										<div class="form" style="padding: 20px 10">
 											<div class="form-item">
+											<c:forEach items="${couponList}" var="coupon" varStatus="i">
 												<div class="chk-box" style="margin-left: 25px;">
-													<input type="radio" id="coupon1" name="coupon"> <label
-														class="checkbox" for="coupon1"></label> <label
-														for="coupon1">[REGULAR쿠폰] 배달 피자 20% 할인(유효기간:
-														2020-11-01 ~ 2020-11-30)</label>
+													<input type="radio" id="coupon${i.index}" name="coupon"> <label
+														class="checkbox" for="coupon${i.index}"></label> <label
+														for="coupon${i.index}">${coupon.sale_name}(${coupon.sale_date}~couponDate)</label>
 												</div>
-												<div class="chk-box">
-													<input type="radio" id="coupon2" name="coupon"> <label
-														class="checkbox" for="coupon2"></label> <label
-														for="coupon2"> [마이키친] REGULAR 배달 20% 할인(유효기간:
-														2020-11-01 ~ 2020-11-30)</label>
-												</div>
-												<div class="chk-box">
-													<input type="radio" id="coupon3" name="coupon"> <label
-														class="checkbox" for="coupon3"></label> <label
-														for="coupon3"> [첫 주문]스타 셰프 컬렉션 L 배달 1만원(유효기간:
-														2020-11-13 ~ 2021-01-07)</label>
-												</div>
+											</c:forEach>
 											</div>
 										</div>
 									</div>
@@ -357,7 +351,7 @@
 						</div>
 						<!-- // 바로주문 -->
 					</div>
-				</div>
+				
 
 				<!-- 결제방법 -->
 				<div class="step-wrap" id="pay_info">
@@ -486,9 +480,7 @@
 			</form>
 			<!-- //주문하기 버튼 -->
 		</article>
-
-	</div>
-
+		</div>
 
 	<c:import url="../template/footer.jsp"></c:import>
 
@@ -505,7 +497,6 @@
 				}
 			});
 		});
-
 		function myCoupon() {
 			var url = "./myCoupon";
 			var name = "popup test";
