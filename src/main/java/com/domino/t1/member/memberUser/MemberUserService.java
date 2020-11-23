@@ -61,9 +61,9 @@ public class MemberUserService implements MemberService{
 	}
 
 	@Override
-	public AddressDTO getMemberLogin(AddressDTO addressDTO) throws Exception {
+	public Pager getMemberLogin(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
-		return memberDAO.getMemberLogin(addressDTO);
+		return memberDAO.getMemberLogin(pager);
 	}
 
 	@Override

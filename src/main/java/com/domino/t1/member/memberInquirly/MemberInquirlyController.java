@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.domino.t1.address.AddressDTO;
 import com.domino.t1.member.MemberDTO;
+import com.domino.t1.util.Pager;
 
 @Controller
 @RequestMapping("/memberInq/**")
@@ -77,10 +78,11 @@ public class MemberInquirlyController {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("member/memberInquirly");
 		
-		AddressDTO addressDTO = (AddressDTO) session.getAttribute("member");
-			
+		Pager pager = (Pager) session.getAttribute("member");
+				
 		
-		List<AddressDTO> ar = memberInquirlyService.getInqBoardList(addressDTO);
+		List<Pager> ar = memberInquirlyService.getInqBoardList(pager);
+		mv.addObject("pager", pager);
 		
 		mv.addObject("list", ar);
 		mv.setViewName("memberInq/memberInquirly");

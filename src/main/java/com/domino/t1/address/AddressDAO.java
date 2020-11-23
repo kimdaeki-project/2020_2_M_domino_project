@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.domino.t1.branchInfo.BranchInfoDTO;
+import com.domino.t1.util.Pager;
 
 @Repository
 public class AddressDAO {
@@ -19,8 +20,8 @@ public class AddressDAO {
 		return sqlSession.delete(NAMESPACE+"setAddressDelete", addressDTO);
 	}
 	
-	public List<AddressDTO> getMemberAddress(AddressDTO addressDTO) throws Exception{
-		return sqlSession.selectList(NAMESPACE+"getMemberAddress", addressDTO);
+	public List<Pager> getMemberAddress(Pager pager) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getMemberAddress", pager);
 	}
 	
 	public int setMemberAddress(AddressDTO addressDTO) throws Exception{

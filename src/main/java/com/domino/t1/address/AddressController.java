@@ -15,6 +15,7 @@ import com.domino.t1.branchInfo.BranchInfoDTO;
 import com.domino.t1.member.MemberDTO;
 import com.domino.t1.member.address.MemberAddressDTO;
 import com.domino.t1.member.memberInquirly.MemberInquirlyDTO;
+import com.domino.t1.util.Pager;
 
 @Controller
 @RequestMapping("/address/**")
@@ -51,13 +52,13 @@ public class AddressController {
 	} 
 	
 	@GetMapping("deliveryAfter")
-	public ModelAndView deliveryAfrer(HttpSession session) throws Exception{
+	public ModelAndView getMemberAddress(HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		System.out.println("DA");
 		
-		AddressDTO addressDTO = (AddressDTO)session.getAttribute("member");
+		Pager pager = (Pager)session.getAttribute("member");
 		
-		List<AddressDTO> ar = addressService.getMemberAddress(addressDTO);
+		List<Pager> ar = addressService.getMemberAddress(pager);
 	
 		mv.addObject("list", ar);
 		mv.setViewName("address/deliveryAfter");

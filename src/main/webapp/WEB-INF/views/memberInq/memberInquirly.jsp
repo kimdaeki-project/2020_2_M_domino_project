@@ -16,6 +16,19 @@
 	#select li a{
 		font-size: 17px;
 	}
+	
+	.form-item{
+		display: inline-block;
+	}
+	
+	#msg{
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+	
+	#srcBtn{
+		line-height: 50px;
+	}
 </style>
 
 </head>
@@ -48,6 +61,34 @@
 		<div class="myCheck2">${member.member_name}님께서 문의하신 내용은 총 0건입니다.</div>
 	</div>
 	
+		<div class="col-sm-12" style="border-bottom: 2px solid black; padding:50px 0; ">
+		  <form action="./memberInquirly">
+		 	 <input type="hidden" name="curPage" id="curPage">
+		       <div class="input-group" style="margin: 0 auto;">
+		       
+		       		<div class="form-item">
+		       		<select class="col-sm-2" id="sel1" name="kind" style="width: 150px; height: 50px; border-color: #ddd; background-color: white;">
+		       			<option value="title">제목</option>
+		       			<option value="date">날짜</option>
+		       			<option value="state">처리상태</option>
+		       		</select>
+		       		</div>
+		       		
+		       		<div class="form-item">
+			        <input class="col-sm-6" id="msg" type="text" class="form-control" name="search"  style="width: 500px; height: 50px; border: 1px solid #ddd;">
+			        </div>
+			       
+			        <div class="form-item" id="srcBtn">
+				    <button type="submit" style="background-color: #222; width:50px; height: 50px;">
+				        <img alt="" src="${pageContext.request.contextPath}/resources/images/index/srch.png">
+				    </button>
+				    </div>
+			        
+			       
+		       </div>
+		  </form>
+  	  </div>
+	
 	<div>
 	<table class="table table-hober">
 		<tr>
@@ -63,7 +104,21 @@
 			</tr>
 		</c:forEach>
 	</table>
-		
+		<div>
+  
+  	<c:if test="${pager.beforeCheck}">
+  	<a href="./memberInquirly?curPage=${pager.startNum-1}&kind=${pager.kind}&search=${search}">[이전]</a>
+  	</c:if>
+  
+  	<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+  		<a href="./memberInquirly?curPage=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a>
+  	</c:forEach>
+  	
+  	<c:if test="${pager.nextCheck}">
+  	<a href="./memberInquirly?curPage=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">[다음]</a>
+  	</c:if>
+  </div>
+  
 	<div style="text-align: center;">	
 	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="width: 120px;">
 		문의하기

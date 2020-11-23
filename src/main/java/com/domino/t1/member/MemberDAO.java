@@ -22,7 +22,7 @@ public interface MemberDAO {
 	
 	public MemberDTO getMemberIdCheck(MemberDTO memberDTO) throws Exception;
 	
-	public AddressDTO getMemberLogin(AddressDTO addressDTO) throws Exception;
+	public Pager getMemberLogin(Pager pager) throws Exception;
 	
 	public int setMemberJoin(MemberDTO memberDTO) throws Exception;
 	

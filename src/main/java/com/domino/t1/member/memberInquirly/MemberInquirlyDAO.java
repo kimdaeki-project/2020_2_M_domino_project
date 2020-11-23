@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.domino.t1.address.AddressDTO;
 import com.domino.t1.member.MemberDTO;
+import com.domino.t1.util.Pager;
 
 @Repository
 public class MemberInquirlyDAO {
@@ -25,9 +26,14 @@ public class MemberInquirlyDAO {
 		return sqlSession.selectOne(NAMESPACE+"getOne", memberInquirlyDTO);
 	}
 	
-	public List<AddressDTO> getInqBoardList(AddressDTO addressDTO) throws Exception {
+	public List<Pager> getInqBoardList(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE+"getInqBoardList", addressDTO);
+		return sqlSession.selectList(NAMESPACE+"getInqBoardList", pager);
+	}
+	
+	public long getCount(Pager pager) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+"getCount", pager);
 	}
 	
 	public int setInqBoardWrite(MemberInquirlyDTO memberInquirlyDTO) throws Exception {

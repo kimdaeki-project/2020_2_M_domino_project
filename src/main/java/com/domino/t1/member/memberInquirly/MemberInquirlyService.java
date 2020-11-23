@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.domino.t1.address.AddressDTO;
 import com.domino.t1.member.MemberDTO;
+import com.domino.t1.util.Pager;
 
 @Service
 public class MemberInquirlyService {
@@ -23,11 +24,18 @@ public class MemberInquirlyService {
 		return memberInquirlyDAO.getOne(memberInquirlyDTO);
 	}
 
-	public List<AddressDTO> getInqBoardList(AddressDTO addressDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return memberInquirlyDAO.getInqBoardList(addressDTO);
+	public List<Pager> getInqBoardList(Pager pager) throws Exception {
+		
+		pager.makeRow();
+		pager.setTotalCount(memberInquirlyDAO.getCount(pager));
+		pager.makePage();
+		
+		return memberInquirlyDAO.getInqBoardList(pager);
 	}
 
+	public long getCount(Pager pager) throws Exception{
+		return memberInquirlyDAO.getCount(pager);
+	}
 	
 	public int setInqBoardWrite(MemberInquirlyDTO memberInquirlyDTO) throws Exception {
 		// TODO Auto-generated method stub

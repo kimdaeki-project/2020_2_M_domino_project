@@ -9,7 +9,7 @@
 		delete member_address where address_num = #{address_num} 
 	</delete>
 
-	<select id="getMemberAddress" parameterType="AddressDTO" resultType="AddressDTO">
+	<select id="getMemberAddress" parameterType="Pager" resultType="Pager">
 		select * from member_address where member_num = #{member_num} order by address_num desc
 	</select>
 

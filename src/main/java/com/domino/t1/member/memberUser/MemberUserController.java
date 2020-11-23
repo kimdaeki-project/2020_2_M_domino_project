@@ -261,12 +261,12 @@ public class MemberUserController {
 	}
 	
 	@PostMapping("memberLogin")
-	public ModelAndView getMemberLogin(AddressDTO addressDTO, String remember, HttpServletResponse response ,HttpSession session) throws Exception{
+	public ModelAndView getMemberLogin(Pager pager, String remember, HttpServletResponse response ,HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
 		
 		if(remember != null) {
-			Cookie cookie = new Cookie("remember", addressDTO.getMember_id());
+			Cookie cookie = new Cookie("remember", pager.getMember_id());
 			
 			response.addCookie(cookie);
 		}else {
@@ -276,10 +276,10 @@ public class MemberUserController {
 			response.addCookie(cookie);
 		}
 		
-		addressDTO = memberService.getMemberLogin(addressDTO);
+		pager = memberService.getMemberLogin(pager);
 		
-		if(addressDTO != null) {
-			session.setAttribute("member", addressDTO);
+		if(pager != null) {
+			session.setAttribute("member", pager);
 			mv.setViewName("redirect:../");
 		}else {
 			mv.addObject("msg","로그인 실패");

@@ -14,8 +14,41 @@
 		sysdate, #{inq_state}, #{inq_type}, #{inq_shop}, #{inq_location})
 	</insert>
 	
-	<select id="getInqBoardList" resultType="MemberInquirlyDTO">
-		select * from member_inquirly where member_num=#{member_num} order by inq_num desc
+	<select id="getInqBoardList" resultType="Pager" parameterType="Pager">
+		select * from
+		(select rownum R, N.* from 
+		(select * from member_inquirly where 
+		<choose>
+			<when test="kind == 'title'">
+				(inq_title like '%'||#{search}||'%')
+			</when>
+			
+			<when test="kind == 'date'">
+				(inq_date like '%'||#{search}||'%')
+			</when>
+			
+			<otherwise>
+				(inq_state like '%'||#{search}||'%')
+			</otherwise>
+		</choose>
+		order by inq_num desc) N)
+		where R between #{startRow} and #{lastRow}
+	</select>
+	
+	<select id="getCount" resultType="Long" parameterType="Pager">
+		select count(inq_num) from member_inquirly
+		where 
+		<choose>
+			<when test="kind == 'title'">
+				(inq_title like '%'||#{search}||'%')
+			</when>
+			<when test="kind == 'date'">
+				(inq_date like '%'||#{search}||'%')
+			</when>
+			<otherwise>
+				(inq_state like '%'||#{search}||'%')
+			</otherwise>
+		</choose>
 	</select>
 	
 	<select id="getOne" resultType="MemberInquirlyDTO" parameterType="MemberInquirlyDTO">
