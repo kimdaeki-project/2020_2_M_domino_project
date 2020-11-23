@@ -323,7 +323,7 @@
 	var regExpPhone = /^\d{3}-\d{3,4}-\d{4}$/;//핸드폰 번호 정규식
 	
 	var idExpCheck=false;
-	var pwExpCheck=false
+	var pwExpCheck=false;
 	var phoneExpCheck=false;
 	var emailExpCheck=false;
 	

@@ -90,12 +90,16 @@
 			
 		<div class="form-group update_input">
 			<label for="phone" class="labelUpdate">휴대전화 </label>
-			<input type="text" name="member_phone" value="${member.member_phone}">
+			<input type="text" name="member_phone" value="${member.member_phone}" id="phone"placeholder="ex) 010-0000-0000">
+			 <input type="button" id="btnPhone" value="중복확인" class="checkButt" style="width: 110px;">
+			 <div id="phoneResult"></div>
 		</div>
 			
 		<div class="form-group update_input">
 			<label for="email" class="labelUpdate">이메일 </label>
-			<input type="email" name="member_email" value="${member.member_email}">
+			<input type="email" name="member_email" value="${member.member_email}" id="email" placeholder="ex) aaaa@gmail.com">
+			 <input type="button" id="btnEmail" value="중복확인" class="checkButt" style="width: 110px;">
+			 <div id="emailResult"></div>
 		</div>
 			
 		<div class="form-group">
@@ -131,6 +135,12 @@
 <script type="text/javascript">
 
 	var pwCheck=false;
+	var emailCheck=false;
+	var phoneCheck=false;
+	var idExpCheck=false;
+	var pwExpCheck=true;
+	var phoneExpCheck=true;
+	var emailExpCheck=true;
 
 	$("#btnUpdate").click(function () {
 		if($("#pw2").val()=='') {
@@ -138,13 +148,18 @@
 			pwCheck=true;
 		}
 		
-		if(pwCheck) {
+		if(pwCheck && pwExpCheck && phoneExpCheck && emailExpCheck) {
 			$("#frm").submit();
 			alert("정보 수정이 완료되었습니다")
 		}else{
-			alert("비밀번호를 확인해주세요")
+			alert("비밀번호, 이메일, 전화번호를 확인해주세요")
 		}
 	});
+	
+	var passRule = /^[A-Za-z0-9]{6,12}$/;//아이디 정규식 숫자와 문자 포함 형태의 6~12자리 이내의 아이디 정규식
+	var regexPw = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;// 비밀번호 정규식 특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식
+	var regExpEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
+	var regExpPhone = /^\d{3}-\d{3,4}-\d{4}$/;//핸드폰 번호 정규식
 	
 	
 	$("#pw2").blur(function() {
@@ -152,7 +167,7 @@
 		var pw2 = $("#pw2").val();
 		pwCheck=false;
 		if(pw2==''){
-			$("#pwSetResult").html("비밀번호를 변경하려면 입력하세요.변경하지 않으려면 공백");
+			$("#pwSetResult").html("비밀번호를 변경하려면 입력하세요.");
 			$("#pwSetResult").removeClass("pwCheck0").addClass("pwCheck1");
 			pwCheck=true;
 		}else if(pw1 == pw2){
@@ -162,6 +177,90 @@
 		}else {
 			$("#pwSetResult").html("비밀번호가 일치 하지 않습니다");
 			$("#pwSetResult").removeClass("pwCheck0").addClass("pwCheck1");
+		}
+	});
+	
+	$("#pw2").blur(function() {
+		pwExpCheck=false;
+		if(!regexPw.test($("input[id='pw2']").val())) {
+			pwExpCheck=false;
+		 	alert("형식에 맞지않는 비밀번호입니다.")
+	    
+		}else{
+			pwExpCheck=true;
+			alert("사용할 수 있는 비밀번호입니다.")
+		}
+		
+	});
+	
+	$("#phone").blur(function() {
+		phoneExpCheck=false;
+		if(!regExpPhone.test($("input[id='phone']").val())) {
+			phoneExpCheck=false;
+		 	alert("형식에 맞지않는 전화번호입니다.")
+	    
+		}else{
+			phoneExpCheck=true;
+			alert("사용할 수 있는 전화번호입니다.")
+		}
+		
+	});
+	
+	$("#email").blur(function() {
+		emailExpCheck=false;
+		if(!regExpEmail.test($("input[id='email']").val())) {
+			emailExpCheck=false;
+		 	alert("형식에 맞지않는 이메일입니다.")
+	    
+		}else{
+			emailExpCheck=true;
+			alert("사용할 수 있는 이메일입니다.")
+		}
+		
+	});
+	
+	$("#btnPhone").click(function () {
+		phoneCheck=false;
+		var phone = $("#phone").val();
+		if(phone !=''){
+			$.get("./memberPhoneCheck?member_phone="+phone,function(data){
+				data=data.trim();
+				var str = "중복된  전화번호 입니다."
+				
+				$("phoneResult").removeClass("phoneCheck0").addClass("phoneCheck1");
+				if(data==0){
+					str="중복되지 않은 전화번호 입니다.";
+					$("#phoneResult").removeClass("phoneCheck1").addClass("phoneCheck0");
+					phoneCheck=true;
+				}
+				$("#phoneResult").html(str);
+			});
+		}else{
+			$("#phoneResult").html("전화번호를  입력후 중복검사를 해주세요.");
+			$("#phoneResult").removeClass("phoneCheck0").addClass("phoneCheck1");
+		}
+	});
+	
+	
+	$("#btnEmail").click(function () {
+		emailCheck=false;
+		var email = $("#email").val();
+		if(email !=''){
+			$.get("./memberEmailCheck?member_email="+email,function(data){
+				data=data.trim();
+				var str = "중복된  이메일 입니다."
+				
+				$("emailResult").removeClass("emailCheck0").addClass("emailCheck1");
+				if(data==0){
+					str="중복되지 않은 이메일 입니다.";
+					$("#emailResult").removeClass("emailCheck1").addClass("emailCheck0");
+					emailCheck=true;
+				}
+				$("#emailResult").html(str);
+			});
+		}else{
+			$("#emailResult").html("이메일을  입력후 중복검사를 해주세요.");
+			$("#emailResult").removeClass("emailCheck0").addClass("emailCheck1");
 		}
 	});
 	
