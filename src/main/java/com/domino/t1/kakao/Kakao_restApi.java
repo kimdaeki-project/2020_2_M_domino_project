@@ -68,9 +68,12 @@ public class Kakao_restApi {
         return returnNode;
  
     }
+
+	
+	
 	
 	 public JsonNode Logout(String autorize_code) {
-	        final String RequestUrl = "https://kapi.kakao.com/v1/user/logout";
+	        final String RequestUrl = "https://kapi.kakao.com/v1/user/member/memberLogout";
 	 
 	        final HttpClient client = HttpClientBuilder.create().build();
 	 
