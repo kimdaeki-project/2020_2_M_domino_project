@@ -35,13 +35,15 @@
 			
 			<mapping path="/dominoNews/*"/>
 			<mapping path="/press/*"/>
+			<mapping path="/qna/*"/>
 			<exclude-mapping path="/dominoNews/dominoNewsList"/>
 			<exclude-mapping path="/dominoNews/dominoNewsSelect"/>
 			<exclude-mapping path="/dominoNews/fileDown"/>
 			<exclude-mapping path="/press/pressList"/>
 			<exclude-mapping path="/press/pressSelect"/>
 			<exclude-mapping path="/press/fileDown"/>
-			
+			<exclude-mapping path="/qna/qnaWrite"/>	
+					
 			<beans:ref bean="AdminMemberInterceptor"></beans:ref>
 		</interceptor>
 	

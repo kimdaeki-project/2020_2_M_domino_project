@@ -63,6 +63,11 @@
 			font-size: 17px;
 		}
 		
+		#list_count{
+			padding-top: 10px;
+			float: right;
+		}
+		
 		.pageNum{
 			text-align: center;
 		}
@@ -136,7 +141,7 @@
 		  </form>
   	  </div>
   
-			
+	<p id="list_count">총 ${pager.totalCount}건</p>		
 	<div class="list_con">
 		<table class="table table-hover">
 			<tr>

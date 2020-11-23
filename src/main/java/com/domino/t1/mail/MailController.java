@@ -8,6 +8,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
  
 @Controller
 public class MailController {
@@ -15,18 +16,11 @@ public class MailController {
   @Autowired
   private JavaMailSender mailSender;
  
- 
-  // mailForm
-  @RequestMapping(value = "qnaReply")
-  public String mailForm() {
-   
-    return "/qnaReply";
-  }  
- 
   // mailSending 코드
   @RequestMapping(value = "/mail/mailSending")
-  public String mailSending(HttpServletRequest request) {
-   
+  public ModelAndView mailSending(HttpServletRequest request) {
+    ModelAndView mv = new ModelAndView();
+	  
     String setfrom = "dominost1reply@gmail.com";         
     String tomail  = request.getParameter("tomail");     // 받는 사람 이메일
     String title   = request.getParameter("title");      // 제목
@@ -46,8 +40,11 @@ public class MailController {
     } catch(Exception e){
       System.out.println(e);
     }
-    System.out.println("작성완료");
-   
-    return "redirect:/";
+    mv.addObject("msg", "메일이 정상적으로 전송되었습니다");
+	mv.addObject("path", "../");
+	
+	mv.setViewName("common/result");
+
+	return mv;	
   }
 } 

@@ -26,19 +26,17 @@ public class QnaService {
 	public int setInsert(QnaDTO qnaDTO, MultipartFile[] files, HttpSession session) throws Exception {
 		// TODO Auto-generated method stub
 		
-		int result = qnaDAO.setInsert(qnaDTO);
-		
 		String path = session.getServletContext().getRealPath("/resources/upload/qna/");
 		File file = new File(path);
-	
-		for(int i=0;i<files.length;i++) {
-			if(i==0) {
-				continue;
-			}
-			MultipartFile multipartFile = files[i];
-			if( multipartFile.getSize() !=0) {
+		System.out.println(path);
+		
+		int result = qnaDAO.setInsert(qnaDTO);
+		System.out.println("Num : "+qnaDTO.getBoard_num());
+		
+		for(MultipartFile multipartFile:files) {
+			if(multipartFile.getSize() !=0) {
 				String fileName = fileSaver.saveCopy(file, multipartFile);
-				System.out.println("fina::::"+ fileName);
+
 				BoardFileDTO boardFileDTO = new BoardFileDTO();
 				boardFileDTO.setFile_Name(fileName);
 				boardFileDTO.setOri_Name(multipartFile.getOriginalFilename());
@@ -46,9 +44,9 @@ public class QnaService {
 				qnaDAO.setInsertFile(boardFileDTO);
 			}
 		}
-		return result;	
+		return result;
 	}
-	
+		
 	public int setDelete(QnaDTO qnaDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return qnaDAO.setDelete(qnaDTO);

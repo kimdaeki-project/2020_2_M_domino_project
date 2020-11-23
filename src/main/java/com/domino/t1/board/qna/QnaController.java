@@ -54,7 +54,7 @@ public class QnaController {
 		ModelAndView mv = new ModelAndView();
 	
 		mv.addObject("msg", message);
-		mv.addObject("path", "./qnaList");
+		mv.addObject("path", "./qnaWrite");
 		
 		mv.setViewName("common/result");
 		return mv;	
@@ -64,10 +64,12 @@ public class QnaController {
 	public ModelAndView fileDown(BoardFileDTO boardFileDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
+		mv.addObject("news", "qna");
 		mv.addObject("fileDTO", boardFileDTO);
 		mv.setViewName("fileDown");
 		return mv;
 	}
+	
 	@GetMapping("qnaReply")
 	public ModelAndView setReply() throws Exception{
 		ModelAndView mv = new ModelAndView();

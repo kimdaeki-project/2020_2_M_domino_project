@@ -27,6 +27,7 @@
 			color: white;
 			font-weight: bold;
 		}
+
   </style>
   
 </head>
@@ -178,7 +179,7 @@
     		  	<div class="col-sm-12 qna_input">
 				    <label class="control-label col-sm-2" for="order_num">주문번호</label>
 				    <div class="col-sm-4">
-				    <input type="text" class="form-control" id="order_num" name="order_num">
+				    <input type="text" class="form-control" id="order_num" name="order_num"  onKeyPress="return numkeyCheck(event)">
 				    </div>
 				</div>
     
@@ -279,7 +280,7 @@
 				if($("#phone").val().length==0){emptyCheckResult=false; $(".phoneResult").html("휴대전화번호를 입력해주세요."); 
 				$(".emptyResult").addClass("Check1"); $("#phone").focus(); return false; }
 				
-				if($("#email").val().length==0){emptyCheckResult=false; $(".emailResult").html("※등록결과 및 답변은 이메일로도 알려드리오니, 정확한 이메일을 기재하여 주시기 바랍니다."); 
+				if($("#email").val().length==0){emptyCheckResult=false; $(".emailResult").html("※등록결과 및 답변은 이메일로 알려드리오니, 정확한 이메일을 기재하여 주시기 바랍니다."); 
 				$(".emptyResult").addClass("Check1"); $("#email").focus(); return false; }
 				
 				if($("#qna_type option:selected").val()==''){emptyCheckResult=false; $(".typeResult").html("유형을 선택하세요."); 
@@ -298,6 +299,18 @@
 		}
 		
 		
+		//주문번호 숫자 검증
+		function numkeyCheck(e){ 
+			var keyValue = event.keyCode; 
+			if( ((keyValue >= 48) && (keyValue <= 57)) ) {
+				return true; 
+			}
+			else {
+				alert("숫자만 입력해주세요");
+				return false; 
+			}
+			} 
+
 		//다시쓰기 alert창 
 		$(document).ready(function(){
 			$("#qna_reset_btn").click(function(){

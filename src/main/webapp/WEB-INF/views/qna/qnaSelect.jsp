@@ -140,13 +140,17 @@
 				<a href="./qnaList">글목록</a>
 			</div>
 		</c:if>
+		
+		
 	</div>
  	<c:import url="../template/footer.jsp"></c:import>
 	
 	<script type="text/javascript">
 		$("#qna_reply_btn").click(function(){
+	
 			location.href="./qnaReply";
-		})
+			});
+
 	</script>	
 	
 </body>

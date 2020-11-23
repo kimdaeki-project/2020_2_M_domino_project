@@ -18,9 +18,6 @@ public class QnaDTO extends BoardDTO{
 	private String qna_type;
 	private String branch_info;
 	private String order_num;
-	private long ref;
-	private long step;
-	private long depth;
 	
 	List<BoardFileDTO> boardFileDTOs;
 
@@ -65,23 +62,5 @@ public class QnaDTO extends BoardDTO{
 	}
 	public void setOrder_num(String order_num) {
 		this.order_num = order_num;
-	}
-	public long getRef() {
-		return ref;
-	}
-	public void setRef(long ref) {
-		this.ref = ref;
-	}
-	public long getStep() {
-		return step;
-	}
-	public void setStep(long step) {
-		this.step = step;
-	}
-	public long getDepth() {
-		return depth;
-	}
-	public void setDepth(long depth) {
-		this.depth = depth;
 	}
 }

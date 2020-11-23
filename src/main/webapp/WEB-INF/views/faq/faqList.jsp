@@ -53,9 +53,6 @@
 			background-color: #333333;
 			color: white;
 		}
-		
-		
-	
 	</style>
 </head>
 <body>
@@ -169,14 +166,14 @@
 		//delete
 		$("#faq_result").on("click",".faq_del_btn", function(){
 			var board_num = $(this).attr("title");
-			var check= confirm("삭제하겠습니까?");
+			var check= confirm("정말로 삭제하겠습니까?");
 			
 			if(check){
 				$.post("./faqDelete",{board_num:board_num}, function(data){
 					data=data.trim();
 					if(data>0){		
 						alert("삭제 성공했습니다.");
-						location.href="./faqList";
+						location.reload();
 					}
 					else{
 						alert("삭제 실패했습니다.");

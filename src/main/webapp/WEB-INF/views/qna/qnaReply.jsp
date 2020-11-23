@@ -15,24 +15,67 @@
  <link href ="../resources/css/common/qna.css" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-  <h4>메일 보내기</h4>
-  <form action="${pageContext.request.contextPath}/mail/mailSending" method="post">
-    <div align="center"><!-- 받는 사람 이메일 -->
-      <input type="text" name="tomail" size="120" style="width:100%" placeholder="상대의 이메일" class="form-control" >
-    </div>     
-    <div align="center"><!-- 제목 -->
-      <input type="text" name="title" size="120" style="width:100%" placeholder="제목을 입력해주세요" class="form-control" >
-    </div>
-    <p>
-    <div align="center"><!-- 내용 --> 
-      <textarea name="content" cols="120" rows="12" style="width:100%; resize:none" placeholder="내용#" class="form-control"></textarea>
-    </div>
-    <p>
-    <div align="center">
-      <input type="submit" value="메일 보내기" class="btn btn-warning">
-    </div>
-  </form>
-</div>
+<c:import url="../template/header.jsp"></c:import>
+
+	<div class="container">
+	
+		<div class="order-title-wrap">
+		
+		<h2 class="order-title">고객센터</h2>
+			<div class="depth-area">
+				<ol>
+					<li><a href="http://localhost/t1">홈</a></li>
+					<li><a href="${pageContext.request.contextPath}/faq/faqList">고객센터</a></li>
+					<li><strong>온라인신문고</strong></li>
+				</ol>
+			</div>
+		</div>
+	
+		<ul id="select" style="padding: 20px 0; border-bottom: 2px solid black;">
+			<li>
+				<a href="${pageContext.request.contextPath}/faq/faqList">자주하는질문</a> ㅣ 
+				<a href="${pageContext.request.contextPath}/qna/qnaWrite">온라인신문고</a>  
+			</li>
+		</ul>	
+		
+	   <div>
+	   <form action="${pageContext.request.contextPath}/mail/mailSending" method="post">
+	    <div class="col-sm-12 qna_input">
+				<label class="control-label col-sm-2" for="board_to">받는 분</label>
+				<div class="col-sm-6">
+					<input type="text" name="tomail" size="120" style="width:100%" class="form-control">
+				</div>
+		</div>
+		
+		<div class="col-sm-12 qna_input">
+				<label class="control-label col-sm-2" for="board_title">제목</label>
+				<div class="col-sm-6">
+					 <input type="text" name="title" size="120" style="width:100%" class="form-control" >
+				</div>
+		</div>
+		
+		<div class="col-sm-12 qna_input">
+				<label class="control-label col-sm-2" for="board_content">내용</label>
+				<div class="col-sm-6">
+					 <textarea name="content" style="width: 540px; height: 400px; overflow-y: scroll; resize:none" class="form-control">
+					 </textarea>
+				</div>
+		</div>
+		
+		<div class="col-sm-12" style="padding: 2%; text-align: center;">
+	   			<button type="submit" id="qna_mail_btn" class="qna_btn" style="background-color: #222222;">메일 보내기</button>
+   		</div>
+	    
+	  </form>
+	  </div>
+	  
+	</div>
+	<c:import url="../template/footer.jsp"></c:import>
+	
+	<script type="text/javascript">
+		
+	
+	
+	</script>
 </body>
 </html> 
