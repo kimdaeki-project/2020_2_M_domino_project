@@ -23,7 +23,7 @@
 		</div>
 		<div class="content">
 			<h3>배달주문</h3>
-			<div>대표주소는 여기에 노출??</div>
+			<div>${address.roadFullAddr}</div>
 		</div>
 		<div class="content" id="cart-list-container">
 			<h3>장바구니 목록</h3>		
@@ -268,7 +268,8 @@
 					result = result.trim()
 					alert(result)
 					if(result > 0){
-						$(this).closest("li").remove()
+						$(this).closest("li").remove(kk)
+						window.location.reload()	
 					}else{
 						alert("삭제에 실패했습니다.")
 					}
@@ -293,14 +294,28 @@
 		})
 		console.log(pizzaGIdList.toString())
 		console.log(itemGIdList.toString())
+		var addressPage = '/t1/address/delivery'
+		$.get(
+			'/t1/cart/hasAddress',
+			function(result){
+				alert('hasAddress: '+result)
+				if(result>0){
+					addressPage += 'After'
+				}
+			}
+		)
 		$.post(
-			"./toCheckout",
+			"/t1/cart/toAddressPage",
 			{
 				"pizzaGIdList" : pizzaGIdList.toString(),
 				"itemGIdList" : itemGIdList.toString()
 			},
-			function(){
-				location.href="/t1/order/orderInfo"
+			function(result){
+				if(result < 1){
+					alert("오류가 발생했습니다. 문제가 지속될 경우 관리자에게 문의 바랍니다.")	
+					return
+				}				
+			location.href = addressPage 
 			}
 		)		
 	})
