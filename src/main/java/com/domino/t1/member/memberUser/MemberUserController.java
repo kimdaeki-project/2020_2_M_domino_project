@@ -35,7 +35,7 @@ public class MemberUserController {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("Post Admin Delete");
 		
-		
+		int result = memberService.setMemberDelete(memberDTO);
 		
 		mv.setViewName("redirect:./memberList");
 		

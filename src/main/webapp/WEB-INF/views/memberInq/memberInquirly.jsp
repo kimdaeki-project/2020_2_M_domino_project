@@ -33,6 +33,17 @@
 	#notice{
 		color: red;
 	}
+	
+	#paging{
+		text-align: center;
+		
+	}
+	
+	#paging a{
+	color: #888888;
+	
+	}
+	
 </style>
 
 </head>
@@ -65,7 +76,7 @@
 		<div class="myCheck2">${member.member_name}님께서 문의하신 내용은 총 0건입니다.</div>
 	</div>
 	
-		<div class="col-sm-12" style="border-bottom: 2px solid black; padding:50px 0; ">
+		<div class="col-sm-12" style="border-bottom: 2px solid black; padding:50px 0; display: none;">
 		  <form action="./memberInquirly">
 		 	 <input type="hidden" name="curPage" id="curPage">
 		       <div class="input-group" style="margin: 0 auto;">
@@ -108,8 +119,8 @@
 			</tr>
 		</c:forEach>
 	</table>
-		<div>
-  
+	
+  <div id="paging">  
   	<c:if test="${pager.beforeCheck}">
   	<a href="./memberInquirly?curPage=${pager.startNum-1}&kind=${pager.kind}&search=${search}">[이전]</a>
   	</c:if>

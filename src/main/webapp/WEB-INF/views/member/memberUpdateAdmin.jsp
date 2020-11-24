@@ -121,7 +121,8 @@
 
 	<div style="text-align: center;">
 		<input type="button" value="수정하기" id="btnUpdate" class="btn btn-default">
-		<input type="button" value="회원삭제" id="btnDeleteAdmin" class="btn btn-default">
+		<input type="button" value="회원삭제" id="memberUpdateDel" class="btn btn-default">
+		
 		
 	</div>
 	
@@ -134,8 +135,8 @@
 
 <script type="text/javascript">
 
-	$("#btnDeleteAdmin").click(function() {
-		location.href = "./memberDeleteAdmin";
+	$("#memberUpdateDel").click(function() {
+		location.href = "./memberDeleteAdmin?member_id=${dto.member_id}";
 	});
 
 	var pwCheck=false;
