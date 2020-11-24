@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.domino.t1.address.AddressDTO;
+import com.domino.t1.coupon.CouponDTO;
 import com.domino.t1.member.MemberDTO;
 import com.domino.t1.member.memberInquirly.MemberInquirlyDTO;
 import com.domino.t1.util.Pager;
@@ -297,12 +298,20 @@ public class MemberUserController {
 	}
 	
 	@PostMapping("memberLogin")
+
 	public ModelAndView getMemberLogin(Pager pager, String remember, HttpServletResponse response ,HttpSession session) throws Exception{
+
+	public ModelAndView getMemberLogin(CouponDTO couponDTO, String remember, HttpServletResponse response ,HttpSession session) throws Exception{
+
 		ModelAndView mv = new ModelAndView();
 		
 		
 		if(remember != null) {
+
 			Cookie cookie = new Cookie("remember", pager.getMember_id());
+
+			Cookie cookie = new Cookie("remember", couponDTO.getMember_id());
+
 			
 			response.addCookie(cookie);
 		}else {
@@ -312,10 +321,17 @@ public class MemberUserController {
 			response.addCookie(cookie);
 		}
 		
+
 		pager = memberService.getMemberLogin(pager);
 		
 		if(pager != null) {
 			session.setAttribute("member", pager);
+
+		couponDTO = memberService.getMemberLogin(couponDTO);
+		
+		if(couponDTO != null) {
+			session.setAttribute("member", couponDTO);
+
 			mv.setViewName("redirect:../");
 		}else {
 			mv.addObject("msg","로그인 실패");

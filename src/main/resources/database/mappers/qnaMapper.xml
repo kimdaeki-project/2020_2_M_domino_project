@@ -8,7 +8,10 @@
 	<insert id="setInsertFile" parameterType="BoardFileDTO">
 		insert into qnaFile values(board_seq.nextval, #{board_num}, #{file_Name}, #{ori_Name})
 	</insert>
-
+	
+	
+	
+	
 	 <insert id="setInsert" parameterType="QnaDTO">
    		 <selectKey keyProperty="board_num" resultType="Long" order="BEFORE">
    		 	select board_seq.nextval from dual

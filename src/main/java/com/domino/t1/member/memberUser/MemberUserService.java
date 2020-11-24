@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.domino.t1.address.AddressDAO;
 import com.domino.t1.address.AddressDTO;
+import com.domino.t1.coupon.CouponDTO;
 import com.domino.t1.member.MemberDTO;
 import com.domino.t1.member.MemberService;
 import com.domino.t1.member.memberInquirly.MemberInquirlyDTO;
@@ -67,9 +68,15 @@ public class MemberUserService implements MemberService{
 	}
 
 	@Override
+
 	public Pager getMemberLogin(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
 		return memberDAO.getMemberLogin(pager);
+
+	public CouponDTO getMemberLogin(CouponDTO couponDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return memberDAO.getMemberLogin(couponDTO);
+
 	}
 
 	@Override

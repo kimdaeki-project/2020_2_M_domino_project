@@ -39,7 +39,7 @@
 							 	<span class="item-data">장바구니 그룹 id: ${dto.cart_group_id}</span>								
 								<c:choose>
 									<c:when test="${dto.item_category == 'dough'}">
-										<span class="item-data">도우: ${dto.dough_short_name}</span>
+										<span class="item-data">도우: ${dto.dough_name_short}</span>
 									</c:when>
 									<c:otherwise>
 										<span class="item-data">이름: ${dto.item_name}</span>	

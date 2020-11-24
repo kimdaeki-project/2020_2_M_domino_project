@@ -6,11 +6,14 @@
     <mapper namespace="com.domino.t1.order.OrderDAO">
     
     	<select id="getOne" parameterType="AddressDTO" resultType="AddressDTO">
-    		select * from member_address where member_num = #{member_num}
-    	 	
+    		select * from member_address where member_num = #{member_num}    	 	
     	</select>
     
-    
+    	<select id="getCoupon" parameterType="CouponDTO" resultType="CouponDTO">
+    	
+    		select * from sale where member_num = #{member_num}
+    	
+    	</select>
     
     
     

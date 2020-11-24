@@ -69,7 +69,7 @@
 			
 		<div class="form-group update_input">
 			<label for="pw" class="labelUpdate">현재 비밀번호 </label>
-			<input type="password" id="pw" value="${member.member_pw}">
+			<input type="password" id="pw" value="${member.member_pw}" readonly="readonly">
 		</div>
 			
 		<div class="form-group update_input">

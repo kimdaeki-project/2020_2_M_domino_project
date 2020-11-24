@@ -221,9 +221,11 @@
 		</c:forEach>
 		</table>
 		
-		<div class="list_write">
-			<a href="./${news}Write">글쓰기</a>
-		</div>
+		<c:if test="${not empty member and member.member_id eq 'admin'}">
+			<div class="list_write">
+				<a href="./${news}Write">글쓰기</a>
+			</div>
+		</c:if>
 		
 	</div>
 </div>
@@ -237,7 +239,7 @@
 			<a href="./${news}List?curPage=${i}&kind=${pager.kind}&search=${pager.search}" id="pageNums">${i}</a>
 		</c:forEach> 
 		
-		<c:if test="${pager.nextCheck}"> <!--true면 현재블럭이 마지막블럭이 아님 -->
+		<c:if test="${pager.nextCheck}"> 
 			<a href="./${news}List?curPage=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">[다음]</a>
 		</c:if>
  	</div>

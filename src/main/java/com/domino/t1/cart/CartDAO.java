@@ -14,22 +14,54 @@ public class CartDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.domino.t1.cart.CartDAO.";
+	// update quantity or size(for pizza)
+	public int deleteCartItem(CartDTO cartDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"deleteCartItem", cartDTO);
+	}
+	
+	public int deleteCartGroup(CartDTO cartDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"deleteCartGroup", cartDTO);
+	}
+	
+	public int emptyCart(MemberDTO memberDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"emptyCart", memberDTO);
+	}
+	
+	public int updateCartItemQuantity(CartDTO cartDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"updateCartItemQuantity", cartDTO);
+	}
 
+	public List<CartDTO> getCartPizzaGroupItemList(MemberDTO memberDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getCartPizzaGroupItemList", memberDTO);
+	}
+	
+	public List<CartDTO> getCartStandaloneItemList(MemberDTO memberDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getCartStandaloneItemList", memberDTO);
+	}
+	
+	public List<CartDTO> getCartPizzaGroupListByGroupId(CartDTO cartDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getCartPizzaGroupListByGroupId", cartDTO);
+	}
+	
+	public CartDTO getCartItemByGroupId(CartDTO cartDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getCartItemByGroupId", cartDTO);
+	}
+	
 	public List<CartDTO> getCartList(MemberDTO memberDTO) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getCartList", memberDTO);
 	}
+	
+	public CartDTO getCartItem(CartDTO cartDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getCartItem", cartDTO);
+	}
 
-	public int setCartItem(CartDTO cartDTO) {
+	public int setCartItem(CartDTO cartDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"setCartItem", cartDTO);
 	}
 
-	// insert a Cart record with given cart_group_id
-	public int setCartItemWithCartGroupId(CartDTO cartDTO) {
-		return sqlSession.insert(NAMESPACE+"setCartItemWithCartGroupId", cartDTO);
-	}
-
 	// get current maximum cart_group_id from given member's cart
-	public long getMaxCartGroupId(MemberDTO memberDTO) {
+	public long getMaxCartGroupId(MemberDTO memberDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getMaxCartGroupId", memberDTO);
 	}
+	
 }

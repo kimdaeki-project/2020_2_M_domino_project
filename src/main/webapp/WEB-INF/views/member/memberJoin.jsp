@@ -114,7 +114,11 @@
 				<label for="level" class="labelUpdate">등급 </label>
 				<input type="text" name="member_level" value="REGULAR" style="text-align:center; width:500px; height:42px;">
 			</div>
+
 						
+
+			
+
 			<div style="padding: 15px;">
 				<div class="form-group">
 					<label for="agg" class="labelUpdate">개인정보 유효기간 선택 </label>
