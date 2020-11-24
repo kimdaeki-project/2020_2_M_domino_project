@@ -67,6 +67,13 @@ public class KakaoController {
     	mv.setViewName("loginView");
     	return mv;
     }
+    
+    @RequestMapping(value="kindex")
+    public ModelAndView kindex() throws Exception{
+    	ModelAndView mv = new ModelAndView();
+    	mv.setViewName("kindex");
+    	return mv;
+    }
 
   
 }
