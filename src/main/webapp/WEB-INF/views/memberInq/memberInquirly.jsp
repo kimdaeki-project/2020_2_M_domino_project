@@ -173,8 +173,8 @@
 				<dt>문의유형</dt>
 				<dd>
 				
-					<select name="inq_type" style="height: 40px; width: 200px;">
-						<option value="/main?locale=선택">선택</option>
+					<select name="inq_type" style="height: 40px; width: 200px;" id="inq_type">
+						<option value="선택">선택</option>
 						<option value="제품관련">제품관련</option>
 						<option value="배달서비스 관련">배달서비스 관련</option>
 						<option value="직원서비스 관련">직원서비스 관련</option>
@@ -192,13 +192,13 @@
 				<dt>매장선택</dt>
 				<dd>
 				
-					<select name="inq_location" style="height: 40px; width: 120px;">
-						<option value="/main?locale=지역선택">지역선택</option>
+					<select name="inq_location" style="height: 40px; width: 120px;" id="inq_location">
+						<option value="지역선택">지역선택</option>
 						<option value="서울">서울</option>
 					</select><br>
 					<br>
-					<select name="inq_shop" style="height: 40px; width: 120px;">
-						<option value="/main?locale=매장선택">매장선택</option>
+					<select name="inq_shop" style="height: 40px; width: 120px;" id="inq_shop">
+						<option value="매장선택">매장선택</option>
 						<option value="가락">가락</option>
 						<option value="가산">가산</option>
 						<option value="마포">마포</option>
@@ -252,12 +252,15 @@
 	$("#inqBtn").click(function() {
 		var title = $("#inq_title").val();
 		var contents = $("#inq_contents").val();
+		var type = $("#inq_type").val();
+		var location = $("#inq_location").val(); 
+		var shop = $("#inq_shop").val();
 		
-		if(title !== '' && contents !== '')	{
+		if(title !== '' && contents !== '' && type !== '선택' && location !== '지역선택' && shop !== '매장선택')	{
 			$("#frm").submit();
 			
 		}else{
-			alert("문의 내용 및 제목을 입력해주세요")
+			alert("문의 내용, 제목 및 각 항목들을 확인해주세요")
 			
 		}
 	})
