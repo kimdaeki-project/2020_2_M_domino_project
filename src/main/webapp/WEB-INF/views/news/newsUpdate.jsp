@@ -63,16 +63,6 @@
 				 <input class="files" type="file" class="form-control" name="files">
 			</div>  
 			
-			<c:forEach items="${dto.boardFileDTOs}" var="file">
-			 	${file.ori_Name}
-			 	<br>
-			</c:forEach>
-			
-			<c:forEach items="${dto.boardFileDTOs}" var="file">
-			 	<a href="./fileDown?file_Name=${file.file_Name}&ori_Name=${file.ori_Name}">${file.ori_Name}</a>
-			 	<br>
-			</c:forEach>
-			
 			<div>
 			
 			<div style="float: right;">
