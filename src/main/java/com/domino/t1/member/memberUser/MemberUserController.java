@@ -21,8 +21,7 @@ import com.domino.t1.member.MemberDTO;
 import com.domino.t1.member.memberInquirly.MemberInquirlyDTO;
 import com.domino.t1.util.Pager;
 
-import oracle.jdbc.proxy.annotation.Post;
-import oracle.security.o3logon.a;
+
 
 @Controller
 @RequestMapping("/member/**")

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Insert title here</title>
+  <title>Dominos_t1</title>
   <meta charset="utf-8">
   <c:import url="./template/bootstrap.jsp"></c:import>
   <link href ="./resources/css/common/default.css" rel="stylesheet">
