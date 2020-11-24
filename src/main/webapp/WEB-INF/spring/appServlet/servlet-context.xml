@@ -50,14 +50,7 @@
 			<mapping path="/address/*"/>
 			
 			<mapping path="/memberInq/*"/>
-			<exclude-mapping path="/member/memberLogin"/>
-			<exclude-mapping path="/member/memberJoin"/>
-			<exclude-mapping path="/member/setPassword"/>
-			<exclude-mapping path="/member/memberCheck"/>				
-			<exclude-mapping path="/member/memberSearch"/>
-			<exclude-mapping path="/member/memberSearchView"/>
-			<exclude-mapping path="/member/memberSearchPw"/>
-			<exclude-mapping path="/member/memberSearchViewPw"/>
+			
 			
 			<beans:ref bean="MemberInterceptor"></beans:ref>
 		</interceptor>
