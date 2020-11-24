@@ -27,12 +27,15 @@
 	</beans:bean>
 	
 	<beans:bean class="com.domino.t1.interceptor.AdminMemberInterceptor" id="AdminMemberInterceptor"></beans:bean>
+	<beans:bean class="com.domino.t1.interceptor.MemberInterceptor" id="MemberInterceptor"></beans:bean>
 	
 	<interceptors>
 	
 		<interceptor>
 			<mapping path="/faq/faqWrite"/>
-			
+			<mapping path="/member/memberList"/>
+			<mapping path="/memberInq/memberInquirlyList"/>
+			<mapping path="/member/memberUpdateAdmin"/>
 			<mapping path="/dominoNews/*"/>
 			<mapping path="/press/*"/>
 			<exclude-mapping path="/dominoNews/dominoNewsList"/>
@@ -42,6 +45,23 @@
 			
 			<beans:ref bean="AdminMemberInterceptor"></beans:ref>
 		</interceptor>
+		
+		<interceptor>
+			<mapping path="/address/*"/>
+			<mapping path="/member/*"/>
+			<mapping path="/memberInq/*"/>
+			<exclude-mapping path="/member/memberLogin"/>
+			<exclude-mapping path="/member/memberJoin"/>
+			<exclude-mapping path="/member/setPassword"/>
+			<exclude-mapping path="/member/memberCheck"/>				
+			<exclude-mapping path="/member/memberSearch"/>
+			<exclude-mapping path="/member/memberSearchView"/>
+			<exclude-mapping path="/member/memberSearchPw"/>
+			<exclude-mapping path="/member/memberSearchViewPw"/>
+			
+			<beans:ref bean="MemberInterceptor"></beans:ref>
+		</interceptor>
+	
 	
 	
 	</interceptors>
