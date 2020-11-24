@@ -40,10 +40,11 @@
 		
 	   <div>
 	   <form action="${pageContext.request.contextPath}/mail/mailSending" method="post">
+	
 	    <div class="col-sm-12 qna_input">
 				<label class="control-label col-sm-2" for="board_to">받는 분</label>
 				<div class="col-sm-6">
-					<input type="text" name="tomail" size="120" style="width:100%" class="form-control">
+					<input type="text" name="tomail" size="120" style="width:100%" class="form-control" value="${param.email}" readonly="readonly">
 				</div>
 		</div>
 		

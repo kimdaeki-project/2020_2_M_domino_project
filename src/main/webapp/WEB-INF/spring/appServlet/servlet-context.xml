@@ -34,7 +34,6 @@
 	
 		<interceptor>
 			<mapping path="/faq/faqWrite"/>
-			
 			<mapping path="/dominoNews/*"/>
 			<mapping path="/press/*"/>
 			<mapping path="/qna/*"/>

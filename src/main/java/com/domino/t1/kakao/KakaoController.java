@@ -18,7 +18,10 @@ public class KakaoController {
     
 
     @RequestMapping(value = "/oauth", produces = "application/json")
-    public String kakaoLogin(@RequestParam("code") String code, Model model, HttpSession session) {
+    public ModelAndView kakaoLogin(@RequestParam("code") String code, Model model, HttpSession session) {
+    	
+    	ModelAndView mv = new ModelAndView();
+    	
         System.out.println("로그인 할때 임시 코드값");
         //카카오 홈페이지에서 받은 결과 코드
         System.out.println(code);
@@ -29,13 +32,21 @@ public class KakaoController {
         //결과값을 node에 담아줌
         JsonNode node = kr.getAccessToken(code);
         //결과값 출력
-        System.out.println(node);
+        System.out.println("node:" +node);
+ 
         //노드 안에 있는 access_token값을 꺼내 문자열로 변환
         String token = node.get("access_token").toString();
+        String kakaoUser = node.get("scope").toString();
+        String refresh_token = node.get("refresh_token").toString();
         //세션에 담아준다.
-        session.setAttribute("token", token);
+        System.out.println("token:"+token);
+        System.out.println("refresh_token:"+refresh_token);
+       
+        session.setAttribute("re", refresh_token);
+        mv.addObject("re", refresh_token);
+        mv.setViewName("redirect:/");
         
-        return "redirect:/";
+        return mv;
     }
     
     @RequestMapping(value = "/logout", produces = "application/json")

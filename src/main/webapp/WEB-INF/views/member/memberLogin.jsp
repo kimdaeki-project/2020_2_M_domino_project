@@ -11,7 +11,7 @@
   <link href ="../resources/css/common/member.css" rel="stylesheet">
   <script src="../resources/js/header.js"></script>
 <c:import url="../template/header.jsp"></c:import>
-
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <style type="text/css">
 
 	.login_top_text{
@@ -111,14 +111,15 @@
 				<img style="width:215px; height: 50px;" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
 			</a>
 		</div>
+
 	</div>
  
 	</div>
 	
-	
-	
+
 <c:import url="../template/footer.jsp"></c:import>
 </body>
+
 <script type="text/javascript">
 	$("#btnJoin").click(function() {
 		location.href = "./memberJoin";
