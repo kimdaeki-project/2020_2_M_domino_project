@@ -14,6 +14,7 @@ public class CouponController {
 		ModelAndView mv = new ModelAndView();
 				
 		mv.setViewName("order/myCoupon");
+		CouponDTO couponDTO = new CouponDTO();
 		
 		return mv;
 

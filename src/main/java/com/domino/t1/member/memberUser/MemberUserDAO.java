@@ -67,7 +67,7 @@ public class MemberUserDAO implements MemberDAO{
 	public Pager getMemberLogin(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"getMemberLogin", pager);
-
+	}
 	public CouponDTO getMemberLogin(CouponDTO couponDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"getMemberLogin", couponDTO);

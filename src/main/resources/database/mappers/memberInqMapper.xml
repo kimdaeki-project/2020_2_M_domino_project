@@ -26,7 +26,7 @@
 		sysdate, #{inq_state}, #{inq_type}, #{inq_shop}, #{inq_location}, #{inq_reply})
 	</insert>
 	
-	<select id="getInqBoardList" resultType="MemberInquirlyDTO" parameterType="Pager">
+	<select id="getInqBoardList" resultType="MemberInquirlyDTO" parameterType="CouponDTO">
 		select * from
 		(select rownum R, N.* from 
 		(select * from member_inquirly where member_num=#{member_num} and
@@ -47,7 +47,7 @@
 		where R between #{startRow} and #{lastRow}
 	</select>
 	
-	<select id="getCount" resultType="Long" parameterType="Pager">
+	<select id="getCount" resultType="Long" parameterType="CouponDTO">
 		select count(inq_num) from member_inquirly
 		where member_num=#{member_num} and
 		<choose>

@@ -299,7 +299,7 @@ public class MemberUserController {
 	
 	@PostMapping("memberLogin")
 
-	public ModelAndView getMemberLogin(Pager pager, String remember, HttpServletResponse response ,HttpSession session) throws Exception{
+
 
 	public ModelAndView getMemberLogin(CouponDTO couponDTO, String remember, HttpServletResponse response ,HttpSession session) throws Exception{
 
@@ -308,7 +308,6 @@ public class MemberUserController {
 		
 		if(remember != null) {
 
-			Cookie cookie = new Cookie("remember", pager.getMember_id());
 
 			Cookie cookie = new Cookie("remember", couponDTO.getMember_id());
 
@@ -320,12 +319,6 @@ public class MemberUserController {
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
 		}
-		
-
-		pager = memberService.getMemberLogin(pager);
-		
-		if(pager != null) {
-			session.setAttribute("member", pager);
 
 		couponDTO = memberService.getMemberLogin(couponDTO);
 		

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.domino.t1.address.AddressDTO;
+import com.domino.t1.coupon.CouponDTO;
 import com.domino.t1.member.MemberDTO;
 import com.domino.t1.util.Pager;
 
@@ -36,17 +37,17 @@ public class MemberInquirlyService {
 		return memberInquirlyDAO.getOne(memberInquirlyDTO);
 	}
 
-	public List<Pager> getInqBoardList(Pager pager) throws Exception {
+	public List<CouponDTO> getInqBoardList(CouponDTO couponDTO) throws Exception {
 		
-		pager.makeRow();
-		pager.setTotalCount(memberInquirlyDAO.getCount(pager));
-		pager.makePage();
+		couponDTO.makeRow();
+		couponDTO.setTotalCount(memberInquirlyDAO.getCount(couponDTO));
+		couponDTO.makePage();
 		
-		return memberInquirlyDAO.getInqBoardList(pager);
+		return memberInquirlyDAO.getInqBoardList(couponDTO);
 	}
 
-	public long getCount(Pager pager) throws Exception{
-		return memberInquirlyDAO.getCount(pager);
+	public long getCount(CouponDTO couponDTO) throws Exception{
+		return memberInquirlyDAO.getCount(couponDTO);
 	}
 	
 	public int setInqBoardWrite(MemberInquirlyDTO memberInquirlyDTO) throws Exception {

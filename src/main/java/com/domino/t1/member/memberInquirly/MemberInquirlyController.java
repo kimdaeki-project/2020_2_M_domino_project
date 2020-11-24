@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.domino.t1.address.AddressDTO;
+import com.domino.t1.coupon.CouponDTO;
 import com.domino.t1.member.MemberDTO;
 import com.domino.t1.util.Pager;
 
@@ -126,11 +127,11 @@ public class MemberInquirlyController {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("member/memberInquirly");
 		
-		Pager pager = (Pager) session.getAttribute("member");
+		CouponDTO couponDTO = (CouponDTO) session.getAttribute("member");
 				
-		List<Pager> ar = memberInquirlyService.getInqBoardList(pager);
+		List<CouponDTO> ar = memberInquirlyService.getInqBoardList(couponDTO);
 		
-		mv.addObject("pager", pager);
+		mv.addObject("pager", couponDTO);
 		
 		mv.addObject("list", ar);
 		mv.setViewName("memberInq/memberInquirly");
