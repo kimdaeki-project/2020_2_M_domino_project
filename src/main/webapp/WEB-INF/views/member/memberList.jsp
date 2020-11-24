@@ -22,8 +22,9 @@
 		margin-right: 5px;
 	}
 	
-	#srcBtn{
-		margin-bottom: 80px;
+	.form-item{
+		float: left;
+		padding: 2px;
 	}
 </style>
 <meta charset="UTF-8">
