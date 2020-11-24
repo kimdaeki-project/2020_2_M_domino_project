@@ -48,7 +48,7 @@
 		
 		<interceptor>
 			<mapping path="/address/*"/>
-			<mapping path="/member/*"/>
+			
 			<mapping path="/memberInq/*"/>
 			<exclude-mapping path="/member/memberLogin"/>
 			<exclude-mapping path="/member/memberJoin"/>

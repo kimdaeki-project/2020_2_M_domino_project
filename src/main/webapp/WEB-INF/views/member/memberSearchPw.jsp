@@ -175,10 +175,10 @@
 		
 		if(id !=''){
 			$.get("./memberIdCheck?member_id="+id,function(data){
-				if (data==1){
+				if (data == 1){
 				data=data.trim();
 				alert("존재하는 아이디입니다. 비밀번호 찾기를 진행합니다.");
-				}else if(data==0){
+				}else if(data == 0){
 					alert("존재하는 아이디를 입력하세요");
 					location.href = "./memberSearchPw";
 				}
