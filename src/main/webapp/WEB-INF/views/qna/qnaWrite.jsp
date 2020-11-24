@@ -5,138 +5,31 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Dominos_t1</title>
   <c:import url="../template/bootstrap.jsp"></c:import>
   <link href ="../resources/css/common/default.css" rel="stylesheet">
   <script src="../resources/js/header.js"></script>
-
-	<style type="text/css">
-		a{
-	color: black;
-}	
-
-.order-title-wrap{
-	position: relative;
-    margin-top: 50px;
-}
-
-.order-title{
-	margin: 0px;
-	padding: 0px;
-	box-sizing: border-box;
-	font-size: 32px;
-	color: black;
-	font-weight: 400;
-}
-
-.depth-area{
-	position: absolute;
-	right: 0;
-	
-}
-
-.depth-area > ol{
-	font-size: 0;
-		
-}
-
-.depth-area li{
-	display: inline-block;
-    font-size: 13px;
-    color: #888888;	
-}
-
-.depth-area > strong{	
-	color: #111;	
-}
-
-.depth-area li:before{	
-	display: inline-block;
-    content: '';
-    margin: 3px 8px 2px 6px;
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-style: solid;
-    border-color: transparent #888888 #888888 transparent;
-    border-width: 0 1px 1px 0;
-    -webkit-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-	transform: rotate(-45deg);
-}
-
-.depth-area li:nth-child(1):before{
-	
-	display: none;
-}
-
-
-#select li a{
-	font-size: 17px;
-}	
-
-		
-		.qna_input{
-			border-bottom: 2px solid #f5f5f5;
-			padding: 2% 0;
-		}
-		
-		.qna_input .control-label{
-			padding: 0.5% 0 0 2%;
-			text-align: left;
-			font-size: 17px;
-		}
-		
-		.qna_input .control-label span{
-			color: rgb(255, 20, 60);
-		}
-		
-		.privacy_chk input{
-			background: red;
-		}
-		
-		.qna_input .form-control{
-			height: 42px;
-		}
-		
-		.qna_input_file input{
-			float: right;
-			}
-		
-		.emptyResult{
-			padding: 10px 0;
-		}
-		
-		.qna_btn{
-			width: 240px;
+  <link href ="../resources/css/common/board.css" rel="stylesheet">
+  <link href ="../resources/css/common/qna.css" rel="stylesheet">
+ 	
+  <style type="text/css">
+  	.qna_control{
+			width: 100px;
 			height: 50px;
+			background-color: #222222;
 			text-align: center;
 			line-height: 50px;
-			border: 1px solid #ccc;
-			color: white;
-		}
-		
-		#qna_reset_btn{
-			background-color: #222222;
-		}
-		
-   		#qna_write_btn{
-   			background-color: #ff143c;
-   		}
-   		
-		.privacy_chk *{
-			display: inline-block;
+			font-size: 18px;
+			margin-top: 10px;
 		}
 	
-		.Check0{
-			color: blue;
+	  .qna_control a{
+			color: white;
+			font-weight: bold;
 		}
-		.Check1{
-			color: red;
-		}
-		
-		
-	</style>
+
+  </style>
+  
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
@@ -147,7 +40,7 @@
 			<div class="depth-area">
 				<ol>
 					<li><a href="http://localhost/t1">홈</a></li>
-					<li><a href="${pageContext.request.contextPath}/faq/faqList">고객센터</a></li>
+					<li><a href="${pageContext.request.contextPath}/faq/faqList?faq_type=1">고객센터</a></li>
 					<li><strong>온라인신문고</strong></li>
 				</ol>
 			</div>
@@ -155,7 +48,7 @@
 	
 		<ul id="select" style="padding: 20px 0; border-bottom: 2px solid black;">
 			<li>
-				<a href="${pageContext.request.contextPath}/faq/faqList">자주하는질문</a> ㅣ 
+				<a href="${pageContext.request.contextPath}/faq/faqList?faq_type=1">자주하는질문</a> ㅣ 
 				<a href="${pageContext.request.contextPath}/qna/qnaWrite">온라인신문고</a>  
 			</li>
 		</ul>	
@@ -237,7 +130,7 @@
   			  <div class="col-sm-12 qna_input">
 				  <label class="control-label col-sm-2" for="email">이메일<span>*</span></label>
 				  <div class="col-sm-6">
-				  <input type="text" class="form-control empty" id="email" name="email">
+				  <input type="email" class="form-control empty" id="email" name="email">
 				  <div class="emptyResult emailResult"></div>
 				  </div>
 			   </div>
@@ -286,7 +179,7 @@
     		  	<div class="col-sm-12 qna_input">
 				    <label class="control-label col-sm-2" for="order_num">주문번호</label>
 				    <div class="col-sm-4">
-				    <input type="text" class="form-control" id="order_num" name="order_num">
+				    <input type="text" class="form-control" id="order_num" name="order_num"  onKeyPress="return numkeyCheck(event)">
 				    </div>
 				</div>
     
@@ -309,10 +202,10 @@
 			    
     			<div class="col-sm-12 qna_input">
 				    <label class="control-label col-sm-2"  for="photo">첨부파일</label>
-				    <div class="col-sm-4 qna_input_file">
-				    <input type="file" class="form-control" id="photo1" name="photo">
-				    <input type="file" class="form-control" id="photo2" name="photo">
-				    <input type="file" class="form-control" id="photo3" name="photo">
+				    <div class="col-sm-4 qna_input_file" style=" padding-left: 0; padding-right: 95px;">
+				     <input class="files" type="file" class="form-control" name="files">
+					 <input class="files" type="file" class="form-control" name="files">
+				 	 <input class="files" type="file" class="form-control" name="files">
 				    </div>
 				</div>
 			    
@@ -322,8 +215,14 @@
    				</div>
 	</form>
 	</div>
-	</div>
 	
+		<c:if test="${not empty member and member.member_id eq 'admin'}">
+			<div  class="qna_control" style="float: right;">
+				<a href="./qnaList">글목록</a>
+			</div>
+		</c:if>
+	</div>
+
  	<c:import url="../template/footer.jsp"></c:import>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script> 
@@ -350,7 +249,7 @@
 	   		}   
 		}
 	
-	//공백&약관동의 검사
+		//공백&약관동의 검사
 		$("#qna_write_btn").click(function(){
 			agreeCheck();
 			emptyCheck();
@@ -400,6 +299,18 @@
 		}
 		
 		
+		//주문번호 숫자 검증
+		function numkeyCheck(e){ 
+			var keyValue = event.keyCode; 
+			if( ((keyValue >= 48) && (keyValue <= 57)) ) {
+				return true; 
+			}
+			else {
+				alert("숫자만 입력해주세요");
+				return false; 
+			}
+			} 
+
 		//다시쓰기 alert창 
 		$(document).ready(function(){
 			$("#qna_reset_btn").click(function(){
@@ -414,18 +325,6 @@
 			});
 		});
 		
-		
-		//숫자 검사
-		function checkNum($("#order_num")){
-			var strNum = $("#order_num").val();
-				if (isNaN(strNum)){
-					alert("숫자만 입력하세요");
-					frm.$("#order_num").val("");
-					frm.$("#order_num").focus();
-				return false;
-			}
-			return true;
-		}
 		
 	</script>
 	

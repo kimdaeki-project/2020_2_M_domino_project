@@ -1,0 +1,60 @@
+@charset "UTF-8";
+	.qna_input{
+			border-bottom: 2px solid #f5f5f5;
+			padding: 2% 0;
+		}
+		
+		.qna_input .control-label{
+			padding: 0.5% 0 0 2%;
+			text-align: left;
+			font-size: 17px;
+		}
+		
+		.qna_input .control-label span{
+			color: rgb(255, 20, 60);
+		}
+		
+		.privacy_chk input{
+			background: red;
+		}
+		
+		.qna_input .form-control{
+			height: 42px;
+		}
+		
+		.qna_input_file input{
+			float: right;
+			}
+		
+		.emptyResult{
+			padding: 10px 0;
+		}
+		
+		.qna_btn{
+			width: 240px;
+			height: 50px;
+			text-align: center;
+			line-height: 50px;
+			border: 1px solid #ccc;
+			color: white;
+		}
+		
+		#qna_reset_btn{
+			background-color: #222222;
+		}
+		
+   		#qna_write_btn{
+   			background-color: #ff143c;
+   		}
+   		
+		.privacy_chk *{
+			display: inline-block;
+		}
+	
+		.Check0{
+			color: blue;
+		}
+		.Check1{
+			color: red;
+		}
+		

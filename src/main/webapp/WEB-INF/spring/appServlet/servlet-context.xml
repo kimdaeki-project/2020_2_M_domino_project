@@ -35,11 +35,15 @@
 			
 			<mapping path="/dominoNews/*"/>
 			<mapping path="/press/*"/>
+			<mapping path="/qna/*"/>
 			<exclude-mapping path="/dominoNews/dominoNewsList"/>
 			<exclude-mapping path="/dominoNews/dominoNewsSelect"/>
+			<exclude-mapping path="/dominoNews/fileDown"/>
 			<exclude-mapping path="/press/pressList"/>
 			<exclude-mapping path="/press/pressSelect"/>
-			
+			<exclude-mapping path="/press/fileDown"/>
+			<exclude-mapping path="/qna/qnaWrite"/>	
+					
 			<beans:ref bean="AdminMemberInterceptor"></beans:ref>
 		</interceptor>
 	
@@ -47,10 +51,8 @@
 	</interceptors>
 	
 	
-	
-	
 	<context:component-scan base-package="com.domino.t1" />
-	
-	
-	
+	<beans:bean id="naverLoginBO" class="com.domino.t1.naver.NaverLoginBO" />
+
+
 </beans:beans>
