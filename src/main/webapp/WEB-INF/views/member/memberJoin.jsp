@@ -39,6 +39,7 @@
 <body>
 	
 	<div class="container">
+		${name}
 		<div class="order-title-wrap" style="padding: 0 0 30px 0; border-bottom: 2px solid black">
 		<h2 class="order-title">회원가입</h2>
 			<div class="depth-area">
