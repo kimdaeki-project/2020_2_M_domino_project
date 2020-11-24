@@ -100,7 +100,17 @@
 	}
 </script>
 	<div class="col-sm-6 item-desc-container">
-		<img src="/t1/resources/images/menu/pizza/${pizzaDTO.item_image}" alt="${pizzaDTO.item_name}" class="main-item-image">	
+		<div>
+			<img src="/t1/resources/images/menu/pizza/${pizzaDTO.item_image}" alt="${pizzaDTO.item_name}" class="main-item-image">	
+		</div>
+		<div>
+			<div>메인 토핑</div>
+			<div>${pizzaDTO.pizza_toppings}</div>			
+		</div>
+		<div>
+			<div>토핑 원산지</div>
+			<div>${pizzaDTO.pizza_origin}</div>			
+		</div>
 	</div>
 	<div class="col-sm-6 item-option-container">
 		<div class="title-wrap">
@@ -549,34 +559,36 @@
 	})
 	
 	$("#btn-to-cart").click(function(){
-		var member_id = "${member.member_id}";
+		var member_num = "${member.member_num}";
 		// not logged in -> to login page
-		console.log(member_id)
-		if(member_id == ""){
+		console.log(member_num)
+		if(member_num == ""){
 				location.href = '/t1/member/memberLogin'
 				alert("로그인이 필요한 기능입니다.")			
 		}else{
 			$.post(
-				"/t1/cart/addToCart",{
-					"pizzaCart[]":pizzaCart.toString(), 
-					"doughCart[]":doughCart.toString(),
-					"toppingCart[]":toppingCart.toString(),
-					"sideDishCart[]":sideDishCart.toString(),
-					"etcCart[]":etcCart.toString()
+				"/t1/cart/addToCart/pizza",{
+					"pizzaCart":pizzaCart.toString(),
+					"doughCart":doughCart.toString(),
+					"toppingCart":toppingCart.toString(),
+					"sideDishCart":sideDishCart.toString(),
+					"etcCart":etcCart.toString()
 					},
-				function(result){
-						var answer = window.confirm("물건이 장바구니에 담겼습니다. 장바구니로 이동할까요?")
-						if(answer){
-							$.get("/t1/menu/list/pizzaList", function(){})
-							alert("ㅇㅋ")
-						}else{
-							$.get("/t1/menu/list/pizzaList", function(){})
-							alert("ㅠㅜ")
+					function(result){
+						if(result < 1){
+							alert("오류: 장바구니 담기에 실패했습니다. 문제가 지속될 경우 관리자에게 문의 바랍니다.")	
+							return
 						}
-					}
-			)
-			.fail(alert("오류: 장바구니 담기에 실패했습니다. 문제가 지속될 경우 관리자에게 문의 바랍니다."))			
-		}		
+						var answer = window.confirm("물건이 장바구니에 담겼습니다. 장바구니로 이동할까요?")
+						if(answer){						
+							location.href = "/t1/cart/detail"
+							
+						}else{
+							location.href = "/t1/menu/list/pizzaList"
+						}
+					
+					})//end of $.post	
+		}//end of else(logged in) statement
 	})
 
 </script>

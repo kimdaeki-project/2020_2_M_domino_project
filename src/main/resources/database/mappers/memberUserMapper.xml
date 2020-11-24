@@ -49,7 +49,7 @@
 		sysdate, MEMBER_NUM_SEQ.NEXTVAL)
 	</insert>
 	
-	<select id="getMemberLogin" resultType="AddressDTO" parameterType="AddressDTO">
+	<select id="getMemberLogin" resultType="CouponDTO" parameterType="CouponDTO">
 		select * from member_info where member_id=#{member_id} and member_pw=#{member_pw}
 	</select>
 	

@@ -2,22 +2,17 @@ package com.domino.t1.coupon;
 
 import java.sql.Date;
 
-public class CouponDTO {
-	
-	private long member_num;
+import com.domino.t1.address.AddressDTO;
+
+
+public class CouponDTO extends AddressDTO{
+
     private long sale_list;
     private String sale_name;
     private int sale_discount;
     private Date sale_date;
     
     
-    
-	public long getMember_num() {
-		return member_num;
-	}
-	public void setMember_num(long member_num) {
-		this.member_num = member_num;
-	}
 	public long getSale_list() {
 		return sale_list;
 	}
