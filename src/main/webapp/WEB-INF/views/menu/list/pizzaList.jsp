@@ -8,15 +8,8 @@
     <meta charset="utf-8">
     <c:import url="../../template/bootstrap.jsp"></c:import>
     <link href ="/t1/resources/css/common/default.css" rel="stylesheet">
+    <link href ="/t1/resources/css/menu/list.css" rel="stylesheet">
     <script src="/t1/resources/js/header.js"></script>
-    <style type="text/css">
-  		.item-thumbnail{
-  			width:100%;
-  		}
-  		.menu-item{
-
-  		}
-    </style>
   
 </head>
 <body>

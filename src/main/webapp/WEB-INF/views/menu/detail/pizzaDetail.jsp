@@ -9,6 +9,7 @@
     <c:import url="../../template/bootstrap.jsp"></c:import>
     <link href ="/t1/resources/css/common/default.css" rel="stylesheet">
     <link href ="/t1/resources/css/menu/detail.css" rel="stylesheet">
+    <link href="/t1/resources/css/common/shared.css" rel="stylesheet">
     <script src="/t1/resources/js/header.js"></script>
     <script src="/t1/resources/js/menu/detail.js"></script>
 
@@ -230,11 +231,11 @@
 			</div>
 				<div class="pizza-quantity-input-group input-group">
 					<span class="input-group-btn">
-						<button type="button" class="btn btn-default" min="1" id="pizza-quantity-btn-minus" disabled>-</button>
+						<button type="button" class="btn btn-quantity-controller" min="1" id="pizza-quantity-btn-minus" disabled>-</button>
 					</span> 
 					<input type="text" class="form-control pizza-quantity-input" value="1" id="pizza-quantity-option" disabled /> 
 					<span class="input-group-btn">
-						<button type="button" class="btn btn-default" id="pizza-quantity-btn-plus">+</button>
+						<button type="button" class="btn btn-quantity-controller" id="pizza-quantity-btn-plus">+</button>
 					</span>
 				</div>
 
@@ -300,14 +301,14 @@
 								<!-- quantity button -->
 										<div class="input-group">
 											<span class="input-group-btn">
-												<button type="button" class="btn btn-default btn-minus" min="0" disabled>-</button>
+												<button type="button" class="btn btn-quantity-controller btn-minus" min="0" disabled>-</button>
 											</span>
 											<input type="text" class="form-control quantity-input" value="0" disabled/>
 											<input type="hidden" class="item-name-data" value="${dto.item_name }">
 											<input type="hidden" class="item-price-data" value="${dto.item_price }">
 											<input type="hidden" class="item-id-data" value="${dto.item_id }">
 											<span class="input-group-btn">
-												<button type="button" class="btn btn-default btn-plus">+</button>
+												<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
 											</span>	
 										</div>
 										
@@ -335,14 +336,14 @@
 								<!-- quantity button -->
 										<div class="input-group">
 											<span class="input-group-btn">
-												<button type="button" class="btn btn-default btn-minus" min="0" disabled>-</button>
+												<button type="button" class="btn btn-quantity-controller btn-minus" min="0" disabled>-</button>
 											</span>
 											<input type="text" class="form-control quantity-input" value="0" disabled/>
 											<input type="hidden" class="item-name-data" value="${dto.item_name }">
 											<input type="hidden" class="item-price-data" value="${dto.item_price }">
 											<input type="hidden" class="item-id-data" value="${dto.item_id }">
 											<span class="input-group-btn">
-												<button type="button" class="btn btn-default btn-plus">+</button>
+												<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
 											</span>	
 										</div>
 										
@@ -369,14 +370,14 @@
 								<!-- quantity button -->
 										<div class="input-group">
 											<span class="input-group-btn">
-												<button type="button" class="btn btn-default btn-minus" min="0" disabled>-</button>
+												<button type="button" class="btn btn-quantity-controller btn-minus" min="0" disabled>-</button>
 											</span> 
 											<input type="text" class="form-control quantity-input" value="0" disabled /> 
 											<input type="hidden" class="item-name-data" value="${dto.item_name }"> 
 											<input type="hidden" class="item-price-data" value="${dto.item_price }"> 
 											<input type="hidden" class="item-id-data" value="${dto.item_id }"> 
 											<span class="input-group-btn">
-												<button type="button" class="btn btn-default btn-plus">+</button>
+												<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
 											</span>
 										</div>										
 									</div>												
@@ -409,14 +410,14 @@
 									<!-- quantity button -->
 									<div class="input-group">
 										<span class="input-group-btn">
-											<button type="button" class="btn btn-default btn-minus" min="0" disabled>-</button>
+											<button type="button" class="btn btn-quantity-controller btn-minus" min="0" disabled>-</button>
 										</span> 
 										<input type="text" class="form-control quantity-input" value="0" disabled /> 
 										<input type="hidden" class="item-name-data" value="${dto.item_name }"> 
 										<input type="hidden" class="item-price-data" value="${dto.item_price }"> 
 										<input type="hidden" class="item-id-data" value="${dto.item_id }"> 
 										<span class="input-group-btn">
-											<button type="button" class="btn btn-default btn-plus">+</button>
+											<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
 										</span>									
 									</div>
 								</div>
@@ -446,14 +447,14 @@
 									<!-- quantity button -->
 									<div class="input-group">
 										<span class="input-group-btn">
-											<button type="button" class="btn btn-default btn-minus" min="0" disabled>-</button>
+											<button type="button" class="btn btn-quantity-controller btn-minus" min="0" disabled>-</button>
 										</span> 
 										<input type="text" class="form-control quantity-input" value="0" disabled /> 
 										<input type="hidden" class="item-name-data" value="${dto.item_name }"> 
 										<input type="hidden" class="item-price-data" value="${dto.item_price }"> 
 										<input type="hidden" class="item-id-data" value="${dto.item_id }"> 
 										<span class="input-group-btn">
-											<button type="button" class="btn btn-default btn-plus">+</button>
+											<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
 										</span>
 									</div>
 								</div>

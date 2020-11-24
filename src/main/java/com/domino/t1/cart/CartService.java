@@ -40,6 +40,29 @@ public class CartService {
 	public List<CartDTO> getCartStandaloneItemList(MemberDTO memberDTO) throws Exception {
 		return cartDAO.getCartStandaloneItemList(memberDTO);
 	}
+// get user's cart item list by cart group id
+	public List<List<CartDTO>> getCartPizzaGroupListByGroupId(MemberDTO memberDTO, String[] gIdList) throws Exception {
+		List<List<CartDTO>> pizzaGroupList = new ArrayList<List<CartDTO>>();
+		for(String gId:gIdList) {
+			CartDTO cartDTO = new CartDTO();
+			cartDTO.setCart_group_id(Long.parseLong(gId));
+			cartDTO.setMember_num(memberDTO.getMember_num());
+			pizzaGroupList.add(cartDAO.getCartPizzaGroupListByGroupId(cartDTO));		
+		}
+		return pizzaGroupList;
+	}
+	
+	public List<CartDTO> getCartItemByGroupId(MemberDTO memberDTO, String[] gIdList) throws Exception{
+		List<CartDTO> itemList = new ArrayList<CartDTO>();
+		for(String gId:gIdList) {
+			CartDTO cartDTO = new CartDTO();
+			cartDTO.setCart_group_id(Long.parseLong(gId));
+			cartDTO.setMember_num(memberDTO.getMember_num());	
+			itemList.add(cartDAO.getCartItemByGroupId(cartDTO));
+		}
+		return itemList;
+	}
+	
 
 // insert user cart data
 	// pizza+
@@ -69,16 +92,17 @@ public class CartService {
 			CartDTO cartDTO = new CartDTO();
 			cartDTO.setMember_num(memberNum);
 			cartDTO.setItem_id(Long.parseLong(item[0]));
-			cartDTO.setCart_group_id(cartDAO.getMaxCartGroupId(memberDTO) + 1);
 			cartDTO.setCart_quantity(Long.parseLong(item[2]));
 			// 이미 담긴 항목인지 검색 
 			CartDTO dup = cartDAO.getCartItem(cartDTO);
 			if(dup != null) {
 				// in case the item already exists in the user's cart
+				cartDTO.setCart_group_id(dup.getCart_group_id());
 				cartDTO.setCart_quantity(cartDTO.getCart_quantity() + dup.getCart_quantity());
-				cartDAO.updateCartItem(cartDTO);
+				cartDAO.updateCartItemQuantity(cartDTO);
 			}else {
 				// if not, add it as a new item
+				cartDTO.setCart_group_id(cartDAO.getMaxCartGroupId(memberDTO) + 1);												
 				cartDAO.setCartItem(cartDTO);	
 			}			
 		}
@@ -95,9 +119,9 @@ public class CartService {
 	public int deleteCartItem(CartDTO cartDTO) throws Exception {
 		return cartDAO.deleteCartItem(cartDTO);
 	}
-
-
-
-
+	
+	public int emptyCart(MemberDTO memberDTO) throws Exception {
+		return cartDAO.emptyCart(memberDTO);
+	}
 }
 

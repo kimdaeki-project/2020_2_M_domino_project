@@ -38,7 +38,9 @@ public class CartDAOTest extends MyTestCase{
 		assertNotNull(result);
 	}
 	
-	@Test
+
+	
+	//@Test
 	public void deleteCartGroupIdTest() throws Exception {
 		long cartGroupId = 2;
 		long memberNum = 11;
@@ -50,7 +52,7 @@ public class CartDAOTest extends MyTestCase{
 		assertEquals(1, result);
 	}
 
-	@Test
+	//@Test
 	public void deleteCartItemTest() throws Exception {
 		long cartItemId = 184;
 		long memberNum = 11;

@@ -52,7 +52,7 @@ public class CartController {
 
 		// 나중에 꼭 트랜잭션 처리 해주기!!!!
 		int result = 0;
-		if(result1 == 1 && result2 == 1) {
+		if(result1 > 0 && result2 > 0) {
 			result = 1;
 		}
 		mv.addObject("msg", result);
@@ -88,6 +88,13 @@ public class CartController {
 		// get CartDTO list of the user
 		List<List<CartDTO>> pizzaGroupList = cartService.getCartPizzaGroupItemList(memberDTO);
 		List<CartDTO> itemList = cartService.getCartStandaloneItemList(memberDTO);
+		if(pizzaGroupList.get(0) == null && itemList.size() < 1) {
+			mv.addObject("isCartEmpty", 1);
+			mv.setViewName("cart/detail");
+			return mv;
+		}
+	
+		mv.addObject("isCartEmpty", 0);
 		mv.addObject("pizzaGroupList", pizzaGroupList);
 		mv.addObject("itemList", itemList);
 		mv.setViewName("cart/detail");
@@ -120,102 +127,41 @@ public class CartController {
 		}
 		return list;
 	}
+	
+	@GetMapping("delete/emptyCart")
+	public ModelAndView emptyCart(HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		System.out.println("member num: "+memberDTO.getMember_num());
+		int result = cartService.emptyCart(memberDTO);
+		mv.addObject("msg", result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
+	
+	@GetMapping("cartEmpty")
+	public ModelAndView cartEmpty() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("cart/cartEmpty");
+		return mv;
+	}
 
 // 아직 테스트 데이터만 들어가있음. 
-	@GetMapping("toCheckout")
-	public ModelAndView toCheckoutPageTest(HttpSession session) throws Exception {
+	@PostMapping("toCheckout")
+	public ModelAndView toCheckoutPageTest(HttpSession session,
+			@RequestParam String[] pizzaGIdList,
+			@RequestParam String[] itemGIdList) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-		long memberNum = 999;
 
-		// create dummy Data
-
-		ArrayList<ArrayList<CartDTO>> pizzaGroupList = new ArrayList<ArrayList<CartDTO>>();
-		long cart_seq = 1;
-		long cart_group_seq = 1;
-		// get pizza group 1
-		ArrayList<CartDTO> pizzaGroup1 = new ArrayList<CartDTO>();
-		long[] pizzaGroupIdList1 = {1, 21};
-		for(int i=0; i < pizzaGroupIdList1.length; i++) {
-			ItemDTO dto = new ItemDTO();
-			dto.setItem_id(pizzaGroupIdList1[i]);
-
-			dto = detailService.getOne(dto);
-			CartDTO cartDTO = new CartDTO();
-			cartDTO.setItem_id(dto.getItem_id());
-			cartDTO.setItem_name(dto.getItem_name());
-			cartDTO.setItem_category(dto.getItem_category());
-			cartDTO.setItem_price(dto.getItem_price());
-
-			cartDTO.setCart_item_id(cart_seq++);
-			cartDTO.setMember_num(memberNum);
-			cartDTO.setCart_group_id(cart_group_seq);
-			cartDTO.setCart_quantity(3);
-			if(i == 0) {
-				cartDTO.setItem_size("M");
-			}
-			if(i == 1) {
-				cartDTO.setDough_name_short("도우 짧은이름1");
-			}
-			pizzaGroup1.add(cartDTO);
-		}
-		pizzaGroupList.add(pizzaGroup1);
-
-		// get item list
-		cart_group_seq++;
-		ArrayList<CartDTO> itemList = new ArrayList<CartDTO>();
-		long[] itemIdList = {67, 69, 75, 81, 84, 90};
-		for(int i=0; i < itemIdList.length; i++) {
-			ItemDTO dto = new ItemDTO();
-			dto.setItem_id(itemIdList[i]);
-
-			dto = detailService.getOne(dto);
-			CartDTO cartDTO = new CartDTO();
-			cartDTO.setItem_id(dto.getItem_id());
-			cartDTO.setItem_name(dto.getItem_name());
-			cartDTO.setItem_category(dto.getItem_category());
-			cartDTO.setItem_price(dto.getItem_price());
-
-			cartDTO.setCart_item_id(cart_seq++);
-			cartDTO.setMember_num(memberNum);
-			cartDTO.setCart_group_id(cart_group_seq++);
-			cartDTO.setCart_quantity(2);
-			itemList.add(cartDTO);
-		}
-
-
-		// get pizza group 2
-		ArrayList<CartDTO> pizzaGroup2 = new ArrayList<CartDTO>();
-		long[] pizzaGroupIdList2 = {8, 23, 28, 30};
-		for(int i=0; i < pizzaGroupIdList2.length; i++) {
-			ItemDTO dto = new ItemDTO();
-			dto.setItem_id(pizzaGroupIdList2[i]);
-
-			dto = detailService.getOne(dto);
-			CartDTO cartDTO = new CartDTO();
-			cartDTO.setItem_id(dto.getItem_id());
-			cartDTO.setItem_name(dto.getItem_name());
-			cartDTO.setItem_category(dto.getItem_category());
-			cartDTO.setItem_price(dto.getItem_price());
-
-			cartDTO.setCart_item_id(cart_seq++);
-			cartDTO.setMember_num(memberNum);
-			cartDTO.setCart_group_id(cart_group_seq);
-			cartDTO.setCart_quantity(1);
-			if(i == 0) {
-				cartDTO.setItem_size("L");
-			}
-			if(i == 1) {
-				cartDTO.setDough_name_short("도우 짧은이름2");
-			}
-			pizzaGroup2.add(cartDTO);
-		}
-		pizzaGroupList.add(pizzaGroup2);
-
-
-		mv.addObject("pizzaGroupList", pizzaGroupList);
-		mv.addObject("itemList", itemList);
-		mv.setViewName("cart/cartTestTemp");
+		List<List<CartDTO>> pizzaGroupList = cartService.getCartPizzaGroupListByGroupId(memberDTO, pizzaGIdList);
+		List<CartDTO> itemList = cartService.getCartItemByGroupId(memberDTO, itemGIdList);
+		session.setAttribute("pizzaGroupList", pizzaGroupList);
+		session.setAttribute("itemList", itemList);
+		
+System.out.println("controller pizza: " + pizzaGroupList.size());
+System.out.println("controller item: " + itemList.size());		
+		mv.setViewName("order/orderInfo");
 
 		return mv;
 	}

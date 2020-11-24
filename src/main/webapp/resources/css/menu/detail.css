@@ -134,16 +134,6 @@ border: 1px black solid;
 border: 1px red solid;
 }
 
-.btn-default{
-	border-radius: 40%;
-}
-
-.quantity-input{
-	width: 50px !important;
-	margin: 0 auto;
-	display: inline-block;
-	background-color: #fff !important;
-}
 
 /* pizza-quantity specific button css */
 .pizza-quantity-input-group{

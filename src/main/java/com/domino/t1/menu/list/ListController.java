@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.domino.t1.item.ItemDTO;
 import com.domino.t1.item.pizza.PizzaDTO;
 
 @Controller
@@ -46,17 +47,27 @@ public class ListController {
 	public ModelAndView getSideDishList() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		mv.addObject("menu", "sideDish");
+		ItemDTO dto = new ItemDTO();
+		dto.setItem_category("sidedish");
+		List<ItemDTO> arr = listService.getItemListByCategory(dto);
+		mv.addObject("sideDish", arr);
+		
+		mv.addObject("category", "sideDish");
 		mv.setViewName("menu/list/sideDishList");
 		return mv;
 	};
+	
 	
 	@GetMapping("etcList")
 	public ModelAndView getEtcList() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		mv.addObject("menu", "etc");
-		mv.setViewName("menu/list/sideDishList");
+		ItemDTO dto = new ItemDTO();
+		dto.setItem_category("etc");
+		List<ItemDTO> arr = listService.getItemListByCategory(dto);
+		mv.addObject("etc", arr);		
+		mv.addObject("category", "etc");
+		mv.setViewName("menu/list/etcList");
 		return mv;
 	}
 	

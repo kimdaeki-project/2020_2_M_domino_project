@@ -23,4 +23,8 @@ public class ListService {
 		return pizzaDAO.getPizzaListByType(pizzaDTO);
 	}
 	
+	public List<ItemDTO> getItemListByCategory(ItemDTO itemDTO) throws Exception {
+		return itemDAO.getItemListByCategory(itemDTO);
+	}
+	
 }
