@@ -169,10 +169,12 @@
  		<div style="padding: 15px 30px; border-bottom: 1px solid #ddd">
  			${dto.board_contents}
  			
- 			 <c:forEach items="${dto.boardFileDTOs}" var="file">
-		 	 	<a href="./fileDown?file_Name=${file.file_Name}&ori_Name=${file.ori_Name}">${file.ori_Name}</a>
-		 	 	<br>
-		 	 </c:forEach>
+ 			
+	 		<c:forEach items="${dto.boardFileDTOs}" var="file">
+			 	<a href="./fileDown?file_Name=${file.file_Name}&ori_Name=${file.ori_Name}">${file.ori_Name}</a>
+			 	<br>
+			</c:forEach>
+		 	
  		</div>
  	</div>
  	
@@ -180,13 +182,16 @@
 		<a href="./${news}List">목록</a>
 	 </div>
 	 
-	 <div class="sel_control" id="news_del">
-	 	<a href="./${news}Delete?board_num=${dto.board_num}">삭제</a>
-	 </div>
 	 
-	 <div class="sel_control" id="news_upd">
-	 	<a href="./${news}Update?board_num=${dto.board_num}">글수정</a>
-	 </div>
+	 <c:if test="${not empty member and member.member_id eq 'admin'}">
+		 <div class="sel_control" id="news_del">
+		 	<a href="./${news}Delete?board_num=${dto.board_num}">삭제</a>
+		 </div>
+		 
+		 <div class="sel_control" id="news_upd">
+		 	<a href="./${news}Update?board_num=${dto.board_num}">글수정</a>
+		 </div>
+	 </c:if>
 	 
  </div>
 

@@ -4,37 +4,103 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.domino.t1.cart.CartDAO">
-	<!-- resultMap needed -->
-<!-- 	<resultMap type="CartDTO" id="getCartItemList">
-		<
-	</resultMap> -->
+	<delete id="deleteCartItem" parameterType="CartDTO">
+		DELETE FROM cart
+		WHERE cart_item_id = #{cart_item_id}
+	</delete>
+	<delete id="deleteCartGroup" parameterType="CartDTO">
+		DELETE FROM cart
+		WHERE member_num = #{member_num}
+			AND cart_group_id = #{cart_group_id}
+	</delete >
+	<delete id="emptyCart" parameterType="MemberDTO"> 
+		DELETE FROM cart
+		WHERE member_num = #{member_num}
+	</delete>
+	<update id="updateCartItemQuantity" parameterType="CartDTO">
+		UPDATE cart SET 
+			cart_quantity = #{cart_quantity}
+		WHERE member_num = #{member_num}
+			AND cart_group_id = #{cart_group_id}
+	</update>
+	<select id="getCartPizzaGroupItemList" parameterType="memberDTO" resultType="CartDTO">
+		SELECT C.cart_item_id, C.member_num, C.item_id, C.cart_group_id, C.cart_quantity, C.item_size,
+		    I.item_name, I.item_category, I.item_image,
+		    D.dough_name_short,
+		    CASE C.item_size
+		        WHEN 'L'
+                	THEN P.pizza_price_l
+	            WHEN 'M'
+		        	THEN P.pizza_price_m
+		        ELSE I.item_price
+		    END AS item_price
+		FROM
+		    cart C LEFT JOIN item I 
+		    ON C.item_id  = I.item_id
+		    LEFT JOIN dough D
+		    ON C.item_id = D.item_id
+		    LEFT JOIN pizza P
+		    ON C.item_id = P.item_id
+		WHERE C.member_num = #{member_num}
+            AND I.item_category IN ('pizza', 'dough', 'topping')
+		ORDER BY C.cart_group_id, C.cart_item_id	
+	</select>
 
+	<select id="getCartStandaloneItemList" parameterType="MemberDTO" resultType="CartDTO">
+		SELECT C.cart_item_id, C.member_num, C.item_id, C.cart_group_id, C.cart_quantity, 
+		    I.item_name, I.item_category,  I.item_image, I.item_price
+		FROM
+		    cart C LEFT JOIN item I 
+		    ON C.item_id  = I.item_id
+		WHERE C.member_num = #{member_num}
+            AND I.item_category NOT IN ('pizza', 'dough', 'topping')
+		ORDER BY C.cart_group_id, C.cart_item_id
+	</select>
+	
+	<select id="getCartPizzaGroupListByGroupId" parameterType="CartDTO" resultType="CartDTO">
+		SELECT C.cart_item_id, C.member_num, C.item_id, C.cart_group_id, C.cart_quantity, C.item_size,
+		    I.item_name, I.item_category, 
+		    D.dough_name_short,
+		    CASE C.item_size
+		        WHEN 'L'
+                	THEN P.pizza_price_l
+	            WHEN 'M'
+		        	THEN P.pizza_price_m
+		        ELSE I.item_price
+		    END AS item_price
+		FROM
+		    cart C LEFT JOIN item I 
+		    ON C.item_id  = I.item_id
+		    LEFT JOIN dough D
+		    ON C.item_id = D.item_id
+		    LEFT JOIN pizza P
+		    ON C.item_id = P.item_id
+		WHERE C.member_num = #{member_num}
+            AND C.cart_group_id = #{cart_group_id}
+		ORDER BY C.cart_item_id	
+	</select>	
+	<select id="getCartItemByGroupId" parameterType="CartDTO" resultType="CartDTO">
+		SELECT C.cart_item_id, C.member_num, C.item_id, C.cart_group_id, C.cart_quantity, 
+		    I.item_name, I.item_category, I.item_price
+		FROM
+		    cart C LEFT JOIN item I 
+		    ON C.item_id  = I.item_id
+		WHERE C.member_num = #{member_num}
+            AND C.cart_group_id = #{cart_group_id}	
+	</select>
+	
 	<select id="getCartList" parameterType="MemberDTO" resultType="CartDTO">
 		SELECT * FROM cart
 		WHERE member_num = #{member_num}
 	</select>
+	
+	<select id="getCartItem" parameterType="CartDTO" resultType="CartDTO">
+		SELECT * FROM cart
+		WHERE member_num = #{member_num}
+			AND item_id = #{item_id}
+	</select>
+	
 	<insert id="setCartItem" parameterType="CartDTO">
-		INSERT INTO cart VALUES(
-			cart_seq.NEXTVAL,
-			#{member_num},
-			#{item_id},
-			MAX(SELECT
-					CASE
-						WHEN (SELECT MAX(cart_group_id)
-							FROM cart
-							WHERE member_num = #{member_num})
-							IS NULL THEN 1
-					 	ELSE (SELECT MAX(cart_group_id)+1
-					 		FROM cart
-					 		WHERE member_num = #{member_num})
-					END AS cart_group_id
-				FROM cart
-				WHERE member_num = #{member_num}),
-			#{cart_quantity},
-			#{item_size, jdbcType=VARCHAR}
-		)
-	</insert>
-	<insert id="setCartItemWithCartGroupId" parameterType="CartDTO">
 		INSERT INTO cart VALUES(
 			cart_seq.NEXTVAL,
 			#{member_num},
@@ -44,6 +110,7 @@
 			#{item_size, jdbcType=VARCHAR}
 			)
 	</insert>
+	
 	<select id="getMaxCartGroupId" parameterType="MemberDTO" resultType="Long">
 		SELECT
 			CASE
@@ -53,4 +120,5 @@
 		FROM cart
 		WHERE member_num = #{member_num}
 	</select>
+	
 </mapper>

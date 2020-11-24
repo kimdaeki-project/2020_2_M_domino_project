@@ -198,7 +198,7 @@
 		<div class="col-sm-12" style="padding-top: 1%;">
 			<div class="privacy_chk" class="col-sm-3" style="float: right; padding: 0;">
 				<div class="form agree_form">
-					<div class="chk-box">
+					<div class="chk-box agree_chk_box">
 						<input type="radio" id="agree_yes" name="agree">
 						<label for="agree_yes" class="checkbox"></label>
 						<label for="agree_yes">동의함</label>
@@ -245,19 +245,41 @@
   			  
   			   <div class="col-sm-12 qna_input">
 				    <label class="control-label col-sm-2" for="qna_type">유형분류<span>*</span></label>
-				    <div class="col-sm-6">
-				    <input type="text" class="form-control empty" id="qna_type" name="qna_type">
+				    <div class="col-sm-4">
+					    <select class="form-control empty" id="qna_type" name="qna_type">
+							<option value="">선택</option>
+							<option value="제품관련">제품관련</option>
+							<option value="배달서비스 관련">배달서비스 관련</option>
+							<option value="직원서비스 관련">직원서비스 관련</option>
+							<option value="콜센타 관련">콜센타 관련</option>
+							<option value="칭찬">칭찬</option>
+							<option value="제안">제안</option>
+							<option value="단순문의">단순문의</option>
+							<option value="기타">기타</option>
+						</select>
 				    <div class="emptyResult typeResult"></div>
 				    </div>
 			   </div>
-  
-  			 
+
   			   <div class="col-sm-12 qna_input">
 				    <label class="control-label col-sm-2" for="branch_info">매장선택<span>*</span></label>
-				    <div class="col-sm-6">
-				    <input type="text" class="form-control empty" id="branch_info" name="branch_info">
+				    <div class="col-sm-3">
+					    <select class="form-control empty" id="branch_info1" name="branch_info" onchange="branch_infoChange(this)" >
+							<option value="">지역선택</option>
+							<option value="서울">서울</option>
+							<option value="경기">경기</option>
+							<option value="충남">충남</option>
+						</select>
+					</div>
+					
+					 <div class="col-sm-3">	
+						<select class="form-control" id="branch_info2" name="branch_info">
+							<option value=""></option>
+						</select>
+					</div>
+				 
 				    <div class="emptyResult branchResult"></div>
-				    </div>
+				   
 			   </div>
     
     		  
@@ -285,7 +307,6 @@
 					</div>
 			    </div>
 			    
-    
     			<div class="col-sm-12 qna_input">
 				    <label class="control-label col-sm-2"  for="photo">첨부파일</label>
 				    <div class="col-sm-4 qna_input_file">
@@ -296,8 +317,8 @@
 				</div>
 			    
 			    <div class="col-sm-12" style="padding: 2%; text-align: center;">
-			    <button type="button" id="qna_reset_btn" class="qna_btn">다시쓰기</button>
-   				<button type="button" id="qna_write_btn" class="qna_btn">보내기</button>
+				    <button type="button" id="qna_reset_btn" class="qna_btn">다시쓰기</button>
+	   				<button type="button" id="qna_write_btn" class="qna_btn">보내기</button>
    				</div>
 	</form>
 	</div>
@@ -308,6 +329,28 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script> 
 	<script>
 	
+	//매장선택
+	function branch_infoChange(e) {
+	    var seoul = ["가락", "대학로", "여의도", "홍대"];
+	    var gyeonggi = ["수원", "평택", "용인"];
+	    var chungcheongnam = ["천안", "세종", "논산"];
+	    var target = document.getElementById("branch_info2");
+
+	    if(e.value == "서울") var d = seoul;
+	    else if(e.value == "경기") var d = gyeonggi;
+	    else if(e.value == "충남") var d = chungcheongnam;
+
+	    target.options.length = 0;
+
+	    for (x in d) {
+	        var opt = document.createElement("option");
+	        opt.value = d[x];
+	        opt.innerHTML = d[x];
+	        target.appendChild(opt);
+	   		}   
+		}
+	
+	//공백&약관동의 검사
 		$("#qna_write_btn").click(function(){
 			agreeCheck();
 			emptyCheck();
@@ -322,7 +365,7 @@
 			if($("#agree_yes").is(":checked") == false){
 				 agreeCheckResult = false;
 		         alert("약관동의를 해주세요");
-		         return;
+		         return false;
 				}
 		}
 	
@@ -338,14 +381,15 @@
 				if($("#phone").val().length==0){emptyCheckResult=false; $(".phoneResult").html("휴대전화번호를 입력해주세요."); 
 				$(".emptyResult").addClass("Check1"); $("#phone").focus(); return false; }
 				
-				if($("#email").val().length==0){emptyCheckResult=false; $(".eamilResult").html("※등록결과 및 답변은 이메일로 알려드리오니, 정확한 이메일을 기재하여 주시기 바랍니다."); 
+				if($("#email").val().length==0){emptyCheckResult=false; $(".emailResult").html("※등록결과 및 답변은 이메일로 알려드리오니, 정확한 이메일을 기재하여 주시기 바랍니다."); 
 				$(".emptyResult").addClass("Check1"); $("#email").focus(); return false; }
 				
-				if($("#qna_type").val().length==0){emptyCheckResult=false; $(".typeResult").html("유형을 선택하세요."); 
+				if($("#qna_type option:selected").val()==''){emptyCheckResult=false; $(".typeResult").html("유형을 선택하세요."); 
 				$(".emptyResult").addClass("Check1"); $("#qna_type").focus(); return false; }
 				
-				if($("#branch_info").val().length==0){emptyCheckResult=false;  $(".branchResult").html("매장을 선택하세요."); 
-				$(".emptyResult").addClass("Check1"); $("#branch_info").focus(); return false; }
+				if($("#branch_info1 option:selected").val()=='')
+				{emptyCheckResult=false;  $(".branchResult").html("매장지역 정보를 선택하세요."); 
+				$(".emptyResult").addClass("Check1"); $("#branch_info1").focus(); return false; }
 				
 				if($("#board_title").val().length==0){emptyCheckResult=false;  $(".titleResult").html("제목을 입력해주세요."); 
 				$(".emptyResult").addClass("Check1");  $("#board_title").focus(); return false; }
@@ -356,6 +400,7 @@
 		}
 		
 		
+		//다시쓰기 alert창 
 		$(document).ready(function(){
 			$("#qna_reset_btn").click(function(){
 				if(confirm("작성된 내용이 다 지워집니다") == true){
@@ -370,11 +415,17 @@
 		});
 		
 		
-	
-
-
-	
-		
+		//숫자 검사
+		function checkNum($("#order_num")){
+			var strNum = $("#order_num").val();
+				if (isNaN(strNum)){
+					alert("숫자만 입력하세요");
+					frm.$("#order_num").val("");
+					frm.$("#order_num").focus();
+				return false;
+			}
+			return true;
+		}
 		
 	</script>
 	

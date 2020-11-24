@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.domino.t1.item.ItemDTO;
 import com.domino.t1.item.pizza.PizzaDTO;
 
 @Controller
@@ -24,9 +25,18 @@ public class ListController {
 		// get premium type PizzaDTO list
 		PizzaDTO dto= new PizzaDTO();
 		dto.setPizza_type("프리미엄");
-		List<PizzaDTO> arr = listService.getPizzaListByType(dto);
-		mv.addObject("premium", arr);
+		List<PizzaDTO> arr_premium = listService.getPizzaListByType(dto);
+		mv.addObject("premium", arr_premium);
+		
+		// get half and half PizzaDTO list
+		dto.setPizza_type("하프앤하프 시그니처");
+		List<PizzaDTO> arr_half = listService.getPizzaListByType(dto);
+		mv.addObject("half", arr_half);
+		
 		// get classic type PizzaDTO list
+		dto.setPizza_type("클래식");
+		List<PizzaDTO> arr_classic = listService.getPizzaListByType(dto);
+		mv.addObject("classic", arr_classic);
 		
 		mv.addObject("category", "pizza");
 		mv.setViewName("menu/list/pizzaList");
@@ -37,17 +47,27 @@ public class ListController {
 	public ModelAndView getSideDishList() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		mv.addObject("menu", "sideDish");
+		ItemDTO dto = new ItemDTO();
+		dto.setItem_category("sidedish");
+		List<ItemDTO> arr = listService.getItemListByCategory(dto);
+		mv.addObject("sideDish", arr);
+		
+		mv.addObject("category", "sideDish");
 		mv.setViewName("menu/list/sideDishList");
 		return mv;
 	};
+	
 	
 	@GetMapping("etcList")
 	public ModelAndView getEtcList() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		mv.addObject("menu", "etc");
-		mv.setViewName("menu/list/sideDishList");
+		ItemDTO dto = new ItemDTO();
+		dto.setItem_category("etc");
+		List<ItemDTO> arr = listService.getItemListByCategory(dto);
+		mv.addObject("etc", arr);		
+		mv.addObject("category", "etc");
+		mv.setViewName("menu/list/etcList");
 		return mv;
 	}
 	
