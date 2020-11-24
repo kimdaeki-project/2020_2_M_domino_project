@@ -22,6 +22,19 @@ public class MemberInquirlyController {
 	@Autowired
 	private MemberInquirlyService memberInquirlyService;
 	
+	@GetMapping("memberInquirlyListDelete")
+	public ModelAndView setInqListDelete(MemberInquirlyDTO memberInquirlyDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("inq list del");
+		
+		int result = memberInquirlyService.setInqListDelete(memberInquirlyDTO);
+		
+		mv.setViewName("redirect:./memberInquirlyList");
+		
+		
+		return mv;
+	}
+	
 	@PostMapping("memberInquirlyUpdate")
 	public ModelAndView setInqUpdate(MemberInquirlyDTO memberInquirlyDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -115,8 +128,8 @@ public class MemberInquirlyController {
 		
 		Pager pager = (Pager) session.getAttribute("member");
 				
-		
 		List<Pager> ar = memberInquirlyService.getInqBoardList(pager);
+		
 		mv.addObject("pager", pager);
 		
 		mv.addObject("list", ar);

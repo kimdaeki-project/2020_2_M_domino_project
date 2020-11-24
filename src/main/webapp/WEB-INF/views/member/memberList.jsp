@@ -44,6 +44,7 @@
 	<div class="container">
 	<table class="table table-hober">
 		<tr>
+			<td>회원 번호</td>
 			<td>아이디</td>
 			<td>패스워드</td>
 			<td>이름</td>
@@ -53,7 +54,8 @@
 		
 		<c:forEach items="${list}" var="dto">
 			<tr>
-				<td>${dto.member_id}</td>
+				<td>${dto.member_num}</td>
+				<td><a href="./memberUpdateAdmin?member_num=${dto.member_num}">${dto.member_id}</a></td>
 				<td>${dto.member_pw}</td>
 				<td>${dto.member_name}</td>
 				<td>${dto.member_phone}</td>

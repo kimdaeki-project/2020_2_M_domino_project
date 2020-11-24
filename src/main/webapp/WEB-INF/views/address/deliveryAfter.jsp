@@ -54,8 +54,7 @@
 						
 
 						<div class="addr-list-plus">
-							<ul>
-								<li class="addLine">
+							
 
 									<div class="reg_addr">
 											<c:forEach items="${list}" var="dto">

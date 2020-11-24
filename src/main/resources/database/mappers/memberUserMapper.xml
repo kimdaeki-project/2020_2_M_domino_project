@@ -5,6 +5,10 @@
     
 <mapper namespace="com.domino.t1.member.memberUser.MemberUserDAO">
 
+	<select id="getOneMember" resultType="MemberDTO" parameterType="MemberDTO">
+		select * from member_info where member_num=#{member_num}
+	</select>
+
 	<select id="getMemberList" resultType="MemberDTO" parameterType="Pager">
 		select * from
 		(select rownum R, N.* from 

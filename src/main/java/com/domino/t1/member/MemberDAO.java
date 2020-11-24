@@ -8,6 +8,8 @@ import com.domino.t1.util.Pager;
 
 public interface MemberDAO {
 	
+	public MemberDTO getOneMember(MemberDTO memberDTO) throws Exception;
+	
 	public MemberDTO getMemberSearch(MemberDTO memberDTO) throws Exception;
 	
 	public int setMemberDelete(MemberDTO memberDTO) throws Exception;

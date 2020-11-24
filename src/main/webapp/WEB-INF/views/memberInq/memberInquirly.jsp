@@ -217,10 +217,9 @@
 			</div>
 		</div>	
 		
-		
-		<input type="text" name="member_num" value="${member.member_num}" class="none">
+		<input type="number" name="member_num" value="${member.member_num}" class="none">
 		<input type="text" name="inq_state" value="미처리" class="none">
-		
+		<input type="text" name="inq_reply" value="답변 대기중" class="none">
 		
 		  <input type="submit" value="작성완료" class="checkButt" style="width: 110px;">
 		</form>

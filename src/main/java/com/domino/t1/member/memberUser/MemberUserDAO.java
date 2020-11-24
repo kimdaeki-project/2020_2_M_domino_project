@@ -20,6 +20,12 @@ public class MemberUserDAO implements MemberDAO{
 	private final String NAMESPACE = "com.domino.t1.member.memberUser.MemberUserDAO.";
 	
 	@Override
+	public MemberDTO getOneMember(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+"getOneMember", memberDTO);
+	}
+	
+	@Override
 	public MemberDTO getMemberSearch(MemberDTO memberDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"getMemberSearch", memberDTO);

@@ -115,6 +115,7 @@
 					
 	<input type="button" value="목록" id="checkButt" style= "width:110px; height:42px;" class="inqList">		
 	<input type="submit" value="수정완료" id="checkButt" style= "width:110px; height:42px;" class="inqUpdate">	
+	<input type="button" value="삭제" id="checkButt" style= "width:110px; height:42px;" class="inqUpdateDel">
 	</form>
 	
 	</div>
@@ -129,9 +130,14 @@
 
 
 	$(".inqList").click(function() {
-		location.href = "./memberInq/memberInquirlyList";
+		location.href = "./memberInquirlyList";
 	});
 
+	$(".inqUpdateDel").click(function() {
+		location.href = "./memberInquirlyListDelete?inq_num=${dto.inq_num}";
+	});
+
+	
 </script>
 
 </html>

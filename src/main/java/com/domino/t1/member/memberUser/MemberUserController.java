@@ -30,6 +30,42 @@ public class MemberUserController {
 	@Autowired
 	private MemberUserService memberService;
 	
+	@GetMapping("memberDeleteAdmin")
+	public ModelAndView setMemberDeleteAdmin(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("Post Admin Delete");
+		
+		
+		
+		mv.setViewName("redirect:./memberList");
+		
+		return mv;
+	} 
+	
+	@PostMapping("memberUpdateAdmin") 
+	public ModelAndView setMemberUpdateAdmin(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("Post Admin Update");
+		
+		int result = memberService.setMemberUpdate(memberDTO);
+		
+		mv.setViewName("redirect:./memberList");
+		return mv;
+	}
+	
+	@GetMapping("memberUpdateAdmin")
+	public ModelAndView getOneMember(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("Admin Update");
+		
+		memberDTO = memberService.getOneMember(memberDTO);
+		
+		mv.addObject("dto", memberDTO);
+		mv.setViewName("member/memberUpdateAdmin");
+		
+		return mv;
+	}
+	
 	@PostMapping("setPassword")
 	public ModelAndView setPassword(MemberDTO memberDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
