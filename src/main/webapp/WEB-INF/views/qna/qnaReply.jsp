@@ -50,7 +50,7 @@
 		<div class="col-sm-12 qna_input">
 				<label class="control-label col-sm-2" for="board_title">제목</label>
 				<div class="col-sm-6">
-					 <input type="text" name="title" size="120" style="width:100%" class="form-control" value="${email}" >
+					 <input type="text" name="title" size="120" style="width:100%" class="form-control">
 				</div>
 		</div>
 		
