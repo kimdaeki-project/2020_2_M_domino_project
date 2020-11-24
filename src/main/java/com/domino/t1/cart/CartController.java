@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.domino.t1.address.AddressDTO;
+import com.domino.t1.address.AddressService;
 import com.domino.t1.item.ItemDTO;
 import com.domino.t1.member.MemberDTO;
 import com.domino.t1.menu.detail.DetailService;
+import com.domino.t1.order.orderdetailtemp.OrderDetailTempDAO;
 
 @Controller
 @RequestMapping(value="/cart/**")
@@ -25,11 +28,11 @@ public class CartController {
 	private CartService cartService;
 
 	@Autowired
-	private DetailService detailService;
+	private AddressService addressService;
 
 	// for pizza detail page -> cart
 	@PostMapping("addToCart/pizza")
-	public ModelAndView setCartItems(HttpSession session,
+	public ModelAndView setCartItems(HttpSession session, String orderType,
 			@RequestParam String[] pizzaCart,
 			@RequestParam String[] doughCart,
 			@RequestParam String[] toppingCart,
@@ -39,52 +42,85 @@ public class CartController {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 
-		ArrayList<String[]> pizzaGroupCart = new ArrayList<String[]>();
-		pizzaGroupCart.add(pizzaCart);
-		pizzaGroupCart.add(doughCart);
-		pizzaGroupCart.addAll(toArrayList(toppingCart, 4));
-		int result1 = cartService.setPizzaGroupItemCart(pizzaGroupCart, memberDTO);
-
-		ArrayList<String[]> itemGroupCart = new ArrayList<String[]>();
-		itemGroupCart.addAll(toArrayList(sideDishCart, 4));
-		itemGroupCart.addAll(toArrayList(etcCart, 4));
-		int result2 = cartService.setStandaloneItemCart(itemGroupCart, memberDTO);
-
-		// 나중에 꼭 트랜잭션 처리 해주기!!!!
-		int result = 0;
-		if(result1 > 0 && result2 > 0) {
-			result = 1;
+		// 바로 주문 시 order_detail_temp 초기화 시켜주기 
+		if(orderType.equals("direct")) {
+			int emptyTempResult = cartService.emptyOrderDetailTemp(memberDTO);
 		}
+		
+		List<String[]> arr = new ArrayList<String[]>();
+		arr.add(pizzaCart);
+		arr.add(doughCart);
+		arr.add(toppingCart);
+		arr.add(sideDishCart);
+		arr.add(etcCart);
+		
+		int result = cartService.setCartItemsFromPizzaDetail(orderType, arr, memberDTO);
+
 		mv.addObject("msg", result);
 		mv.setViewName("common/ajaxResult");
 		return mv;
 	}
 
-	// for other items's detail page -> cart
-	@PostMapping("addToCart/item")
-	public ModelAndView setCartItems(HttpSession session,
+	// for sideDish detail page -> cart
+	@PostMapping("addToCart/sideDish")
+	public ModelAndView setCartItems(HttpSession session, String orderType,
 			@RequestParam String[] sideDishCart,
 			@RequestParam String[] etcCart
 			) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-
-		ArrayList<String[]> itemGroupCart = new ArrayList<String[]>();
-		itemGroupCart.addAll(toArrayList(sideDishCart, 4));
-		itemGroupCart.addAll(toArrayList(etcCart, 4));
-		int result = cartService.setStandaloneItemCart(itemGroupCart, memberDTO);
-
-		// 나중에 꼭 트랜잭션 처리 해주기!!!!
-
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");		
+		
+		// 바로 주문 시 order_detail_temp 초기화 시켜주기 
+		if(orderType.equals("direct")) {
+			int emptyTempResult = cartService.emptyOrderDetailTemp(memberDTO);
+		}
+		
+		List<String[]> arr = new ArrayList<String[]>();
+		arr.add(sideDishCart);
+		arr.add(etcCart);
+		
+		int result = cartService.setCartItemsFromSideDishDetail(orderType, arr, memberDTO);
+		
 		mv.addObject("msg", result);
 		mv.setViewName("common/ajaxResult");
 		return mv;
 	}
+	
+	@GetMapping("hasAddress")
+	public ModelAndView hasAddress(HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		
+		int result = 0;
+		AddressDTO addressDTO = new AddressDTO();
+		addressDTO.setMember_num(memberDTO.getMember_num());
+		List<AddressDTO> addressList = addressService.getMemberAddress(addressDTO);
+		
+		if(addressList.size() > 0) {
+			result = 1;
+		}
+		
+		mv.addObject("msg", result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
+	
 
 	@GetMapping("detail")
 	public ModelAndView getCartDetailPage(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		// get user's address(one)
+		AddressDTO addressDTO = new AddressDTO();
+		addressDTO.setMember_num(memberDTO.getMember_num());
+		List<AddressDTO> addressList = addressService.getMemberAddress(addressDTO);
+		if(addressList.size() > 0) {
+			addressDTO = addressList.get(0);
+		}else {
+			addressDTO = null;
+		}
+		mv.addObject("address", addressDTO);
+		
 		// get CartDTO list of the user
 		List<List<CartDTO>> pizzaGroupList = cartService.getCartPizzaGroupItemList(memberDTO);
 		List<CartDTO> itemList = cartService.getCartStandaloneItemList(memberDTO);
@@ -118,15 +154,6 @@ public class CartController {
 		cartDTO.setCart_item_id(cart_item_id);
 		return cartService.deleteCartItem(cartDTO);		
 	}
-
-	public List<String[]> toArrayList(String[] arr, int size){
-		ArrayList<String[]> list = new ArrayList<String[]>();
-		int totalItem = arr.length/size;
-		for(int i=0; i<totalItem; i++) {
-			list.add(Arrays.copyOfRange(arr, i*size, (i+1)*size));
-		}
-		return list;
-	}
 	
 	@GetMapping("delete/emptyCart")
 	public ModelAndView emptyCart(HttpSession session) throws Exception {
@@ -146,23 +173,47 @@ public class CartController {
 		return mv;
 	}
 
-// 아직 테스트 데이터만 들어가있음. 
+	@PostMapping("toAddressPage")
+	public ModelAndView toAddressPage(HttpSession session,
+			@RequestParam String[] pizzaGIdList,
+			@RequestParam String[] itemGIdList) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		int emptyTempResult = cartService.emptyOrderDetailTemp(memberDTO);
+		int pResult = cartService.setOrderDetailTempFromList(1, pizzaGIdList, memberDTO);
+		int iResult = cartService.setOrderDetailTempFromList(0, itemGIdList, memberDTO);
+		
+		int result = pResult * iResult;
+System.out.println("pResult: " + pResult);
+System.out.println("iResult: " + iResult);
+		mv.addObject("msg", result);
+		mv.setViewName("common/ajaxResult");		
+		return mv;
+	}
+	
+ 
 	@PostMapping("toCheckout")
 	public ModelAndView toCheckoutPageTest(HttpSession session,
 			@RequestParam String[] pizzaGIdList,
 			@RequestParam String[] itemGIdList) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-
+		// order_detail_temp 테이블에서 member_num 기준으로 해당 유저의 데이터 모두 delete해 초기화시키기 
+		
+		// order_detail_temp 테이블에 [(pk), member_num, cart_group_id, is_pizza_group] insert
+		
+		
+// 나중에 꼭 지우기  --------------- order/orderInfo 로 내용 이동시키기 
 		List<List<CartDTO>> pizzaGroupList = cartService.getCartPizzaGroupListByGroupId(memberDTO, pizzaGIdList);
 		List<CartDTO> itemList = cartService.getCartItemByGroupId(memberDTO, itemGIdList);
 		session.setAttribute("pizzaGroupList", pizzaGroupList);
 		session.setAttribute("itemList", itemList);
+// 나중에 꼭 지우기  ---------------		
 		
-System.out.println("controller pizza: " + pizzaGroupList.size());
-System.out.println("controller item: " + itemList.size());		
-		mv.setViewName("order/orderInfo");
+		
+		mv.setViewName("address/orderInfo");
 
 		return mv;
 	}
+
 }

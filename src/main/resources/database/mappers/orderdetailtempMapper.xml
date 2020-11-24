@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.domino.t1.order.orderdetailtemp.OrderDetailTempDAO">
+	<insert id="setOrderDetailTemp" parameterType="OrderDetailTempDTO">
+		INSERT INTO order_detail_temp VALUES(
+			order_detail_temp_seq.NEXTVAL,
+			#{cart_group_id},
+			#{member_num},			
+			#{is_pizza_group}		
+		)
+	</insert>
+	<delete id="emptyOrderDetailTemp" parameterType="MemberDTO">
+		DELETE FROM order_detail_temp 
+		WHERE member_num = #{member_num}
+	</delete>
+	<select id="getOrderDetailTempList" parameterType="MemberDTO" resultType="OrderDetailTempDTO">
+		SELECT * FROM order_detail_temp
+		WHERE member_num = #{member_num}
+	</select>
+
+</mapper>
