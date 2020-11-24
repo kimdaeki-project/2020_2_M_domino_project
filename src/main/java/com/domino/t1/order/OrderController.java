@@ -6,10 +6,12 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -55,21 +57,40 @@ public class OrderController {
 		List<CouponDTO> ar = orderService.getCoupon(couponDTO);
 		
 		//------쿠폰 가져오기 end-------------	
-		
-		
-		
-			
+				
 			mv.addObject("orderTime", orderTime);
 			mv.addObject("address", addressDTO);
 			mv.addObject("couponList", ar);
 			mv.setViewName("order/orderInfo");	
 
-			
-			
-			
-		
 		return mv;
 		
 	}
+	
+	@GetMapping("orderPay")
+	public void orderPay(HttpSession session) throws Exception {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		//------주소 가져오기-------------
+		AddressDTO addressDTO = (AddressDTO)session.getAttribute("member");
+		
+		addressDTO = orderService.getOne(addressDTO);
+		//------주소 가져오기 end---------
+		
+		//주문번호 가져오기---------------
+		OrderDTO orderDTO = new OrderDTO();
+		
+		String number = orderDTO.getOrder_num();
+		
+		
+		mv.addObject("orderNum", number);
+		mv.addObject("address", addressDTO);
+		mv.setViewName("order/orderPay");
+		
+		
+		
+	}
+	
 	
 }

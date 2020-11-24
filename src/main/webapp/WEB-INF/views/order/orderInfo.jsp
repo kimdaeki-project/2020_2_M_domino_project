@@ -8,10 +8,6 @@
 <head>
 <title>Insert title here</title>
 <meta charset="utf-8">
-  <!-- jQuery -->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-  <!-- iamport.payment.js -->
-  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
   
 <c:import url="../template/bootstrap.jsp"></c:import>
 <link href="../resources/css/common/default.css" rel="stylesheet">
@@ -43,39 +39,6 @@
 						});
 			});
 
-	
-
-	var IMP = window.IMP; // 생략해도 괜찮습니다.
-		 
-	IMP.init("imp65751313"); // "imp00000000" 대신 발급받은 "가맹점 식별코드"를 사용합니다.
-		 
-		 
-	IMP.button({
-	    pg : 'inicis', // version 1.1.0부터 지원.
-	    pay_method : 'card',
-	    merchant_uid : 'merchant_' + new Date().getTime(),
-	    name : '주문명:결제테스트',
-	    amount : 14000, //판매 가격
-	    buyer_email : 'iamport@siot.do',
-	    buyer_name : '구매자이름',
-	    buyer_tel : '010-1234-5678',
-	    buyer_addr : '서울특별시 강남구 삼성동',
-	    buyer_postcode : '123-456'
-	}, function(rsp) {
-	    if ( rsp.success ) {
-	        var msg = '결제가 완료되었습니다.';
-	        msg += '고유ID : ' + rsp.imp_uid;
-	        msg += '상점 거래ID : ' + rsp.merchant_uid;
-	        msg += '결제 금액 : ' + rsp.paid_amount;
-	        msg += '카드 승인번호 : ' + rsp.apply_num;
-	    } else {
-	        var msg = '결제에 실패하였습니다.';
-	        msg += '에러내용 : ' + rsp.error_msg;
-	    }
-	    alert(msg);
-	});
-	
-	
 </script>
 
 
@@ -99,7 +62,7 @@
 
 
 		<article class="pay">
-			<form id="pay-list" action="">
+			<form id="pay-list">
 				<div class="step-wrap">
 					<div class="title-wrap">
 						<h3 class="title-type">
@@ -208,12 +171,6 @@
 									<span style="display: none;" id="goods_name_brief">메인</span>
 									<div class="item">
 										<span>피자이름 (도우 )사이즈 x 갯수</span> <span>가격</span>원
-
-										<c:forEach items="${itemList}" var="item">
-											<h1>${item.item_name}</h1>
-										</c:forEach>
-
-
 
 										<!-- 토핑 -->
 										<ul>
@@ -415,11 +372,11 @@
 										<label class="checkbox" for="pay2"></label> <label for="pay2">네이버페이</label>
 									</div>
 									<div class="chk-box" id="pay-3">
-										<input type="radio" id="pay3" name="pay" value="핸드폰 결제">
+										<input type="radio" id="pay3" name="pay" value="핸드폰결제">
 										<label class="checkbox" for="pay3"></label> <label for="pay3">핸드폰결제</label>
 									</div>
 									<div class="chk-box" id="pay-4">
-										<input type="radio" id="pay4" name="pay" value="카카오결제">
+										<input type="radio" id="pay4" name="pay" value="카카오페이">
 										<label class="checkbox" for="pay4"></label> <label for="pay4">카카오결제</label>
 									</div>
 									<div class="chk-box" id="pay-5">
@@ -437,7 +394,7 @@
 									<div class="chk-box" id="pay-8">
 										<input type="radio" id="pay8" name="pay" value="토스 결제">
 										<label class="checkbox" for="pay8"></label> <label for="pay8">토스</label>
-									</div>
+									</div>				
 								</div>
 							</div>
 						</div>
@@ -514,7 +471,7 @@
 
 				<!-- 주문하기 버튼 -->
 				<div class="btn">
-					<button type="submit" class="button">결제하기</button>
+					<button type="submit" id="button">결제하기</button>
 				</div>
 			</form>
 			<!-- //주문하기 버튼 -->
@@ -524,6 +481,28 @@
 	<c:import url="../template/footer.jsp"></c:import>
 
 	<script>
+	
+	// 카카오 페이
+
+    $(document).ready(function () {
+      $('#button').click(function () {
+        // getter
+        var radioVal = $('input[name="pay"]:checked').val();
+        if(radioVal == '카카오페이'){
+ 
+        	open('./orderPay')
+        	
+        	
+        }else{
+        	
+        	alert(' 결제 준비중');
+        	
+        }
+      });
+
+    });
+	
+	
 		$(document).ready(function() {
 			// checkbox
 			$("input[type='checkbox']").change(function() {
