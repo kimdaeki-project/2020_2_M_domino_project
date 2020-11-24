@@ -147,7 +147,7 @@
 	
 	<script type="text/javascript">
 		$("#qna_reply_btn").click(function(){
-	
+			
 			location.href="./qnaReply";
 			});
 
