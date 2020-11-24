@@ -133,11 +133,11 @@
   	<a href="./memberInquirly?curPage=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">[다음]</a>
   	</c:if>
   </div>
+  <br>
+  <br>
   
 	<div style="text-align: center;">	
-	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="width: 120px;">
-		문의하기
-	</button>
+	<input type="button" value="문의하기" class="checkButt" data-toggle="modal" data-target="#myModal" style="width: 130px;">
 	</div>
 
   <div class="modal fade" id="myModal" role="dialog">
@@ -148,7 +148,7 @@
           <h4 class="modal-title">문의하기</h4>
         </div>
         <div class="modal-body">
-        <form action="./memberInquirly" method="post">
+        <form action="./memberInquirly" method="post" id="frm">
 		
 		<div>
 			<div>
@@ -221,7 +221,7 @@
 				<dt>문의내용</dt>
 				<dd>
 					<div>
-						<textarea rows="10" cols="40" name="inq_contents"></textarea>
+						<textarea rows="10" cols="40" name="inq_contents" id="inq_contents"></textarea>
 					</div>
 				</dd>
 			</dl>				
@@ -232,7 +232,7 @@
 		<input type="text" name="inq_state" value="미처리" class="none">
 		<input type="text" name="inq_reply" value="답변 대기중" class="none">
 		
-		  <input type="submit" value="작성완료" class="checkButt" style="width: 110px;">
+		  <input type="button" value="작성완료" class="checkButt" style="width: 110px;" id="inqBtn">
 		</form>
 		
         </div>
@@ -249,8 +249,17 @@
 <c:import url="../template/footer.jsp"></c:import>
 </body>
 <script type="text/javascript">
-	$("#inq").click(function() {
+	$("#inqBtn").click(function() {
+		var title = $("#inq_title").val();
+		var contents = $("#inq_contents").val();
 		
+		if(title !== '' && contents !== '')	{
+			$("#frm").submit();
+			
+		}else{
+			alert("문의 내용 및 제목을 입력해주세요")
+			
+		}
 	})
 </script>
 </html>
