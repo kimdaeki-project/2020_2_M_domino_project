@@ -49,7 +49,7 @@
 		<interceptor>
 			<mapping path="/address/*"/>
 			<mapping path="/memberInq/*"/>
-			
+			<exclude-mapping path="/address/jusoPopup"/>
 			
 			<beans:ref bean="MemberInterceptor"></beans:ref>
 		</interceptor>

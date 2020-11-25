@@ -18,6 +18,10 @@ public class MemberInquirlyDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.domino.t1.member.memberInquirly.MemberInquirlyDAO.";
 	
+	public int getInqCount(CouponDTO couponDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getInqCount", couponDTO);
+	}
+	
 	public int setInqListDelete(MemberInquirlyDTO memberInquirlyDTO) throws Exception{
 		return sqlSession.delete(NAMESPACE+"setInqListDelete", memberInquirlyDTO);
 	}

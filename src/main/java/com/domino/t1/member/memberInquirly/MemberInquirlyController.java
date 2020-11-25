@@ -131,7 +131,10 @@ public class MemberInquirlyController {
 				
 		List<CouponDTO> ar = memberInquirlyService.getInqBoardList(couponDTO);
 		
+		int result = memberInquirlyService.getInqCount(couponDTO);
+		
 		mv.addObject("pager", couponDTO);
+		mv.addObject("count", result);
 		
 		mv.addObject("list", ar);
 		mv.setViewName("memberInq/memberInquirly");

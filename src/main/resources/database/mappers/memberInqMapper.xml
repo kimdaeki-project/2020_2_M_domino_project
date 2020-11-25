@@ -5,6 +5,10 @@
     
 <mapper namespace="com.domino.t1.member.memberInquirly.MemberInquirlyDAO">
 
+	<select id="getInqCount" parameterType="CouponDTO" resultType="int">
+		select count(inq_num) from member_inquirly where member_num = #{member_num}
+	</select>
+
 	<delete id="setInqListDelete" parameterType="MemberInquirlyDTO">
 		delete member_inquirly where inq_num=#{inq_num}
 	</delete>
