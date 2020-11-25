@@ -23,8 +23,12 @@ public class CartDAO {
 		return sqlSession.delete(NAMESPACE+"deleteCartGroup", cartDTO);
 	}
 	
-	public int updateCartItem(CartDTO cartDTO) throws Exception{
-		return sqlSession.update(NAMESPACE+"updateCartItem", cartDTO);
+	public int emptyCart(MemberDTO memberDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"emptyCart", memberDTO);
+	}
+	
+	public int updateCartItemQuantity(CartDTO cartDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"updateCartItemQuantity", cartDTO);
 	}
 
 	public List<CartDTO> getCartPizzaGroupItemList(MemberDTO memberDTO) throws Exception {
@@ -33,6 +37,14 @@ public class CartDAO {
 	
 	public List<CartDTO> getCartStandaloneItemList(MemberDTO memberDTO) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getCartStandaloneItemList", memberDTO);
+	}
+	
+	public List<CartDTO> getCartPizzaGroupListByGroupId(CartDTO cartDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getCartPizzaGroupListByGroupId", cartDTO);
+	}
+	
+	public CartDTO getCartItemByGroupId(CartDTO cartDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getCartItemByGroupId", cartDTO);
 	}
 	
 	public List<CartDTO> getCartList(MemberDTO memberDTO) throws Exception {

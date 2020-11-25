@@ -1,0 +1,39 @@
+@charset "UTF-8";
+    .content{
+    	border-top: 1px black solid; 
+    }
+    .item-image-wrapper{
+    	width: 90px;
+    	height: 90px;
+    	display: inline-block;
+    }
+	.item-image{
+		width: 100%;
+	}
+	
+	.desc-container{
+		display: inline-block;
+	}
+	
+	.delete-item-btn, .delete-topping-btn{
+		cursor:pointer;
+	}
+	
+	.delete-topping-btn{
+		float:right;
+	}
+	
+	.empty-cart-content{
+		height: 300px;		
+	}
+	
+	#image-empty-cart{
+		width:131px;
+	}
+	/* 
+	.btn-plus{
+		float:left;
+	} */
+	.input-group{
+		width: 114px;
+	}

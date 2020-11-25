@@ -35,7 +35,7 @@
 		<ul id="select" style="padding: 20px 0; border-bottom: 2px solid black;">
 			<li>
 				<a href="./memberSearch">아이디 찾기</a> ㅣ 
-				<a href="#">비밀번호 찾기</a> 
+				<a href="./memberSearchPw">비밀번호 찾기</a> 
 			</li>
 		</ul>
 			
@@ -103,38 +103,71 @@
           <h4 class="modal-title">회원정보 인증</h4>
         </div>
         <div class="modal-body">
-        <form action="./memberSearch" method="post">
-        <table>
-		<tr>
-			<td>이름</td><td><input type="text" name="member_name"></td>
-		</tr>
-		<tr>
-			<td>생년월일</td><td><input type="date" name="member_date"></td>
-		</tr>
-		<tr>
-			<td>인증번호 발송</td>
-			<td>
-  				<label class="radio-inline"><input type="radio" name="asd">휴대전화</label>
-				<label class="radio-inline"><input type="radio" name="asd">이메일</label>	
-			</td>
-		</tr>
+        <form action="./memberSearch" method="post" id="frm">
+		<div>
+			<div>
+			<dl>
+				<dt>이름</dt>
+				<dd><input type="text" name="member_name" style="text-align:center; width:300px; height:42px;" id="member_name"></dd>
+			</dl>
+			
+			<dl>
+				<dt>생년월일</dt>
+				<dd>
+					<div>
+						<input type="date" name="member_date" style="text-align:center; width:300px; height:42px;" id="member_date">
+					</div>
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt>인증번호 발송</dt>
+				<dd>
+					<div>
+						<label class="radio-inline"><input type="radio" name="asd">휴대전화</label>
+						<label class="radio-inline"><input type="radio" name="asd">이메일</label>
+					</div>
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt>휴대전화</dt>
+				<dd>
+					<div>
+						<input type="text" name="member_phone" style="text-align:center; width:300px; height:42px;" id="member_phone">
+					</div>
+				</dd>
+			</dl>
+				
+			</div>
+		</div>	
 		
-		<tr>
-			<td>휴대전화</td><td><input type="text" name="member_phone"></td>
-		</tr>		
-		</table>
-		<button type="submit" class="btn-default">아이디 찾기</button>
+		<input type="button" value="아이디 찾기" id="checkButt" style= "width:110px; height:42px;">
 		</form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
          
         </div>
       </div>
     </div>
   </div>
 	
+	<script type="text/javascript">
+	$("#checkButt").click(function () {
+		var name = $("#member_name").val();
+		var date = $("#member_date").val();
+		var phone = $("#member_phone").val();
+		
+		if(name !== '' && date !== '' && phone !== ''){
+			$("#frm").submit();
+		}else{
+			alert("필수항목들을 입력해주세요")
+			location.href = "./memberSearch";
+		}
+	});
 	
+	</script>
 	
 	
 	

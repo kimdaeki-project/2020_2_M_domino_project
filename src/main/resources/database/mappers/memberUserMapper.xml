@@ -5,6 +5,10 @@
     
 <mapper namespace="com.domino.t1.member.memberUser.MemberUserDAO">
 
+	<select id="getOneMember" resultType="MemberDTO" parameterType="MemberDTO">
+		select * from member_info where member_num=#{member_num}
+	</select>
+
 	<select id="getMemberList" resultType="MemberDTO" parameterType="Pager">
 		select * from
 		(select rownum R, N.* from 
@@ -96,6 +100,14 @@
 	<select id="getMemberSearch" parameterType="MemberDTO" resultType="MemberDTO">
 		select * from member_info where member_name = #{member_name} and member_date = #{member_date} and member_phone = #{member_phone}
 	</select>
+	
+	<select id="getMemberSearchPw" resultType="MemberDTO" parameterType="MemberDTO">
+		select * from member_info where member_name = #{member_name} and member_date = #{member_date} and member_phone = #{member_phone}
+	</select>
+	
+	<update id="setPassword" parameterType="MemberDTO">
+		update member_info set member_pw = #{member_pw} where member_id = #{member_id}
+	</update>
 	
 
 </mapper>

@@ -21,6 +21,12 @@ public class MemberUserDAO implements MemberDAO{
 	private final String NAMESPACE = "com.domino.t1.member.memberUser.MemberUserDAO.";
 	
 	@Override
+	public MemberDTO getOneMember(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+"getOneMember", memberDTO);
+	}
+	
+	@Override
 	public MemberDTO getMemberSearch(MemberDTO memberDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"getMemberSearch", memberDTO);
@@ -57,9 +63,15 @@ public class MemberUserDAO implements MemberDAO{
 		return sqlSession.selectOne(NAMESPACE+"getMemberIdCheck", memberDTO);
 	}
 	@Override
+
+	public Pager getMemberLogin(Pager pager) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+"getMemberLogin", pager);
+	}
 	public CouponDTO getMemberLogin(CouponDTO couponDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"getMemberLogin", couponDTO);
+
 	}
 	@Override
 	public int setMemberJoin(MemberDTO memberDTO) throws Exception {
@@ -77,6 +89,18 @@ public class MemberUserDAO implements MemberDAO{
 	public long getCount(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"getCount", pager);
+	}
+	
+	@Override
+	public MemberDTO getMemberSearchPw(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+"getMemberSearchPw", memberDTO);
+	}
+	
+	@Override
+	public int setPassword(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(NAMESPACE+"setPassword", memberDTO);
 	}
 	
 

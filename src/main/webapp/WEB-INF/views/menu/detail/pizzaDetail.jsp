@@ -9,6 +9,7 @@
     <c:import url="../../template/bootstrap.jsp"></c:import>
     <link href ="/t1/resources/css/common/default.css" rel="stylesheet">
     <link href ="/t1/resources/css/menu/detail.css" rel="stylesheet">
+    <link href="/t1/resources/css/common/shared.css" rel="stylesheet">
     <script src="/t1/resources/js/header.js"></script>
     <script src="/t1/resources/js/menu/detail.js"></script>
 
@@ -230,11 +231,11 @@
 			</div>
 				<div class="pizza-quantity-input-group input-group">
 					<span class="input-group-btn">
-						<button type="button" class="btn btn-default" min="1" id="pizza-quantity-btn-minus" disabled>-</button>
+						<button type="button" class="btn btn-quantity-controller" min="1" id="pizza-quantity-btn-minus" disabled>-</button>
 					</span> 
 					<input type="text" class="form-control pizza-quantity-input" value="1" id="pizza-quantity-option" disabled /> 
 					<span class="input-group-btn">
-						<button type="button" class="btn btn-default" id="pizza-quantity-btn-plus">+</button>
+						<button type="button" class="btn btn-quantity-controller" id="pizza-quantity-btn-plus">+</button>
 					</span>
 				</div>
 
@@ -300,14 +301,14 @@
 								<!-- quantity button -->
 										<div class="input-group">
 											<span class="input-group-btn">
-												<button type="button" class="btn btn-default btn-minus" min="0" disabled>-</button>
+												<button type="button" class="btn btn-quantity-controller btn-minus" min="0" disabled>-</button>
 											</span>
 											<input type="text" class="form-control quantity-input" value="0" disabled/>
 											<input type="hidden" class="item-name-data" value="${dto.item_name }">
 											<input type="hidden" class="item-price-data" value="${dto.item_price }">
 											<input type="hidden" class="item-id-data" value="${dto.item_id }">
 											<span class="input-group-btn">
-												<button type="button" class="btn btn-default btn-plus">+</button>
+												<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
 											</span>	
 										</div>
 										
@@ -335,14 +336,14 @@
 								<!-- quantity button -->
 										<div class="input-group">
 											<span class="input-group-btn">
-												<button type="button" class="btn btn-default btn-minus" min="0" disabled>-</button>
+												<button type="button" class="btn btn-quantity-controller btn-minus" min="0" disabled>-</button>
 											</span>
 											<input type="text" class="form-control quantity-input" value="0" disabled/>
 											<input type="hidden" class="item-name-data" value="${dto.item_name }">
 											<input type="hidden" class="item-price-data" value="${dto.item_price }">
 											<input type="hidden" class="item-id-data" value="${dto.item_id }">
 											<span class="input-group-btn">
-												<button type="button" class="btn btn-default btn-plus">+</button>
+												<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
 											</span>	
 										</div>
 										
@@ -369,14 +370,14 @@
 								<!-- quantity button -->
 										<div class="input-group">
 											<span class="input-group-btn">
-												<button type="button" class="btn btn-default btn-minus" min="0" disabled>-</button>
+												<button type="button" class="btn btn-quantity-controller btn-minus" min="0" disabled>-</button>
 											</span> 
 											<input type="text" class="form-control quantity-input" value="0" disabled /> 
 											<input type="hidden" class="item-name-data" value="${dto.item_name }"> 
 											<input type="hidden" class="item-price-data" value="${dto.item_price }"> 
 											<input type="hidden" class="item-id-data" value="${dto.item_id }"> 
 											<span class="input-group-btn">
-												<button type="button" class="btn btn-default btn-plus">+</button>
+												<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
 											</span>
 										</div>										
 									</div>												
@@ -409,14 +410,14 @@
 									<!-- quantity button -->
 									<div class="input-group">
 										<span class="input-group-btn">
-											<button type="button" class="btn btn-default btn-minus" min="0" disabled>-</button>
+											<button type="button" class="btn btn-quantity-controller btn-minus" min="0" disabled>-</button>
 										</span> 
 										<input type="text" class="form-control quantity-input" value="0" disabled /> 
 										<input type="hidden" class="item-name-data" value="${dto.item_name }"> 
 										<input type="hidden" class="item-price-data" value="${dto.item_price }"> 
 										<input type="hidden" class="item-id-data" value="${dto.item_id }"> 
 										<span class="input-group-btn">
-											<button type="button" class="btn btn-default btn-plus">+</button>
+											<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
 										</span>									
 									</div>
 								</div>
@@ -446,14 +447,14 @@
 									<!-- quantity button -->
 									<div class="input-group">
 										<span class="input-group-btn">
-											<button type="button" class="btn btn-default btn-minus" min="0" disabled>-</button>
+											<button type="button" class="btn btn-quantity-controller btn-minus" min="0" disabled>-</button>
 										</span> 
 										<input type="text" class="form-control quantity-input" value="0" disabled /> 
 										<input type="hidden" class="item-name-data" value="${dto.item_name }"> 
 										<input type="hidden" class="item-price-data" value="${dto.item_price }"> 
 										<input type="hidden" class="item-id-data" value="${dto.item_id }"> 
 										<span class="input-group-btn">
-											<button type="button" class="btn btn-default btn-plus">+</button>
+											<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
 										</span>
 									</div>
 								</div>
@@ -554,8 +555,44 @@
 <script type="text/javascript">
 	
 	$("#btn-order-now").click(function(){
-		// 장바구니 데이터 DB 저장 후 관련 cart_group_id 쿠키로 저장 
-		// + 바로 주문 여부도 쿠키에 저장 
+		// 장바구니 데이터 DB 저장 + 어떤 제품인지 임시데이터 order_detail_temp도 함께 저장 
+		var member_num = "${member.member_num}";
+		// not logged in -> to login page
+		console.log(member_num)
+		if(member_num == ""){
+		// not logged in -> to login page
+				location.href = '/t1/member/memberLogin'
+				alert("로그인이 필요한 기능입니다.")			
+		}else{
+		// logged in
+			var addressPage = '/t1/address/delivery'
+			$.get(
+				'/t1/cart/hasAddress',
+				function(result){
+					alert('hasAddress: '+result)
+					if(result>0){
+						addressPage += 'After'
+					}
+				}
+			)
+			$.post(
+				"/t1/cart/addToCart/pizza",{
+					"orderType":"direct",
+					"pizzaCart":pizzaCart.toString(),
+					"doughCart":doughCart.toString(),
+					"toppingCart":toppingCart.toString(),
+					"sideDishCart":sideDishCart.toString(),
+					"etcCart":etcCart.toString()
+					},
+					function(result){
+						if(result < 1){
+							alert("오류: 장바구니 담기에 실패했습니다. 문제가 지속될 경우 관리자에게 문의 바랍니다.")	
+							return
+						}
+					location.href = addressPage
+				}
+			)//end of $.post	
+		}//end of else(logged in) statement
 	})
 	
 	$("#btn-to-cart").click(function(){
@@ -568,6 +605,7 @@
 		}else{
 			$.post(
 				"/t1/cart/addToCart/pizza",{
+					"orderType":"toCart",
 					"pizzaCart":pizzaCart.toString(),
 					"doughCart":doughCart.toString(),
 					"toppingCart":toppingCart.toString(),

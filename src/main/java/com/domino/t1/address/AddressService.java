@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.domino.t1.branchInfo.BranchInfoDTO;
+import com.domino.t1.coupon.CouponDTO;
+import com.domino.t1.util.Pager;
 
 @Service
 public class AddressService {
@@ -17,8 +19,8 @@ public class AddressService {
 		return addressDAO.setAddressDelete(addressDTO);
 	}
 	
-	public List<AddressDTO> getMemberAddress(AddressDTO addressDTO) throws Exception{
-		return addressDAO.getMemberAddress(addressDTO);
+	public List<CouponDTO> getMemberAddress(CouponDTO couponDTO) throws Exception{
+		return addressDAO.getMemberAddress(couponDTO);
 	}
 	
 	public int setMemberAddress(AddressDTO addressDTO) throws Exception{

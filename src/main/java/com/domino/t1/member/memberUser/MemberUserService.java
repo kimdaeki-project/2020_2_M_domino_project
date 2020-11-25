@@ -18,6 +18,12 @@ public class MemberUserService implements MemberService{
 		
 	@Autowired
 	private MemberUserDAO memberDAO;
+	
+	@Override
+	public MemberDTO getOneMember(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return memberDAO.getOneMember(memberDTO);
+	}
 
 	@Override
 	public MemberDTO getMemberSearch(MemberDTO memberDTO) throws Exception {
@@ -62,9 +68,16 @@ public class MemberUserService implements MemberService{
 	}
 
 	@Override
+
+	public Pager getMemberLogin(Pager pager) throws Exception {
+		// TODO Auto-generated method stub
+		return memberDAO.getMemberLogin(pager);
+	}
+	
 	public CouponDTO getMemberLogin(CouponDTO couponDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return memberDAO.getMemberLogin(couponDTO);
+
 	}
 
 	@Override
@@ -86,6 +99,18 @@ public class MemberUserService implements MemberService{
 	public long getCount(Pager pager) throws Exception {
 	
 		return memberDAO.getCount(pager);
+	}
+	
+	@Override
+	public MemberDTO getMemberSearchPw(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return memberDAO.getMemberSearchPw(memberDTO);
+	}
+	
+	@Override
+	public int setPassword(MemberDTO memberDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return memberDAO.setPassword(memberDTO);
 	}
 	
 	

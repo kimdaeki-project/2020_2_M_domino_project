@@ -5,17 +5,66 @@
     
 <mapper namespace="com.domino.t1.member.memberInquirly.MemberInquirlyDAO">
 
+	<select id="getInqCount" parameterType="CouponDTO" resultType="int">
+		select count(inq_num) from member_inquirly where member_num = #{member_num}
+	</select>
+
+	<delete id="setInqListDelete" parameterType="MemberInquirlyDTO">
+		delete member_inquirly where inq_num=#{inq_num}
+	</delete>
+
+	<update id="setInqUpdate" parameterType="MemberInquirlyDTO">
+		update member_inquirly set inq_reply = #{inq_reply}, inq_state = #{inq_state} where member_num = #{member_num} and inq_num = #{inq_num} 
+	</update>
+
+	<select id="getInqList" resultType="MemberInquirlyDTO">
+		select * from member_inquirly order by member_num desc
+	</select>
+
 	<delete id="setInqDelete" parameterType="MemberInquirlyDTO">
 		delete member_inquirly where inq_num = #{inq_num}
 	</delete>
 	
 	<insert id="setInqBoardWrite" parameterType="MemberInquirlyDTO">
 		insert into member_inquirly values(#{member_num} ,member_inquirly_seq.nextval, #{inq_title}, #{inq_contents},
-		sysdate, #{inq_state}, #{inq_type}, #{inq_shop}, #{inq_location})
+		sysdate, #{inq_state}, #{inq_type}, #{inq_shop}, #{inq_location}, #{inq_reply})
 	</insert>
 	
-	<select id="getInqBoardList" resultType="MemberInquirlyDTO">
-		select * from member_inquirly where member_num=#{member_num} order by inq_num desc
+	<select id="getInqBoardList" resultType="MemberInquirlyDTO" parameterType="CouponDTO">
+		select * from
+		(select rownum R, N.* from 
+		(select * from member_inquirly where member_num=#{member_num} and
+		<choose>
+			<when test="kind == 'title'">
+				(inq_title like '%'||#{search}||'%')
+			</when>
+			
+			<when test="kind == 'date'">
+				(inq_date like '%'||#{search}||'%')
+			</when>
+			
+			<otherwise>
+				(inq_state like '%'||#{search}||'%')
+			</otherwise>
+		</choose>
+		order by inq_num desc) N)
+		where R between #{startRow} and #{lastRow}
+	</select>
+	
+	<select id="getCount" resultType="Long" parameterType="CouponDTO">
+		select count(inq_num) from member_inquirly
+		where member_num=#{member_num} and
+		<choose>
+			<when test="kind == 'title'">
+				(inq_title like '%'||#{search}||'%')
+			</when>
+			<when test="kind == 'date'">
+				(inq_date like '%'||#{search}||'%')
+			</when>
+			<otherwise>
+				(inq_state like '%'||#{search}||'%')
+			</otherwise>
+		</choose>
 	</select>
 	
 	<select id="getOne" resultType="MemberInquirlyDTO" parameterType="MemberInquirlyDTO">

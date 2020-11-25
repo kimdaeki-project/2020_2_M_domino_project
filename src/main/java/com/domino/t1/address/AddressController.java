@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.domino.t1.branchInfo.BranchInfoDTO;
-import com.domino.t1.branchInfo.BranchInfoService;
+import com.domino.t1.coupon.CouponDTO;
 import com.domino.t1.member.MemberDTO;
 import com.domino.t1.member.address.MemberAddressDTO;
 import com.domino.t1.member.memberInquirly.MemberInquirlyDTO;
+import com.domino.t1.util.Pager;
 
 @Controller
 @RequestMapping("/address/**")
@@ -23,9 +24,6 @@ public class AddressController {
 	
 	@Autowired
 	private AddressService addressService;
-	/*
-	 * @Autowired private BranchInfoService branchInfoService;
-	 */
 	
 	@PostMapping("jusoPopup")
 	public ModelAndView getJusoPopup2() throws Exception{
@@ -55,13 +53,13 @@ public class AddressController {
 	} 
 	
 	@GetMapping("deliveryAfter")
-	public ModelAndView deliveryAfrer(HttpSession session) throws Exception{
+	public ModelAndView getMemberAddress(HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		System.out.println("DA");
 		
-		AddressDTO addressDTO = (AddressDTO)session.getAttribute("member");
-		
-		List<AddressDTO> ar = addressService.getMemberAddress(addressDTO);
+		CouponDTO couponDTO = (CouponDTO)session.getAttribute("member");
+				
+		List<CouponDTO> ar = addressService.getMemberAddress(couponDTO);
 	
 		mv.addObject("list", ar);
 		mv.setViewName("address/deliveryAfter");
@@ -76,8 +74,12 @@ public class AddressController {
 		System.out.println("delivery 2");
 		int result = addressService.setMemberAddress(addressDTO);
 		
+		String message = "배달 주소를 입력해주세요.";
+		System.out.println("Result : "+result);
 		
-		mv.setViewName("redirect:./deliveryAfter");
+			mv.setViewName("redirect:./deliveryAfter");
+		
+			
 		
 		return mv;
 	}
@@ -97,24 +99,22 @@ public class AddressController {
 	public ModelAndView pickupAfter(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		BranchInfoDTO branchInfoDTO = (BranchInfoDTO)session.getAttribute("member");
+//		BranchInfoDTO branchInfoDTO = (BranchInfoDTO)session.getAttribute();
 		
-		List<BranchInfoDTO> ar = addressService.getBranchInfo(branchInfoDTO);
-	
-		mv.addObject("list", ar);
+		System.out.println("pickupAfter");
 		mv.setViewName("address/pickupAfter");
 		
 		return mv;
 	}
 	
-	@PostMapping("pickup")
+	@PostMapping("pickupAfter")
 	public ModelAndView pickupAfter(BranchInfoDTO branchInfoDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		System.out.println("go pickup after");
+		System.out.println("pickup after");
 		int result = addressService.setBranchInfo(branchInfoDTO);
 		
-		mv.setViewName("redirect:./pickupAfter");
+		mv.setViewName("address/pickupAfter");
 		
 		return mv;
 	}
@@ -126,8 +126,6 @@ public class AddressController {
 //		mv.addObject("order", "pickup");
 		mv.setViewName("address/pickup");
 		System.out.println("pickup");
-		
-		BranchInfoDTO branchInfoDTO = new BranchInfoDTO();
 		
 		return mv;
 		

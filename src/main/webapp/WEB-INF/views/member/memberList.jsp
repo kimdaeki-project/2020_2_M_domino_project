@@ -4,6 +4,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+	.pagingList{
+		text-align: center;
+	}
+	
+	.pagingList a{
+		color: #888888;
+	}
+	
+	.form-item{
+		display: inline-block;
+	}
+	
+	#msg{
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+	
+	.form-item{
+		float: left;
+		padding: 2px;
+	}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
   <c:import url="../template/bootstrap.jsp"></c:import>
@@ -16,34 +39,40 @@
 
 	<div class="container">
 	<h1>회원 정보</h1>
-		<div class="row">
-  <div class="col-sm-8">
+<div class="col-sm-12" style="border-bottom: 2px solid black; padding:50px 0;">
 		  <form action="./memberList">
-		  <input type="hidden" name="curPage" id="curPage">
-		       <div class="input-group">
-		       		<select class="input-group-sm" id="sel1" name="kind">
+		 	 <input type="hidden" name="curPage" id="curPage">
+		       <div class="input-group" style="margin: 0 auto;">
+		       
+		       		<div class="form-item">
+		       		<select class="col-sm-2" id="sel1" name="kind" style="width: 150px; height: 50px; border-color: #ddd; background-color: white;">
 		       			<option value="id">아이디</option>
 		       			<option value="name">이름</option>
-		       			<option value="phone">휴대전화</option>
+		       			<option value="phone">전화번호</option>
 		       		</select>
+		       		</div>
 		       		
-			        <input id="msg" type="text" class="form-control" name="search" placeholder="Additional Info">
-			        <div class="input-group-btn">
-			            <button class="btn btn-default" type="submit">
-			            <i class="glyphicon glyphicon-search"></i>
-			            </button>
+		       		<div class="form-item">
+			        <input class="col-sm-6" id="msg" type="text" class="form-control" name="search"  style="width: 500px; height: 50px; border: 1px solid #ddd;">
 			        </div>
-		      </div>
-		      
+			       
+			        <div class="form-item">
+				    <button type="submit" style="background-color: #222; width:50px; height: 50px;" id="srcBtn">
+				        <img alt="" src="${pageContext.request.contextPath}/resources/images/index/srch.png">
+				    </button>
+				    </div>
+			        
+			       
+		       </div>
 		  </form>
-  </div>
-  </div>
+  	  </div>
 </div>
 	
 	
 	<div class="container">
 	<table class="table table-hober">
 		<tr>
+			<td>회원 번호</td>
 			<td>아이디</td>
 			<td>패스워드</td>
 			<td>이름</td>
@@ -53,7 +82,8 @@
 		
 		<c:forEach items="${list}" var="dto">
 			<tr>
-				<td>${dto.member_id}</td>
+				<td>${dto.member_num}</td>
+				<td><a href="./memberUpdateAdmin?member_num=${dto.member_num}">${dto.member_id}</a></td>
 				<td>${dto.member_pw}</td>
 				<td>${dto.member_name}</td>
 				<td>${dto.member_phone}</td>
@@ -64,7 +94,7 @@
 	</table>
 	
 	
-<div>
+<div class="pagingList">
   
   	<c:if test="${pager.beforeCheck}">
   	<a href="./memberList?curPage=${pager.startNum-1}&kind=${pager.kind}&search=${search}">[이전]</a>

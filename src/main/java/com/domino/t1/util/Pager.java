@@ -1,6 +1,8 @@
 package com.domino.t1.util;
 
-public class Pager {
+import com.domino.t1.address.AddressDTO;
+
+public class Pager extends AddressDTO{
 	
 	//********검색
 	private String kind;

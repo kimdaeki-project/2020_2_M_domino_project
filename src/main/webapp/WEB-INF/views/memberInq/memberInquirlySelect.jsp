@@ -28,7 +28,7 @@
 			<div class="depth-area">
 				<ol>
 					<li><a href="http://localhost/t1">홈</a></li>
-					<li><a href="./memberPage">나의정보</a></li>
+					<li><a href="../member/memberPage">나의정보</a></li>
 					<li><strong>1:1문의</strong></li>
 				</ol>
 			</div>
@@ -53,48 +53,74 @@
 			<div class="container">
 			
 			<input type="number" value="${dto.inq_num}" name="inq_num" class="none">
-			<div class="form-group">
-				<label for="name" class="labelUpdate">이름 </label>
-				<span>${member.member_name}</span>
-			</div>
 			
-			<div class="form-group">
-				<label for="id" class="labelUpdate">아이디 </label>
-			 	<span>${member.member_id}</span>
-			</div>
+			<div>
+			<div>
+			<dl>
+				<dt>이름</dt>
+				<dd><input type="text" name="member_name" value="${member.member_name}" readonly="readonly" style="border: 0px;"></dd>
+			</dl>
 			
-			<div class="form-group">
-				<label for="email" class="labelUpdate">이메일 </label>
-				<span>${member.member_email}</span>
-			</div>	
+			<dl>
+				<dt>아이디</dt>
+				<dd><input type="text" name="member_id" value="${member.member_id}" readonly="readonly" style="border: 0px;"></dd>
+			</dl>
+			<dl>
+				<dt>연락처</dt>
+				<dd><input type="text" name="member_phone" value="${member.member_phone}" readonly="readonly" style="border: 0px;"></dd>
+			</dl>
+			<dl>
+				<dt>이메일</dt>
+				<dd><input type="text" name="member_email" value="${member.member_email}" readonly="readonly" style="border: 0px;"></dd>
+			</dl>			
+					
+			<dl>
+				<dt>문의유형</dt>
+				<dd>
+					${dto.inq_type}			
+				</dd>
+			</dl>
+
+			<dl>
+				<dt>매장검색</dt>
+				<dd>
+					${dto.inq_shop} : ${dto.inq_location}
+				</dd>
+			</dl>
 			
-			<div class="form-group">
-				<label for="inqType" class="labelUpdate">문의유형 </label>
-				<span>${dto.inq_type}</span>
-			</div>
+			<dl>
+				<dt>제목</dt>
+				<dd>
+					<div>
+						<input type="text" name="member_email" value="${dto.inq_title}" readonly="readonly" style="border: 0px;">
+					</div>
+				</dd>
+			</dl>
 			
-			<div class="form-group">
-				<label for="shop" class="labelUpdate">매장 검색 </label>
-				<span>${dto.inq_shop} : ${dto.inq_location}</span>
+			<dl>
+				<dt>문의내용</dt>
+				<dd>
+					<div>
+						<textarea rows="10" cols="40" name="inq_contents" class="divText" readonly="readonly">${dto.inq_contents}</textarea>
+					</div>
+				</dd>
+			</dl>
+
+			<dl>
+				<dt>답변</dt>
+				<dd>
+					<div>
+						<textarea rows="10" cols="40" name="inq_reply" class="divText" readonly="readonly">${dto.inq_reply}</textarea>
+					</div>
+				</dd>
+			</dl>								
 			</div>
+		</div>	
 			
-			<div class="form-group">
-				<label for="title" class="labelUpdate">제목 </label>
-				<span>${dto.inq_title}</span>
-			</div>
 			
-			<div class="form-group">
-				<label for="contents" class="labelUpdate" id="inqCon">문의내용 </label>
-				<div class="divText"><textarea rows="10" cols="30" name="inq_contents" readonly="readonly" class="tArea">${dto.inq_contents}</textarea></div>
-			</div>
-			
-			<div class="form-group">
-				<label for="reply" class="labelUpdate" id="inqCon2">답변 </label>
-			   <div class="divText"><textarea rows="10" cols="30" name="inq_contents" readonly="readonly" class="tArea"></textarea></div>
-			</div>
 	<input type="button" value="삭제" id="checkButt" style= "width:110px; height:42px;" class="inqDel">		
 	<input type="button" value="목록" id="checkButt" style= "width:110px; height:42px;" class="inqList">		
-
+	
 
 	</div>
 	
