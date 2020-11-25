@@ -166,7 +166,19 @@
 									<strong class="goods_name">피자명,외 갯수</strong>
 									<!-- //피자 명  -->
 								</div>
-
+								<c:forEach items="${pizzaGroupList}" var="pizzaGroup">
+									<c:forEach items="${pizzaGroup}" var="dto">
+										<h3>${dto.item_name}</h3>
+										<span>${dto.item_price}원</span>
+										<span> x ${dto.cart_quantity}</span>
+									</c:forEach>		
+								</c:forEach>
+								
+								<c:forEach items="${itemList}" var="dto">
+									<h3>${dto.item_name}</h3>
+									<span>${dto.item_price}원</span>
+									<span> x ${dto.cart_quantity}</span>
+								</c:forEach>								
 								<div class="topping">
 									<span style="display: none;" id="goods_name_brief">메인</span>
 									<div class="item">
