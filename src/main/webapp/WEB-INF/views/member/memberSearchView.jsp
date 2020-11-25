@@ -35,12 +35,12 @@
 		<ul id="select" style="padding: 20px 0; border-bottom: 2px solid black;">
 			<li>
 				<a href="./memberSearch">아이디 찾기</a> ㅣ 
-				<a href="#">비밀번호 찾기</a> 
+				<a href="./memberSearchPw">비밀번호 찾기</a> 
 			</li>
 		</ul>
 
 		<h3>고객님의 정보와 일치하는 아이디 목록입니다.</h3><br>
-		<h3>아이디 : ${dto.member_id}</h3><h3>가입일 : ${dto.member_date}</h3><br>
+		<h3>아이디 : ${dto.member_id}</h3><h3>가입일 : ${dto.member_reg_date}</h3><br>
 		<button type="button" class="btn btn-info btn-lg" id="logBtn">로그인</button>
 			
 	</div>

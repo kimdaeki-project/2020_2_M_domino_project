@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.domino.t1.address.AddressDTO;
+import com.domino.t1.address.AddressService;
 import com.domino.t1.item.ItemDTO;
 import com.domino.t1.item.dough.DoughDTO;
 import com.domino.t1.item.pizza.PizzaDTO;
@@ -21,6 +23,8 @@ public class DetailController {
 	
 	@Autowired
 	private DetailService detailService;
+	@Autowired
+	private AddressService addressService;
 	
 	@GetMapping("pizzaDetail")
 	public ModelAndView getPizzaDetail(PizzaDTO pizzaDTO) throws Exception{

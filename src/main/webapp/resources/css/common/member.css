@@ -176,6 +176,7 @@
   	background: #222;
     border-color: #222;
     color: white;
+    margin-top: 30px;
 }
 
 #logBtn{
@@ -418,5 +419,10 @@ dl {
 
 #chAll{
 	padding-top: 25px;
+}
+
+#pwSetResult{
+	width: 400px;
+	
 }
 

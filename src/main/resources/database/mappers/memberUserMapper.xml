@@ -8,6 +8,9 @@
 
 	<select id="getMemberSocialLogin" resultType="CouponDTO" parameterType="CouponDTO">
 		select * from member_info where member_id=#{member_id}
+
+	<select id="getOneMember" resultType="MemberDTO" parameterType="MemberDTO">
+		select * from member_info where member_num=#{member_num}
 	</select>
 
 	<select id="getMemberList" resultType="MemberDTO" parameterType="Pager">
@@ -101,6 +104,14 @@
 	<select id="getMemberSearch" parameterType="MemberDTO" resultType="MemberDTO">
 		select * from member_info where member_name = #{member_name} and member_date = #{member_date} and member_phone = #{member_phone}
 	</select>
+	
+	<select id="getMemberSearchPw" resultType="MemberDTO" parameterType="MemberDTO">
+		select * from member_info where member_name = #{member_name} and member_date = #{member_date} and member_phone = #{member_phone}
+	</select>
+	
+	<update id="setPassword" parameterType="MemberDTO">
+		update member_info set member_pw = #{member_pw} where member_id = #{member_id}
+	</update>
 	
 
 </mapper>

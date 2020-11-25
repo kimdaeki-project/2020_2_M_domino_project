@@ -42,6 +42,93 @@ public class MemberUserController {
 
 		ModelAndView mv = new ModelAndView();
 		couponDTO = memberService.getMemberSocialLogin(couponDTO);
+
+	@GetMapping("memberDeleteAdmin")
+	public ModelAndView setMemberDeleteAdmin(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("Post Admin Delete");
+		
+		int result = memberService.setMemberDelete(memberDTO);
+		
+		mv.setViewName("redirect:./memberList");
+		
+		return mv;
+	} 
+	
+	@PostMapping("memberUpdateAdmin") 
+	public ModelAndView setMemberUpdateAdmin(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("Post Admin Update");
+		
+		int result = memberService.setMemberUpdate(memberDTO);
+		
+		mv.setViewName("redirect:./memberList");
+		return mv;
+	}
+	
+	@GetMapping("memberUpdateAdmin")
+	public ModelAndView getOneMember(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("Admin Update");
+		
+		memberDTO = memberService.getOneMember(memberDTO);
+		
+		mv.addObject("dto", memberDTO);
+		mv.setViewName("member/memberUpdateAdmin");
+		
+		return mv;
+	}
+	
+	@PostMapping("setPassword")
+	public ModelAndView setPassword(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = memberService.setPassword(memberDTO);
+		
+		mv.setViewName("redirect:./memberLogin");
+		
+		return mv;
+	}
+	
+	@GetMapping("memberSearchViewPw")
+	public ModelAndView getMemberSearchViewPw() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+	}
+	
+	@PostMapping("memberSearchPw")
+	public ModelAndView getMemberSearchPw(MemberDTO memberDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("search pw post");
+		
+		memberDTO = memberService.getMemberSearchPw(memberDTO);
+		String message = "입력한 정보가 틀립니다. 다시 확인해주세요.";
+		if(memberDTO != null) {
+			mv.addObject("dto", memberDTO);
+			mv.setViewName("member/memberSearchViewPw");
+		}else {
+			mv.addObject("msg", message);
+			mv.addObject("path", "./memberSearchPw");
+			mv.setViewName("common/result");
+		}
+		
+		
+		
+		return mv;
+	}
+	
+	@GetMapping("memberSearchPw")
+	public ModelAndView getMemberSearchPw(Pager pager) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("search pw");
+		
+		List<MemberDTO> ar = memberService.getMemberList(pager);
+		
+		mv.addObject("dto", ar);
+		mv.setViewName("member/memberSearchPw");
+		return mv;
+	}
+
 		
 		if(couponDTO != null) {
 			session.setAttribute("member", couponDTO);
@@ -65,8 +152,17 @@ public class MemberUserController {
 		ModelAndView mv = new ModelAndView();
 		memberDTO = memberService.getMemberSearch(memberDTO);
 		
-		mv.addObject("dto", memberDTO);
-		mv.setViewName("member/memberSearchView");
+		String message = "입력한 정보가 틀립니다. 다시 확인해주세요.";
+		if(memberDTO != null) {
+			mv.addObject("dto", memberDTO);
+			mv.setViewName("member/memberSearchView");
+			
+		}else {
+			mv.addObject("msg", message);
+			mv.addObject("path", "./memberSearch");
+			mv.setViewName("common/result");
+		}
+		
 		
 		return mv;
 	}
@@ -223,12 +319,19 @@ public class MemberUserController {
 	}
 	
 	@PostMapping("memberLogin")
+
+
+
 	public ModelAndView getMemberLogin(CouponDTO couponDTO, String remember, HttpServletResponse response ,HttpSession session) throws Exception{
+
 		ModelAndView mv = new ModelAndView();
 		
 		
 		if(remember != null) {
+
+
 			Cookie cookie = new Cookie("remember", couponDTO.getMember_id());
+
 			
 			response.addCookie(cookie);
 		}else {
@@ -237,11 +340,12 @@ public class MemberUserController {
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
 		}
-		
+
 		couponDTO = memberService.getMemberLogin(couponDTO);
 		
 		if(couponDTO != null) {
 			session.setAttribute("member", couponDTO);
+
 			mv.setViewName("redirect:../");
 		}else {
 			mv.addObject("msg","로그인 실패");

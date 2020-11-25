@@ -23,7 +23,7 @@
 		</div>
 		<div class="content">
 			<h3>배달주문</h3>
-			<div>대표주소는 여기에 노출??</div>
+			<div>${address.roadFullAddr}</div>
 		</div>
 		<div class="content" id="cart-list-container">
 			<h3>장바구니 목록</h3>		
@@ -59,11 +59,13 @@
 						</td>
 						<td>
 							<div class="topping-container">
+								<input type="hidden" value="${topping.item_price * topping.cart_quantity}" class="topping-price-subtotal"/>
 								<ul>
 									<c:forEach items="${pizzaGroup}" var="topping" begin="2">
 										<li class="topping-item">
 											<p>${topping.item_name} (+${topping.item_price}) x <span>${topping.cart_quantity}</span><span class="delete-topping-btn">X</span></p>
-											<input type="hidden" value="${topping.item_price}" class="topping-price"/>
+											<input type="hidden" value="${topping.item_price * topping.cart_quantity}" class="topping-price"/>
+											<!-- 꼭 필요한지???? -->
 											<input type="hidden" value="${topping.cart_quantity}" class="topping-quantity"/>
 											<input type="hidden" value="${topping.cart_item_id}" class="topping-cart-item-id"/>
 										</li>
@@ -82,7 +84,7 @@
 								</span>	
 							</div>						
 						</td>
-						<td><span class="item-price"></span>원</td>
+						<td><span class="pizza-group-subtotal"></span>원</td>
 						<td><p class="delete-item-btn">X</p></td>				
 					</tr>	
 				</c:forEach>
@@ -119,7 +121,7 @@
 								</span>	
 							</div>							
 						</td>
-						<td><span class="item-price"></span>원</td>
+						<td><span class="item-subtotal"></span>원</td>
 						<td><p class="delete-item-btn">X</p></td>				
 					</tr>	
 				</c:forEach>					
@@ -152,11 +154,18 @@
 	</div>
 	
 	<c:import url="../template/footer.jsp"></c:import>
-	<script type="text/javascript">	
-
+	<script type="text/javascript">		
 	if(${isCartEmpty} == 1){
 		setEmptyCart()
 	}	
+	
+	function updatePizzaGroupSubtotal(priceTag){
+		
+	}
+	
+	function updateItemSubtotal(priceTag){
+		
+	}
 	
 	function setEmptyCart(){
 		$.ajax({
@@ -268,7 +277,8 @@
 					result = result.trim()
 					alert(result)
 					if(result > 0){
-						$(this).closest("li").remove()
+						$(this).closest("li").remove(kk)
+						window.location.reload()	
 					}else{
 						alert("삭제에 실패했습니다.")
 					}
@@ -293,14 +303,28 @@
 		})
 		console.log(pizzaGIdList.toString())
 		console.log(itemGIdList.toString())
+		var addressPage = '/t1/address/delivery'
+		$.get(
+			'/t1/cart/hasAddress',
+			function(result){
+				alert('hasAddress: '+result)
+				if(result>0){
+					addressPage += 'After'
+				}
+			}
+		)
 		$.post(
-			"./toCheckout",
+			"/t1/cart/toAddressPage",
 			{
 				"pizzaGIdList" : pizzaGIdList.toString(),
 				"itemGIdList" : itemGIdList.toString()
 			},
-			function(){
-				location.href="/t1/order/orderInfo"
+			function(result){
+				if(result < 1){
+					alert("오류가 발생했습니다. 문제가 지속될 경우 관리자에게 문의 바랍니다.")	
+					return
+				}				
+			location.href = addressPage 
 			}
 		)		
 	})
