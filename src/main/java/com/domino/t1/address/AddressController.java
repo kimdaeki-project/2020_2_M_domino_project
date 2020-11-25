@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.domino.t1.branchInfo.BranchInfoDTO;
+import com.domino.t1.coupon.CouponDTO;
 import com.domino.t1.member.MemberDTO;
 import com.domino.t1.member.address.MemberAddressDTO;
 import com.domino.t1.member.memberInquirly.MemberInquirlyDTO;
@@ -56,9 +57,9 @@ public class AddressController {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("DA");
 		
-		Pager pager = (Pager)session.getAttribute("member");
-		
-		List<Pager> ar = addressService.getMemberAddress(pager);
+		CouponDTO couponDTO = (CouponDTO)session.getAttribute("member");
+				
+		List<CouponDTO> ar = addressService.getMemberAddress(couponDTO);
 	
 		mv.addObject("list", ar);
 		mv.setViewName("address/deliveryAfter");

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.domino.t1.address.AddressDTO;
 import com.domino.t1.address.AddressService;
+import com.domino.t1.coupon.CouponDTO;
 import com.domino.t1.item.ItemDTO;
 import com.domino.t1.member.MemberDTO;
 import com.domino.t1.menu.detail.DetailService;
@@ -92,9 +93,9 @@ public class CartController {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		
 		int result = 0;
-		AddressDTO addressDTO = new AddressDTO();
-		addressDTO.setMember_num(memberDTO.getMember_num());
-		List<AddressDTO> addressList = addressService.getMemberAddress(addressDTO);
+		CouponDTO couponDTO = new CouponDTO();
+		couponDTO.setMember_num(memberDTO.getMember_num());
+		List<CouponDTO> addressList = addressService.getMemberAddress(couponDTO);
 		
 		if(addressList.size() > 0) {
 			result = 1;
@@ -111,15 +112,15 @@ public class CartController {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		// get user's address(one)
-		AddressDTO addressDTO = new AddressDTO();
-		addressDTO.setMember_num(memberDTO.getMember_num());
-		List<AddressDTO> addressList = addressService.getMemberAddress(addressDTO);
+		CouponDTO couponDTO = new CouponDTO();
+		couponDTO.setMember_num(memberDTO.getMember_num());
+		List<CouponDTO> addressList = addressService.getMemberAddress(couponDTO);
 		if(addressList.size() > 0) {
-			addressDTO = addressList.get(0);
+			couponDTO = addressList.get(0);
 		}else {
-			addressDTO = null;
+			couponDTO = null;
 		}
-		mv.addObject("address", addressDTO);
+		mv.addObject("address", couponDTO);
 		
 		// get CartDTO list of the user
 		List<List<CartDTO>> pizzaGroupList = cartService.getCartPizzaGroupItemList(memberDTO);
