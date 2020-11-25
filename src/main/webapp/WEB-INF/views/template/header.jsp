@@ -13,6 +13,12 @@
 	    
 	    <div class="collapse navbar-collapse" id="myNavbar1" style="padding: 0;">
 	      <ul class="nav navbar-nav navbar-right">
+	      
+	      <c:if test="${member.member_id eq 'admin'}">
+	      	<li><a href="${pageContext.request.contextPath}/member/memberList"><span class="glyphicon"></span> Admin 회원 정보</a></li>
+	        <li><a href="${pageContext.request.contextPath}/memberInq/memberInquirlyList"><span class="glyphicon"></span> Admin 회원 문의 정보</a></li>
+	      </c:if>
+	      
 	      <c:choose>
 	      	<c:when test="${not empty member}">
 	       		<li><a href="${pageContext.request.contextPath}/member/memberLogout"><span class="glyphicon"></span> 로그아웃</a></li>
@@ -25,7 +31,6 @@
 	       		<li><a href="${pageContext.request.contextPath}/member/memberJoin"><span class="glyphicon"></span> 회원가입</a></li>	
 	      	</c:otherwise>
 	      </c:choose>
-	        
 	      </ul>
 	    </div>
 	</nav>
@@ -40,7 +45,7 @@
 		        <li><a href="#">e-쿠폰</a></li>
 		        <li><a href="#">상품권 선물</a></li>
 		        <li><a href="#">이벤트 제휴</a></li>
-		        <li><a href="${pageContext.request.contextPath}/branch/branchSearch'">매장검색</a></li>
+		        <li><a href="${pageContext.request.contextPath}/branch/branchSearch">매장검색</a></li>
 		        <li style="float: right; padding-right: 0;"><a href="#" id="nav_more">더보기&or;</a></li>
 	      </ul>
 	      

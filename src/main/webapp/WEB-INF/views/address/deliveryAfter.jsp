@@ -10,8 +10,23 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <c:import url="../template/bootstrap.jsp"></c:import>
 <link href ="../resources/css/common/default.css" rel="stylesheet">
+<link href ="../resources/css/common/member.css" rel="stylesheet">
 <link href ="../resources/css/address/address.css" rel="stylesheet">
 <script src="../resources/js/header.js"></script>
+<style type="text/css">
+	#btnLog{
+		margin-top:30px;
+		float: right;
+	}
+	
+	#pTag{
+		margin-top:20px;
+		margin-bottom:20px;
+		float: right;
+		
+	}
+	
+</style>
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
@@ -49,23 +64,26 @@
 								<span>DOMINO SPOT 배달</span><i class="material-icons">chevron_right</i>
 							</a>
 						</div>
+
+						<div class="addr-list">
+						
+
 						<div class="addr-list-plus">
-							<ul>
-								<li class="addLine">
+							
+							<form action="" id="frm">
 									<div class="reg_addr">
 											<c:forEach items="${list}" var="dto">
-												<div class="addChk"><input type="radio" value="${dto.address_num}" name="roadFullAddr" id="adNum">${dto.roadFullAddr}<input type="button" value="X" class="delAdd"></div>
+												<div class="addChk"><input type="radio" value="${dto.roadFullAddr}" name="roadFullAddr" id="adNum">${dto.roadFullAddr}<input type="button" value="X" class="delAdd"></div>
 												
 											</c:forEach>
 																				
 									</div>
-									
-								</li>
-														
-							</ul>
-							
+							</form>		
+						</div>
+						<div>		
+
 							<div class="add-addr-wrap">
-								<a href="#" onclick="goPopup();"  class="btn-type-brd2" id="add_addr">
+								<a href="./delivery" onclick="goPopup();"  class="btn-type-brd2" id="add_addr">
 									+ 배달 주소 등록
 								</a>
 								<div class="addr-limit">
@@ -73,14 +91,15 @@
 								</div>
 							</div>
 							<div class="addr-btn">
-								<p class="title-type4 ask-deli">해당 배달주소로 주문을 진행 하시겠습니까?</p>
+								<p class="title-type4 ask-deli" id="pTag">해당 배달주소로 주문을 진행 하시겠습니까?</p>
 								<a href="../menu/list/pizzaList" class="btn-type enter">선택</a>
 							</div>
 						</div>
 					</div>
 				</div>	<!-- 배달/포장 -->
 			</div>	<!-- 주문방법선택 -->	
-		</div>			
+		</div>
+		<button type="button" style="text-align:center; width:210px; height:58px;" id="btnLog">선택</button>				
 	</div><!-- content -->
 </div><!-- container -->
 

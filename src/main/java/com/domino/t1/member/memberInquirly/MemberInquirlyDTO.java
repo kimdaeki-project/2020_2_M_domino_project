@@ -14,8 +14,14 @@ public class MemberInquirlyDTO extends MemberDTO{
 	private String inq_type;
 	private String inq_shop;
 	private String inq_location;
+	private String inq_reply;
 	
-	
+	public String getInq_reply() {
+		return inq_reply;
+	}
+	public void setInq_reply(String inq_reply) {
+		this.inq_reply = inq_reply;
+	}
 	public long getInq_num() {
 		return inq_num;
 	}

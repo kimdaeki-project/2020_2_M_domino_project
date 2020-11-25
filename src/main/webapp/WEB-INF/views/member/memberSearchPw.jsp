@@ -16,6 +16,10 @@
 	#select li a{
 		font-size: 17px;
 	}
+	
+	#noneView{
+		display: none;
+	}
 </style>
 
 </head>
@@ -46,7 +50,9 @@
 					<div>
 					<img alt="" src="../resources/images/member/msearch_ico.png">
 					<p class="search">회원정보로 찾기</p>
-						
+					<div></div>
+					<br>
+						<input type="text" placeholder="아이디를 입력하세요" class="inputId">
 					<div>
 						<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">회원정보 인증</button>
 						</div>
@@ -57,7 +63,9 @@
 					<div>
 					<img alt="" src="../resources/images/member/mphone_ico.png">
 					<p class="search">본인인증(휴대전화)으로 찾기</p>
-						
+					<div></div>
+					<br>
+						<input type="text" placeholder="아이디를 입력하세요" class="inputId">
 					<div>
 						<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">본인 인증</button>
 						</div>
@@ -68,7 +76,9 @@
 					<div>
 					<img alt="" src="../resources/images/member/mipin_ico.png">
 					<p class="search">아이핀(i-pin으로 찾기)</p>
-						
+					<div></div>
+					<br>
+						<input type="text" placeholder="아이디를 입력하세요" class="inputId">
 					<div>
 						<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">아이핀 인증</button>
 						</div>
@@ -103,8 +113,8 @@
           <h4 class="modal-title">회원정보 인증</h4>
         </div>
         <div class="modal-body">
-        <form action="./memberSearch" method="post" id="frm">
-		<div>
+        <form action="./memberSearchPw" method="post" id="frm">
+			<div>
 			<div>
 			<dl>
 				<dt>이름</dt>
@@ -142,7 +152,7 @@
 			</div>
 		</div>	
 		
-		<input type="button" value="아이디 찾기" id="checkButt" style= "width:110px; height:42px;">
+		<input type="button" value="비밀번호 재설정" id="checkButt" style= "width:140px; height:42px;">
 		</form>
         </div>
         <div class="modal-footer">
@@ -152,8 +162,36 @@
       </div>
     </div>
   </div>
+  
+	<c:forEach items="${dto}" var="list">
+		<input type="text" value="${list.member_id}" class="memId" id="noneView">
+	</c:forEach>
 	
-	<script type="text/javascript">
+<script type="text/javascript">
+	
+	$(".btn-lg").click(function () {
+		
+		var id = $(".inputId").val();
+		
+		if(id !=''){
+			$.get("./memberIdCheck?member_id="+id,function(data){
+				if (data == 1){
+				data=data.trim();
+				alert("존재하는 아이디입니다. 비밀번호 찾기를 진행합니다.");
+				}else if(data == 0){
+					alert("존재하는 아이디를 입력하세요");
+					location.href = "./memberSearchPw";
+				}
+				
+			});
+		}else{
+			alert("아이디를 입력해주세요.")
+			location.href = "./memberSearchPw";
+		}
+	});
+
+
+	
 	$("#checkButt").click(function () {
 		var name = $("#member_name").val();
 		var date = $("#member_date").val();
@@ -163,11 +201,11 @@
 			$("#frm").submit();
 		}else{
 			alert("필수항목들을 입력해주세요")
-			location.href = "./memberSearch";
+			location.href = "./memberSearchPw";
 		}
 	});
 	
-	</script>
+</script>
 	
 	
 	
