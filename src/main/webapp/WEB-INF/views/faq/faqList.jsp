@@ -9,73 +9,8 @@
   <c:import url="../template/bootstrap.jsp"></c:import>
   <link href ="../resources/css/common/default.css" rel="stylesheet">
   <script src="../resources/js/header.js"></script>
-
+  <link href ="../resources/css/common/board.css" rel="stylesheet">
 <style type="text/css">
-		a{
-			color: black;
-		}	
-		
-		#faq_selected {background-color: black;}
-		
-		.order-title-wrap{
-			position: relative;
-		    margin-top: 50px;
-		}
-		
-		.order-title{
-			margin: 0px;
-			padding: 0px;
-			box-sizing: border-box;
-			font-size: 32px;
-			color: black;
-			font-weight: 400;
-		}
-		
-		.depth-area{
-			position: absolute;
-			right: 0;
-			
-		}
-		
-		.depth-area > ol{
-			font-size: 0;
-				
-		}
-		
-		.depth-area li{
-			display: inline-block;
-		    font-size: 13px;
-		    color: #888888;	
-		}
-		
-		.depth-area > strong{	
-			color: #111;	
-		}
-		
-		.depth-area li:before{	
-			display: inline-block;
-		    content: '';
-		    margin: 3px 8px 2px 6px;
-		    display: inline-block;
-		    width: 6px;
-		    height: 6px;
-		    border-style: solid;
-		    border-color: transparent #888888 #888888 transparent;
-		    border-width: 0 1px 1px 0;
-		    -webkit-transform: rotate(-45deg);
-		    -ms-transform: rotate(-45deg);
-			transform: rotate(-45deg);
-		}
-		
-		.depth-area li:nth-child(1):before{
-			
-			display: none;
-		}
-		
-		#select li a{
-			font-size: 17px;
-		}	
-		
 		.faqnav ul{
 			background-color: #f5f5f5; 
 			border: none;
@@ -88,8 +23,7 @@
 		
 		.faqnav ul a{
 			font-size: 16px;
-			color: gray;
-			font-weight: bold;
+			color: #888888;
 		}
 		
 		.faq_control{
@@ -115,10 +49,10 @@
 			border-bottom:  1px solid #888; height: 100px; padding: 15px 10px;
 		} 
 		
-		#selected {
-			background-color: #222222;
+		#faq_selected {
+			background-color: #333333;
+			color: white;
 		}
-	
 	</style>
 </head>
 <body>
@@ -131,7 +65,7 @@
 			<div class="depth-area">
 				<ol>
 					<li><a href="http://localhost/t1">홈</a></li>
-					<li><a href="${pageContext.request.contextPath}/faq/faqList">고객센터</a></li>
+					<li><a href="${pageContext.request.contextPath}/faq/faqList?faq_type=1">고객센터</a></li>
 					<li><strong>자주하는질문</strong></li>
 				</ol>
 			</div>
@@ -139,7 +73,7 @@
 		
 		<ul id="select" style="padding: 20px 0; border-bottom: 2px solid black;">
 			<li>
-				<a href="${pageContext.request.contextPath}/faq/faqList">자주하는질문</a> ㅣ 
+				<a href="${pageContext.request.contextPath}/faq/faqList?faq_type=1">자주하는질문</a> ㅣ 
 				<a href="${pageContext.request.contextPath}/qna/qnaWrite">온라인신문고</a>  
 			</li>
 		</ul>	
@@ -170,23 +104,34 @@
 			
 	</div>
 	
-	<div style="border-top: 2px solid black;">
+	<div style="border-top: 2px solid black;" id="faq_result">
 	
 		<c:forEach items="${list}" var="dto" varStatus="vs">
+		
+		<div>
 			<div class="col-sm-12 faq_question">
 				 <div class="col-sm-12">
+				 
+				 	<c:if test="${not empty member and member.member_id eq 'admin'}">
+					 	<a href="#a" id="faq_del_btn${dto.board_num}" class="faq_del_btn" title="${dto.board_num}">
+					 		<img alt="" src="${pageContext.request.contextPath}/resources/images/common/remove.png">
+					 	</a>
+				 	</c:if>
+				 	
 				 	<strong style="color:#238ece; padding-right: 10px;">Q</strong> 
-				 	<strong style="color:black;"> <a href=# class="faq_title">${dto.board_title}</a> </strong>
-				 	<a href="#" class="btn faq_more" style="float: right">&or;</a>
+				 	<strong style="color:black;">${dto.board_title} </strong>
+				 	<a href="#a" class="btn faq_more" id="faq_more${dto.board_num}" title="${dto.board_num}" style="float: right">&or;</a>
 				 </div>
 			 </div>	 
 			 
-			 <div class="col-sm-12 faq_answer" style="background-color: #f5f5f5;">
+			 <div class="col-sm-12 faq_answer" id="faq_answer${dto.board_num}" title="${dto.board_num}" style="background-color: #f5f5f5;">
 			 	<div class="col-sm-12">
 				 	<strong style="color:#ff143c;  padding-right: 10px;">A</strong>
 				 	<strong style="color:black;"><span style="font-size: 12px;"> ${dto.board_contents}</span></strong>
 				 </div>
-			 </div>		
+			 </div>	
+			 
+		</div>	
 		 </c:forEach>	
 	</div>
 	
@@ -200,24 +145,47 @@
 
  	<c:import url="../template/footer.jsp"></c:import>
 	
-	
-	
-	
 	<script>
+		var num = $(this).attr("title"); 
+		
 		$(document).ready(function(){
 	  	$(".faqnav li a").click(function(){
 	  		 $(this).attr("id","selected");
 	   		 $(this).tab('show');
 	  	});
+	  	
+	  	$('.faq_answer').hide();
 		});
 		
-		 $(function(){ 
-				$('.faq_answer').hide();
-				$('.faq_more').click(function(){
-					$('.faq_answer').slideToggle();
+		$('.faq_more').click(function(){
+				var num = $(this).attr("title"); 
+				$('#faq_answer'+num).slideToggle();
 			});
-		 });
-
+		
+		
+		//delete
+		$("#faq_result").on("click",".faq_del_btn", function(){
+			var board_num = $(this).attr("title");
+			var check= confirm("정말로 삭제하겠습니까?");
+			
+			if(check){
+				$.post("./faqDelete",{board_num:board_num}, function(data){
+					data=data.trim();
+					if(data>0){		
+						alert("삭제 성공했습니다.");
+						location.reload();
+					}
+					else{
+						alert("삭제 실패했습니다.");
+					}
+				});
+			}
+			else{
+				return false;
+			}
+			
+		});
+		
 	</script>
 </body>
 </html>

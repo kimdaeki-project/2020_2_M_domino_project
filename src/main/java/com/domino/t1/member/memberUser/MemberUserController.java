@@ -4,10 +4,13 @@ import java.util.List;
 
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,15 +24,27 @@ import com.domino.t1.member.MemberDTO;
 import com.domino.t1.member.memberInquirly.MemberInquirlyDTO;
 import com.domino.t1.util.Pager;
 
-import oracle.jdbc.proxy.annotation.Post;
-import oracle.security.o3logon.a;
-
 @Controller
 @RequestMapping("/member/**")
 public class MemberUserController {
 	
 	@Autowired
 	private MemberUserService memberService;
+	
+	//추가
+	@GetMapping("memberSocialLogin")
+	public ModelAndView getMemberSocialLogin(CouponDTO couponDTO, HttpServletRequest request ,HttpSession session) throws Exception{
+		
+		String id = request.getParameter("id");
+		System.out.println("id값 : "+id);
+		
+		couponDTO.setMember_id(id);
+
+		ModelAndView mv = new ModelAndView();
+		couponDTO = memberService.getMemberSocialLogin(couponDTO);
+		
+		return mv;
+	}
 	
 	@GetMapping("memberDeleteAdmin")
 	public ModelAndView setMemberDeleteAdmin(MemberDTO memberDTO) throws Exception{
@@ -116,7 +131,7 @@ public class MemberUserController {
 		mv.setViewName("member/memberSearchPw");
 		return mv;
 	}
-		
+
 	@GetMapping("memberSearchView")
 	public ModelAndView getMemberSearchView() throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -264,6 +279,7 @@ public class MemberUserController {
 	
 	@GetMapping("memberIdCheck")
 	public ModelAndView getMemberIdCheck(MemberDTO memberDTO) throws Exception{
+	
 		ModelAndView mv = new ModelAndView();
 		memberDTO = memberService.getMemberIdCheck(memberDTO);
 		
@@ -274,7 +290,6 @@ public class MemberUserController {
 		
 		mv.addObject("msg", result);
 		mv.setViewName("common/ajaxResult");
-		
 		return mv;
 		
 	}
@@ -337,14 +352,13 @@ public class MemberUserController {
 	
 	
 	@GetMapping("memberLogin")
-	public ModelAndView getMemberLogin () throws Exception{
+	public ModelAndView getMemberLogin() throws Exception{
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("member/memberLogin");
 		System.out.println("memberLogin");
-		return mv;
-		
+		return mv;	
 	}
-	
+		
 	@PostMapping("memberJoin")
 	public ModelAndView setMemberJoin(MemberDTO memberDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
