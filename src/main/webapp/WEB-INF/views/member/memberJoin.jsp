@@ -351,7 +351,7 @@
 	
 	if("${param.id}" != ''){
 		var idExpCheck=true;
-		var phoneExpCheck=true;
+		var emailExpCheck=true;
 	}
 	else{
 		var idExpCheck=false;

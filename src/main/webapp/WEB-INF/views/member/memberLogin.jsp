@@ -97,14 +97,13 @@
 	</div>
 	
 	<div style="text-align: center;">
-		
 		<div style="display: inline-block;">
 		     <a id="login-form-btn" href="javascript:loginFormWithKakao()"> 
 				<img src="${pageContext.request.contextPath}/resources/images/common/kakao_logo.png" width="100%" height="auto" style="max-width:400px;max-height:60px"/>
  			</a>
-	     </div>
-		 
+	     </div> 
 	</div>
+	
 	</div>
 	
 	<c:import url="../template/footer.jsp"></c:import>
@@ -126,30 +125,27 @@ function loginFormWithKakao() {
 			Kakao.API.request({ 
 				url: '/v2/user/me', 
 				success: function(res) { 
-					console.log(res.kakao_account && res.kakao_account.email);
-					console.log(res.kakao_account['email']) 
 					console.log(res.id) 
 					
 					var id = res.id;
 					var email = res.kakao_account.email;
-				    var name = JSON.stringify(res.properties.nickname);
 
 				    if(id !=''){
 						$.ajax({
 			                    url:"<%=request.getContextPath()%>/member/memberIdCheck?member_id="+id,
 			                    Type:"get",
-			                   // data:{"id":id},
 			                    success:function(data){
 			                    	console.log("1 = 중복o / 0 = 중복x : "+ data);	
 			                    	
 			                    	if(data==1){
+			                    		alert("이미 회원가입된 아이디 입니다.")
 			    						$.ajax({
 			    							url:"<%=request.getContextPath()%>/member/memberSocialLogin",
 			    								data:{"id":id},
 			    							type:"get",
 			    							success:function(data){
 			    								console.log("소셜로그인 성공");
-			    								location.href = "<%=request.getContextPath()%>";
+			    								location.href="<%=request.getContextPath()%>"
 			    							}	
 			    						})		                    		
 			                    	}
