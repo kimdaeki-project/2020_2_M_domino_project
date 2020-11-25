@@ -51,22 +51,62 @@
 									<div class="form-group srch-type">
 										<div class="form-region" id="form-region-first">
 											<div class="select-region">
-												<select id="reg1" name="region1">
-													<option value="0" selected>시/도</option>
+												<select id="region1" name="region1" onchange="regionChange(this)">
+													<option>시/도</option><!--  -->
 													<c:forEach var="dto" items="${region1}">
-													<option><c:out value="${dto.region1}"/></option>
-													
+														<option value="reg1">${dto.region1}</option>
 													</c:forEach>
 												</select>
 											</div>
 										</div>
 										<div class="form-region">
 											<div class="select-region">
-												<select id="region2">
+												<select id="region2" name="region2">
 													<option>구/군</option>
+													<%-- <c:forEach var="dto" items="${region2}">
+														<option value="reg2" id="changeReg"></option>
+													</c:forEach> --%>
 												</select>
 											</div>
 										</div>
+										<script type="text/javascript">
+											var region1 = document.getElementById("region1")
+											/* var reg1Value = $("#region1 option:selected").val();
+											var indexNo = region1[0].selectedIndex;
+											var target = document.getElementById("region2")
+											
+											var reg1Index = region1.options[region1.selectedIndex].value;
+											
+											for(var i=0;i<reg1Index.length;i++) {
+												$("#region1 option:eq(i)").prop("selected", true);
+											} */
+											
+											function regionChange(e) {
+												var region2_1 = ["구/군"]
+												var region2_a = ["강남구", "강북구", "동대문구", "동작구", "마포구", "서초구", "용산구", "은평구", "중구"];
+												var region2_b = ["계양구"];
+												var region2_c = ["고양시", "과천시", "광명시", "성남시"];
+												var target = document.getElementById("region2");
+												
+												// 선택된 값의 index를 불러오기
+												var regindex = $("#region1 option").index($("#region1 option:selected"));
+
+												if(regindex == 1) var d = region2_a;
+												else if(regindex == 2) var d = region2_b;
+												else if(regindex == 3) var d = region2_c;
+												else if(regindex == 0) var d = region2_1;
+
+												target.options.length = 0;
+
+												for (x in d) {
+													var opt = document.createElement("option");
+													opt.value = d[x];
+													opt.innerHTML = d[x];
+													target.appendChild(opt);
+												}	
+											}
+											
+										</script>
 										<div class="form-region" id="btn-search">
 											<button type="button" class="btn-search">
 												<img src="../resources/images/branch/sp_search_t1.png">
@@ -166,80 +206,7 @@
 
 <!-- ===== 전체매장보기 javascript ===== -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8359d6b1a5e0267b346e7ce57922d7f4&libraries=services"></script>
-<script>
-
-	var viewAllBranch = document.getElementById("view-all-branch")
-	var btn = document.getElementById("viewAll");
-	
-	$("#viewAll").click(function(){
-	
-		viewAllBranch.style.display = "block";
-		
-		var mapContainer = document.getElementById("all-map"), // 지도를 표시할 div  
-		    mapOption = { 
-		        center: new kakao.maps.LatLng(37.564713, 126.993173), // 지도의 중심좌표
-		    	level: 3 // 지도의 확대 레벨
-			};
-
-		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-		/* */  
-		// 마커를 표시할 위치와 title 객체 배열입니다 
-		var positions = [
-		    {
-		        title: '개포점', 
-		        latlng: new kakao.maps.LatLng(37.475518, 127.047214)
-		    },
-		    {
-		        title: '논현점', 
-		        latlng: new kakao.maps.LatLng(37.510734, 127.023298)
-		    },
-		    {
-		        title: '미아점', 
-		        latlng: new kakao.maps.LatLng(37.617072, 127.022029)
-		    },
-		    {
-		        title: '번동점',
-		        latlng: new kakao.maps.LatLng(37.635334, 127.030114)
-		    },
-		    {
-		        title: '명동점',
-		        latlng: new kakao.maps.LatLng(37.564713, 126.993173)
-		    }
-		];
-		
-		var imageSrc = '/t1/resources/images/branch/ico_spot.png' // 마커이미지의 주소입니다    
-	    
-		for (var i = 0; i < positions.length; i ++) {
-			
-		    var imageSize = new kakao.maps.Size(40, 52), // 마커이미지의 크기입니다
-		    imageOption = {offset: new kakao.maps.Point(0, 0)}
-		    
-			// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
-			
-			// 마커를 생성합니다
-			var marker = new kakao.maps.Marker({
-	
-				// 마커가 지도 위에 표시되도록 설정합니다
-				map: map,
-				
-				position: positions[i].latlng, // 마커를 표시할 위치
-		        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-		         
-			    image: markerImage // 마커이미지 설정 
-			})
-		    
-		}
-		
-	}) 
-	
-	window.onclick = function(event) {
-	  if (event.target == viewAllBranch) {
-	    viewAllBranch.style.display = "none";
-	  }
-	}
-
-</script>
+<script type="text/javascript" src="../resources/js/branchSearch/viewAllBranch.js"></script>
 
 <!-- ===== 검색탭 javascript ===== -->
 <script type="text/javascript">
@@ -272,6 +239,7 @@
 <!-- ===== 지도 javascript ===== -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8359d6b1a5e0267b346e7ce57922d7f4&libraries=services"></script>
 <script>
+	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	mapOption = { 
 	    center: new kakao.maps.LatLng(37.564713, 126.993173), // 지도의 중심좌표
@@ -282,9 +250,9 @@
 	var map = new kakao.maps.Map(mapContainer, mapOption); 
 	
 	var imageSrc = '/t1/resources/images/branch/ico_spot.png', // 마커이미지의 주소입니다    
-    imageSize = new kakao.maps.Size(40, 52), // 마커이미지의 크기입니다
-    imageOption = {offset: new kakao.maps.Point(0, 0)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-      
+	imageSize = new kakao.maps.Size(40, 52), // 마커이미지의 크기입니다
+	imageOption = {offset: new kakao.maps.Point(0, 0)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+	  
 	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
 	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 	    markerPosition = new kakao.maps.LatLng(37.564713, 126.993173); // 마커가 표시될 위치입니다
@@ -297,7 +265,7 @@
 	
 	// 마커가 지도 위에 표시되도록 설정합니다
 	marker.setMap(map);  
-	
+
 </script>
 <!-- ===== 지도 ===== -->
 

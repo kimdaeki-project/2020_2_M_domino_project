@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>포장 주문</title>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <c:import url="../template/bootstrap.jsp"></c:import>
 <link href ="../resources/css/common/default.css" rel="stylesheet">
@@ -260,29 +260,15 @@
 	function popMap() {
 		viewSearch.style.display = 'block'
 	}
-	
+	/* 
 	window.onclick = function(event) {
 	  if (event.target == viewSearch) {
 	    viewSearch.style.display = "none";
+	    viewDetail.style.display = "none";
 	  }
 	}
-	
+	 */
 	/////////////// 매장 상세보기 ////////////////
-	var viewDetail = document.getElementById("pop-store")
-	
-	$("#type1").click(function popDetail(){
-		viewDetail.style.display = 'block'
-	})
-	
-	function popDetail() {
-		viewDetail.style.display = 'block'
-	} /* */
-	
-	window.onclick = function(event2) {
-	  if (event2.target == viewDetail) {
-	    viewDetail.style.display = "none"
-	  }
-	}
 
 </script>
 
@@ -315,42 +301,8 @@
 </script>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8359d6b1a5e0267b346e7ce57922d7f4&libraries=services"></script>
-<script><!-- ===== 지도 javascript ===== -->
+<script type="text/javascript" src="../resources/js/address/pickup.js"><!-- ===== 지도 javascript ===== -->
 
-	var container = document.getElementById('map-detail'), // 지도를 표시할 div 
-	
-	mapOptionDetail = { 
-	    center: new kakao.maps.LatLng(37.564713, 126.993173), // 지도의 중심좌표
-	    level: 3 // 지도의 확대 레벨
-	};
-	
-	//지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-	var mapDetail = new kakao.maps.Map(container, mapOptionDetail); 
-	
-	$("#type1").click(function() {
-		/* container.style.width = 891px;
-		container.style.height = 400px; */
-        mapDetail.relayout();
-        mapDetail.setCenter(new daum.maps.LatLng(37.564713, 126.993173))
-    });
-/*  */	
-	var imageSrc = '/t1/resources/images/branch/ico_spot.png', // 마커이미지의 주소입니다    
-	imageSize = new kakao.maps.Size(40, 52), // 마커이미지의 크기입니다
-	imageOption = {offset: new kakao.maps.Point(0, 0)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-      
-	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-	var markerImage2 = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-	    markerPosition2 = new kakao.maps.LatLng(37.564713, 126.993173); // 마커가 표시될 위치입니다
-	
-	// 마커를 생성합니다
-	var marker2 = new kakao.maps.Marker({
-	    position2: markerPosition2, 
-	    image2: markerImage2 // 마커이미지 설정 
-	});
-	
-	// 마커가 지도 위에 표시되도록 설정합니다
-	marker2.setMap(mapDetail);
-	
 </script><!-- ===== 지도 ===== -->
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8359d6b1a5e0267b346e7ce57922d7f4&libraries=services"></script>

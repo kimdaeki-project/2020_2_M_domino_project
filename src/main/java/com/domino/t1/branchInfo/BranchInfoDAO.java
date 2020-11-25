@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.domino.t1.util.Pager;
+
 @Repository
 public class BranchInfoDAO {
 	
@@ -14,9 +16,12 @@ public class BranchInfoDAO {
 	private String NAMESPACE="com.domino.t1.branchInfo.BranchInfoDAO.";
 	
 	public List<BranchInfoDTO> getRegion1(BranchInfoDTO branchInfoDTO) throws Exception {
-		System.out.println(branchInfoDTO.getRegion1());
 		return sqlSession.selectList(NAMESPACE+"getRegion1", branchInfoDTO);
 	}
+	
+//	public List<BranchInfoDTO> getRegion2(BranchInfoDTO branchInfoDTO) throws Exception {
+//		return sqlSession.selectList(NAMESPACE+"getRegion2", branchInfoDTO);
+//	}
 	
 
 }
