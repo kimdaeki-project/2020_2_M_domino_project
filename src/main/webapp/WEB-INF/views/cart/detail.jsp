@@ -42,7 +42,7 @@
 				<c:forEach items="${pizzaGroupList}" var="pizzaGroup">
 					<tr value="${pizzaGroup[0].cart_group_id}" class="pizza-cart-group">
 						<td>
-							<input type="checkbox" checked="checked" class="to-checkout"/>
+							<input type="checkbox" checked="checked" class="item-selected"/>
 						</td>
 						<td>
 							<div class="item-image-wrapper">
@@ -54,46 +54,46 @@
 									<span class="dough-name-short">${pizzaGroup[1].dough_name_short}</span>
 									<span>/${pizzaGroup[0].item_size}</span>
 								</p>
-								<p class="pizza-price">${pizzaGroup[0].item_price}원</p>
+								<!-- 사이즈에 따른 피자 기본 가격 + 도우에 따른 옵션 비용 -->
+								<p>${pizzaGroup[0].item_price + pizzaGroup[1].item_price}원</p>
+								<input type="number"class="pizza-price" value="${pizzaGroup[0].item_price + pizzaGroup[1].item_price}"/>
 							</div>
 						</td>
 						<td>
 							<div class="topping-container">
-								<input type="hidden" value="${topping.item_price * topping.cart_quantity}" class="topping-price-subtotal"/>
+								<input type="number" value="0" class="topping-price-subtotal"/>
 								<ul>
-									<c:forEach items="${pizzaGroup}" var="topping" begin="2">
+									<c:forEach items="${pizzaGroup}" var="topping" begin="2" varStatus="loop">
 										<li class="topping-item">
 											<p>${topping.item_name} (+${topping.item_price}) x <span>${topping.cart_quantity}</span><span class="delete-topping-btn">X</span></p>
 											<input type="hidden" value="${topping.item_price * topping.cart_quantity}" class="topping-price"/>
-											<!-- 꼭 필요한지???? -->
-											<input type="hidden" value="${topping.cart_quantity}" class="topping-quantity"/>
 											<input type="hidden" value="${topping.cart_item_id}" class="topping-cart-item-id"/>
 										</li>
 									</c:forEach>
 								</ul>
 							</div>
-						</td>
+						</td>							
 						<td>
 							<div class="input-group">
 								<span class="input-group-btn">
-									<button type="button" class="btn btn-quantity-controller btn-minus" min="1" disabled>-</button>
+									<button type="button" class="btn btn-quantity-controller btn-minus" min="1">-</button>
 								</span>
 								<input type="text" class="form-control quantity-input" value="${pizzaGroup[0].cart_quantity}" disabled/>
+								<input type="hidden" value=""  class="pizza-unit-price item-unit-price" />
 								<span class="input-group-btn">
 									<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
 								</span>	
 							</div>						
 						</td>
-						<td><span class="pizza-group-subtotal"></span>원</td>
+						<td class="item-subtotal-wrapper"><span class="item-subtotal"></span>원</td>
 						<td><p class="delete-item-btn">X</p></td>				
 					</tr>	
-				</c:forEach>
-				
+				</c:forEach>			
 			<!-- Standalone items -->	
 				<c:forEach items="${itemList}" var="item">		
 					<tr value="${item.cart_group_id}" class="item-cart-group">
 						<td>
-							<input type="checkbox" checked="checked" class="to-checkout"/>
+							<input type="checkbox" checked="checked" class="item-selected"/>
 						</td>
 						<td>
 							<div class="item-image-wrapper">
@@ -113,23 +113,25 @@
 						<td>
 							<div class="input-group">
 								<span class="input-group-btn">
-									<button type="button" class="btn btn-quantity-controller btn-minus" min="1" disabled>-</button>
+									<button type="button" class="btn btn-quantity-controller btn-minus" min="1">-</button>
 								</span>
 								<input type="text" class="form-control quantity-input" value="${item.cart_quantity}" disabled/>
+								<input type="hidden" value="${item.item_price}"  class="item-unit-price" />
 								<span class="input-group-btn">
 									<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
 								</span>	
 							</div>							
 						</td>
-						<td><span class="item-subtotal"></span>원</td>
+						<td class="item-subtotal-wrapper"><span class="item-subtotal"></span>원</td>
 						<td><p class="delete-item-btn">X</p></td>				
 					</tr>	
 				</c:forEach>					
-			</table>
+			</table>			
+
 		<!-- 총 주문 금액: 체크박스에 체크 되어있는 항목만 합산 -->
 			<div>
 				<div>
-					총 금액 <span id="total-price"></span>
+					총 금액 <span id="cart-total-price"></span>
 				</div>
 			</div>
 		</div>
@@ -155,6 +157,118 @@
 	
 	<c:import url="../template/footer.jsp"></c:import>
 	<script type="text/javascript">		
+	
+	// compute each pizza item's total topping price
+	function setToppingPriceSubtotal(){
+		$(".topping-price-subtotal").each(function(){
+			var toppingSubtotal = $(this)
+			$(this).next().find(".topping-price").each(function(){
+				toppingSubtotal.val(Number(toppingSubtotal.val()) + Number($(this).val()))
+			})
+		})
+	}
+
+	// compute each pizza item's unit price(pizza + dough [+ topping])
+	function setPizzaUnitPrice(){
+		$(".pizza-unit-price").each(function(){
+			var pizzaUnitSubtotal = $(this)
+			var toppingPrice = pizzaUnitSubtotal.closest("tr").find(".topping-price-subtotal").val()
+			var pizzaPrice = pizzaUnitSubtotal.closest("tr").find(".pizza-price").val()
+			pizzaUnitSubtotal.val(Number(toppingPrice) + Number(pizzaPrice))
+		})
+	}
+	
+	// get subtotal for each item
+	function setItemSubtotal(){
+		$(".item-subtotal").each(function(){
+			var itemSubtotal = $(this)
+			var itemUnitPrice = itemSubtotal.closest("tr").find(".item-unit-price").val()
+			var itemQuantity = itemSubtotal.closest("tr").find(".quantity-input").val()
+			itemSubtotal.text(itemUnitPrice * itemQuantity)
+		})
+	}
+	
+	// get cart total price for checked items
+	function setCartTotal(){
+		var cartTotalPrice = 0
+		$(".item-selected:checked").each(function(){
+			var itemPrice = $(this).closest("tr").find(".item-subtotal").text()
+			cartTotalPrice += Number(itemPrice)
+		})
+		$("#cart-total-price").text(cartTotalPrice)
+	}
+	
+	$(document).ready(function(){
+		setToppingPriceSubtotal()
+		setPizzaUnitPrice()
+		setItemSubtotal()
+		// set minus buttons disabled status
+		$(".btn-minus").each(function(){
+			var quantity = $(this).closest("div").find(".quantity-input").val()
+			var min = $(this).prop("min")
+			if(quantity == min){
+				$(this).prop("disabled")
+			}
+		})
+		setCartTotal()
+	})
+	
+	// item checkbox status change -> update total item price
+	$(".item-selected").click(function(){
+		setCartTotal()
+	})
+	
+	// 토핑 삭제 
+		$(".delete-topping-btn").click(function(){
+			var deleteTopping = window.confirm("선택하신 토핑을 삭제하시겠습니까?")
+			if(!deleteTopping){
+				return
+			}
+			var cartItemId = $(this).parent().siblings(".topping-cart-item-id").val()
+			$.ajax({
+				url:"./delete/topping",
+				type:"POST",
+				data:{
+					cart_item_id : cartItemId
+				},
+				success : function(result){
+					result = result.trim()
+					if(result > 0){
+						$(this).closest("li").remove()
+						window.location.reload()
+					}else{
+						alert("삭제에 실패했습니다.")
+					}
+				}
+			})
+		})
+
+
+		$(".btn-minus").click(function(){
+			var input = $(this).parent().siblings(".quantity-input")
+			var quantity = input.val()	
+			if(quantity <= parseInt($(this).attr("min"))+1){
+				$(this).attr("disabled", true)
+			}
+			quantity = quantity - 1
+			input.val(quantity)
+			
+			// update cart subtotal box
+			setItemSubtotal()	
+			setCartTotal()
+		})
+		
+		
+		$(".btn-plus").click(function(){
+			var input = $(this).parent().siblings(".quantity-input")
+			var quantity = input.val()	
+			$(this).parent().parent().find(".btn-minus").attr("disabled", false)			
+			input.val(parseInt(quantity)+1)		
+
+			setItemSubtotal()	
+			setCartTotal()
+		})	
+	
 	if(${isCartEmpty} == 1){
 		setEmptyCart()
 	}	
@@ -182,33 +296,6 @@
 		location.href="/t1/menu/list/pizzaList"
 	})
 	
-	$(".btn-minus").click(function(){
-		var input = $(this).parent().siblings(".quantity-input")
-		var quantity = input.val()	
-		if(quantity <= parseInt($(this).attr("min"))+1){
-			$(this).attr("disabled", true)
-		}
-		quantity = quantity - 1
-		input.val(quantity)
-
-		// update cart subtotal box
-/* 		var cartBox = $("#" + getCartBoxId(category))
-		updateCartBox(cartBox, cartArray)
-		totalPrice = updateTotalPrice() */
-	})
-	
-	
-	$(".btn-plus").click(function(){
-		var input = $(this).parent().siblings(".quantity-input")
-		var quantity = input.val()	
-		$(this).parent().parent().find(".btn-minus").attr("disabled", false)			
-		input.val(parseInt(quantity)+1)		
-
-		// update cart subtotal box
-/* 		var cartBox = $("#" + getCartBoxId(category))
-		updateCartBox(cartBox, cartArray)	
-		totalPrice = updateTotalPrice() */
-	})
 	
 	// 장바구니 비우기 버튼
 	$("#btn-empty-cart").click(function(){
@@ -256,37 +343,7 @@
 					}				
 				}
 			})		
-		})
-		
-	// 토핑 삭제 
-		$(".delete-topping-btn").click(function(){
-			var deleteTopping = window.confirm("선택하신 토핑을 삭제하시겠습니까?")
-			if(!deleteTopping){
-				return
-			}
-			var cartItemId = $(this).parent().siblings(".topping-cart-item-id").val()
-			
-			alert(cartItemId)
-			$.ajax({
-				url:"./delete/topping",
-				type:"POST",
-				data:{
-					cart_item_id : cartItemId
-				},
-				success : function(result){
-					result = result.trim()
-					alert(result)
-					if(result > 0){
-						$(this).closest("li").remove(kk)
-						window.location.reload()	
-					}else{
-						alert("삭제에 실패했습니다.")
-					}
-				}
-			})
 		})	
-		
-	
 	
 	// 계산하러 가기 
 	$("#btn-checkout").click(function(){
