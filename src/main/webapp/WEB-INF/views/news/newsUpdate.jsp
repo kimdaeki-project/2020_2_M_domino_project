@@ -79,7 +79,7 @@
 	
 	<c:import url="../template/footer.jsp"></c:import>
 
-	<script type="text/javascript">
+	<script>
 	var count=0;
 
 	 $('#contents').summernote({
@@ -125,8 +125,8 @@
 		 }
 		
 	 });
-	 
-</script>
+		
+	</script>
 
 
 </body>
