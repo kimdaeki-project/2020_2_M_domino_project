@@ -19,7 +19,7 @@ IMP.init("imp65751313"); // "imp00000000" 대신 발급받은 "가맹점 식별�
 IMP.request_pay({
     pg : 'inicis', // version 1.1.0부터 지원.
     pay_method : 'card',
-    merchant_uid : '${orderNum.order_num}',
+    merchant_uid : '${orderNum}',
     name : '주문명:결제테스트',
     amount : 1, //판매 가격
     buyer_email : '${member.member_email}',

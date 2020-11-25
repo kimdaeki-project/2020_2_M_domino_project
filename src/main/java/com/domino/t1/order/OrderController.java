@@ -68,7 +68,7 @@ public class OrderController {
 	}
 	
 	@GetMapping("orderPay")
-	public void orderPay(HttpSession session) throws Exception {
+	public ModelAndView orderPay(HttpSession session) throws Exception {
 		
 		ModelAndView mv = new ModelAndView();
 		
@@ -82,13 +82,14 @@ public class OrderController {
 		OrderDTO orderDTO = new OrderDTO();
 		
 		String number = orderDTO.getOrder_num();
-		
+		System.out.println(number);
+		//--------------------------------------------
 		
 		mv.addObject("orderNum", number);
 		mv.addObject("address", addressDTO);
 		mv.setViewName("order/orderPay");
 		
-		
+		return mv;
 		
 	}
 	
