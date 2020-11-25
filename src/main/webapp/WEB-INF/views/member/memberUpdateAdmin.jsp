@@ -29,7 +29,7 @@
 <body>
 	<div class="container">
 		<div class="order-title-wrap">
-		<h2 class="order-title">나의정보</h2>
+		<h2 class="order-title">Admin 회원정보</h2>
 			<div class="depth-area">
 				<ol>
 					<li><a href="http://localhost/t1">홈</a></li>
@@ -51,25 +51,24 @@
 		</ul>
 		
 	<div class="myLevel">
-		<div class="myCheck">개인 정보 입력 안내문</div>
+		<div class="myCheck">Admin 회원 정보 수정</div>
 		<div></div>
-		<div class="myCheck2">회원정보를 정확히 기입하셔야 주문이나 이벤트에 대한 불이익이 없습니다.</div>
 	</div>
 	
-	<form action="./memberUpdate" method="post" class="form-horizontal" id="frm">
+	<form action="./memberUpdateAdmin" method="post" class="form-horizontal" id="frm">
 		<div class="form-group update_input">
 			<label for="name" class="labelUpdate">이름 </label>
-			<input type="text" name="member_name" value="${member.member_name}" readonly="readonly">
+			<input type="text" name="member_name" value="${dto.member_name}" readonly="readonly">
 		</div>
 			
 		<div class="form-group update_input">
 			<label for="id" class="labelUpdate">아이디 </label>
-			 <input type="text" name="member_id" value="${member.member_id}" readonly="readonly">
+			 <input type="text" name="member_id" value="${dto.member_id}" readonly="readonly">
 		</div>
 			
 		<div class="form-group update_input">
 			<label for="pw" class="labelUpdate">현재 비밀번호 </label>
-			<input type="password" id="pw" value="${member.member_pw}" readonly="readonly">
+			<input type="password" id="pw" value="${dto.member_pw}">
 		</div>
 			
 		<div class="form-group update_input">
@@ -85,19 +84,19 @@
 			
 		<div class="form-group update_input">
 			<label for="pw4" class="labelUpdate">생년월일 </label>
-			<input type="date" name="member_date" value="${member.member_date}">
+			<input type="date" name="member_date" value="${dto.member_date}">
 		</div>
 			
 		<div class="form-group update_input">
 			<label for="phone" class="labelUpdate">휴대전화 </label>
-			<input type="text" name="member_phone" value="${member.member_phone}" id="phone"placeholder="ex) 010-0000-0000">
+			<input type="text" name="member_phone" value="${dto.member_phone}" id="phone"placeholder="ex) 010-0000-0000">
 			 <input type="button" id="btnPhone" value="중복확인" class="checkButt" style="width: 110px;">
 			 <div id="phoneResult"></div>
 		</div>
 			
 		<div class="form-group update_input">
 			<label for="email" class="labelUpdate">이메일 </label>
-			<input type="email" name="member_email" value="${member.member_email}" id="email" placeholder="ex) aaaa@gmail.com">
+			<input type="email" name="member_email" value="${dto.member_email}" id="email" placeholder="ex) aaaa@gmail.com">
 			 <input type="button" id="btnEmail" value="중복확인" class="checkButt" style="width: 110px;">
 			 <div id="emailResult"></div>
 		</div>
@@ -121,8 +120,10 @@
 		</div>
 
 	<div style="text-align: center;">
-		<input type="button" value="수정하기" id="btnUpdate" class="btn btn-default">
-		<a href="./memberDelete" class="btn btn-default">회원탈퇴</a>
+		<input type="button" value="회원정보수정" id="btnUpdate" class="btn btn-default">
+		<input type="button" value="회원삭제" id="memberUpdateDel" class="btn btn-default">
+		
+		
 	</div>
 	
 	</form>
@@ -133,6 +134,10 @@
 
 
 <script type="text/javascript">
+
+	$("#memberUpdateDel").click(function() {
+		location.href = "./memberDeleteAdmin?member_id=${dto.member_id}";
+	});
 
 	var pwCheck=false;
 	var emailCheck=false;

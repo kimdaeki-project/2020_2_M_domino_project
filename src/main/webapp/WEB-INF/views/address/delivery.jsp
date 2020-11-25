@@ -63,12 +63,12 @@
 								<div id="list"></div>
 								<div id="callBackDiv">
 									<input type="number" value="${member.member_num}" name="member_num" class="none">
-									<table>
-										<tr><td>도로명주소 전체(포멧)</td><td><input type="text"  style="width:500px;" id="roadFullAddr"  name="roadFullAddr" /></td></tr>
+									
+										<div class="roadFull">도로명주소 전체(포멧) <input type="text"  style="width:500px;" id="roadFullAddr"  name="roadFullAddr" /></div>
 										
-									</table>
+									
 								</div>
-								<input type="submit" value="배달 주소 등록 확인" id="deliveryBtn">
+								<input type="button" value="배달 주소 등록 확인" id="deliveryBtn">
 										
 							</form>
 								
@@ -78,7 +78,7 @@
 							</ul>
 							
 							<div class="addr-limit">
-								* 배달 주소는 최대 10개까지만 등록 가능합니다.
+							* 배달 주소는 최대 10개까지만 등록 가능합니다.
 							</div>
 						</div>
 					</div>
@@ -91,6 +91,22 @@
 <script>
 
 // Add active class to the current button (highlight it)
+
+	$("#deliveryBtn").click(function() {
+		var road = $("#roadFullAddr").val();
+		
+		if(road == '') {
+				alert("배달 주소를 입력해주세요")
+				location.href = "./delivery";
+				
+			}else{
+			$("#form").submit();
+		}
+		
+
+		
+	});
+	
 	var header = document.getElementById("select");
 	var btns = header.getElementsByClassName("order-btn");
 	for (var i = 0; i < btns.length; i++) {

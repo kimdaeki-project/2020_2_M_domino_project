@@ -159,7 +159,9 @@
 	.tab-content .addr-list-plus {
 		width: 100%;
 		height: auto;
+		padding:10px 105px ;
 		display: inline-block;
+		
 	}
 	
 	.tab-content .addr-list ul {
@@ -180,12 +182,83 @@
 	
 	.addr-list .notyet {
 		width: 100%;
-		height: 104px;
 		margin: 20px 0;
+
+		margin-bottom: 20px;
+		font-size: 20px;
+		color: #111;
+		font-weight: 600;
+		line-height: 30px;
+		text-align: center;
+		
+	}
+	
+	.add-addr-wrap {
+		width: 100%;
+		height: 100px;
+		color: #000;
+		background-color: #f5f5f5;
+		padding: 23px 75px 23px 107px;
+	}
+	
+	.btn-type-brd2 {
+		width: 180px;
+		height: 54px;
+		line-height: 54px;
+		color: #888888;
+		font-size: 15px;
+		background-color: #fff;
+		border: 1px solid #ccc;
+		font-weight: 500;
+		display: inline-block;
+		position: relative;
+		text-align: center;
+		margin-bottom: 10px;
+	}
+	
+	.add-addr-wrap .addr-limit {
+		display: inline-block;
+		width: 260px;
+		height: 55px;
+		color: #FF752D;
+		font-size: 14px;
+		line-height: 54px;
+		float: right;
+	}
+	
+	
+	.pop-layer {
+		display: none;
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		z-index: 100;
+		overflow: auto;
+		background: rgba(0, 0, 0, 0.2);
+	}
+	
+	.pop-layer .pop-regBranch {
+		overflow: hidden;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		z-index: 150;
+		background: #fff;
+		width: 1200px;
+		height: 780px;
+		margin-left: -600px;
+		margin-top: -390px;
+	} 
+	
+	.pop-header {
+
 		text-align: center;
 	}
 
 	.addr-list-plus .reg_addr {
+
 		width: 100%;
 		height: 104px;
 		margin: 20px 0;
@@ -203,8 +276,16 @@
 				
 	}
 	
+
+	/**/
+	.tab-content .addr-list {
+		width: 100%;
+		
+		display: inline-block;
+
 	#delAdd{
 		margin-left: 100px;
+
 	}
 	
 	.add-addr-wrap {
@@ -303,8 +384,38 @@
 	
 	.btn-type {
 	    display: inline-block;
+
+	    width: 417px;
+	    height: 32px;
+	    margin: 15px 0 30px 32px;
+	}
+	
+	.br-detail .btn {
+		width: 80px;
+		height: 32px;
+		color: #ffffff;
+	}
+	
+	.br-detail .btn.type1 {
+		display: inline-block;
+		background-color: #888888;
+		margin-right: 4px;
+	}
+	
+	.br-detail .btn.type2 {
+		display: inline-block;
+		background-color: #111111;
+	}
+	
+	.addChk{
+		float: left;
+		width: 100%;
+		padding-bottom: 30px;
+				
+
 	    position: relative;
 	    text-align: center;
+
 	}
 	
 	.addr-btn .enter {
@@ -315,6 +426,15 @@
 	    color: #fff;
 	    font-size: 18px;
 	    line-height: 62px;
+	}
+
+	
+	.delAdd{
+		float: right;
+	}
+	
+	#deliveryBtn{
+		margin-top: 10px;
 	}
 
 

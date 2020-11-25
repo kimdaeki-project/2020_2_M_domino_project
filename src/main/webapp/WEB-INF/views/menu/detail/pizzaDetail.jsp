@@ -555,8 +555,44 @@
 <script type="text/javascript">
 	
 	$("#btn-order-now").click(function(){
-		// 장바구니 데이터 DB 저장 후 관련 cart_group_id 쿠키로 저장 
-		// + 바로 주문 여부도 쿠키에 저장 
+		// 장바구니 데이터 DB 저장 + 어떤 제품인지 임시데이터 order_detail_temp도 함께 저장 
+		var member_num = "${member.member_num}";
+		// not logged in -> to login page
+		console.log(member_num)
+		if(member_num == ""){
+		// not logged in -> to login page
+				location.href = '/t1/member/memberLogin'
+				alert("로그인이 필요한 기능입니다.")			
+		}else{
+		// logged in
+			var addressPage = '/t1/address/delivery'
+			$.get(
+				'/t1/cart/hasAddress',
+				function(result){
+					alert('hasAddress: '+result)
+					if(result>0){
+						addressPage += 'After'
+					}
+				}
+			)
+			$.post(
+				"/t1/cart/addToCart/pizza",{
+					"orderType":"direct",
+					"pizzaCart":pizzaCart.toString(),
+					"doughCart":doughCart.toString(),
+					"toppingCart":toppingCart.toString(),
+					"sideDishCart":sideDishCart.toString(),
+					"etcCart":etcCart.toString()
+					},
+					function(result){
+						if(result < 1){
+							alert("오류: 장바구니 담기에 실패했습니다. 문제가 지속될 경우 관리자에게 문의 바랍니다.")	
+							return
+						}
+					location.href = addressPage
+				}
+			)//end of $.post	
+		}//end of else(logged in) statement
 	})
 	
 	$("#btn-to-cart").click(function(){
@@ -569,6 +605,7 @@
 		}else{
 			$.post(
 				"/t1/cart/addToCart/pizza",{
+					"orderType":"toCart",
 					"pizzaCart":pizzaCart.toString(),
 					"doughCart":doughCart.toString(),
 					"toppingCart":toppingCart.toString(),

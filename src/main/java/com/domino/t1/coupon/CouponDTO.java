@@ -3,9 +3,10 @@ package com.domino.t1.coupon;
 import java.sql.Date;
 
 import com.domino.t1.address.AddressDTO;
+import com.domino.t1.util.Pager;
 
 
-public class CouponDTO extends AddressDTO{
+public class CouponDTO extends Pager{
 
     private long sale_list;
     private String sale_name;

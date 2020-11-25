@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.domino.t1.address.AddressDTO;
+import com.domino.t1.coupon.CouponDTO;
 import com.domino.t1.member.MemberDTO;
+import com.domino.t1.util.Pager;
 
 @Controller
 @RequestMapping("/memberInq/**")
@@ -20,6 +22,54 @@ public class MemberInquirlyController {
 	
 	@Autowired
 	private MemberInquirlyService memberInquirlyService;
+	
+	@GetMapping("memberInquirlyListDelete")
+	public ModelAndView setInqListDelete(MemberInquirlyDTO memberInquirlyDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("inq list del");
+		
+		int result = memberInquirlyService.setInqListDelete(memberInquirlyDTO);
+		
+		mv.setViewName("redirect:./memberInquirlyList");
+		
+		
+		return mv;
+	}
+	
+	@PostMapping("memberInquirlyUpdate")
+	public ModelAndView setInqUpdate(MemberInquirlyDTO memberInquirlyDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		int result = memberInquirlyService.setInqUpdate(memberInquirlyDTO);
+		
+		mv.setViewName("redirect:./memberInquirlyList");
+		return mv;
+	} 
+	
+	@GetMapping("memberInquirlyUpdate")
+	public ModelAndView setInqSelect(MemberInquirlyDTO memberInquirlyDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("Inq Update");
+		
+		memberInquirlyDTO = memberInquirlyService.getOne(memberInquirlyDTO);
+		mv.addObject("dto", memberInquirlyDTO);
+		mv.setViewName("memberInq/memberInquirlyUpdate");
+		
+		return mv;
+	}
+	
+	@GetMapping("memberInquirlyList")
+	public ModelAndView getInqList(MemberInquirlyDTO memberInquirlyDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("Inq List");
+		
+		List<MemberInquirlyDTO> ar = memberInquirlyService.getInqList(memberInquirlyDTO);
+		
+		mv.addObject("list", ar);
+		mv.setViewName("memberInq/memberInquirlyList");
+		
+		return mv;
+	}
 	
 	@GetMapping("memberInquirlyDelete")
 	public ModelAndView setInqDelete(MemberInquirlyDTO memberInquirlyDTO) throws Exception{
@@ -77,10 +127,11 @@ public class MemberInquirlyController {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("member/memberInquirly");
 		
-		AddressDTO addressDTO = (AddressDTO) session.getAttribute("member");
-			
+		CouponDTO couponDTO = (CouponDTO) session.getAttribute("member");
+				
+		List<CouponDTO> ar = memberInquirlyService.getInqBoardList(couponDTO);
 		
-		List<AddressDTO> ar = memberInquirlyService.getInqBoardList(addressDTO);
+		mv.addObject("pager", couponDTO);
 		
 		mv.addObject("list", ar);
 		mv.setViewName("memberInq/memberInquirly");
