@@ -79,6 +79,7 @@ public class MemberUserDAO implements MemberDAO{
 		return sqlSession.selectOne(NAMESPACE+"getCount", pager);
 	}
 	
+	//추가
 	public CouponDTO getMemberSocialLogin(CouponDTO couponDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getMemberSocialLogin", couponDTO);
 	}

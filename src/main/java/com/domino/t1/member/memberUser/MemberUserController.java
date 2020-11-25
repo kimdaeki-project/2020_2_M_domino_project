@@ -30,7 +30,27 @@ public class MemberUserController {
 	
 	@Autowired
 	private MemberUserService memberService;
+	
+	//추가
+	@GetMapping("memberSocialLogin")
+	public ModelAndView getMemberSocialLogin(CouponDTO couponDTO, HttpServletRequest request ,HttpSession session) throws Exception{
 		
+		String id = request.getParameter("id");
+		System.out.println("id값 : "+id);
+		
+		couponDTO.setMember_id(id);
+
+		ModelAndView mv = new ModelAndView();
+		couponDTO = memberService.getMemberSocialLogin(couponDTO);
+		
+		if(couponDTO != null) {
+			session.setAttribute("member", couponDTO);
+			System.out.println(couponDTO.getMember_name());
+			mv.setViewName("redirect:../");
+		}
+		return mv;
+	}
+	
 	@GetMapping("memberSearchView")
 	public ModelAndView getMemberSearchView() throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -240,26 +260,7 @@ public class MemberUserController {
 		System.out.println("memberLogin");
 		return mv;	
 	}
-	
-	@GetMapping("memberSocialLogin")
-	public ModelAndView getMemberSocialLogin(CouponDTO couponDTO, HttpServletRequest request ,HttpSession session) throws Exception{
 		
-		String id = request.getParameter("id");
-		System.out.println("id값 : "+id);
-		
-		couponDTO.setMember_id(id);
-
-		ModelAndView mv = new ModelAndView();
-		couponDTO = memberService.getMemberSocialLogin(couponDTO);
-		
-		if(couponDTO != null) {
-			session.setAttribute("member", couponDTO);
-			System.out.println(couponDTO.getMember_name());
-			mv.setViewName("redirect:../");
-		}
-		return mv;
-	}
-	
 	@PostMapping("memberJoin")
 	public ModelAndView setMemberJoin(MemberDTO memberDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();

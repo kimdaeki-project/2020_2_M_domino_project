@@ -90,6 +90,7 @@ public class MemberUserService implements MemberService{
 		return memberDAO.getCount(pager);
 	}
 	
+	//추가
 	public CouponDTO getMemberSocialLogin(CouponDTO couponDTO) throws Exception{
 		return memberDAO.getMemberSocialLogin(couponDTO);
 	}
