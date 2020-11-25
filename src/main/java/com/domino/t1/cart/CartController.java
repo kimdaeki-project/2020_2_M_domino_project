@@ -205,7 +205,7 @@ System.out.println("iResult: " + iResult);
 		
 // 나중에 꼭 지우기  --------------- order/orderInfo 로 내용 이동시키기 
 		List<List<CartDTO>> pizzaGroupList = cartService.getCartPizzaGroupListByGroupId(memberDTO, pizzaGIdList);
-		List<CartDTO> itemList = cartService.getCartItemListByGroupId(memberDTO, itemGIdList);
+		List<CartDTO> itemList = cartService.getCartItemByGroupId(memberDTO, itemGIdList);
 		session.setAttribute("pizzaGroupList", pizzaGroupList);
 		session.setAttribute("itemList", itemList);
 // 나중에 꼭 지우기  ---------------		

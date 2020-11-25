@@ -74,7 +74,7 @@
 							</div>
 							<div class="addr-btn">
 								<p class="title-type4 ask-deli">해당 배달주소로 주문을 진행 하시겠습니까?</p>
-								<a href="/t1/order/orderInfo" class="btn-type enter" role="button">선택</a>
+								<a href="../menu/list/pizzaList" class="btn-type enter">선택</a>
 							</div>
 						</div>
 					</div>

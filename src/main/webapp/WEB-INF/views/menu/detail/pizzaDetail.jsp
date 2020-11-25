@@ -553,16 +553,7 @@
 	</div>
 </nav>
 <script type="text/javascript">
-
-	function filterZeroQuantity(list){
-		var newList = []
-		for(item in list){
-			if(item[2]>0){
-				newList.add(item)
-			}
-		}
-		return newList
-	}
+	
 	$("#btn-order-now").click(function(){
 		// 장바구니 데이터 DB 저장 + 어떤 제품인지 임시데이터 order_detail_temp도 함께 저장 
 		var member_num = "${member.member_num}";
@@ -584,9 +575,6 @@
 					}
 				}
 			)
-			toppingCart = filterZeroQuantity(toppingCart)
-			sideDishCart = filterZeroQuantity(sideDishCart)
-			etcCart = filterZeroQuantity(etcCart)
 			$.post(
 				"/t1/cart/addToCart/pizza",{
 					"orderType":"direct",

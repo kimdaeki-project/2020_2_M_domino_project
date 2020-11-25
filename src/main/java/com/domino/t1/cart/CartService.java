@@ -63,7 +63,7 @@ public class CartService {
 	}
 	
 	// get item list with cart_group_id(String) list
-	public List<CartDTO> getCartItemListByGroupId(MemberDTO memberDTO, String[] gIdList) throws Exception{
+	public List<CartDTO> getCartItemByGroupId(MemberDTO memberDTO, String[] gIdList) throws Exception{
 		List<CartDTO> itemList = new ArrayList<CartDTO>();
 		for(String gId:gIdList) {
 			CartDTO cartDTO = new CartDTO();
@@ -114,10 +114,6 @@ public class CartService {
 			cartDTO.setItem_id(Long.parseLong(item[0]));
 			cartDTO.setCart_group_id(cartGroupId);
 			cartDTO.setCart_quantity(Long.parseLong(item[2]));
-			// 수량 0이면 데이터 저장 안함. 
-			if(cartDTO.getCart_quantity() < 1) {
-				continue;
-			}
 			if(item.length > 4) {				
 				cartDTO.setItem_size(item[4]);
 			}
@@ -140,10 +136,6 @@ public class CartService {
 			cartDTO.setMember_num(memberNum);
 			cartDTO.setItem_id(Long.parseLong(item[0]));
 			cartDTO.setCart_quantity(Long.parseLong(item[2]));
-			// 수량 0이면 데이터 저장 안함. 
-			if(cartDTO.getCart_quantity() < 1) {
-				continue;
-			}
 			// 이미 담긴 항목인지 검색 
 			CartDTO dup = cartDAO.getCartItem(cartDTO);
 			if(dup != null) {
@@ -192,7 +184,7 @@ System.out.println(list.toString());
 		return cartDAO.emptyCart(memberDTO);
 	}
 	
-//retrieve user's entire order_detail_temp data and get CartDTO data based on the cart_group_id list & member_num data retrieved
+//	retrieve user's entire order_detail_temp data and get CartDTO data based on the cart_group_id list & member_num data retrieved
 	// get a list of pizza group item list 
 	public List<List<CartDTO>> getTempPizzaGroupItemList(String[] gIdList, MemberDTO memberDTO) throws Exception {
 		return getCartPizzaGroupListByGroupId(memberDTO, gIdList);		
@@ -200,11 +192,11 @@ System.out.println(list.toString());
 	
 	// get a list of sideDish & etc items
 	public List<CartDTO> getTempStandaloneItemList(String[] gIdList, MemberDTO memberDTO) throws Exception {
-		return getCartItemListByGroupId(memberDTO, gIdList);
+		return getCartItemByGroupId(memberDTO, gIdList);
 	}
 	
 	// returned list[0]: pizza group id list, [1]: item id list
-	public List<String[]> getGroupIdListFromOrderDetailTempList(MemberDTO memberDTO) throws Exception {
+	public List<String[]> getOrderDetailTempLists(MemberDTO memberDTO) throws Exception {
 		List<OrderDetailTempDTO> tempAll = orderDetailTempDAO.getOrderDetailTempList(memberDTO);
 		ArrayList<String[]> gIdListSet = new ArrayList<String[]>();
 		ArrayList<String> pizzaGIdList = new ArrayList<String>();
@@ -217,10 +209,8 @@ System.out.println(list.toString());
 				itemGIdList.add(gId);
 			}
 		}
-		String[] pizzaGIdArr = pizzaGIdList.toArray(new String[0]);
-		String[] itemGIdArr = itemGIdList.toArray(new String[0]);
-		gIdListSet.add(pizzaGIdArr);
-		gIdListSet.add(itemGIdArr);
+		gIdListSet.add((String[])pizzaGIdList.toArray());
+		gIdListSet.add((String[])itemGIdList.toArray());
 		return gIdListSet;
 	}
 
