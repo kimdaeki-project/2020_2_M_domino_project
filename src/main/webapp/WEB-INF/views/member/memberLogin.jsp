@@ -116,6 +116,8 @@
 	});
 </script>
 
+
+<!-- 카카오 로그인 js -->
 <script>
 Kakao.init('ee481319bcf54376fe803d6dc751dc54'); 
 function loginFormWithKakao() { 
