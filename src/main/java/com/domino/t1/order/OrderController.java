@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.domino.t1.address.AddressDTO;
+import com.domino.t1.cart.CartDTO;
+import com.domino.t1.cart.CartService;
 import com.domino.t1.coupon.CouponDTO;
 import com.domino.t1.member.MemberDTO;
 import com.domino.t1.member.memberUser.MemberUserDTO;
@@ -25,6 +27,9 @@ public class OrderController {
 	
 	@Autowired
 	private OrderService orderService; 
+	
+	@Autowired
+	private CartService cartService;
 
 	@GetMapping("orderInfo")
 	public ModelAndView orderWrite(HttpSession session) throws Exception {
@@ -56,7 +61,15 @@ public class OrderController {
 		
 		//------쿠폰 가져오기 end-------------	
 		
+		//------주문 상품 데이터 가져오기--------
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		List<String[]> gIdList = cartService.getGroupIdListFromOrderDetailTempList(memberDTO);
+		List<List<CartDTO>> pizzaGroupList = cartService.getTempPizzaGroupItemList(gIdList.get(0), memberDTO);
+		List<CartDTO> itemList = cartService.getTempStandaloneItemList(gIdList.get(1), memberDTO);
 		
+		mv.addObject("pizzaGroupList", pizzaGroupList);
+		mv.addObject("itemList", itemList);				
+		//------주문 상품 데이터 가져오기 end--------
 		
 			
 			mv.addObject("orderTime", orderTime);
