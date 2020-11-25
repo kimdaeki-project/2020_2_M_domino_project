@@ -114,6 +114,9 @@ public class CartService {
 			cartDTO.setItem_id(Long.parseLong(item[0]));
 			cartDTO.setCart_group_id(cartGroupId);
 			cartDTO.setCart_quantity(Long.parseLong(item[2]));
+			if(cartDTO.getCart_quantity() < 1) {
+				continue;
+			}
 			if(item.length > 4) {				
 				cartDTO.setItem_size(item[4]);
 			}
@@ -136,6 +139,9 @@ public class CartService {
 			cartDTO.setMember_num(memberNum);
 			cartDTO.setItem_id(Long.parseLong(item[0]));
 			cartDTO.setCart_quantity(Long.parseLong(item[2]));
+			if(cartDTO.getCart_quantity() < 1) {
+				continue;
+			}
 			// 이미 담긴 항목인지 검색 
 			CartDTO dup = cartDAO.getCartItem(cartDTO);
 			if(dup != null) {
