@@ -1035,9 +1035,30 @@ p em{
 }
 
 
+.item_pizza{
+	font-size: 15px;
+	font-weight: 700;	
+}
+
+.etc{
+	
+	padding-top: 20px;
+	
+}
+
+.item_topping{
+	
+	font-size: 15px;
+	font-weight: 700;	
+	
+}
 
 
+.tablinks.active {
 
+  color: #000;
+  font-weight: 900;
+}
 
 
 
