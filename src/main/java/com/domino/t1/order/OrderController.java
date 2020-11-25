@@ -47,6 +47,7 @@ public class OrderController {
 		AddressDTO addressDTO = (AddressDTO)session.getAttribute("member");
 		
 		addressDTO = orderService.getOne(addressDTO);
+		
 		//------주소 가져오기 end---------
 		
 		//------쿠폰 가져오기-------------		
@@ -55,7 +56,6 @@ public class OrderController {
 		List<CouponDTO> ar = orderService.getCoupon(couponDTO);
 		
 		//------쿠폰 가져오기 end-------------	
-		
 		
 		
 			
