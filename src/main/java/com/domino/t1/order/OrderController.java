@@ -112,14 +112,6 @@ public class OrderController {
 		
 	}
 	
-	public ModelAndView orderWrite() {
-		
-		
-		
-		
-		
-		
-	}
 	
 	
 	
