@@ -119,8 +119,8 @@
 				     	</c:when>
 				     	
 				     	<c:otherwise>
-				     		<input type="email" name="member_email" id="email" placeholder="ex) aaa@gmail.com">
-			          <input type="button" id="btnEmail" value="중복확인" class="checkButt">
+				     		 <input type="email" name="member_email" id="email" placeholder="ex) aaa@gmail.com">
+			         		 <input type="button" id="btnEmail" value="중복확인" class="checkButt">
 			     			 <div id="emailResult"></div>
 				     	</c:otherwise>
 				     </c:choose>
@@ -216,15 +216,18 @@
 	}
 	
 	//회원가입 id, pw, 이메일, 전화번호 중복 및 공백 검사
-	var idCheck=false;
-	var pwCheck=false;
-	var phoneCheck=false;
-	var emailCheck=false;
-	var emptyCheckResult=true;
-	
+
 	if("${param.id}" != ''){
 		var idCheck = true;
 		var emailCheck=true;
+	} 
+	
+	else{
+		var idCheck=false;
+		var pwCheck=false;
+		var phoneCheck=false;
+		var emailCheck=false;
+		var emptyCheckResult=true;	
 	}
 	
 	$("#btn").click(function() {
@@ -346,11 +349,19 @@
 	var regExpEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
 	var regExpPhone = /^\d{3}-\d{3,4}-\d{4}$/;//핸드폰 번호 정규식
 	
-	var idExpCheck=false;
-	var pwExpCheck=false;
-	var phoneExpCheck=false;
-	var emailExpCheck=false;
+	if("${param.id}" != ''){
+		var idExpCheck=true;
+		var phoneExpCheck=true;
+	}
+	else{
+		var idExpCheck=false;
+		var pwExpCheck=false;
+		var phoneExpCheck=false;
+		var emailExpCheck=false;
+		
+	}
 	
+
 	$("#id").blur(function() {
 		idExpCheck=false;
 		if(!passRule.test($("input[id='id']").val())) {
