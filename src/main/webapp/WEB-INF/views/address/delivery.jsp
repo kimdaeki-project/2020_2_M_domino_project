@@ -13,8 +13,15 @@
 <link href ="../resources/css/common/member.css" rel="stylesheet">
 <link href ="../resources/css/address/address.css" rel="stylesheet">
 <script src="../resources/js/header.js"></script>
+<style type="text/css">
+	#btnLog{
+		float: right;
+	}
+		
+</style>
 </head>
 <body>
+
 <c:import url="../template/header.jsp"></c:import>
 
 <div class="container">
@@ -84,13 +91,18 @@
 					</div>
 				</div>	<!-- 배달/포장 -->
 			</div>	<!-- 주문방법선택 -->	
-		</div>			
+		</div>	
+		<button type="button" style="text-align:center; width:210px; height:58px;" id="btnLog">주소 목록</button>		
 	</div><!-- content -->
 </div><!-- container -->
 
 <script>
 
 // Add active class to the current button (highlight it)
+
+	$("#btnLog").click(function() {
+		location.href = "./deliveryAfter"
+	});
 
 	$("#deliveryBtn").click(function() {
 		var road = $("#roadFullAddr").val();
