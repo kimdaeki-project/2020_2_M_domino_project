@@ -48,7 +48,6 @@
 		
 		<interceptor>
 			<mapping path="/address/*"/>
-			
 			<mapping path="/memberInq/*"/>
 			
 			
