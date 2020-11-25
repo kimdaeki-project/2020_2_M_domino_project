@@ -14,7 +14,7 @@
 	    <div class="collapse navbar-collapse" id="myNavbar1" style="padding: 0;">
 	      <ul class="nav navbar-nav navbar-right">
 	      <c:choose>
-	      	<c:when test="${not empty member or not empty sessionScope.re or not empty sessionId}">
+	      	<c:when test="${not empty member}">
 	       		<li><a href="${pageContext.request.contextPath}/member/memberLogout"><span class="glyphicon"></span> 로그아웃</a></li>
 	       		<li><a href="${pageContext.request.contextPath}/member/memberPage"><span class="glyphicon"></span> 나의정보</a></li>
 	       		<li><a href="${pageContext.request.contextPath}/cart/detail"><span class="glyphicon"></span><img src="${pageContext.request.contextPath}/resources/images/common/cart_icon.png"></a></li> 	    		

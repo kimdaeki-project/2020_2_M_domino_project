@@ -10,7 +10,6 @@
   <link href ="../resources/css/common/default.css" rel="stylesheet">
   <link href ="../resources/css/common/member.css" rel="stylesheet">
   <script src="../resources/js/header.js"></script>
-<c:import url="../template/header.jsp"></c:import>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <style type="text/css">
@@ -49,15 +48,13 @@
 	.checkbox label{
 		float: left;
 	}
-	
-	
-	
-	
+
 </style>
 
 </head>
-<body>
-
+<body id="bodyContents">
+	<c:import url="../template/header.jsp"></c:import>
+	
 	<div class="container">
 	
 	<div class="order-title-wrap" style="padding: 0 0 30px 0; border-bottom: 2px solid black">
@@ -106,23 +103,11 @@
 				<img src="${pageContext.request.contextPath}/resources/images/common/kakao_logo.png" width="100%" height="auto" style="max-width:400px;max-height:60px"/>
  			</a>
 	     </div>
-     
-	     <div id="naver_id_login" style="display: inline-block;">
-	     	<a href="${url}">
-				<img style="width:215px; height: 50px;" src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
-			</a>
-		</div>
-
-		<!--  
-			<form id="kfrm" action="./memberJoin?kaid="+kaid method="get">
-					<input id="kinput" type="hidden" >
-			</form>	
-		 -->
 		 
 	</div>
 	</div>
 	
-<c:import url="../template/footer.jsp"></c:import>
+	<c:import url="../template/footer.jsp"></c:import>
 </body>
 
 <script type="text/javascript">
@@ -165,11 +150,15 @@ function loginFormWithKakao() {
 			                    		$.ajax({
 			                    			url:"<%=request.getContextPath()%>/member/memberJoin",
 			                    			type:"get",
-			                    			data:{"id":id},
+			                    			data:{"id":id, "email":email},
 			                    			success:function(data){
 			                    				console.log(id);
+			                    				console.log(email);
+			                    			
 			                    				console.log("아이디 넘기기 성공");
-			                    				location.href="<%=request.getContextPath()%>/member/memberJoin?kaid="+id;
+			                    				 $('#bodyContents').children().remove();
+			                    		         // Contents 영역 교체
+			                    		         $('#bodyContents').html(data);	
 			                    			}
 			                    		});
 			                    	}

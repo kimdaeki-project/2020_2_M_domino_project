@@ -39,7 +39,11 @@
 <body>
 	
 	<div class="container">
-		<% String id =request.getParameter("id"); System.out.println("id값 : "+id); %>
+		<% String id =request.getParameter("id"); 
+		   String email = request.getParameter("email");
+		   System.out.println("id값 : "+id);
+		   System.out.println("email값 : "+email);
+		%>
 		<div class="order-title-wrap" style="padding: 0 0 30px 0; border-bottom: 2px solid black">
 		<h2 class="order-title">회원가입</h2>
 			<div class="depth-area">
@@ -56,7 +60,7 @@
 			<div class="col-sm-12 join_input">
 			    <label class="col-sm-2 join_text" for="name">이름</label>
 			    <div class="col-sm-4">
-			       <input type="text" id="name" name="member_name" class="form-control empty" >
+				   <input type="text" id="name" name="member_name" class="form-control empty">  
 			       <div class="emptyResult"></div>
 			    </div>
 			 </div>
@@ -66,8 +70,8 @@
 			    <div class="col-sm-4">
 			    
 			     <c:choose>
-			     	<c:when test="${not empty param.kaid}">
-			     		<input type="text" id="kaid" name="member_id" value="${param.kaid}" readonly="readonly">
+			     	<c:when test="${not empty param.id}">
+			     		<input type="text" id="ka_id" name="member_id" value="${param.id}" readonly="readonly">
 			     	</c:when>
 			     	
 			     	<c:otherwise>
@@ -112,15 +116,22 @@
 			 </div>
 		
 			  <div class="col-sm-12 join_input">
-			    <label class="col-sm-2 join_text" for="email">이메일 </label>
-			    <div class="col-sm-4">
-			      <input type="email" name="member_email" id="email" >
-			      <input type="button" id="btnEmail" value="중복확인" class="checkButt">
-			      <div id="emailResult"></div>
+			     <label class="col-sm-2 join_text" for="email">이메일 </label>
+			   <div class="col-sm-4">
+				  	 <c:choose>
+				     	<c:when test="${not empty param.id}">
+				     		<input type="email" id="ka_email" name="member_email" value="${param.email}" readonly="readonly">
+				     	</c:when>
+				     	
+				     	<c:otherwise>
+				     		 <input type="email" name="member_email" id="email" >
+			     			 <input type="button" id="btnEmail" value="중복확인" class="checkButt">
+			     			 <div id="emailResult"></div>
+				     	</c:otherwise>
+				     </c:choose>
 			    </div>
-			 </div>
-			 
-			 
+			  </div>
+			  	
 			 <div class="form-group level">
 				<label for="level" class="labelUpdate">등급 </label>
 				<input type="text" name="member_level" value="REGULAR" style="text-align:center; width:500px; height:42px;">
@@ -199,7 +210,6 @@
 		}else {
 			$("input[type=checkbox]").prop("checked", false);
 		}
-		
 	});
 	
 	
@@ -213,8 +223,9 @@
 	var emailCheck=false;
 	var emptyCheckResult=true;
 	
-	if("${param.kaid}" != ''){
+	if("${param.id}" != ''){
 		var idCheck = true;
+		var emailCheck=true;
 	}
 	
 	$("#btn").click(function() {
@@ -236,8 +247,7 @@
 				emptyCheckResult=false;
 				$(this).next().html("필수 항목입니다.")
 				$(".emptyResult").addClass("idCheck1");
-			}
-			
+			}	
 		});
 	}
 	

@@ -235,8 +235,7 @@ public class MemberUserController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("member/memberLogin");
 		System.out.println("memberLogin");
-		return mv;
-		
+		return mv;	
 	}
 	
 	@PostMapping("memberJoin")
