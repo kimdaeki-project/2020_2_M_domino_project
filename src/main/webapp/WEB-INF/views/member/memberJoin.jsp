@@ -39,7 +39,7 @@
 <body>
 	
 	<div class="container">
-		${name}
+		<% String id =request.getParameter("id"); System.out.println("id값 : "+id); %>
 		<div class="order-title-wrap" style="padding: 0 0 30px 0; border-bottom: 2px solid black">
 		<h2 class="order-title">회원가입</h2>
 			<div class="depth-area">
@@ -64,7 +64,17 @@
 			 <div class="col-sm-12 join_input">
 			    <label class="col-sm-2 join_text" for="id">아이디</label>
 			    <div class="col-sm-4">
-			       <input type="text" id="id" name="member_id" class="form-control empty" >
+			    
+			     <c:choose>
+			     	<c:when test="${not empty param.kaid}">
+			     		<input type="text" id="kaid" name="member_id" value="${param.kaid}" readonly="readonly">
+			     	</c:when>
+			     	
+			     	<c:otherwise>
+			     		<input type="text" id="id" name="member_id" class="form-control empty">
+			     	</c:otherwise>
+			     </c:choose>
+			   
 			      <div id="idResult"></div>
 			    </div>
 			 </div>
@@ -202,6 +212,10 @@
 	var phoneCheck=false;
 	var emailCheck=false;
 	var emptyCheckResult=true;
+	
+	if("${param.kaid}" != ''){
+		var idCheck = true;
+	}
 	
 	$("#btn").click(function() {
 		emptyCheck();

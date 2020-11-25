@@ -12,6 +12,7 @@
   <script src="../resources/js/header.js"></script>
 <c:import url="../template/header.jsp"></c:import>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 <style type="text/css">
 
 	.login_top_text{
@@ -57,7 +58,6 @@
 </head>
 <body>
 
-	
 	<div class="container">
 	
 	<div class="order-title-wrap" style="padding: 0 0 30px 0; border-bottom: 2px solid black">
@@ -100,10 +100,11 @@
 	</div>
 	
 	<div style="text-align: center;">
+		
 		<div style="display: inline-block;">
-			 <a href = "https://kauth.kakao.com/oauth/authorize?client_id=a78c488c29324b1f75b218bf9e45e8b7&redirect_uri=http://localhost/t1/oauth&response_type=code">
-		        	<img style="width:215px; height: 50px;"  alt="" src="${pageContext.request.contextPath}/resources/images/common/kakao_logo.png">
-		     </a>
+		     <a id="login-form-btn" href="javascript:loginFormWithKakao()"> 
+				<img src="${pageContext.request.contextPath}/resources/images/common/kakao_logo.png" width="100%" height="auto" style="max-width:400px;max-height:60px"/>
+ 			</a>
 	     </div>
      
 	     <div id="naver_id_login" style="display: inline-block;">
@@ -112,11 +113,15 @@
 			</a>
 		</div>
 
+		<!--  
+			<form id="kfrm" action="./memberJoin?kaid="+kaid method="get">
+					<input id="kinput" type="hidden" >
+			</form>	
+		 -->
+		 
 	</div>
- 
 	</div>
 	
-
 <c:import url="../template/footer.jsp"></c:import>
 </body>
 
@@ -124,6 +129,68 @@
 	$("#btnJoin").click(function() {
 		location.href = "./memberJoin";
 	});
+</script>
+
+<script>
+Kakao.init('ee481319bcf54376fe803d6dc751dc54'); 
+function loginFormWithKakao() { 
+	Kakao.Auth.loginForm({ 
+		success: function(authObj) { 
+			Kakao.API.request({ 
+				url: '/v2/user/me', 
+				success: function(res) { 
+					console.log(res.kakao_account && res.kakao_account.email);
+					console.log(res.kakao_account['email']) 
+					console.log(res.id) 
+					
+					var id = res.id;
+					var email = res.kakao_account.email;
+				    var name = JSON.stringify(res.properties.nickname);
+
+				    if(id !=''){
+						$.ajax({
+			                    url:"<%=request.getContextPath()%>/member/memberIdCheck?member_id="+id,
+			                    Type:"get",
+			                   // data:{"id":id},
+			                    success:function(data){
+			                    	console.log("1 = 중복o / 0 = 중복x : "+ data);	
+			                    	
+			                    	if(data==1){
+			                    		alert("이미 소셜 회원가입이 되어있습니다.")
+			                    		location.href="<%=request.getContextPath()%>"
+			                    		//자동로그인
+			                    	}
+			                    	else{
+			                    		alert("소셜 회원 가입 창으로 이동합니다.")
+			                    		$.ajax({
+			                    			url:"<%=request.getContextPath()%>/member/memberJoin",
+			                    			type:"get",
+			                    			data:{"id":id},
+			                    			success:function(data){
+			                    				console.log(id);
+			                    				console.log("아이디 넘기기 성공");
+			                    				location.href="<%=request.getContextPath()%>/member/memberJoin?kaid="+id;
+			                    			}
+			                    		});
+			                    	}
+			                    },
+			                    error:function(){
+			                    	alert("오류가 발생 하였습니다. 관리자에게 문의해주세요")
+			                    	location.href="<%=request.getContextPath()%>"
+			                    }
+	
+			                 });
+						}
+						
+		              },
+		              
+		           fail: function(error){
+		               alert(JSON.stringify(error));
+		           }
+		});
+		}
+	});
+}
 </script>
 
 </html>

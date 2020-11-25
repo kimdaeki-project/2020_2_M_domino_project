@@ -26,8 +26,6 @@
 		<beans:property name="order" value="0"></beans:property>
 	</beans:bean>
 	
-	<beans:bean id="naverLoginBO" class="com.domino.t1.naver.NaverLoginBO" />
-	
 	<beans:bean class="com.domino.t1.interceptor.AdminMemberInterceptor" id="AdminMemberInterceptor"></beans:bean>
 	
 	<interceptors>

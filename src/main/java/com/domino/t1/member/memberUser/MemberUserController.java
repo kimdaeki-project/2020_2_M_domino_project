@@ -21,8 +21,6 @@ import com.domino.t1.member.MemberDTO;
 import com.domino.t1.member.memberInquirly.MemberInquirlyDTO;
 import com.domino.t1.util.Pager;
 
-
-
 @Controller
 @RequestMapping("/member/**")
 public class MemberUserController {
@@ -168,6 +166,7 @@ public class MemberUserController {
 	
 	@GetMapping("memberIdCheck")
 	public ModelAndView getMemberIdCheck(MemberDTO memberDTO) throws Exception{
+	
 		ModelAndView mv = new ModelAndView();
 		memberDTO = memberService.getMemberIdCheck(memberDTO);
 		
@@ -178,7 +177,6 @@ public class MemberUserController {
 		
 		mv.addObject("msg", result);
 		mv.setViewName("common/ajaxResult");
-		
 		return mv;
 		
 	}
