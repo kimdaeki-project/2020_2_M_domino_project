@@ -176,12 +176,6 @@
 									<div class="item">
 										<span>피자이름 (도우 )사이즈 x 갯수</span> <span>가격</span>원
 
-										<c:forEach items="${itemList}" var="item">
-											<h1>${item.item_name}</h1>
-										</c:forEach>
-
-
-
 										<!-- 토핑 -->
 										<ul>
 											<li></li>
