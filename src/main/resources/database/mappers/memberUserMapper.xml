@@ -53,6 +53,11 @@
 		select * from member_info where member_id=#{member_id} and member_pw=#{member_pw}
 	</select>
 	
+	<!-- 채현 추가 매퍼-->
+	<select id="getMemberSocialLogin" resultType="CouponDTO" parameterType="CouponDTO">
+		select * from member_info where member_id=#{member_id}
+	</select>
+	
 	<select id="getMemberIdCheck" parameterType="MemberDTO" resultType="MemberUserDTO">
 		select member_id from member_info where member_id = #{member_id}
 	</select>

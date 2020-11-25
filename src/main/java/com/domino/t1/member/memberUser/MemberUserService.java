@@ -66,6 +66,8 @@ public class MemberUserService implements MemberService{
 		// TODO Auto-generated method stub
 		return memberDAO.getMemberLogin(couponDTO);
 	}
+	
+	
 
 	@Override
 	public int setMemberJoin(MemberDTO memberDTO) throws Exception {
@@ -88,5 +90,10 @@ public class MemberUserService implements MemberService{
 		return memberDAO.getCount(pager);
 	}
 	
+	public CouponDTO getMemberSocialLogin(CouponDTO couponDTO) throws Exception{
+		return memberDAO.getMemberSocialLogin(couponDTO);
+	}
+	
+
 	
 }

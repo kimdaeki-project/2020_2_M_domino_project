@@ -27,8 +27,6 @@
 		font-size: 17px;
 	}
 	
-	
-	
 </style>
   <c:import url="../template/bootstrap.jsp"></c:import>
   <link href ="../resources/css/common/default.css" rel="stylesheet">
@@ -39,11 +37,7 @@
 <body>
 	
 	<div class="container">
-		<% String id =request.getParameter("id"); 
-		   String email = request.getParameter("email");
-		   System.out.println("id값 : "+id);
-		   System.out.println("email값 : "+email);
-		%>
+	
 		<div class="order-title-wrap" style="padding: 0 0 30px 0; border-bottom: 2px solid black">
 		<h2 class="order-title">회원가입</h2>
 			<div class="depth-area">
@@ -336,16 +330,6 @@
 			$("#emailResult").removeClass("emailCheck0").addClass("emailCheck1");
 		}
 	});
-
-
-
-
-
-	
-	
-	
-	
-	
 
 </script>
 </html>
