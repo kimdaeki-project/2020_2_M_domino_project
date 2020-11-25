@@ -92,7 +92,7 @@
 							</div>
 							<div class="addr-btn">
 								<p class="title-type4 ask-deli" id="pTag">해당 배달주소로 주문을 진행 하시겠습니까?</p>
-								<a href="../menu/list/pizzaList" class="btn-type enter">선택</a>
+								<a href="../order/orderInfo" class="btn-type enter">선택</a>
 							</div>
 						</div>
 					</div>
