@@ -141,7 +141,6 @@ function loginFormWithKakao() {
 			                    	console.log("1 = 중복o / 0 = 중복x : "+ data);	
 			                    	
 			                    	if(data==1){
-			                    		alert("이미 소셜 회원가입이 되어있는 사용자 입니다.")
 			    						$.ajax({
 			    							url:"<%=request.getContextPath()%>/member/memberSocialLogin",
 			    								data:{"id":id},
