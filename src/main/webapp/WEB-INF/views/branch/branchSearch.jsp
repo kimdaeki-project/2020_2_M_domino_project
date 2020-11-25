@@ -35,7 +35,7 @@
 							<div id="map"></div>
 							</div>
 						</div>
-						
+											
 						<!-- 탭 선택 최상위 div -->
 						<div class="store-search">
 							<!-- 탭 선택 -->
@@ -96,14 +96,14 @@
 												
 												// 선택된 값의 index를 불러오기
 												var regindex = $("#region1 option").index($("#region1 option:selected"));
-
+					
 												if(regindex == 1) var d = region2_a;
 												else if(regindex == 2) var d = region2_b;
 												else if(regindex == 3) var d = region2_c;
 												else if(regindex == 0) var d = region2_1;
-
+					
 												target.options.length = 0;
-
+					
 												for (x in d) {
 													var opt = document.createElement("option");
 													opt.value = d[x];
@@ -192,6 +192,7 @@
 							<!-- ===== 매장 리스트 ] ===== -->
 							
 						</div> <!-- 탭 선택 최상위 div -->
+
 					</div> <!-- store-map-area -->
 				</div> <!-- store-wrap -->
 			</div>
