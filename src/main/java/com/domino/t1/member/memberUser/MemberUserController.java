@@ -42,7 +42,10 @@ public class MemberUserController {
 
 		ModelAndView mv = new ModelAndView();
 		couponDTO = memberService.getMemberSocialLogin(couponDTO);
-
+		
+		return mv;
+	}
+	
 	@GetMapping("memberDeleteAdmin")
 	public ModelAndView setMemberDeleteAdmin(MemberDTO memberDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -129,15 +132,6 @@ public class MemberUserController {
 		return mv;
 	}
 
-		
-		if(couponDTO != null) {
-			session.setAttribute("member", couponDTO);
-			System.out.println(couponDTO.getMember_name());
-			mv.setViewName("redirect:../");
-		}
-		return mv;
-	}
-	
 	@GetMapping("memberSearchView")
 	public ModelAndView getMemberSearchView() throws Exception{
 		ModelAndView mv = new ModelAndView();

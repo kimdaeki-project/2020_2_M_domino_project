@@ -103,11 +103,6 @@ public class MemberUserService implements MemberService{
 		return memberDAO.getCount(pager);
 	}
 	
-	//추가
-	public CouponDTO getMemberSocialLogin(CouponDTO couponDTO) throws Exception{
-		return memberDAO.getMemberSocialLogin(couponDTO);
-	}
-	
 	@Override
 	public MemberDTO getMemberSearchPw(MemberDTO memberDTO) throws Exception {
 		// TODO Auto-generated method stub
@@ -119,5 +114,10 @@ public class MemberUserService implements MemberService{
 		// TODO Auto-generated method stub
 		return memberDAO.setPassword(memberDTO);
 	}
+	
+	//추가
+		public CouponDTO getMemberSocialLogin(CouponDTO couponDTO) throws Exception{
+			return memberDAO.getMemberSocialLogin(couponDTO);
+		}
 	
 }
