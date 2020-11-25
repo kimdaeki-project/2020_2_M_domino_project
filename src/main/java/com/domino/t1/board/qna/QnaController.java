@@ -1,12 +1,9 @@
 package com.domino.t1.board.qna;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.domino.t1.board.file.BoardFileDTO;
-
-import com.domino.t1.util.Pager;
+import com.domino.t1.util.FileSaver;
 
 @Controller
 @RequestMapping("/qna/**")
@@ -23,16 +19,6 @@ public class QnaController {
 	
 	@Autowired
 	private QnaService qnaService;
-	
-	@GetMapping("qnaList")
-	public ModelAndView getList(Pager pager) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		List<QnaDTO> ar = qnaService.getList(pager);
-		mv.addObject("list", ar);
-		mv.addObject("pager", pager);
-		mv.setViewName("qna/qnaList");
-		return mv;	
-	}
 	
 	@GetMapping("qnaWrite")
 	public ModelAndView setInsert() throws Exception{
@@ -64,34 +50,10 @@ public class QnaController {
 	public ModelAndView fileDown(BoardFileDTO boardFileDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
-		mv.addObject("news", "qna");
+		//mv.addObject("news", "press");
 		mv.addObject("fileDTO", boardFileDTO);
 		mv.setViewName("fileDown");
 		return mv;
 	}
 	
-	@GetMapping("qnaReply")
-	public ModelAndView setReply() throws Exception{
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("qna/qnaReply");
-		return mv;
-	}
-	
-	@GetMapping("qnaSelect")
-	public ModelAndView getOne(QnaDTO qnaDTO) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		qnaDTO = qnaService.getOne(qnaDTO);
-		
-		if(qnaDTO!=null) {
-			mv.setViewName("qna/qnaSelect");
-			mv.addObject("dto", qnaDTO);
-		}
-		else {
-			mv.setViewName("common/result");
-			mv.addObject("msg", "No Data");
-			mv.addObject("path", "./qnaList");
-		}
-		return mv;
-	}
-
 }

@@ -29,7 +29,7 @@
 <body>
 	<c:import url="../template/header.jsp"></c:import>
 	<div class="container">
-		<h2 style="text-align: center;">FAQ 글 작성</h2>
+		<h2>FAQ</h2>
 		  	<form id="frm" action="./faqWrite" method="post" style="padding: 10px 0;">
 		  	<div class="form-group">
 		      <label for="title">FaqType</label>

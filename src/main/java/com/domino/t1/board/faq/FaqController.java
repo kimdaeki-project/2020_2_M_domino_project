@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-
 @Controller
 @RequestMapping("/faq/**")
 public class FaqController {
@@ -46,19 +45,10 @@ public class FaqController {
 		ModelAndView mv = new ModelAndView();
 	
 		mv.addObject("msg", message);
-		mv.addObject("path", "./faqList?faq_type=1");
+		mv.addObject("path", "./faqList");
 		
 		mv.setViewName("common/result");
 		return mv;	
-	}
-	
-	@PostMapping("faqDelete")
-	public ModelAndView setDelete(FaqDTO faqDTO) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		int result = faqService.setDelete(faqDTO);
-		mv.addObject("msg", result);
-		mv.setViewName("common/ajaxResult");
-		return mv;
 	}
 
 }

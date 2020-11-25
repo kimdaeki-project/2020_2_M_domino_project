@@ -10,7 +10,7 @@
   <link href ="../resources/css/common/default.css" rel="stylesheet">
   <link href ="../resources/css/common/member.css" rel="stylesheet">
   <script src="../resources/js/header.js"></script>
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<c:import url="../template/header.jsp"></c:import>
 
 <style type="text/css">
 
@@ -48,12 +48,15 @@
 	.checkbox label{
 		float: left;
 	}
-
+	
+	
+	
+	
 </style>
 
 </head>
-<body id="bodyContents">
-	<c:import url="../template/header.jsp"></c:import>
+<body>
+
 	
 	<div class="container">
 	
@@ -68,7 +71,7 @@
 	</div>
 
 	<div class="text-center">
-		<h3 style="margin-top: 60px;">회원로그인</h3>
+		<strong><h3 style="margin-top: 20px;">회원로그인</h3></strong>
 		<form action="./memberLogin" method="post" class="form-horizontal" style="padding: 20px;">
 		<div>
 			<input type="text" name="member_id" value="${cookie.remember.value}" class="login2" placeholder="아이디" style="width:430px; height:42px;">
@@ -96,99 +99,16 @@
 		</form>
 	</div>
 	
-	<div style="text-align: center;">
-		
-		<div style="display: inline-block;">
-		     <a id="login-form-btn" href="javascript:loginFormWithKakao()"> 
-				<img src="${pageContext.request.contextPath}/resources/images/common/kakao_logo.png" width="100%" height="auto" style="max-width:400px;max-height:60px"/>
- 			</a>
-	     </div>
-		 
-	</div>
 	</div>
 	
-	<c:import url="../template/footer.jsp"></c:import>
+	
+	
+<c:import url="../template/footer.jsp"></c:import>
 </body>
-
 <script type="text/javascript">
 	$("#btnJoin").click(function() {
 		location.href = "./memberJoin";
 	});
-</script>
-
-
-<!-- 카카오 로그인 js -->
-<script>
-Kakao.init('ee481319bcf54376fe803d6dc751dc54'); 
-function loginFormWithKakao() { 
-	Kakao.Auth.loginForm({ 
-		success: function(authObj) { 
-			Kakao.API.request({ 
-				url: '/v2/user/me', 
-				success: function(res) { 
-					console.log(res.kakao_account && res.kakao_account.email);
-					console.log(res.kakao_account['email']) 
-					console.log(res.id) 
-					
-					var id = res.id;
-					var email = res.kakao_account.email;
-				    var name = JSON.stringify(res.properties.nickname);
-
-				    if(id !=''){
-						$.ajax({
-			                    url:"<%=request.getContextPath()%>/member/memberIdCheck?member_id="+id,
-			                    Type:"get",
-			                   // data:{"id":id},
-			                    success:function(data){
-			                    	console.log("1 = 중복o / 0 = 중복x : "+ data);	
-			                    	
-			                    	if(data==1){
-			    						$.ajax({
-			    							url:"<%=request.getContextPath()%>/member/memberSocialLogin",
-			    								data:{"id":id},
-			    							type:"get",
-			    							success:function(data){
-			    								console.log("소셜로그인 성공");
-			    								location.href = "<%=request.getContextPath()%>";
-			    							}	
-			    						})		                    		
-			                    	}
-			                    	
-			                    	else{
-			                    		alert("소셜 회원 가입 창으로 이동합니다.")
-			                    		$.ajax({
-			                    			url:"<%=request.getContextPath()%>/member/memberJoin",
-			                    			type:"get",
-			                    			data:{"id":id, "email":email},
-			                    			success:function(data){
-			                    				console.log(id);
-			                    				console.log(email);
-			                    			
-			                    				console.log("아이디 넘기기 성공");
-			                    				 $('#bodyContents').children().remove();
-			                    		         // Contents 영역 교체
-			                    		         $('#bodyContents').html(data);	
-			                    			}
-			                    		});
-			                    	}
-			                    },
-			                    error:function(){
-			                    	alert("오류가 발생 하였습니다. 관리자에게 문의해주세요")
-			                    	location.href="<%=request.getContextPath()%>"
-			                    }
-	
-			                 });
-						}
-						
-		              },
-		              
-		           fail: function(error){
-		               alert(JSON.stringify(error));
-		           }
-		});
-		}
-	});
-}
 </script>
 
 </html>

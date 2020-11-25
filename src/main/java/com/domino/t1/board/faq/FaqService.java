@@ -18,9 +18,5 @@ public class FaqService {
 	public int setInsert(FaqDTO faqDTO) throws Exception{
 		return faqDAO.setInsert(faqDTO);
 	}
-	
-	public int setDelete(FaqDTO faqDTO) throws Exception{
-		return faqDAO.setDelete(faqDTO);
-	}
 
 }

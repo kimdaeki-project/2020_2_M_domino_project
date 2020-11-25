@@ -13,8 +13,4 @@
 		insert into faq values(board_seq.nextval, #{board_title}, #{board_writer}, #{board_contents}, #{faq_type})
 	</insert>
 	
-	<delete id="setDelete" parameterType="FaqDTO">
-    		delete faq where board_num=#{board_num}
-    </delete>
-	
 </mapper>

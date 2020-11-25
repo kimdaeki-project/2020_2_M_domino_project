@@ -30,8 +30,8 @@
 			
 			 <div class="col-sm-4 footer_cont app_box">
 				<p>
-					<a href="https://itunes.apple.com/kr/app/dominopija-domino-pizza-korea/id371008429?mt=8" target="_blank"><img src="${pageContext.request.contextPath}/resources/images/common/icon_apple.png" alt=""></a>
-					<a href="https://play.google.com/store/apps/details?id=kr.co.d2.dominos" target="_blank"><img src="${pageContext.request.contextPath}/resources/images/common/icon_android.png" alt=""></a>		
+					<a href="https://itunes.apple.com/kr/app/dominopija-domino-pizza-korea/id371008429?mt=8"><img src="${pageContext.request.contextPath}/resources/images/common/icon_apple.png" alt=""></a>
+					<a href="https://play.google.com/store/apps/details?id=kr.co.d2.dominos"><img src="${pageContext.request.contextPath}/resources/images/common/icon_android.png" alt=""></a>		
 				</p>
 				<p>DOWNLOAD APP</p>
 			</div>
@@ -49,11 +49,11 @@
 			
 			 <div class="col-sm-4 footer_cont sns_box">
 				<ul>
-					<li><a href="http://blog.naver.com/dominostory" target="_blank"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/icon_blog.png"></a></li>
-					<li><a href="https://www.instagram.com/dominostory/" target="_blank"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/icon_insta.png"></a></li>
-					<li><a href="https://www.facebook.com/dominostory/" target="_blank"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/icon_facebook.png"></a></li>
-					<li><a href="https://www.youtube.com/user/dominostory3082" target="_blank"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/icon_youtube.png"></a></li>
-					<li><a href="https://twitter.com/dominostory" target="_blank"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/icon_twitter.png"></a></li>
+					<li><a href="http://blog.naver.com/dominostory"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/icon_blog.png"></a></li>
+					<li><a href="https://www.instagram.com/dominostory/"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/icon_insta.png"></a></li>
+					<li><a href="https://www.facebook.com/dominostory/"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/icon_facebook.png"></a></li>
+					<li><a href="https://www.youtube.com/user/dominostory3082"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/icon_youtube.png"></a></li>
+					<li><a href="https://twitter.com/dominostory"><img alt="" src="${pageContext.request.contextPath}/resources/images/common/icon_twitter.png"></a></li>
 				</ul>	
 			</div>	 
 	   		</div>	

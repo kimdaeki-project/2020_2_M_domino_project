@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.domino.t1.board.BoardDTO;
+import com.domino.t1.util.Pager;
 
 @Repository
 public class FaqDAO {
@@ -20,9 +22,5 @@ public class FaqDAO {
 	
 	public int setInsert(FaqDTO faqDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"setInsert", faqDTO);
-	}
-	
-	public int setDelete(FaqDTO faqDTO) throws Exception{
-		return sqlSession.delete(NAMESPACE+"setDelete", faqDTO);
 	}
 }

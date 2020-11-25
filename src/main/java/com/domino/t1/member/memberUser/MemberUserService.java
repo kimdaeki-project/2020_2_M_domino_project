@@ -79,8 +79,6 @@ public class MemberUserService implements MemberService{
 		return memberDAO.getMemberLogin(couponDTO);
 
 	}
-	
-	
 
 	@Override
 	public int setMemberJoin(MemberDTO memberDTO) throws Exception {
@@ -115,9 +113,5 @@ public class MemberUserService implements MemberService{
 		return memberDAO.setPassword(memberDTO);
 	}
 	
-	//추가
-		public CouponDTO getMemberSocialLogin(CouponDTO couponDTO) throws Exception{
-			return memberDAO.getMemberSocialLogin(couponDTO);
-		}
 	
 }

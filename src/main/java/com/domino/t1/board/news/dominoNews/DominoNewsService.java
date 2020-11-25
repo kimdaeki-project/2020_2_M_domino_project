@@ -58,6 +58,7 @@ public class DominoNewsService implements NewsService {
 		String path = session.getServletContext().getRealPath("/resources/upload/dominoNews/");
 		File file = new File(path);
 	
+		
 		for(int i=0;i<files.length;i++) {
 			if(i==0) {
 				continue;
