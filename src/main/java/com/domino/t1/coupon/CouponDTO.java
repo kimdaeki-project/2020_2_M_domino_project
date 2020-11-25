@@ -12,7 +12,7 @@ public class CouponDTO extends Pager{
     private String sale_name;
     private int sale_discount;
     private Date sale_date;
-    
+    private Date sale_date_end;
     
 	public long getSale_list() {
 		return sale_list;
@@ -37,6 +37,12 @@ public class CouponDTO extends Pager{
 	}
 	public void setSale_date(Date sale_date) {
 		this.sale_date = sale_date;
+	}
+	public Date getSale_date_end() {
+		return sale_date_end;
+	}
+	public void setSale_date_end(Date sale_date_end) {
+		this.sale_date_end = sale_date_end;
 	}
 
     
