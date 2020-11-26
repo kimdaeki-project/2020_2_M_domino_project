@@ -44,10 +44,10 @@
 					</div>
 					<!-- 배달 -->
 					<div class="deli-info">
-						<div class="address">${address.roadFullAddr}</div>
 						<div class="store">
-							<span>지점</span> 전화번호
+							<span>고객 주소</span>
 						</div>
+						<div class="address">${address.roadFullAddr}</div>
 					</div>
 				</div>
 
@@ -212,7 +212,7 @@
 													<div class="chk-box" style="margin-left: 25px;">
 														<input type="radio" id="coupon${i.index}"
 															value="${i.index}" name="coupon"
-															 onclick="chooseForm(this.name)"> <label
+															onclick="chooseForm(this.name)"> <label
 															class="checkbox" for="coupon${i.index}"></label> <label
 															for="coupon${i.index}">${coupon.sale_name}(유효기간:${coupon.sale_date}~${coupon.sale_date_end})</label>
 													</div>
@@ -224,129 +224,50 @@
 
 
 
-								
 
-								<div class="col-sm-4" id="form_0"
-									style="padding: 20px 0; background-color: #f2f2f2; text-align: center;">
-									<div class="coupon-pay"
-										style="background-color: white; height: 300px; border: 20px solid #f2f2f2;">
-										<div class="title-type2">
-											<h4>최종 결제 금액</h4>
+								<c:forEach items="${couponList}" var="coupon" varStatus="i">
+									<div class="col-sm-4" id="form_${i.index}"
+										style="padding: 20px 0; background-color: #f2f2f2; text-align: center; display: none;">
+										<div class="coupon-pay"
+											style="background-color: white; height: 300px; border: 20px solid #f2f2f2;">
+											<div class="title-type2">
+												<div style="font-size: 30px; font-weight: 900;">최종 결제
+													금액</div>
+											</div>
+											<dl>
+												<dt style="font-size: 20px; font-weight: 700">총 상품 금액:</dt>
+												<dd class="totalPrice"
+													style="font-size: 20px; font-weight: 900;">38,900<em>원</em></dd>
+											</dl>
+											<dl class="discount">
+												<dt style="font-size: 20px; font-weight: 700">총 할인 금액:</dt>
+												<dd id="totalDiscount"
+													style="color: red; font-size: 20px; font-weight: 900;">37,800<em>원</em></dd>
+											</dl>
+											<hr>
+											<!--할인 적용한 쿠폰명-->
+											<ul class="apply applyBox">
+												<li class="prmtName">-> ${coupon.sale_name}</li>
+											</ul>
+											<!--//할인 적용한 쿠폰명-->
+											<dl class="total">
+												<dt style="font-size: 20px; font-weight: 700">총 결제 금액:</dt>
+												<dd id="totalPricePay"
+													style="font-size: 25px; font-weight: 900">28,900<em>원</em></dd>
+											</dl>
 										</div>
-										<dl>
-											<dt>총 상품 금액</dt>
-											<dd class="totalPrice">38,900원</dd>
-										</dl>
-										<dl class="discount">
-											<dt>총 할인 금액</dt>
-											<dd id="totalDiscount">10,000원</dd>
-										</dl>
-										<hr>
-										<!--할인 적용한 쿠폰명-->
-										<ul class="apply applyBox">
-											<li class="prmtName">-> [첫 주문]스타 셰프 컬렉션 L 배달 1만원</li>
-										</ul>
-										<!--//할인 적용한 쿠폰명-->
-										<dl class="total">
-											<dt>총 결제 금액</dt>
-											<dd id="totalPricePay">28,900원</dd>
-										</dl>
-									</div>
-							
 
 
-									<div>
-										<div class="btn-wrap"
-											style="background-color: #ff143c; height: 50px; width: 260px; margin: 0 auto;">
-											<a href="#" class="btn-type1"
-												style="line-height: 50px; color: white; font-size: 18px;">쿠폰
-												적용하기</a>
+
+										<div>
+											<div class="btn-wrap">
+												<a href="javascript:goInfo();" class="btn-type1"
+													style="color: white;"> 쿠폰 적용하기</a>
+											</div>
 										</div>
+
 									</div>
-
-								</div>
-
-
-								<div class="col-sm-4" id="form_1"
-									style="padding: 20px 0; background-color: #f2f2f2; text-align: center;">
-									<div class="coupon-pay"
-										style="background-color: white; height: 300px; border: 20px solid #f2f2f2;">
-										<div class="title-type2">
-											<h4>최종 결제 금액</h4>
-										</div>
-										<dl>
-											<dt>총 상품 금액</dt>
-											<dd class="totalPrice">18,900원</dd>
-										</dl>
-										<dl class="discount">
-											<dt>총 할인 금액</dt>
-											<dd id="totalDiscount">13,000원</dd>
-										</dl>
-										<hr>
-										<!--할인 적용한 쿠폰명-->
-										<ul class="apply applyBox">
-											<li class="prmtName">-> [첫 주문]스타 셰프 컬렉션 L 배달 1만원</li>
-										</ul>
-										<!--//할인 적용한 쿠폰명-->
-										<dl class="total">
-											<dt>총 결제 금액</dt>
-											<dd id="totalPricePay">5,900원</dd>
-										</dl>
-									</div>
-							
-
-
-									<div>
-										<div class="btn-wrap"
-											style="background-color: #ff143c; height: 50px; width: 260px; margin: 0 auto;">
-											<a href="#" class="btn-type1"
-												style="line-height: 50px; color: white; font-size: 18px;">쿠폰
-												적용하기</a>
-										</div>
-									</div>
-
-								</div>
-
-								<div class="col-sm-4" id="form_2"
-									style="padding: 20px 0; background-color: #f2f2f2; text-align: center;">
-									<div class="coupon-pay"
-										style="background-color: white; height: 300px; border: 20px solid #f2f2f2;">
-										<div class="title-type2">
-											<h4>최종 결제 금액</h4>
-										</div>
-										<dl>
-											<dt>총 상품 금액</dt>
-											<dd class="totalPrice">30,900원</dd>
-										</dl>
-										<dl class="discount">
-											<dt>총 할인 금액</dt>
-											<dd id="totalDiscount">6,000원</dd>
-										</dl>
-										<hr>
-										<!--할인 적용한 쿠폰명-->
-										<ul class="apply applyBox">
-											<li class="prmtName">-> [첫 주문]스타 셰프 컬렉션 L 배달 1만원</li>
-										</ul>
-										<!--//할인 적용한 쿠폰명-->
-										<dl class="total">
-											<dt>총 결제 금액</dt>
-											<dd id="totalPricePay">9,900원</dd>
-										</dl>
-									</div>
-							
-
-
-									<div>
-										<div class="btn-wrap"
-											style="background-color: #ff143c; height: 50px; width: 260px; margin: 0 auto;">
-											<a href="#" class="btn-type1"
-												style="line-height: 50px; color: white; font-size: 18px;">쿠폰
-												적용하기</a>
-										</div>
-									</div>
-
-								</div>
-
+								</c:forEach>
 
 
 								<div class="modal-footer" style="background-color: #f2f2f2;">
@@ -629,16 +550,6 @@
 
 		// checkbox end
 
-		// modal창
-		function myCoupon() {
-			var url = "./myCoupon";
-			var name = "popup test";
-			var option = "width = 900px, height = 650px , top = 100px, left = 400px, location = no, scrollbars = no, toolbars = no, status = no"
-			window.open(url, name, option);
-		}
-
-		// modal 창 end
-
 		// modal창 coupon
 		function chooseForm(radioName) {
 			var radios = document.getElementsByName(radioName);
@@ -650,6 +561,7 @@
 			}
 		}
 		// modal창 coupon end
+
 
 		//배달 시간 확인 
 		function openTab(evt, tabName) {
