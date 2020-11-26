@@ -617,7 +617,7 @@
 							alert("오류: 장바구니 담기에 실패했습니다. 문제가 지속될 경우 관리자에게 문의 바랍니다.")	
 							return
 						}
-						var answer = window.confirm("물건이 장바구니에 담겼습니다. 장바구니로 이동할까요?")
+						var answer = window.confirm("물건이 장바구니에 담겼습니다. 지금 확인하시겠습니까?")
 						if(answer){						
 							location.href = "/t1/cart/detail"
 							
