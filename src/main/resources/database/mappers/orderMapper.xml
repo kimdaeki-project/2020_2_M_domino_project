@@ -7,8 +7,8 @@
     
     	<select id="getOne" parameterType="AddressDTO" resultType="AddressDTO">
 
-    		select * from member_address where member_num = #{member_num} and address_num = #{address_num}
-
+    		select * from member_address where member_num = #{member_num}
+    		
     	</select>
     
     	<select id="getCoupon" parameterType="CouponDTO" resultType="CouponDTO">
