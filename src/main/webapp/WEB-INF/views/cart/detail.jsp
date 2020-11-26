@@ -56,7 +56,7 @@
 								</p>
 								<!-- 사이즈에 따른 피자 기본 가격 + 도우에 따른 옵션 비용 -->
 								<p>${pizzaGroup[0].item_price + pizzaGroup[1].item_price}원</p>
-								<input type="number"class="pizza-price" value="${pizzaGroup[0].item_price + pizzaGroup[1].item_price}"/>
+								<input type="number" class="pizza-dough-price" value="${pizzaGroup[0].item_price + pizzaGroup[1].item_price}" >
 							</div>
 						</td>
 						<td>
@@ -163,10 +163,12 @@
 	// compute each pizza item's total topping price
 	function setToppingPriceSubtotal(){
 		$(".topping-price-subtotal").each(function(){
-			var toppingSubtotal = $(this)
-			$(this).next().find(".topping-price").each(function(){
-				toppingSubtotal.val(Number(toppingSubtotal.val()) + Number($(this).val()))
+			var t = $(this)
+			var toppingSubtotal = 0
+			t.next().find(".topping-price").each(function(){
+				toppingSubtotal = Number(toppingSubtotal) + Number($(this).val())
 			})
+			t.val(toppingSubtotal)
 		})
 	}
 
@@ -175,8 +177,8 @@
 		$(".pizza-unit-price").each(function(){
 			var pizzaUnitSubtotal = $(this)
 			var toppingPrice = pizzaUnitSubtotal.closest("tr").find(".topping-price-subtotal").val()
-			var pizzaPrice = pizzaUnitSubtotal.closest("tr").find(".pizza-price").val()
-			pizzaUnitSubtotal.val(Number(toppingPrice) + Number(pizzaPrice))
+			var pizzaDoughPrice = pizzaUnitSubtotal.closest("tr").find(".pizza-dough-price").val()
+			pizzaUnitSubtotal.val(Number(toppingPrice) + Number(pizzaDoughPrice))
 		})
 	}
 	

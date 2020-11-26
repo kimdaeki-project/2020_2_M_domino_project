@@ -132,51 +132,45 @@
 						</div>
 					</div>
 					<div class="order-step">
-						<ul>
-							<li>
-								<div class="menu">
-									<!-- 피자 명  -->
-									<c:forEach items="${pizzaGroupList}" var="pizzaGroup">
-										<c:forEach items="${pizzaGroup}" var="dto">
-											<div>
-												<strong class="goods_name">${dto.item_name}</strong>
-											</div>
-										</c:forEach>
-									</c:forEach>
-									<!-- //피자 명  -->
-								</div> <!-- 토핑 -->
-								<div class="topping">
-									<span style="display: none;" id="goods_name_brief">메인</span>
-									<div class="item">
-										<c:forEach items="${pizzaGroupList}" var="pizzaGroup">
-											<c:forEach items="${pizzaGroup}" var="dto">
-												<div class="item_pizza">${dto.item_name}</div>
-												<span>${dto.item_price}원</span>
-												<span> x ${dto.cart_quantity}</span>
-											</c:forEach>
-										</c:forEach>
-
-
-										<div class="etc">
-											<c:forEach items="${itemList}" var="dto">
-												<div class="item_topping">${dto.item_name}</div>
-												<span>${dto.item_price}원</span>
-												<span> x ${dto.cart_quantity}</span>
-											</c:forEach>
-											<!-- //토핑 -->
-										</div>
+					<!-- 타이틀 메뉴: 	pizza + dough(full name) + size + [외 gId.len - 1 건] -->
+						<div class="menu title-menu">
+									
+						</div> 
+					<!-- 주문 제품 리스트 -->										
+						<ul>				
+							<c:forEach items="${pizzaGroupList}" var="pizzaGroup">
+								<li class="item pizza-group">
+									<div class="item-pizza">
+										<p class="item-name-big">
+											${pizzaGroup[0].item_name} ${pizzaGroup[1].item_name} ${pizzaGroup[0].item_size} / 
+											<span class="item-subtotal pizza-item-subtotal"></span>원 
+										<p>
+										<input type="hidden" class="pizza-dough-price" value="${pizzaGroup[0].item_price + pizzaGroup[1].item_price}"/>
+										<input type="hidden" class="pizza-quantity" value="${pizzaGroup[0].cart_quantity}" />
 									</div>
-
-									<!-- 사이드 메뉴 -->
-									<span style="display: none;" id="goods_name_brief">사이드메뉴</span>
-									<div class="item"></div>
-								</div>
-							</li>
+									<c:forEach items="${pizzaGroup}" var="topping" begin="2" varStatus="loop">
+										<div class="item-topping">
+											<p class="item-name-small">
+												+ ${topping.item_name}(${topping.cart_quantity}개 X 피자 ${pizzaGroup[0].cart_quantity})
+											</p>
+											<input type="hidden" class="topping-price" value="${topping.item_price * topping.cart_quantity}"/>
+										</div>		
+									</c:forEach>
+								</li>
+							</c:forEach>
+							<c:forEach items="${itemList}" var="item">
+								<li class="item-standalone">
+									<p class="item-name-big">
+										${item.item_name} X ${item.cart_quantity} /	
+										<span class="item-subtotal">${item.item_price * item.cart_quantity}</span>원 										
+									</p>
+								</li>
+							</c:forEach>
 						</ul>
+
 					</div>
 				</div>
-				<!-- 사이드메뉴 -->
-				<!-- //주문내역 -->
+			</div>
 
 				<!-- 할인 적용 -->
 				<div class="step-wrap" id="dc_info">
@@ -449,7 +443,7 @@
 								<li>
 									<p class="tit">총 상품 금액</p>
 									<p class="price">
-										총가격<em>원</em>
+										총가격<em class="total-price">원</em>
 									</p>
 								</li>
 								<li class="math">-</li>
@@ -484,6 +478,51 @@
 	<c:import url="../template/footer.jsp"></c:import>
 
 	<script>
+// 돈계산 ~~~~~~~~~~~	
+		var totalPrice = 0
+		$(document).ready(function(){
+			// set title menu
+			// pizza + dough(full name) + size + [외 gId.len - 1 건]
+			var title = ""
+			if(${pizzaGroupList.size() > 0}){
+				title = title.concat("${pizzaGroupList[0][0].item_name}", " ")
+				title = title.concat("${pizzaGroupList[0][1].item_name}", " ")
+				title = title.concat("${pizzaGroupList[0][0].item_size}", " x ")
+				title = title.concat("${pizzaGroupList[0][0].cart_quantity}")
+			}else{
+				// 피자 없으면 itemList 첫 항목을 타이틀로 사용 
+				title = title.concat("${itemList[0].item_name}", " x ")
+				title = title.concat("${itemList[0]}.cart_quantity")
+			}
+			// pizza + sideDish + etc 2개 이상이면 "외 total-1" 건 이라고 추가 표시 
+			var totalItemCount = ${pizzaGroupList.size()} + ${itemList.size()}
+			if(totalItemCount > 1){
+				title = title.concat(" 외 ", totalItemCount - 1, "건")
+			}
+			console.log(title)
+			$(".title-menu").text(title)
+			
+			//set pizza subtotal
+			$(".pizza-group").each(function(){
+				var pizza = $(this)
+				var pizzaBasicPrice = pizza.find(".pizza-dough-price").val() 
+				var pizzaToppingSubtotal = 0
+				pizza.find(".topping-price").each(function(){
+					pizzaToppingSubtotal += Number($(this).val())
+				})
+				var pizzaQuantity = pizza.find(".pizza-quantity").val()
+				var pizzaPrice = (Number(pizzaBasicPrice) + Number(pizzaToppingSubtotal)) * pizzaQuantity
+				pizza.find(".pizza-item-subtotal").text(pizzaPrice)
+			})
+			// set totalPrice
+			$(".item-subtotal").each(function(){
+				totalPrice = Number(totalPrice) + Number($(this).text())
+			})
+			$(".total-price").text(totalPrice)
+		})	
+		
+	
+	
 		// 카카오 페이
 
 		$(document).ready(function() {
