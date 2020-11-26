@@ -67,7 +67,7 @@
 								<a href="#" class="btn-type-brd2" id="add_addr">
 									+ 포장 매장 등록
 								</a>
-								<div class="addr-limit">* 포장매장은 최대 10개까지만 등록 가능합니다.</div>
+								<div class="addr-limit-after">* 포장매장은 최대 10개까지만 등록 가능합니다.</div>
 							</div>
 							<div class="addr-btn">
 								<p class="title-type4 ask-deli">해당 매장으로 주문을 진행 하시겠습니까?</p>

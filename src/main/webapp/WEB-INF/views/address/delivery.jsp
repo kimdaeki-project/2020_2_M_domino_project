@@ -13,12 +13,6 @@
 <link href ="../resources/css/common/member.css" rel="stylesheet">
 <link href ="../resources/css/address/address.css" rel="stylesheet">
 <script src="../resources/js/header.js"></script>
-<style type="text/css">
-	#btnLog{
-		float: right;
-	}
-		
-</style>
 </head>
 <body>
 
@@ -62,23 +56,23 @@
 								<li>
 									<div class="notyet">
 										<p class="title"><img alt="" src="../resources/images/address/sp_alert_t1.png"> 배달 주소를 등록해주세요.</p>
-							<form action="./delivery" name="form" id="form" method="post">
-
-								<a href="#" onclick="goPopup();" class="btn-type-brd2" id="add_addr">
-										+ 배달 주소 등록
-								</a>
-								<div id="list"></div>
-								<div id="callBackDiv">
-									<input type="number" value="${member.member_num}" name="member_num" class="none">
-									
-										<div class="roadFull">도로명주소 전체(포멧) <input type="text"  style="width:500px;" id="roadFullAddr"  name="roadFullAddr" /></div>
+									<form action="./delivery" name="form" id="form" method="post" class="addr-form">
+		
+										<a href="#" onclick="goPopup();" class="btn-type-brd2" id="add_addr">
+												+ 배달 주소 등록
+										</a>
+										<div id="list"></div>
+										<div id="callBackDiv">
+											<input type="number" value="${member.member_num}" name="member_num" class="none">
+											
+												<div class="roadFull">도로명주소 전체(포멧) <input type="text"  style="width:500px;" id="roadFullAddr"  name="roadFullAddr" /></div>
+												
+											
+										</div>
+										<input type="button" value="배달 주소 등록 확인" id="deliveryBtn">
+												
+									</form>
 										
-									
-								</div>
-								<input type="button" value="배달 주소 등록 확인" id="deliveryBtn">
-										
-							</form>
-								
 									</div>
 									
 								</li>
