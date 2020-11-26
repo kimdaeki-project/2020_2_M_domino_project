@@ -210,8 +210,10 @@
 											<div class="form-item">
 												<c:forEach items="${couponList}" var="coupon" varStatus="i">
 													<div class="chk-box" style="margin-left: 25px;">
-														<input type="radio" id="coupon${i.index}" name="coupon">
-														<label class="checkbox" for="coupon${i.index}"></label> <label
+														<input type="radio" id="coupon${i.index}"
+															value="${i.index}" name="coupon"
+															 onclick="chooseForm(this.name)"> <label
+															class="checkbox" for="coupon${i.index}"></label> <label
 															for="coupon${i.index}">${coupon.sale_name}(유효기간:${coupon.sale_date}~${coupon.sale_date_end})</label>
 													</div>
 												</c:forEach>
@@ -220,7 +222,11 @@
 									</div>
 								</div>
 
-								<div class="col-sm-4"
+
+
+								
+
+								<div class="col-sm-4" id="form_0"
 									style="padding: 20px 0; background-color: #f2f2f2; text-align: center;">
 									<div class="coupon-pay"
 										style="background-color: white; height: 300px; border: 20px solid #f2f2f2;">
@@ -246,6 +252,8 @@
 											<dd id="totalPricePay">28,900원</dd>
 										</dl>
 									</div>
+							
+
 
 									<div>
 										<div class="btn-wrap"
@@ -257,6 +265,89 @@
 									</div>
 
 								</div>
+
+
+								<div class="col-sm-4" id="form_1"
+									style="padding: 20px 0; background-color: #f2f2f2; text-align: center;">
+									<div class="coupon-pay"
+										style="background-color: white; height: 300px; border: 20px solid #f2f2f2;">
+										<div class="title-type2">
+											<h4>최종 결제 금액</h4>
+										</div>
+										<dl>
+											<dt>총 상품 금액</dt>
+											<dd class="totalPrice">18,900원</dd>
+										</dl>
+										<dl class="discount">
+											<dt>총 할인 금액</dt>
+											<dd id="totalDiscount">13,000원</dd>
+										</dl>
+										<hr>
+										<!--할인 적용한 쿠폰명-->
+										<ul class="apply applyBox">
+											<li class="prmtName">-> [첫 주문]스타 셰프 컬렉션 L 배달 1만원</li>
+										</ul>
+										<!--//할인 적용한 쿠폰명-->
+										<dl class="total">
+											<dt>총 결제 금액</dt>
+											<dd id="totalPricePay">5,900원</dd>
+										</dl>
+									</div>
+							
+
+
+									<div>
+										<div class="btn-wrap"
+											style="background-color: #ff143c; height: 50px; width: 260px; margin: 0 auto;">
+											<a href="#" class="btn-type1"
+												style="line-height: 50px; color: white; font-size: 18px;">쿠폰
+												적용하기</a>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="col-sm-4" id="form_2"
+									style="padding: 20px 0; background-color: #f2f2f2; text-align: center;">
+									<div class="coupon-pay"
+										style="background-color: white; height: 300px; border: 20px solid #f2f2f2;">
+										<div class="title-type2">
+											<h4>최종 결제 금액</h4>
+										</div>
+										<dl>
+											<dt>총 상품 금액</dt>
+											<dd class="totalPrice">30,900원</dd>
+										</dl>
+										<dl class="discount">
+											<dt>총 할인 금액</dt>
+											<dd id="totalDiscount">6,000원</dd>
+										</dl>
+										<hr>
+										<!--할인 적용한 쿠폰명-->
+										<ul class="apply applyBox">
+											<li class="prmtName">-> [첫 주문]스타 셰프 컬렉션 L 배달 1만원</li>
+										</ul>
+										<!--//할인 적용한 쿠폰명-->
+										<dl class="total">
+											<dt>총 결제 금액</dt>
+											<dd id="totalPricePay">9,900원</dd>
+										</dl>
+									</div>
+							
+
+
+									<div>
+										<div class="btn-wrap"
+											style="background-color: #ff143c; height: 50px; width: 260px; margin: 0 auto;">
+											<a href="#" class="btn-type1"
+												style="line-height: 50px; color: white; font-size: 18px;">쿠폰
+												적용하기</a>
+										</div>
+									</div>
+
+								</div>
+
+
 
 								<div class="modal-footer" style="background-color: #f2f2f2;">
 									<div class="col-sm-8" style="text-align: left; padding: 20px;">
@@ -319,7 +410,8 @@
 
 						<!-- 바로주문 -->
 						<div>
-							<div class="time-info tabcontent" id="tab1" style="display: block;">
+							<div class="time-info tabcontent" id="tab1"
+								style="display: block;">
 								<p class="text">
 									지금 주문하시면, <br> <span>${orderTime}</span> 배달될 예정입니다.
 								</p>
@@ -489,42 +581,41 @@
 			});
 
 		});
-		
+
 		// 카카오 페이 end
 
-		
 		// 주문자 동일  불러오기
 		$(document).ready(
 				function() {
 					$("#recipient").change(
 							function() {
 								if ($("#recipient").is(":checked")) {
-									$("#order_name").val("${member.member_name}")
-											.attr('readonly', true);
-									$(".tel1").val(
-											"${member.member_phone}"
-													.substring(4, 8)).attr(
+									$("#order_name").val(
+											"${member.member_name}").attr(
 											'readonly', true);
+									$(".tel1").val(
+											"${member.member_phone}".substring(
+													4, 8)).attr('readonly',
+											true);
 									$(".tel2").val(
-											"${member.member_phone}".substring(9,
-													14)).attr('readonly', true);
+											"${member.member_phone}".substring(
+													9, 14)).attr('readonly',
+											true);
 								} else {
-									$("#order_name").val("")
-											.attr('readonly', false);
+									$("#order_name").val("").attr('readonly',
+											false);
 									$(".tel1").val("").attr('readonly', false);
 									$(".tel2").val("").attr('readonly', false);
 								}
 							});
 				});
-		
+
 		// 주문자 동일  불러오기
-		
-		
-		
+
 		// checkbox
-		
+
 		$(document).ready(function() {
-			
+
 			$("input[type='checkbox']").change(function() {
 				if ($(this).is(':checked')) {
 					$(this).parent().addClass('selected');
@@ -535,7 +626,7 @@
 				}
 			});
 		});
-		
+
 		// checkbox end
 
 		// modal창
@@ -547,8 +638,19 @@
 		}
 
 		// modal 창 end
-		
-		
+
+		// modal창 coupon
+		function chooseForm(radioName) {
+			var radios = document.getElementsByName(radioName);
+			for (var i = 0, length = radios.length; i < length; i++) {
+				document.getElementById('form_' + radios[i].value).style.display = 'none';
+				if (radios[i].checked) {
+					document.getElementById('form_' + radios[i].value).style.display = 'block';
+				}
+			}
+		}
+		// modal창 coupon end
+
 		//배달 시간 확인 
 		function openTab(evt, tabName) {
 			var i, tabcontent, tablinks;
@@ -564,9 +666,8 @@
 			document.getElementById(tabName).style.display = "block";
 			evt.currentTarget.className += " active";
 		}
-		
+
 		//배달 시간 확인 end
-		
 	</script>
 </body>
 </html>
