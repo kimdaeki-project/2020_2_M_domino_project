@@ -42,7 +42,7 @@
 				<c:forEach items="${pizzaGroupList}" var="pizzaGroup">
 					<tr value="${pizzaGroup[0].cart_group_id}" class="pizza-cart-group">
 						<td>
-							<input type="checkbox" checked="checked" class="item-selected"/>
+							<input type="checkbox" checked="checked" class="item-selected to-checkout"/>
 						</td>
 						<td>
 							<div class="item-image-wrapper">
@@ -94,7 +94,7 @@
 				<c:forEach items="${itemList}" var="item">		
 					<tr value="${item.cart_group_id}" class="item-cart-group">
 						<td>
-							<input type="checkbox" checked="checked" class="item-selected"/>
+							<input type="checkbox" checked="checked" class="item-selected to-checkout"/>
 						</td>
 						<td>
 							<div class="item-image-wrapper">
@@ -370,8 +370,8 @@
 			}
 
 		})
-		console.log(pizzaGIdList.toString())
-		console.log(itemGIdList.toString())
+		alert(pizzaGIdList.toString())
+		alert(itemGIdList.toString())
 		var addressPage = '/t1/address/delivery'
 		$.get(
 			'/t1/cart/hasAddress',
@@ -389,6 +389,7 @@
 				"itemGIdList" : itemGIdList.toString()
 			},
 			function(result){
+	alert("insert result: " + result)
 				if(result < 1){
 					alert("오류가 발생했습니다. 문제가 지속될 경우 관리자에게 문의 바랍니다.")	
 					return

@@ -30,7 +30,7 @@
 								<li><strong>피자</strong></li>
 							</c:when>
 							
-							<c:when test="${category == 'sideDish'}">
+							<c:when test="${category == 'sidedish'}">
 								<li><strong>사이드디시</strong></li>
 							</c:when>
 							
@@ -59,7 +59,7 @@
 			<div class="col-sm-3 item-wrapper">
 				<div class="item-thumbnail-container">
 					<a href="../detail/sideDishDetail?item_id=${dto.item_id}">
-						<img src="/t1/resources/images/menu/sidedish/${dto.item_image}" alt="${dto.item_name}" class="item-thumbnail">
+						<img src="/t1/resources/images/menu/${dto.item_category}/${dto.item_image}" alt="${dto.item_name}" class="item-thumbnail">
 					</a>			
 				</div>
 				<div class="name-container">
