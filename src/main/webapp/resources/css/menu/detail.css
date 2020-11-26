@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .item-desc-container{
-	border: 2px black solid;
+	
 }
 
 .item-option-container{
@@ -16,12 +16,16 @@
 
 /* get black bottom border that separates item boxes */
 .option-box{
-	border-top: 1px solid black;
+	border-top: 2px solid black;
 	margin: 15px auto;
 }
 
 .option-title-wrap{
 	padding: 10px 0;
+}
+
+.option-title-wrap p{
+	font-size: 17px;
 }
 
 /* size option btn (red) */
@@ -78,10 +82,13 @@ form{
 
 .topping-tab{
 	vertical-align: middle;
-
 	border: 1.33px #dddddd solid;
-	text-align: center;
+	text-align: center;	
 }
+.topping-tab : hover{
+	background-color: #fff;	
+}
+
 .topping-tab.active {
 	background-color: #000 !important;
 }
@@ -97,11 +104,11 @@ form{
 	width:100%;
 	overflow: scroll;
 }
-.option-list{		
-    
+.option-list{		  
     height: 330px;
 	padding: 30px;
 	margin: 0;
+	text-align: center;
 }
 
 .option-item{
@@ -138,6 +145,7 @@ border: 1px red solid;
 /* pizza-quantity specific button css */
 .pizza-quantity-input-group{
 	width: 450px;
+	margin: 0 auto;
 }
 
 .pizza-quantity-input{

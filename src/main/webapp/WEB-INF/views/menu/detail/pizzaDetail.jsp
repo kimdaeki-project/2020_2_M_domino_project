@@ -9,6 +9,7 @@
     <c:import url="../../template/bootstrap.jsp"></c:import>
     <link href ="/t1/resources/css/common/default.css" rel="stylesheet">
     <link href ="/t1/resources/css/menu/detail.css" rel="stylesheet">
+    <link href ="/t1/resources/css/menu/detail2.css" rel="stylesheet">
     <link href="/t1/resources/css/common/shared.css" rel="stylesheet">
     <script src="/t1/resources/js/header.js"></script>
     <script src="/t1/resources/js/menu/detail.js"></script>
@@ -16,7 +17,7 @@
 </head>
 <body>
 <c:import url="../../template/header.jsp"></c:import>
-<div class="container">
+<div class="container" id="pdContainer">
 <script type="text/javascript">
 	// item_id, item_name, cart_quantity, item_price, [item_size]
  	var pizzaCart = ["${pizzaDTO.item_id}", "${pizzaDTO.item_name}", "1", "${pizzaDTO.pizza_price_l}", "L"]
@@ -104,18 +105,21 @@
 		<div>
 			<img src="/t1/resources/images/menu/pizza/${pizzaDTO.item_image}" alt="${pizzaDTO.item_name}" class="main-item-image">	
 		</div>
-		<div>
-			<div>메인 토핑</div>
-			<div>${pizzaDTO.pizza_toppings}</div>			
-		</div>
-		<div>
-			<div>토핑 원산지</div>
-			<div>${pizzaDTO.pizza_origin}</div>			
+		
+		<div class="toppings-info-wrap">
+			<div class="toppings-info1">
+				<h4>메인 토핑</h4>
+				<div>${pizzaDTO.pizza_toppings}</div>			
+			</div>
+			<div class="toppings-info2">
+				<h4>토핑 원산지</h4>
+				<div>${pizzaDTO.pizza_origin}</div>			
+			</div>
 		</div>
 	</div>
 	<div class="col-sm-6 item-option-container">
 		<div class="title-wrap">
-			<h2>${pizzaDTO.item_name }</h2>
+			<h2 style="font-weight: bold;">${pizzaDTO.item_name}</h2>
 			<span>${pizzaDTO.pizza_hashtag }</span>	
 			<p>영양성분 및 알레르기 유발성분 ></p>	
 		</div>
@@ -123,7 +127,7 @@
 			<div class="option-title-wrap">
 				<p>사이즈 선택</p>
 			</div>
-			<div>
+			<div style="text-align: center;">
 				<form id="frm-size-option">
 					<div class="btn-wrap">
 						<input type="radio" value="L" name="item_size" class="size-checkbox" id="size_l" checked="checked" hidden="hidden"/>
@@ -134,7 +138,6 @@
 						<label for="size_m" class="btn-size-option" value="${pizzaDTO.pizza_price_m}">M ${pizzaDTO.pizza_price_m}원</label>
 					</div>				
 				</form>
-			
 			</div>	
 			
 	<script type="text/javascript">	

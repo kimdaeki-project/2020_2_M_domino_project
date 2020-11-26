@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+#pdContainer{
+	padding: 3% 0;	
+}
+
+.toppings-info-wrap, .toppings-info1, .toppings-info2{
+	padding: 1% 0;
+	color:#888888;
+}
+
+.toppings-info-wrap h4{
+	color:black;
+}
