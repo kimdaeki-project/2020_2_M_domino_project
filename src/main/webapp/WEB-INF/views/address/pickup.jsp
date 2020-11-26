@@ -217,8 +217,8 @@
 									<span id="online-sale">online</span>
 									<span id="offline-sale">offline</span>
 								</p>
-								<div class="btn-wrap">
-									<a href="../menu/list/pizzaList" class="btn-type enter">선택</a>
+								<div class="btn-wrap enter-order">
+									<a href="../menu/list/pizzaList" class="btn-enter">선택</a>
 								</div>
 							</li>
 							<li id="second-li">
