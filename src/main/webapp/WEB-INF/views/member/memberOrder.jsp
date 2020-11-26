@@ -46,7 +46,7 @@
 	<div class="myLevel">
 		<div class="myCheck"><h1 id="mLevel">${member.member_name}님이 주문하신 내역입니다.</h1></div>
 		<div></div>
-		<div class="myCheck2">등급별 혜택보기></div>
+		<div class="myCheck2">주문을 취소하시려면 해당 매장으로 전화하셔야 합니다.</div>
 	</div>
 				<!-- 주문내역  ★for문사용★ -->
 				<div class="step-wrap">
