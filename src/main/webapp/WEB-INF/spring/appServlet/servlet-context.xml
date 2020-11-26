@@ -33,19 +33,25 @@
 	
 		<interceptor>
 			<mapping path="/faq/faqWrite"/>
+
 			<mapping path="/member/memberList"/>
 			<mapping path="/memberInq/memberInquirlyList"/>
 			<mapping path="/member/memberUpdateAdmin"/>
+
 			<mapping path="/dominoNews/*"/>
 			<mapping path="/press/*"/>
+			<mapping path="/qna/*"/>
 			<exclude-mapping path="/dominoNews/dominoNewsList"/>
 			<exclude-mapping path="/dominoNews/dominoNewsSelect"/>
+			<exclude-mapping path="/dominoNews/fileDown"/>
 			<exclude-mapping path="/press/pressList"/>
 			<exclude-mapping path="/press/pressSelect"/>
-			
+			<exclude-mapping path="/press/fileDown"/>
+			<exclude-mapping path="/qna/qnaWrite"/>	
+					
 			<beans:ref bean="AdminMemberInterceptor"></beans:ref>
 		</interceptor>
-		
+
 		<interceptor>
 			<mapping path="/address/*"/>
 			<mapping path="/memberInq/*"/>
@@ -54,15 +60,8 @@
 			<beans:ref bean="MemberInterceptor"></beans:ref>
 		</interceptor>
 	
-	
-	
 	</interceptors>
-	
-	
-	
-	
+
 	<context:component-scan base-package="com.domino.t1" />
-	
-	
-	
+
 </beans:beans>

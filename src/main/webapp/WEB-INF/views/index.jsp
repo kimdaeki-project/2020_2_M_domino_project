@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Insert title here</title>
+  <title>Dominos_t1</title>
   <meta charset="utf-8">
   <c:import url="./template/bootstrap.jsp"></c:import>
   <link href ="./resources/css/common/default.css" rel="stylesheet">
@@ -106,10 +106,20 @@
   <div class="container text-center">
     <div class="row">
    			 <div class="col-sm-3 card_wrap_inner">
-       			<p class="card_text1">도미노피자의<br><strong>특별한 매니아 혜택</strong><br>누려보세요!</p>
-       			<div class="card_wrap_login">
-					<a href="${pageContext.request.contextPath}/member/memberLogin" >로그인</a>
-				</div>
+   			 
+   			 	 <c:choose>
+	      			<c:when test="${not empty member or not empty sessionScope.token or not empty sessionId}">
+						<h3 id="mName">${member.member_name}님 현재등급</h3>
+						<div class="myCheck"><p id="mLevel" style="font-weight: bold; font-size: 50px;">${member.member_level}</p></div>
+					</c:when>
+					
+					<c:otherwise>
+						<p class="card_text1">도미노피자의<br><strong>특별한 매니아 혜택</strong><br>누려보세요!</p>
+		       			<div class="card_wrap_login">
+							<a href="${pageContext.request.contextPath}/member/memberLogin" >로그인</a>
+						</div>
+					</c:otherwise>
+				</c:choose>
    			 </div>
     
 			 <div class="col-sm-3 card_img" >
