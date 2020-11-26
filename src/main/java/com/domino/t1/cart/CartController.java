@@ -138,6 +138,18 @@ public class CartController {
 		return mv;
 	}
 	
+	@PostMapping("changeQuantity")
+	public ModelAndView changeQuantity(HttpSession session, CartDTO cartDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		System.out.println("quantity change: to " + cartDTO.getCart_quantity());
+		System.out.println("cart item id: " + cartDTO.getCart_item_id());
+		int result = cartService.updateCartItemQuantity(cartDTO);
+System.out.println("result: "+ result);
+		mv.addObject("msg", result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
+	
 	@PostMapping("delete/item")
 	public ModelAndView deleteItem(HttpSession session, CartDTO cartDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();	

@@ -76,10 +76,11 @@
 						<td>
 							<div class="input-group">
 								<span class="input-group-btn">
-									<button type="button" class="btn btn-quantity-controller btn-minus" min="1">-</button>
+									<button type="button" class="btn btn-quantity-controller btn-minus" min="1" disabled>-</button>
 								</span>
 								<input type="text" class="form-control quantity-input" value="${pizzaGroup[0].cart_quantity}" disabled/>
 								<input type="hidden" value=""  class="pizza-unit-price item-unit-price" />
+								<input type="hidden" value="${pizzaGroup[0].cart_item_id}" class="cart-item-id" />
 								<span class="input-group-btn">
 									<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
 								</span>	
@@ -113,10 +114,11 @@
 						<td>
 							<div class="input-group">
 								<span class="input-group-btn">
-									<button type="button" class="btn btn-quantity-controller btn-minus" min="1">-</button>
+									<button type="button" class="btn btn-quantity-controller btn-minus" min="1" disabled>-</button>
 								</span>
 								<input type="text" class="form-control quantity-input" value="${item.cart_quantity}" disabled/>
 								<input type="hidden" value="${item.item_price}"  class="item-unit-price" />
+								<input type="hidden" value="${item.cart_item_id}" class="cart-item-id" />
 								<span class="input-group-btn">
 									<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
 								</span>	
@@ -129,14 +131,14 @@
 			</table>			
 
 		<!-- 총 주문 금액: 체크박스에 체크 되어있는 항목만 합산 -->
-			<div>
-				<div>
-					총 금액 <span id="cart-total-price"></span>
-				</div>
+			<div class="cart-total-price-container">
+				<p class="cart-total-price-wrapper">
+					총 금액 <em id="cart-total-price"></em>
+				</p>
 			</div>
 		</div>
 		
-		<div class="content">
+		<div class="content btn-box">
 			<button id="btn-menu-list">+ 메뉴 추가하기</button>
 			<button id="btn-checkout">주문하기</button>
 		</div>
@@ -205,9 +207,10 @@
 		// set minus buttons disabled status
 		$(".btn-minus").each(function(){
 			var quantity = $(this).closest("div").find(".quantity-input").val()
-			var min = $(this).prop("min")
-			if(quantity == min){
-				$(this).prop("disabled")
+			var min = $(this).attr("min")
+			console.log("q: " + quantity + ", min: " + min )
+			if(quantity > min){
+				$(this).prop("disabled", false)
 			}
 		})
 		setCartTotal()
@@ -243,43 +246,51 @@
 			})
 		})
 
+		
+	// 항목 수량 변경
+	function changeQuantity(btn, input, cartItemId, quantity){
+		$.ajax({
+			url:"./changeQuantity",
+			type:"POST",
+			data:{
+				cart_item_id : cartItemId,
+				cart_quantity : quantity
+			},
+			success : function(result){
+				if(result < 1){
+					alert("오류가 발생했습니다")					
+					return
+				}
+				if(btn.hasClass("btn-minus")){
+					if(quantity <= parseInt($(this).attr("min"))){
+						btn.prop("disabled", true)
+					}
+				}else{
+					btn.closest("div").find(".btn-minus").prop("disabled", false)					
+				}
+					input.val(quantity)
+					setItemSubtotal()	
+					setCartTotal()				
+			}
+		})
+	}		
 
-		$(".btn-minus").click(function(){
+		$(".btn-quantity-controller").click(function(){
 			var input = $(this).parent().siblings(".quantity-input")
 			var quantity = input.val()	
-			if(quantity <= parseInt($(this).attr("min"))+1){
-				$(this).attr("disabled", true)
+			if($(this).hasClass("btn-minus")){
+				quantity -= 1
+			}else{
+				quantity = Number(quantity) + 1
 			}
-			quantity = quantity - 1
-			input.val(quantity)
-			
-			// update cart subtotal box
-			setItemSubtotal()	
-			setCartTotal()
+			var cartItemId = $(this).parent().siblings(".cart-item-id").val()	
+			changeQuantity($(this), input, cartItemId, quantity)
 		})
 		
 		
-		$(".btn-plus").click(function(){
-			var input = $(this).parent().siblings(".quantity-input")
-			var quantity = input.val()	
-			$(this).parent().parent().find(".btn-minus").attr("disabled", false)			
-			input.val(parseInt(quantity)+1)		
-
-			setItemSubtotal()	
-			setCartTotal()
-		})	
-	
 	if(${isCartEmpty} == 1){
 		setEmptyCart()
 	}	
-	
-	function updatePizzaGroupSubtotal(priceTag){
-		
-	}
-	
-	function updateItemSubtotal(priceTag){
-		
-	}
 	
 	function setEmptyCart(){
 		$.ajax({
@@ -344,6 +355,7 @@
 				}
 			})		
 		})	
+	
 	
 	// 계산하러 가기 
 	$("#btn-checkout").click(function(){

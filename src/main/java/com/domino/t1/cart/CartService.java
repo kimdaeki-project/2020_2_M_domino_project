@@ -146,7 +146,7 @@ public class CartService {
 			CartDTO dup = cartDAO.getCartItem(cartDTO);
 			if(dup != null) {
 				// in case the item already exists in the user's cart
-				cartDTO.setCart_group_id(dup.getCart_group_id());
+				cartDTO.setCart_item_id(dup.getCart_item_id());
 				cartDTO.setCart_quantity(cartDTO.getCart_quantity() + dup.getCart_quantity());
 				resultCurr = cartDAO.updateCartItemQuantity(cartDTO);
 			}else {
@@ -172,7 +172,12 @@ System.out.println(list.toString());
 			}
 			return list;
 		}	
-	
+
+// update cart item's quantity
+	public int updateCartItemQuantity(CartDTO cartDTO) throws Exception {
+		return cartDAO.updateCartItemQuantity(cartDTO);
+	}
+		
 
 // delete a group of, or a single CartDTO item
 	// delete an entire cart group of item(s) <- cart_group_id, member_num(fk)
