@@ -371,11 +371,13 @@
 		font-size: 14px;
 		color: #111;
 		background-color: #ff8080;
+		line-height: 1;
 	}
 	
 	.branch-addr-result dl .tel {
 		margin-left: 5px;
 		font-size: 14px;
+		background-color: #ffff00;
 	}
 	
 	.branch-addr-result dl > .br-addr {
@@ -393,7 +395,7 @@
 		height: 44px;
 		margin-top: 15px;
 		font-size: 14px;
-		line-height: 22px;
+		line-height: 20px;
 		color: #888888;
 		background-color: #80ffff;
 	}

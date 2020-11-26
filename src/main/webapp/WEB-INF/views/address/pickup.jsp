@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>포장 주문</title>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <c:import url="../template/bootstrap.jsp"></c:import>
 <link href ="../resources/css/common/default.css" rel="stylesheet">
@@ -42,7 +42,7 @@
 					<div class="tab-content" id="pickup">
 						<div class="spot-area">
 							<span class="spot left-spot">
-								<img alt="`" src="../resources/images/address/sp_driving_pu_t1.png" style="width: 27px; height: 19px;">도미노 드라이빙 픽업 서비스 이용
+								<img alt="" src="../resources/images/address/sp_driving_pu_t1.png" style="width: 27px; height: 19px;">도미노 드라이빙 픽업 서비스 이용
 							</span>
 							
 							<a href="#" class="spot right-spot">
@@ -82,7 +82,7 @@
 					<!-- map -->
 					<div class="store-map-wrap">
 						<div class="store-map">
-							<div class="map-canvas" id="map" style="width: 750px; height: 920px;"></div>
+							<div class="map-canvas" id="map"></div>
 						</div>
 					</div>
 					
@@ -142,7 +142,7 @@
 							<div class="address-wrap branch">
 								<div class="form-group srch-type">
 									<div class="form-item" id="search_branch">
-										<input type="text" id="branch_name" placeholder="매장명을 입력하세요.">
+										<input type="text" id="branch_name" placeholder="	매장명을 입력하세요.">
 									</div>
 									<div class="form-region" id="btn-search">
 										<button type="button" class="btn-search">
@@ -168,17 +168,27 @@
 						<div class="row branch-addr-result">
 							<div class="column branch-result-list">
 								<dl>
-									<dt></dt>
-									<dd></dd>
-									<dd></dd>
+									<dt>매장명<span class="tel">매장전화번호</span></dt>
+									<dd class="br-addr">매장 주소</dd>
+									<dd class="hash">
+										<span>
+											특별 세일 1<!-- 
+											<br>
+											특별 세일 2 -->
+										</span>
+									</dd>
 								</dl>
 								<div class="salenames">
-									<div class="sale1"></div>
-									<div class="sale2"></div>
+									<div class="sale1">
+										<span>세일1<br>11<br>122</span>
+									</div>
+									<div class="sale2">
+										<span>세일2<br>11<br>122</span>
+									</div>
 								</div>
 								<div class="br-detail">
-									<a href="#" class="btn" id="type1">상세보기</button></a>
-									<a href="#" class="btn" id="type2">방문포장</button></a>
+									<a href="#" class="btn" id="type1" onclick="popDetail()">상세보기</a>
+									<a href="#" class="btn" id="type2">선택</a>
 								</div>
 							</div>
 						</div>
@@ -190,23 +200,75 @@
 			
 		</div>	<!-- pop-wrap -->
 	</div>	<!-- pop-layer -->
+	<%--  --%>
+	<div class="pop-layer view-detail" id="pop-store">
+		<div class="pop-wrap detail-info">
+			<div class="pop-title-wrap pop-header">
+				<h2 class="pop-title">매장 상세정보</h2>
+				<a href="#" class="closebtn" onclick="document.getElementById('pop-store').style.display='none'">&times;</a>
+			</div>
+			<div class="pop-content details">
+				<div class="store-view-detail">
+					<div class="store-detail-box">
+						<ul>
+							<li id="first-li">
+								<h3 id="branch-name">도미노피자 </h3>
+								<p class="promotion">
+									<span id="online-sale">online</span>
+									<span id="offline-sale">offline</span>
+								</p>
+								<div class="btn-wrap">
+									<a href="../menu/list/pizzaList" class="btn-type enter">선택</a>
+								</div>
+							</li>
+							<li id="second-li">
+								<dl>
+									<dt>전화번호</dt>
+									<dd>번호</dd>
+								</dl>
+								<dl>
+									<dt>주소</dt>
+									<dd>서울시</dd>
+								</dl>
+								<dl>
+									<dt>영업시간</dt>
+									<dd>0000</dd>
+								</dl>
+								<dl>
+									<dt>주차정보</dt>
+									<dd>가능</dd>
+								</dl>
+							</li>
+						</ul>
+					</div>
+					<div class="store-map-area">
+						<div class="map-canvas store-loc" id="map-detail"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<!-- ===== 포장매장등록 popup html ===== -->	
 	
 </div><!-- container -->
 
 <script type="text/javascript"> <!-- 팝업 모달 close -->
-
+/* */
 	var viewSearch = document.getElementById("pop-map")
-	
+	 
 	function popMap() {
-		viewSearch.style.display='block'
+		viewSearch.style.display = 'block'
 	}
-	
+	/* 
 	window.onclick = function(event) {
 	  if (event.target == viewSearch) {
 	    viewSearch.style.display = "none";
+	    viewDetail.style.display = "none";
 	  }
 	}
+	 */
+	/////////////// 매장 상세보기 ////////////////
 
 </script>
 
@@ -237,12 +299,17 @@
 	document.getElementById("defaultOpen").click();
 	
 </script>
-   
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8359d6b1a5e0267b346e7ce57922d7f4&libraries=services"></script>
+<script type="text/javascript" src="../resources/js/address/pickup.js"><!-- ===== 지도 javascript ===== -->
+
+</script><!-- ===== 지도 ===== -->
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8359d6b1a5e0267b346e7ce57922d7f4&libraries=services"></script>
 <script><!-- ===== 지도 javascript ===== -->
 
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	
 	mapOption = { 
 	    center: new kakao.maps.LatLng(37.564713, 126.993173), // 지도의 중심좌표
 	    level: 3 // 지도의 확대 레벨
@@ -250,16 +317,12 @@
 	
 	//지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 	var map = new kakao.maps.Map(mapContainer, mapOption); 
-	/*     
-	mapContainer.style.width = '750px';
-	mapContainer.style.height = '920px';
-	 */
+	
     $("#add_addr").click(function() {
-        $("#map").toggle();
         map.relayout();
         map.setCenter(new daum.maps.LatLng(37.564713, 126.993173))
     });
-	
+    
 	var imageSrc = '/t1/resources/images/branch/ico_spot.png', // 마커이미지의 주소입니다    
     imageSize = new kakao.maps.Size(40, 52), // 마커이미지의 크기입니다
     imageOption = {offset: new kakao.maps.Point(0, 0)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
@@ -275,7 +338,6 @@
 	});
 	// 마커가 지도 위에 표시되도록 설정합니다
 	marker.setMap(map); 
-	
 	
 </script><!-- ===== 지도 ===== -->
 

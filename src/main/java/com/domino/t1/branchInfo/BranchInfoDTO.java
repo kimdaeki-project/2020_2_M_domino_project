@@ -1,6 +1,9 @@
 package com.domino.t1.branchInfo;
 
-public class BranchInfoDTO {
+import com.domino.t1.address.AddressDTO;
+
+public class BranchInfoDTO extends AddressDTO{
+	
 	
 	private int branch_num;
 	private String branch_name;
