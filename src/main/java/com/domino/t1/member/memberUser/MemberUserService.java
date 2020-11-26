@@ -116,6 +116,10 @@ public class MemberUserService implements MemberService{
 	}
 	
 	//추가
+		public CouponDTO getMemberSocialIdCheck(CouponDTO couponDTO) throws Exception{
+			return memberDAO.getMemberSocialIdCheck(couponDTO);
+		}
+
 		public CouponDTO getMemberSocialLogin(CouponDTO couponDTO) throws Exception{
 			return memberDAO.getMemberSocialLogin(couponDTO);
 		}
