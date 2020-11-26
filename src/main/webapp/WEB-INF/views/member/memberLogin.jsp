@@ -126,7 +126,6 @@ function loginFormWithKakao() {
 				url: '/v2/user/me', 
 				success: function(res) { 
 					console.log(res.id) 
-					
 					var id = res.id;
 					var email = res.kakao_account.email;
 
@@ -155,11 +154,10 @@ function loginFormWithKakao() {
 			                    		$.ajax({
 			                    			url:"<%=request.getContextPath()%>/member/memberJoin",
 			                    			type:"get",
-			                    			data:{"id":id, "email":email},
+			                    			data:{"id":id},
 			                    			success:function(data){
 			                    				console.log(id);
-			                    				console.log(email);
-			                    			
+
 			                    				console.log("아이디 넘기기 성공");
 			                    				 $('#bodyContents').children().remove();
 			                    		         // Contents 영역 교체

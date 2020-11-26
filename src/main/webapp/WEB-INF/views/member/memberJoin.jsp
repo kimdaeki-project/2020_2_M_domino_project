@@ -113,18 +113,9 @@
 
 			     <label class="col-sm-2 join_text" for="email">이메일 </label>
 			   <div class="col-sm-4">
-				  	 <c:choose>
-				     	<c:when test="${not empty param.id}">
-				     		<input type="email" id="ka_email" name="member_email" value="${param.email}" readonly="readonly">
-				     	</c:when>
-				     	
-				     	<c:otherwise>
-				     		 <input type="email" name="member_email" id="email" placeholder="ex) aaa@gmail.com">
-			         		 <input type="button" id="btnEmail" value="중복확인" class="checkButt">
-			     			 <div id="emailResult"></div>
-				     	</c:otherwise>
-				     </c:choose>
-
+				   <input type="email" name="member_email" id="email" placeholder="ex) aaa@gmail.com">
+			       <input type="button" id="btnEmail" value="중복확인" class="checkButt">
+			       <div id="emailResult"></div>
 			    </div>
 			  </div>
 			  	
@@ -132,8 +123,6 @@
 				<label for="level" class="labelUpdate">등급 </label>
 				<input type="text" name="member_level" value="REGULAR" style="text-align:center; width:500px; height:42px;">
 			</div>
-
-						
 
 			<div style="padding: 15px;">
 				<div class="form-group">
@@ -219,7 +208,6 @@
 
 	if("${param.id}" != ''){
 		var idCheck = true;
-		var emailCheck=true;
 	} 
 	
 	else{
@@ -351,7 +339,6 @@
 	
 	if("${param.id}" != ''){
 		var idExpCheck=true;
-		var emailExpCheck=true;
 	}
 	else{
 		var idExpCheck=false;
