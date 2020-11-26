@@ -9,6 +9,7 @@
     <c:import url="../../template/bootstrap.jsp"></c:import>
     <link href ="/t1/resources/css/common/default.css" rel="stylesheet">
     <link href ="/t1/resources/css/common/board.css" rel="stylesheet">
+    <link href ="/t1/resources/css/common/shared.css" rel="stylesheet">
     <link href ="/t1/resources/css/menu/list.css" rel="stylesheet">
     <script src="/t1/resources/js/header.js"></script>
   
@@ -56,7 +57,7 @@
 			<c:if test="${loop.index % 4 == 0}">
 				<div class="row justify-content-start">
 			</c:if>
-			<div class="col-sm-3">
+			<div class="col-sm-3 item-wrapper">
 				<div class="item-thumbnail-container">
 					<img src="/t1/resources/images/menu/${category}/${dto.item_image}" alt="${dto.item_name}" class="item-thumbnail">			
 				</div>
@@ -70,8 +71,24 @@
 					<span>
 						<span class="price-text">${dto.item_price }원</span>
 					</span>				 							
-				</div>			
-			</div>
+				</div>	
+					<div class="input-group col-sm-7">
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-quantity-controller btn-minus" min="0" disabled>-</button>
+						</span>
+						<input type="text" class="form-control quantity-input" value="0" disabled/>
+						<input type="hidden" value="${dto.item_price}"  class="item-unit-price" />
+						<input type="hidden" value="${dto.item_id}" class="item-id" />
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
+						</span>	
+					</div>	
+					<div class="etc-to-cart-btn col-sm-5">
+						<a>
+							주문 
+						</a>
+					</div>		
+				</div>
 			<c:choose>
 				<c:when test="${loop.index % 4 == 3}">
 					</div>

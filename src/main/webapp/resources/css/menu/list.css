@@ -38,7 +38,17 @@
 	padding: 1px 5px;
 }
 
+#sidedish-container{
+	margin-top: 80px;
+}
 
+#etc-container{
+	margin-top: 80px;
+}
+
+.item-wrapper{
+	margin-bottom: 60px;
+}
 
 
 .price-container{
@@ -64,4 +74,21 @@
 .hashtag-container>p{
 	font-size: 14px;
 	color: #888888;
+}
+
+.input-group{
+	display: inline-block;
+	margin-left: 0;
+	
+	
+}
+
+.etc-to-cart-btn{
+	background-color: #ff143c;
+	color: #ffffff;
+	width: 98px;
+	height: 46px;
+	display: inline-block;
+	font-size: 16px;
+	margin-right: 0;
 }

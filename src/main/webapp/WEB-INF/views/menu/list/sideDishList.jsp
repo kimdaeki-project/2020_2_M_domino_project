@@ -56,10 +56,10 @@
 			<c:if test="${loop.index % 4 == 0}">
 				<div class="row justify-content-start">
 			</c:if>
-			<div class="col-sm-3">
+			<div class="col-sm-3 item-wrapper">
 				<div class="item-thumbnail-container">
 					<a href="../detail/sideDishDetail?item_id=${dto.item_id}">
-						<img src="/t1/resources/images/menu/sidedish/${dto.item_image}" alt="${dto.item_name}" class="item-thumbnail">
+						<img src="/t1/resources/images/menu/${category}/${dto.item_image}" alt="${dto.item_name}" class="item-thumbnail">
 					</a>			
 				</div>
 				<div class="name-container">
