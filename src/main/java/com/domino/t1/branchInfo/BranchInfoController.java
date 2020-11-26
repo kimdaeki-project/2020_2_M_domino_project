@@ -36,8 +36,8 @@ public class BranchInfoController {
 		return mv;
 	}
 	
-	@GetMapping("branchName")
-	public ModelAndView getBranchName(BranchInfoDTO branchInfoDTO, HttpServletRequest request) throws Exception {
+	@GetMapping("branchInfos")
+	public ModelAndView getBranchInfos(BranchInfoDTO branchInfoDTO, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 
 		String reg1 = request.getParameter("reg1");

@@ -9,22 +9,20 @@
 				<dt>${dto.branch_name}
 					<span class="tel">${dto.branch_phone}</span>
 				</dt>
-				<dd class="br-addr">매장 주소</dd>
-				<dd class="hash">
-					<span>
-						특별 세일 1
-						<br>
-						특별 세일 2
-					</span>
-				</dd>
+				<dd class="br-addr">${dto.region1} ${dto.region2} ${dto.street_address }</dd>
+				<c:if test="${not empty dto.spcl_sale}">
+					<dd class="hash">
+						<span>${dto.spcl_sale}</span>
+					</dd>
+				</c:if>
 			</dl>
 			
 			<div class="salenames">
 				<div class="sale1">
-					<span>세일1<br>11<br>122</span>
+					<span>${dto.salename1}</span>
 				</div>
 				<div class="sale2">
-					<span>세일2<br>11<br>122</span>
+					<span>${dto.salename2}</span>
 				</div>
 			</div>
 			<div class="br-detail">
@@ -32,7 +30,7 @@
 				<a href="#" class="btn type2">방문포장</button></a>
 			</div>
 		</div>
-		<input type="text" id="lat" value="${dto.latitude}">
-		<input type="text" id="lon" value="${dto.longitude}">
+		<input type="text" id="lati" value="${dto.latitude}">
+		<input type="text" id="longi" value="${dto.longitude}">
 	</div>
 </c:forEach>
