@@ -229,8 +229,8 @@
 		var check2 = $("#check2").prop("checked");
 		var check3 = $("#check3").prop("checked");
 
-			
 			aggCheck=false;
+			
 			if(check1 && check2 && check3){
 				aggCheck=true;
 			}else{
@@ -238,6 +238,7 @@
 			}
 			
 		emptyCheck();
+		
 		if(idCheck && pwCheck && phoneCheck && emailCheck && emptyCheckResult && idExpCheck && pwExpCheck && phoneExpCheck && emailExpCheck && aggCheck){
 			$("#frm").submit();
 		}else {
