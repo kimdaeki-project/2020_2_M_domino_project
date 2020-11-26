@@ -223,9 +223,10 @@
 		</c:if>
 	</div>
 
- 	<c:import url="../template/footer.jsp"></c:import>
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script> 
+ 	<c:import url="../template/footer.jsp"></c:import>		
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script> 
 	<script>
 	
 	//매장선택
@@ -361,8 +362,4 @@
 		
 		
 	</script>
-	
-	
-		
-</body>
 </html>

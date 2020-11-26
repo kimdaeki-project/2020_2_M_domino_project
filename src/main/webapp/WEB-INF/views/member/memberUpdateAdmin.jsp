@@ -136,6 +136,7 @@
 <script type="text/javascript">
 
 	$("#memberUpdateDel").click(function() {
+		confirm("회원 정보가 삭제됩니다.")
 		location.href = "./memberDeleteAdmin?member_id=${dto.member_id}";
 	});
 

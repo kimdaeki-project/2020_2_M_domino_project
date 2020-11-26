@@ -16,6 +16,13 @@
 	#select li a{
 		font-size: 17px;
 	}
+	.sNotice{
+		padding: 1% 0;
+	}
+	
+	.noticeText li{
+		padding: 1% 0;
+	}
 </style>
 
 </head>
@@ -100,50 +107,52 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">회원정보 인증</h4>
+          <h4 class="modal-title" style="text-align: center;">회원정보 인증</h4>
         </div>
         <div class="modal-body">
-        <form action="./memberSearch" method="post" id="frm">
-		<div>
+	        <form action="./memberSearch" method="post" id="frm">
 			<div>
-			<dl>
-				<dt>이름</dt>
-				<dd><input type="text" name="member_name" style="text-align:center; width:300px; height:42px;" id="member_name"></dd>
-			</dl>
-			
-			<dl>
-				<dt>생년월일</dt>
-				<dd>
-					<div>
-						<input type="date" name="member_date" style="text-align:center; width:300px; height:42px;" id="member_date">
-					</div>
-				</dd>
-			</dl>
-			
-			<dl>
-				<dt>인증번호 발송</dt>
-				<dd>
-					<div>
-						<label class="radio-inline"><input type="radio" name="asd">휴대전화</label>
-						<label class="radio-inline"><input type="radio" name="asd">이메일</label>
-					</div>
-				</dd>
-			</dl>
-			
-			<dl>
-				<dt>휴대전화</dt>
-				<dd>
-					<div>
-						<input type="text" name="member_phone" style="text-align:center; width:300px; height:42px;" id="member_phone">
-					</div>
-				</dd>
-			</dl>
+				<div>
+				<dl>
+					<dt>이름</dt>
+					<dd><input type="text" name="member_name" style="text-align:center; width:300px; height:42px;" id="member_name"></dd>
+				</dl>
 				
+				<dl>
+					<dt>생년월일</dt>
+					<dd>
+						<div>
+							<input type="date" name="member_date" style="text-align:center; width:300px; height:42px;" id="member_date">
+						</div>
+					</dd>
+				</dl>
+				
+				<dl>
+					<dt>인증번호 발송</dt>
+					<dd>
+						<div>
+							<label class="radio-inline"><input type="radio" name="asd">휴대전화</label>
+							<label class="radio-inline"><input type="radio" name="asd">이메일</label>
+						</div>
+					</dd>
+				</dl>
+				
+				<dl>
+					<dt>휴대전화</dt>
+					<dd>
+						<div>
+							<input type="text" name="member_phone" style="text-align:center; width:300px; height:42px;" id="member_phone">
+						</div>
+					</dd>
+				</dl>
+					
+				</div>
+			</div>	
+			
+			<div style="text-align: right;">
+				<input type="button" value="아이디 찾기" id="checkButt" style= "width:110px; height:42px;">
 			</div>
-		</div>	
-		
-		<input type="button" value="아이디 찾기" id="checkButt" style= "width:110px; height:42px;">
-		</form>
+			</form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
