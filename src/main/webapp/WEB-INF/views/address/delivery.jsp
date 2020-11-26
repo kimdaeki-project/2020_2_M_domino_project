@@ -69,7 +69,8 @@
 												
 											
 										</div>
-										<input type="button" value="배달 주소 등록 확인" id="deliveryBtn">
+										
+										<input type="button" value="배달 주소 등록 확인" class="checkButt" style="width: 150px;" id="deliveryBtn">
 												
 									</form>
 										
