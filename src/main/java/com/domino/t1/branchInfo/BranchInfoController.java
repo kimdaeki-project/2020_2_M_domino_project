@@ -2,6 +2,8 @@ package com.domino.t1.branchInfo;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +34,38 @@ public class BranchInfoController {
 		mv.setViewName("branch/branchSearch");
 		
 		return mv;
+	}
+	
+	@GetMapping("branchName")
+	public ModelAndView getBranchName(BranchInfoDTO branchInfoDTO, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+
+		String reg1 = request.getParameter("reg1");
+		System.out.println(reg1);
+		String reg2 = request.getParameter("reg2");
+		System.out.println(reg2);
+		
+		branchInfoDTO.setRegion1(reg1);
+		branchInfoDTO.setRegion2(reg2);
+		
+		List<BranchInfoDTO> ar = branchInfoService.getBranchName(branchInfoDTO);
+//		BranchInfoDTO branchName = branchInfoService.getBranchName(branchInfoDTO);
+		
+//		mv.addObject("branchName", branchName);
+		mv.addObject("branch", ar);
+		mv.setViewName("branch/branchSearchAjax");
+		
+		return mv;
+	}
+	
+	@GetMapping("branchSearchAjax")
+	public ModelAndView getBranchResult(BranchInfoDTO branchInfoDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("branch/branchSearchAjax");
+		
+		return mv;
+		
 	}
 
 

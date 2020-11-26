@@ -52,9 +52,9 @@
 										<div class="form-region" id="form-region-first">
 											<div class="select-region">
 												<select id="region1" name="region1" onchange="regionChange(this)">
-													<option>시/도</option><!--  -->
+													<option>시/도</option>
 													<c:forEach var="dto" items="${region1}">
-														<option value="reg1">${dto.region1}</option>
+														<option>${dto.region1}</option>
 													</c:forEach>
 												</select>
 											</div>
@@ -63,52 +63,12 @@
 											<div class="select-region">
 												<select id="region2" name="region2">
 													<option>구/군</option>
-													<%-- <c:forEach var="dto" items="${region2}">
-														<option value="reg2" id="changeReg"></option>
-													</c:forEach> --%>
 												</select>
 											</div>
 										</div>
-										<script type="text/javascript">
-											var region1 = document.getElementById("region1")
-											/* var reg1Value = $("#region1 option:selected").val();
-											var indexNo = region1[0].selectedIndex;
-											var target = document.getElementById("region2")
-											
-											var reg1Index = region1.options[region1.selectedIndex].value;
-											
-											for(var i=0;i<reg1Index.length;i++) {
-												$("#region1 option:eq(i)").prop("selected", true);
-											} */
-											
-											function regionChange(e) {
-												var region2_1 = ["구/군"]
-												var region2_a = ["강남구", "강북구", "동대문구", "동작구", "마포구", "서초구", "용산구", "은평구", "중구"];
-												var region2_b = ["계양구"];
-												var region2_c = ["고양시", "과천시", "광명시", "성남시"];
-												var target = document.getElementById("region2");
-												
-												// 선택된 값의 index를 불러오기
-												var regindex = $("#region1 option").index($("#region1 option:selected"));
 
-												if(regindex == 1) var d = region2_a;
-												else if(regindex == 2) var d = region2_b;
-												else if(regindex == 3) var d = region2_c;
-												else if(regindex == 0) var d = region2_1;
-
-												target.options.length = 0;
-
-												for (x in d) {
-													var opt = document.createElement("option");
-													opt.value = d[x];
-													opt.innerHTML = d[x];
-													target.appendChild(opt);
-												}	
-											}
-											
-										</script>
 										<div class="form-region" id="btn-search">
-											<button type="button" class="btn-search">
+											<button type="button" class="btn-search" id="btnBranchSearch">
 												<img src="../resources/images/branch/sp_search_t1.png">
 											</button>
 										</div>
@@ -156,33 +116,9 @@
 							<!-- ===== 매장명 검색 ] ===== -->
 							
 							<!-- ===== [ 매장 리스트 ===== -->
-							<div class="row branch-addr-result">
-								<div class="column branch-result-list">
-									<dl>
-										<dt>매장명<span class="tel">매장 전화번호</span></dt>
-										<dd class="br-addr">매장 주소</dd>
-										<dd class="hash">
-											<span>
-												특별 세일 1
-												<br>
-												특별 세일 2
-											</span>
-										</dd>
-									</dl>
-									<div class="salenames">
-										<div class="sale1">
-											<span>세일1<br>11<br>122</span>
-										</div>
-										<div class="sale2">
-											<span>세일2<br>11<br>122</span>
-										</div>
-									</div>
-									<div class="br-detail">
-										<a href="#" class="btn type1">상세보기</button></a>
-										<a href="#" class="btn type2">방문포장</button></a>
-									</div>
-								</div>
-							</div>
+												
+							<div id="brName"></div>
+							
 							<!-- ===== 매장 리스트 ] ===== -->
 							
 						</div> <!-- 탭 선택 최상위 div -->
@@ -203,6 +139,53 @@
 		</div>
 	</div>
 </div> <!-- container -->
+
+<script type="text/javascript">
+	$("#btnBranchSearch").click(function(){
+		var reg1val = $("#region1 option:selected").val()
+		var reg2val = $("#region2 option:selected").val()
+		
+		$.ajax({
+			url:"<%=request.getContextPath()%>/branch/branchName",
+			type:"GET",
+			data:{"reg1":reg1val, "reg2":reg2val},
+			success:function(result) {
+				console.log("test")
+				$("#brName").html(result)
+			}
+		})
+	})
+</script>
+
+<script type="text/javascript">
+	var region1 = document.getElementById("region1")
+	
+	function regionChange(e) {
+		var region2_1 = ["구/군"]
+		var region2_a = ["강남구", "강북구", "동대문구", "동작구", "마포구", "서초구", "용산구", "은평구", "중구"];
+		var region2_b = ["계양구"];
+		var region2_c = ["고양시", "과천시", "광명시", "성남시"];
+		var target = document.getElementById("region2");
+		
+		// 선택된 값의 index를 불러오기
+		var regindex = $("#region1 option").index($("#region1 option:selected"));
+
+		if(regindex == 1) var d = region2_a;
+		else if(regindex == 2) var d = region2_b;
+		else if(regindex == 3) var d = region2_c;
+		else if(regindex == 0) var d = region2_1;
+
+		target.options.length = 0;
+
+		for (x in d) {
+			var opt = document.createElement("option");
+			opt.value = d[x];
+			opt.innerHTML = d[x];
+			target.appendChild(opt);
+		}	
+	}
+	
+</script>
 
 <!-- ===== 전체매장보기 javascript ===== -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8359d6b1a5e0267b346e7ce57922d7f4&libraries=services"></script>

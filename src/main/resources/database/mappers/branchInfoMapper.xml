@@ -10,9 +10,8 @@
 		
 	</select>
 	
-	<!-- <select id="getRegion2" parameterType="BranchInfoDTO" resultType="BranchInfoDTO">
-		select region2 from branch_info where region1 = #{region1}
-		
-	</select> -->
+	<select id="getBranchName" parameterType="BranchInfoDTO" resultType="BranchInfoDTO">
+		select * from branch_info where region1 = #{region1} and region2 = #{region2}		
+	</select>
 	
 </mapper>

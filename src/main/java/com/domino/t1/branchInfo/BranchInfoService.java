@@ -17,8 +17,8 @@ public class BranchInfoService {
 		return branchInfoDAO.getRegion1(branchInfoDTO);
 	}
 	
-//	public List<BranchInfoDTO> getRegion2(BranchInfoDTO branchInfoDTO) throws Exception {
-//		return branchInfoDAO.getRegion2(branchInfoDTO);
-//	}
+	public List<BranchInfoDTO> getBranchName(BranchInfoDTO branchInfoDTO) throws Exception {
+		return branchInfoDAO.getBranchName(branchInfoDTO);
+	}
 
 }
