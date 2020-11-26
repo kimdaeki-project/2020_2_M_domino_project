@@ -27,6 +27,10 @@
 		font-size: 17px;
 	}
 	
+	#chkNotice{
+		color: red;
+	}
+	
 </style>
   <c:import url="../template/bootstrap.jsp"></c:import>
   <link href ="../resources/css/common/default.css" rel="stylesheet">
@@ -63,15 +67,7 @@
 			    <label class="col-sm-2 join_text" for="id">아이디</label>
 			    <div class="col-sm-4">
 	    
-			     <c:choose>
-			     	<c:when test="${not empty param.id}">
-			     		<input type="text" id="ka_id" name="member_id" value="${param.id}" readonly="readonly">
-			     	</c:when>
-			     	
-			     	<c:otherwise>
-			     		 <input type="text" id="id" name="member_id" class="form-control empty" placeholder="숫자와 문자 포함   6~12자리">
-			     	</c:otherwise>
-			     </c:choose>
+			     <input type="text" id="id" name="member_id" class="form-control empty" placeholder="숫자와 문자 포함   6~12자리">
 			   
 			      <div id="idResult"></div>
 			    </div>
@@ -113,17 +109,10 @@
 
 			     <label class="col-sm-2 join_text" for="email">이메일 </label>
 			   <div class="col-sm-4">
-				  	 <c:choose>
-				     	<c:when test="${not empty param.id}">
-				     		<input type="email" id="ka_email" name="member_email" value="${param.email}" readonly="readonly">
-				     	</c:when>
-				     	
-				     	<c:otherwise>
-				     		 <input type="email" name="member_email" id="email" placeholder="ex) aaa@gmail.com">
-			         		 <input type="button" id="btnEmail" value="중복확인" class="checkButt">
-			     			 <div id="emailResult"></div>
-				     	</c:otherwise>
-				     </c:choose>
+				<input type="email" name="member_email" id="email" placeholder="ex) aaa@gmail.com">
+			    <input type="button" id="btnEmail" value="중복확인" class="checkButt">
+			    <div id="emailResult"></div>
+
 
 			    </div>
 			  </div>
@@ -155,6 +144,7 @@
 				<div class="form-group">
 						<label for="aggAll" class="labelUpdate">약관 전체동의</label>
 						<div class="memberAgg">
+						<span id="chkNotice">* 필수사항 미체크시 회원가입이 진행되지 않습니다.</span><br>
 	  					<label><input type="checkbox" value=1 id="checkAll2">전체 동의하기</label><br>
 	  					<label><input type="checkbox" value=1 id="check1" class="chk2" name="member_pi_agg">개인정보 수집 및 이용동의(필수)</label><br>
 	 					<label><input type="checkbox" value=1 id="check2" class="chk2" name="member_clause_agg">이용약관 동의(필수)</label><br>
@@ -185,7 +175,7 @@
 </body>
 <script type="text/javascript">
 	
-	
+	//필수사항 전체 체크
 	$("#checkAll2").click(function() {
 		if($("#checkAll2").is(":checked")){
 			$(".chk2").prop("checked",true);
@@ -194,7 +184,9 @@
 			$(".chk2").prop("checked",false);
 		}
 	});
+	//필수사항 전체 체크
 	
+	//선택사항 전체 체크
 	$("#checkAll3").click(function() {
 		if($("#checkAll3").is(":checked")){
 			$(".chk").prop("checked",true);
@@ -203,7 +195,9 @@
 		}
 		
 	});
+	//선택사항 전체 체크
 	
+	//전체 동의사항 체크
 	$("#checkAll").click(function() {
 		if($("input:checkbox[id=checkAll]").prop("checked")) {
 			$("input[type=checkbox]").prop("checked", true);
@@ -211,7 +205,7 @@
 			$("input[type=checkbox]").prop("checked", false);
 		}
 	});
-	
+	//전체 동의사항 체크
 	
 
 	
@@ -220,18 +214,12 @@
 	
 	//회원가입 id, pw, 이메일, 전화번호 중복 및 공백 검사
 
-	if("${param.id}" != ''){
-		var idCheck = true;
-		var emailCheck=true;
-	} 
-	
-	else{
 		var idCheck=false;
 		var pwCheck=false;
 		var phoneCheck=false;
 		var emailCheck=false;
 		var emptyCheckResult=true;	
-	}
+
 	
 	var aggCheck=false;
 	
@@ -367,17 +355,13 @@
 	var regExpEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
 	var regExpPhone = /^\d{3}-\d{3,4}-\d{4}$/;//핸드폰 번호 정규식
 	
-	if("${param.id}" != ''){
-		var idExpCheck=true;
-		var emailExpCheck=true;
-	}
-	else{
+	
+	
 		var idExpCheck=false;
 		var pwExpCheck=false;
 		var phoneExpCheck=false;
 		var emailExpCheck=false;
-		
-	}
+
 	
 
 	$("#id").blur(function() {
