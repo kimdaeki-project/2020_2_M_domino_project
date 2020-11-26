@@ -793,13 +793,13 @@ html.fixed, body.fixed {
 
 .address{
 	margin-bottom: 14px;
-	font-size: 18px;
+	font-size: 20px;
 	color: #111;
 }
 
 .store span{
 	display: inline-block;
-    margin-right: 10px;
+    margin:0px 10px 10px 0px;
     height: 30px;
     padding: 0 8px;
     border: 1px solid #ddd;
@@ -1060,7 +1060,19 @@ p em{
   font-weight: 900;
 }
 
-
+.btn-type1{
+    color: white;
+    font-size: 20px;
+    background-color: red;
+    width: 260px;
+    height: 50px;
+    display: block;
+    margin: 0 auto;
+    font-weight: 700;
+	line-height: 50px;
+	
+	
+}
 
 
 
