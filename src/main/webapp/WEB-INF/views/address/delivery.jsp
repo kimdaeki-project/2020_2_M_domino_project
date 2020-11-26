@@ -13,12 +13,6 @@
 <link href ="../resources/css/common/member.css" rel="stylesheet">
 <link href ="../resources/css/address/address.css" rel="stylesheet">
 <script src="../resources/js/header.js"></script>
-<style type="text/css">
-	#btnLog{
-		float: right;
-	}
-		
-</style>
 </head>
 <body>
 
@@ -62,34 +56,37 @@
 								<li>
 									<div class="notyet">
 										<p class="title"><img alt="" src="../resources/images/address/sp_alert_t1.png"> 배달 주소를 등록해주세요.</p>
-							<form action="./delivery" name="form" id="form" method="post">
-
-								<a href="#" onclick="goPopup();" class="btn-type-brd2" id="add_addr">
-										+ 배달 주소 등록
-								</a>
-								<div id="list"></div>
-								<div id="callBackDiv">
-									<input type="number" value="${member.member_num}" name="member_num" class="none">
-									
-										<div class="roadFull">도로명주소 전체(포멧) <input type="text"  style="width:500px;" id="roadFullAddr"  name="roadFullAddr" /></div>
+									<form action="./delivery" name="form" id="form" method="post" class="addr-form">
+		
+										<a href="#" onclick="goPopup();" class="btn-type-brd2" id="add_addr">
+												+ 배달 주소 등록
+										</a>
+										<div id="list"></div>
+										<div id="callBackDiv">
+											<input type="number" value="${member.member_num}" name="member_num" class="none">
+											
+												<div class="roadFull">도로명주소 전체(포멧) <input type="text"  style="width:500px;" id="roadFullAddr"  name="roadFullAddr" /></div>
+												
+											
+										</div>
 										
-									
-								</div>
-								<input type="button" value="배달 주소 등록 확인" id="deliveryBtn">
+										<input type="button" value="배달 주소 등록 확인" class="checkButt" style="width: 150px;" id="deliveryBtn">
+												
+									</form>
 										
-							</form>
-								
 									</div>
 									
 								</li>
 							</ul>
 							
-							<div class="addr-limit">
-							* 배달 주소는 최대 10개까지만 등록 가능합니다.
-							</div>
+							
 						</div>
+
 					</div>
 				</div>	<!-- 배달/포장 -->
+					<div class="addr-limit">
+						* 배달 주소는 최대 10개까지만 등록 가능합니다.
+					</div>
 			</div>	<!-- 주문방법선택 -->	
 		</div>	
 		<button type="button" style="text-align:center; width:210px; height:58px;" id="btnLog">주소 목록</button>		

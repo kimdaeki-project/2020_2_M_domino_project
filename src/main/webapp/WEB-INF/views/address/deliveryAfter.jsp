@@ -14,18 +14,11 @@
 <link href ="../resources/css/address/address.css" rel="stylesheet">
 <script src="../resources/js/header.js"></script>
 <style type="text/css">
-	#btnLog{
+	/* #btnLog {
 		margin-top:30px;
 		float: right;
 	}
-	
-	#pTag{
-		margin-top:20px;
-		margin-bottom:20px;
-		float: right;
-		
-	}
-	
+	 */
 </style>
 </head>
 <body>
@@ -66,15 +59,14 @@
 						</div>
 
 						<div class="addr-list">
-						
-
 						<div class="addr-list-plus">
 							
-							<form action="" id="frm">
+							<form action="../order/orderInfo" id="frm">
 									<div class="reg_addr">
 											<c:forEach items="${list}" var="dto">
-												<div class="addChk"><input type="radio" value="${dto.roadFullAddr}" name="roadFullAddr" id="adNum">${dto.roadFullAddr}<input type="button" value="X" class="delAdd"></div>
-												
+												<div class="addChk"><input type="radio" value="${dto.address_num}" name="roadFullAddr" id="adNum">${dto.roadFullAddr}<input type="button" value="X" class="delAdd"></div>
+												<input type="text" value="${dto.address_num}" class="none" name="address_num" id="address_num">
+												<input type="text" value="${dto.member_num}" class="none" name="member_num" id="member_num">
 											</c:forEach>
 																				
 									</div>
@@ -86,7 +78,7 @@
 								<a href="./delivery" onclick="goPopup();"  class="btn-type-brd2" id="add_addr">
 									+ 배달 주소 등록
 								</a>
-								<div class="addr-limit">
+								<div class="addr-limit-after">
 									* 배달 주소는 최대 10개까지만 등록 가능합니다.
 								</div>
 							</div>
@@ -99,12 +91,19 @@
 				</div>	<!-- 배달/포장 -->
 			</div>	<!-- 주문방법선택 -->	
 		</div>
-		<button type="button" style="text-align:center; width:210px; height:58px;" id="btnLog">선택</button>				
+		<!-- <button type="button" style="text-align:center; width:210px; height:58px;" id="btnLog">선택</button> -->
 	</div><!-- content -->
 </div><!-- container -->
 
 <script>
 // Add active class to the current button (highlight it)
+
+	$("#btnLog").click(function() {
+		var num = $("#adNum").val();
+		var memNum = $("#member_num").val();
+		
+		location.href = "../order/orderInfo";
+	});
 	
 	$(".delAdd").click(function() {
 		var num = $("#adNum").val();
