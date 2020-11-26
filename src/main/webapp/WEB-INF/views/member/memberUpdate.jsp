@@ -83,6 +83,11 @@
 			<div id="pwSetResult"></div>
 		</div>
 			
+		<div class="none">
+			<label for="id" class="labelUpdate">등급 </label>
+			 <input type="text" name="member_level" value="${member.member_level}" readonly="readonly">
+		</div>
+			
 		<div class="form-group update_input">
 			<label for="pw4" class="labelUpdate">생년월일 </label>
 			<input type="date" name="member_date" value="${member.member_date}">
