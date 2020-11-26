@@ -27,18 +27,17 @@
 		font-size: 17px;
 	}
 	
-	
-	
 </style>
   <c:import url="../template/bootstrap.jsp"></c:import>
   <link href ="../resources/css/common/default.css" rel="stylesheet">
   <link href ="../resources/css/common/member.css" rel="stylesheet">
   <script src="../resources/js/header.js"></script>
-<c:import url="../template/header.jsp"></c:import>
+ <c:import url="../template/header.jsp"></c:import>
 </head>
 <body>
 	
 	<div class="container">
+	
 		<div class="order-title-wrap" style="padding: 0 0 30px 0; border-bottom: 2px solid black">
 		<h2 class="order-title">회원가입</h2>
 			<div class="depth-area">
@@ -55,7 +54,7 @@
 			<div class="col-sm-12 join_input">
 			    <label class="col-sm-2 join_text" for="name">이름</label>
 			    <div class="col-sm-4">
-			       <input type="text" id="name" name="member_name" class="form-control empty" >
+				   <input type="text" id="name" name="member_name" class="form-control empty">  
 			       <div class="emptyResult"></div>
 			    </div>
 			 </div>
@@ -63,7 +62,17 @@
 			 <div class="col-sm-12 join_input">
 			    <label class="col-sm-2 join_text" for="id">아이디</label>
 			    <div class="col-sm-4">
-			       <input type="text" id="id" name="member_id" class="form-control empty" placeholder="숫자와 문자 포함   6~12자리">
+	    
+			     <c:choose>
+			     	<c:when test="${not empty param.id}">
+			     		<input type="text" id="ka_id" name="member_id" value="${param.id}" readonly="readonly">
+			     	</c:when>
+			     	
+			     	<c:otherwise>
+			     		 <input type="text" id="id" name="member_id" class="form-control empty" placeholder="숫자와 문자 포함   6~12자리">
+			     	</c:otherwise>
+			     </c:choose>
+			   
 			      <div id="idResult"></div>
 			    </div>
 			 </div>
@@ -101,23 +110,30 @@
 			 </div>
 		
 			  <div class="col-sm-12 join_input">
-			    <label class="col-sm-2 join_text" for="email">이메일 </label>
-			    <div class="col-sm-4">
-			      <input type="email" name="member_email" id="email" placeholder="ex) aaa@gmail.com">
-			      <input type="button" id="btnEmail" value="중복확인" class="checkButt">
-			      <div id="emailResult"></div>
+
+			     <label class="col-sm-2 join_text" for="email">이메일 </label>
+			   <div class="col-sm-4">
+				  	 <c:choose>
+				     	<c:when test="${not empty param.id}">
+				     		<input type="email" id="ka_email" name="member_email" value="${param.email}" readonly="readonly">
+				     	</c:when>
+				     	
+				     	<c:otherwise>
+				     		 <input type="email" name="member_email" id="email" placeholder="ex) aaa@gmail.com">
+			         		 <input type="button" id="btnEmail" value="중복확인" class="checkButt">
+			     			 <div id="emailResult"></div>
+				     	</c:otherwise>
+				     </c:choose>
+
 			    </div>
-			 </div>
-			 
-			 
+			  </div>
+			  	
 			 <div class="form-group level">
 				<label for="level" class="labelUpdate">등급 </label>
 				<input type="text" name="member_level" value="REGULAR" style="text-align:center; width:500px; height:42px;">
 			</div>
 
 						
-
-			
 
 			<div style="padding: 15px;">
 				<div class="form-group">
@@ -194,7 +210,6 @@
 		}else {
 			$("input[type=checkbox]").prop("checked", false);
 		}
-		
 	});
 	
 	
@@ -204,11 +219,19 @@
 
 	
 	//회원가입 id, pw, 이메일, 전화번호 중복 및 공백 검사
-	var idCheck=false;
-	var pwCheck=false;
-	var phoneCheck=false;
-	var emailCheck=false;
-	var emptyCheckResult=true;
+
+	if("${param.id}" != ''){
+		var idCheck = true;
+		var emailCheck=true;
+	} 
+	
+	else{
+		var idCheck=false;
+		var pwCheck=false;
+		var phoneCheck=false;
+		var emailCheck=false;
+		var emptyCheckResult=true;	
+	}
 	
 	var aggCheck=false;
 	
@@ -246,8 +269,7 @@
 				emptyCheckResult=false;
 				$(this).next().html("필수 항목입니다.")
 				$(".emptyResult").addClass("idCheck1");
-			}
-			
+			}	
 		});
 	}
 	
@@ -336,6 +358,7 @@
 			$("#emailResult").removeClass("emailCheck0").addClass("emailCheck1");
 		}
 	});
+
 	//회원가입 id, pw, 이메일, 전화번호 중복 및 공백 검사
 		
 	
@@ -346,11 +369,19 @@
 	var regExpEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
 	var regExpPhone = /^\d{3}-\d{3,4}-\d{4}$/;//핸드폰 번호 정규식
 	
-	var idExpCheck=false;
-	var pwExpCheck=false;
-	var phoneExpCheck=false;
-	var emailExpCheck=false;
+	if("${param.id}" != ''){
+		var idExpCheck=true;
+		var emailExpCheck=true;
+	}
+	else{
+		var idExpCheck=false;
+		var pwExpCheck=false;
+		var phoneExpCheck=false;
+		var emailExpCheck=false;
+		
+	}
 	
+
 	$("#id").blur(function() {
 		idExpCheck=false;
 		if(!passRule.test($("input[id='id']").val())) {
@@ -402,15 +433,6 @@
 	});
 	
 	//회원가입 유효성 검사
-
-
-
-
-	
-	
-	
-	
-	
 
 </script>
 </html>

@@ -63,9 +63,9 @@
 			    	</div>
 			    	
 			    	<div class="col-sm-2 myNavbar3">
-			    		<a href="#" class="inners_title">고객센터</a>
+			    		<a href="${pageContext.request.contextPath}/faq/faqList?faq_type=1" class="inners_title">고객센터</a>
 			    			<ul>
-						       <li><a href="${pageContext.request.contextPath}/faq/faqList">자주하는 질문</a></li>
+						       <li><a href="${pageContext.request.contextPath}/faq/faqList?faq_type=1">자주하는 질문</a></li>
 							   <li><a href="${pageContext.request.contextPath}/qna/qnaWrite">온라인 신문고</a></li>
 						    </ul>
 			    	</div>

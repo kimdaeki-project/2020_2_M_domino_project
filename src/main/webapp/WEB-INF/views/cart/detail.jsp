@@ -59,11 +59,13 @@
 						</td>
 						<td>
 							<div class="topping-container">
+								<input type="hidden" value="${topping.item_price * topping.cart_quantity}" class="topping-price-subtotal"/>
 								<ul>
 									<c:forEach items="${pizzaGroup}" var="topping" begin="2">
 										<li class="topping-item">
 											<p>${topping.item_name} (+${topping.item_price}) x <span>${topping.cart_quantity}</span><span class="delete-topping-btn">X</span></p>
-											<input type="hidden" value="${topping.item_price}" class="topping-price"/>
+											<input type="hidden" value="${topping.item_price * topping.cart_quantity}" class="topping-price"/>
+											<!-- 꼭 필요한지???? -->
 											<input type="hidden" value="${topping.cart_quantity}" class="topping-quantity"/>
 											<input type="hidden" value="${topping.cart_item_id}" class="topping-cart-item-id"/>
 										</li>
@@ -82,7 +84,7 @@
 								</span>	
 							</div>						
 						</td>
-						<td><span class="item-price"></span>원</td>
+						<td><span class="pizza-group-subtotal"></span>원</td>
 						<td><p class="delete-item-btn">X</p></td>				
 					</tr>	
 				</c:forEach>
@@ -119,7 +121,7 @@
 								</span>	
 							</div>							
 						</td>
-						<td><span class="item-price"></span>원</td>
+						<td><span class="item-subtotal"></span>원</td>
 						<td><p class="delete-item-btn">X</p></td>				
 					</tr>	
 				</c:forEach>					
@@ -152,11 +154,18 @@
 	</div>
 	
 	<c:import url="../template/footer.jsp"></c:import>
-	<script type="text/javascript">	
-
+	<script type="text/javascript">		
 	if(${isCartEmpty} == 1){
 		setEmptyCart()
 	}	
+	
+	function updatePizzaGroupSubtotal(priceTag){
+		
+	}
+	
+	function updateItemSubtotal(priceTag){
+		
+	}
 	
 	function setEmptyCart(){
 		$.ajax({

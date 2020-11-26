@@ -114,6 +114,9 @@ public class CartService {
 			cartDTO.setItem_id(Long.parseLong(item[0]));
 			cartDTO.setCart_group_id(cartGroupId);
 			cartDTO.setCart_quantity(Long.parseLong(item[2]));
+			if(cartDTO.getCart_quantity() < 1) {
+				continue;
+			}
 			if(item.length > 4) {				
 				cartDTO.setItem_size(item[4]);
 			}
@@ -136,6 +139,9 @@ public class CartService {
 			cartDTO.setMember_num(memberNum);
 			cartDTO.setItem_id(Long.parseLong(item[0]));
 			cartDTO.setCart_quantity(Long.parseLong(item[2]));
+			if(cartDTO.getCart_quantity() < 1) {
+				continue;
+			}
 			// 이미 담긴 항목인지 검색 
 			CartDTO dup = cartDAO.getCartItem(cartDTO);
 			if(dup != null) {
@@ -209,19 +215,15 @@ System.out.println(list.toString());
 				itemGIdList.add(gId);
 			}
 		}
-		gIdListSet.add((String[])pizzaGIdList.toArray());
-		gIdListSet.add((String[])itemGIdList.toArray());
+		String[] pList = pizzaGIdList.toArray(new String[0]);
+		String[] iList = itemGIdList.toArray(new String[0]);
+		gIdListSet.add(pList);
+		gIdListSet.add(iList);
 		return gIdListSet;
 	}
 
 // 사용자의 바로 주문 / 장바구니->구매하기 접근 시나, 결제 절차 완료 시 임시 정보를 모두 삭제하는데 사용 
 	public int emptyOrderDetailTemp(MemberDTO memberDTO) throws Exception {
-//		int result = 0;
-//		if(orderDetailTempDAO.getOrderDetailTempList(memberDTO).size() > 0) {
-//			result = orderDetailTempDAO.emptyOrderDetailTemp(memberDTO);
-//		}else {
-//			result = 1;
-//		}
 		return orderDetailTempDAO.emptyOrderDetailTemp(memberDTO);
 	}	
 	

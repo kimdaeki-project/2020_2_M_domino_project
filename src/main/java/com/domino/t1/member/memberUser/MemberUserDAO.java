@@ -90,7 +90,7 @@ public class MemberUserDAO implements MemberDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"getCount", pager);
 	}
-	
+
 	@Override
 	public MemberDTO getMemberSearchPw(MemberDTO memberDTO) throws Exception {
 		// TODO Auto-generated method stub
@@ -103,5 +103,11 @@ public class MemberUserDAO implements MemberDAO{
 		return sqlSession.delete(NAMESPACE+"setPassword", memberDTO);
 	}
 	
+	//추가
+		public CouponDTO getMemberSocialLogin(CouponDTO couponDTO) throws Exception{
+			return sqlSession.selectOne(NAMESPACE+"getMemberSocialLogin", couponDTO);
+		}
+	
+
 
 }

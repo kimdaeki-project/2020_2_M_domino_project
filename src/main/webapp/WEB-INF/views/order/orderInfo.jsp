@@ -8,6 +8,7 @@
 <head>
 <title>Insert title here</title>
 <meta charset="utf-8">
+  
 <c:import url="../template/bootstrap.jsp"></c:import>
 <link href="../resources/css/common/default.css" rel="stylesheet">
 <link href="../resources/css/order/info.css" rel="stylesheet">
@@ -37,12 +38,7 @@
 							}
 						});
 			});
-	
-	
-	var couponDate = ${coupon.sale_date};
-	// 날짜(일) 더하기
-	couponDate.setDate(couponDate.getDate()+30);
-	
+
 </script>
 
 
@@ -66,7 +62,7 @@
 
 
 		<article class="pay">
-			<form id="pay-list" action="">
+			<form id="pay-list">
 				<div class="step-wrap">
 					<div class="title-wrap">
 						<h3 class="title-type">
@@ -170,7 +166,19 @@
 									<strong class="goods_name">피자명,외 갯수</strong>
 									<!-- //피자 명  -->
 								</div>
-
+								<c:forEach items="${pizzaGroupList}" var="pizzaGroup">
+									<c:forEach items="${pizzaGroup}" var="dto">
+										<h3>${dto.item_name}</h3>
+										<span>${dto.item_price}원</span>
+										<span> x ${dto.cart_quantity}</span>
+									</c:forEach>		
+								</c:forEach>
+								
+								<c:forEach items="${itemList}" var="dto">
+									<h3>${dto.item_name}</h3>
+									<span>${dto.item_price}원</span>
+									<span> x ${dto.cart_quantity}</span>
+								</c:forEach>								
 								<div class="topping">
 									<span style="display: none;" id="goods_name_brief">메인</span>
 									<div class="item">
@@ -230,7 +238,7 @@
 												<div class="chk-box" style="margin-left: 25px;">
 													<input type="radio" id="coupon${i.index}" name="coupon"> <label
 														class="checkbox" for="coupon${i.index}"></label> <label
-														for="coupon${i.index}">${coupon.sale_name}(${coupon.sale_date}~couponDate)</label>
+														for="coupon${i.index}">${coupon.sale_name}(유효기간:${coupon.sale_date}~${coupon.sale_date_end})</label>
 												</div>
 											</c:forEach>
 											</div>
@@ -376,11 +384,11 @@
 										<label class="checkbox" for="pay2"></label> <label for="pay2">네이버페이</label>
 									</div>
 									<div class="chk-box" id="pay-3">
-										<input type="radio" id="pay3" name="pay" value="핸드폰 결제">
+										<input type="radio" id="pay3" name="pay" value="핸드폰결제">
 										<label class="checkbox" for="pay3"></label> <label for="pay3">핸드폰결제</label>
 									</div>
 									<div class="chk-box" id="pay-4">
-										<input type="radio" id="pay4" name="pay" value="카카오결제">
+										<input type="radio" id="pay4" name="pay" value="카카오페이">
 										<label class="checkbox" for="pay4"></label> <label for="pay4">카카오결제</label>
 									</div>
 									<div class="chk-box" id="pay-5">
@@ -398,7 +406,7 @@
 									<div class="chk-box" id="pay-8">
 										<input type="radio" id="pay8" name="pay" value="토스 결제">
 										<label class="checkbox" for="pay8"></label> <label for="pay8">토스</label>
-									</div>
+									</div>				
 								</div>
 							</div>
 						</div>
@@ -475,7 +483,7 @@
 
 				<!-- 주문하기 버튼 -->
 				<div class="btn">
-					<button type="submit" class="button">결제하기</button>
+					<button type="submit" id="button">결제하기</button>
 				</div>
 			</form>
 			<!-- //주문하기 버튼 -->
@@ -485,6 +493,28 @@
 	<c:import url="../template/footer.jsp"></c:import>
 
 	<script>
+	
+	// 카카오 페이
+
+    $(document).ready(function () {
+      $('#button').click(function () {
+        // getter
+        var radioVal = $('input[name="pay"]:checked').val();
+        if(radioVal == '카카오페이'){
+ 
+        	open('./orderPay')
+        	
+        	
+        }else{
+        	
+        	alert(' 결제 준비중');
+        	
+        }
+      });
+
+    });
+	
+	
 		$(document).ready(function() {
 			// checkbox
 			$("input[type='checkbox']").change(function() {
