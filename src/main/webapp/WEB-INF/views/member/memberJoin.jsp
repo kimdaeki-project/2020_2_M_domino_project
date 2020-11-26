@@ -240,9 +240,7 @@
 		var check1 = $("#check1").prop("checked");
 		var check2 = $("#check2").prop("checked");
 		var check3 = $("#check3").prop("checked");
-			alert(check1);
-			alert(check2);
-			alert(check3);
+			
 			
 			aggCheck=false;
 			if($(".chk2").prop("checked")){
