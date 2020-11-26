@@ -64,8 +64,8 @@
 			    <div class="col-sm-4">
 	    
 			     <c:choose>
-			     	<c:when test="${not empty param.id}">
-			     		<input type="text" id="ka_id" name="member_id" value="${param.id}" readonly="readonly">
+			     	<c:when test="${not empty id}">
+			     		<input type="text" id="ka_id" name="member_id" value="${id}" readonly="readonly">
 			     	</c:when>
 			     	
 			     	<c:otherwise>
@@ -113,18 +113,9 @@
 
 			     <label class="col-sm-2 join_text" for="email">이메일 </label>
 			   <div class="col-sm-4">
-				  	 <c:choose>
-				     	<c:when test="${not empty param.id}">
-				     		<input type="email" id="ka_email" name="member_email" value="${param.email}" readonly="readonly">
-				     	</c:when>
-				     	
-				     	<c:otherwise>
-				     		 <input type="email" name="member_email" id="email" placeholder="ex) aaa@gmail.com">
-			         		 <input type="button" id="btnEmail" value="중복확인" class="checkButt">
-			     			 <div id="emailResult"></div>
-				     	</c:otherwise>
-				     </c:choose>
-
+				   <input type="email" name="member_email" id="email" placeholder="ex) aaa@gmail.com">
+			       <input type="button" id="btnEmail" value="중복확인" class="checkButt">
+			       <div id="emailResult"></div>
 			    </div>
 			  </div>
 			  	
@@ -132,8 +123,6 @@
 				<label for="level" class="labelUpdate">등급 </label>
 				<input type="text" name="member_level" value="REGULAR" style="text-align:center; width:500px; height:42px;">
 			</div>
-
-						
 
 			<div style="padding: 15px;">
 				<div class="form-group">
@@ -184,10 +173,12 @@
 <c:import url="../template/footer.jsp"></c:import>
 </body>
 <script type="text/javascript">
-
+	
+	
 	$("#checkAll2").click(function() {
 		if($("#checkAll2").is(":checked")){
 			$(".chk2").prop("checked",true);
+			
 		}else{
 			$(".chk2").prop("checked",false);
 		}
@@ -211,15 +202,15 @@
 	});
 	
 	
-	if($("input[type=checkbox]").prop("checked", false)) {
-		$(".chk").val(0);
-	}
+
+	
+
+
 	
 	//회원가입 id, pw, 이메일, 전화번호 중복 및 공백 검사
 
-	if("${param.id}" != ''){
+	if("${id}" != ''){
 		var idCheck = true;
-		var emailCheck=true;
 	} 
 	
 	else{
@@ -230,9 +221,24 @@
 		var emptyCheckResult=true;	
 	}
 	
+	var aggCheck=false;
+	
 	$("#btn").click(function() {
+		
+		var check1 = $("#check1").prop("checked");
+		var check2 = $("#check2").prop("checked");
+		var check3 = $("#check3").prop("checked");
+
+			
+			aggCheck=false;
+			if(check1 && check2 && check3){
+				aggCheck=true;
+			}else{
+				aggCheck=false;
+			}
+			
 		emptyCheck();
-		if(idCheck && pwCheck && phoneCheck && emailCheck && emptyCheckResult && idExpCheck && pwExpCheck && phoneExpCheck && emailExpCheck){
+		if(idCheck && pwCheck && phoneCheck && emailCheck && emptyCheckResult && idExpCheck && pwExpCheck && phoneExpCheck && emailExpCheck && aggCheck){
 			$("#frm").submit();
 		}else {
 			alert("필수 항목을 입력 및 입력 형식을 지켜주세요.")
@@ -349,9 +355,8 @@
 	var regExpEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
 	var regExpPhone = /^\d{3}-\d{3,4}-\d{4}$/;//핸드폰 번호 정규식
 	
-	if("${param.id}" != ''){
+	if("${id}" != ''){
 		var idExpCheck=true;
-		var emailExpCheck=true;
 	}
 	else{
 		var idExpCheck=false;
@@ -360,7 +365,6 @@
 		var emailExpCheck=false;
 		
 	}
-	
 
 	$("#id").blur(function() {
 		idExpCheck=false;

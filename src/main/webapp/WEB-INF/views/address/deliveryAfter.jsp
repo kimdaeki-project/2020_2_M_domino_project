@@ -61,11 +61,12 @@
 						<div class="addr-list">
 						<div class="addr-list-plus">
 							
-							<form action="" id="frm">
+							<form action="../order/orderInfo" id="frm">
 									<div class="reg_addr">
 											<c:forEach items="${list}" var="dto">
-												<div class="addChk"><input type="radio" value="${dto.roadFullAddr}" name="roadFullAddr" id="adNum">${dto.roadFullAddr}<input type="button" value="X" class="delAdd"></div>
-												
+												<div class="addChk"><input type="radio" value="${dto.address_num}" name="roadFullAddr" id="adNum">${dto.roadFullAddr}<input type="button" value="X" class="delAdd"></div>
+												<input type="text" value="${dto.address_num}" class="none" name="address_num" id="address_num">
+												<input type="text" value="${dto.member_num}" class="none" name="member_num" id="member_num">
 											</c:forEach>
 																				
 									</div>
@@ -96,6 +97,13 @@
 
 <script>
 // Add active class to the current button (highlight it)
+
+	$("#btnLog").click(function() {
+		var num = $("#adNum").val();
+		var memNum = $("#member_num").val();
+		
+		location.href = "../order/orderInfo";
+	});
 	
 	$(".delAdd").click(function() {
 		var num = $("#adNum").val();

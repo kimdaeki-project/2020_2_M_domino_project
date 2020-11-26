@@ -138,6 +138,18 @@ public class CartController {
 		return mv;
 	}
 	
+	@PostMapping("changeQuantity")
+	public ModelAndView changeQuantity(HttpSession session, CartDTO cartDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		System.out.println("quantity change: to " + cartDTO.getCart_quantity());
+		System.out.println("cart item id: " + cartDTO.getCart_item_id());
+		int result = cartService.updateCartItemQuantity(cartDTO);
+System.out.println("result: "+ result);
+		mv.addObject("msg", result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
+	
 	@PostMapping("delete/item")
 	public ModelAndView deleteItem(HttpSession session, CartDTO cartDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();	
@@ -150,10 +162,14 @@ public class CartController {
 	}
 	
 	@PostMapping("delete/topping")
-	public int deleteTopping(HttpSession session, long cart_item_id) throws Exception {
+	public ModelAndView deleteTopping(HttpSession session, long cart_item_id) throws Exception {
+		ModelAndView mv = new ModelAndView();
 		CartDTO cartDTO = new CartDTO();
 		cartDTO.setCart_item_id(cart_item_id);
-		return cartService.deleteCartItem(cartDTO);		
+		int result = cartService.deleteCartItem(cartDTO);	
+		mv.addObject("msg", result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
 	}
 	
 	@GetMapping("delete/emptyCart")
@@ -189,31 +205,6 @@ System.out.println("pResult: " + pResult);
 System.out.println("iResult: " + iResult);
 		mv.addObject("msg", result);
 		mv.setViewName("common/ajaxResult");		
-		return mv;
-	}
-	
- 
-	@PostMapping("toCheckout")
-	public ModelAndView toCheckoutPageTest(HttpSession session,
-			@RequestParam String[] pizzaGIdList,
-			@RequestParam String[] itemGIdList) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-		// order_detail_temp 테이블에서 member_num 기준으로 해당 유저의 데이터 모두 delete해 초기화시키기 
-		
-		// order_detail_temp 테이블에 [(pk), member_num, cart_group_id, is_pizza_group] insert
-		
-		
-// 나중에 꼭 지우기  --------------- order/orderInfo 로 내용 이동시키기 
-		List<List<CartDTO>> pizzaGroupList = cartService.getCartPizzaGroupListByGroupId(memberDTO, pizzaGIdList);
-		List<CartDTO> itemList = cartService.getCartItemByGroupId(memberDTO, itemGIdList);
-		session.setAttribute("pizzaGroupList", pizzaGroupList);
-		session.setAttribute("itemList", itemList);
-// 나중에 꼭 지우기  ---------------		
-		
-		
-		mv.setViewName("address/orderInfo");
-
 		return mv;
 	}
 

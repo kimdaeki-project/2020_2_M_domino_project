@@ -8,38 +8,11 @@
 <head>
 <title>Insert title here</title>
 <meta charset="utf-8">
-  
+
 <c:import url="../template/bootstrap.jsp"></c:import>
 <link href="../resources/css/common/default.css" rel="stylesheet">
 <link href="../resources/css/order/info.css" rel="stylesheet">
 <script src="../resources/js/header.js"></script>
-
-
-<script type="text/javascript">
-	$(document).ready(
-			function() {
-				$("#recipient").change(
-						function() {
-							if ($("#recipient").is(":checked")) {
-								$("#order_name").val("${member.member_name}")
-										.attr('readonly', true);
-								$(".tel1").val(
-										"${member.member_phone}"
-												.substring(4, 8)).attr(
-										'readonly', true);
-								$(".tel2").val(
-										"${member.member_phone}".substring(9,
-												14)).attr('readonly', true);
-							} else {
-								$("#order_name").val("")
-										.attr('readonly', false);
-								$(".tel1").val("").attr('readonly', false);
-								$(".tel2").val("").attr('readonly', false);
-							}
-						});
-			});
-
-</script>
 
 
 </head>
@@ -163,39 +136,40 @@
 							<li>
 								<div class="menu">
 									<!-- 피자 명  -->
-									<strong class="goods_name">피자명,외 갯수</strong>
+									<c:forEach items="${pizzaGroupList}" var="pizzaGroup">
+										<c:forEach items="${pizzaGroup}" var="dto">
+											<div>
+												<strong class="goods_name">${dto.item_name}</strong>
+											</div>
+										</c:forEach>
+									</c:forEach>
 									<!-- //피자 명  -->
-								</div>
-								<c:forEach items="${pizzaGroupList}" var="pizzaGroup">
-									<c:forEach items="${pizzaGroup}" var="dto">
-										<h3>${dto.item_name}</h3>
-										<span>${dto.item_price}원</span>
-										<span> x ${dto.cart_quantity}</span>
-									</c:forEach>		
-								</c:forEach>
-								
-								<c:forEach items="${itemList}" var="dto">
-									<h3>${dto.item_name}</h3>
-									<span>${dto.item_price}원</span>
-									<span> x ${dto.cart_quantity}</span>
-								</c:forEach>								
+								</div> <!-- 토핑 -->
 								<div class="topping">
 									<span style="display: none;" id="goods_name_brief">메인</span>
 									<div class="item">
-										<span>피자이름 (도우 )사이즈 x 갯수</span> <span>가격</span>원
+										<c:forEach items="${pizzaGroupList}" var="pizzaGroup">
+											<c:forEach items="${pizzaGroup}" var="dto">
+												<div class="item_pizza">${dto.item_name}</div>
+												<span>${dto.item_price}원</span>
+												<span> x ${dto.cart_quantity}</span>
+											</c:forEach>
+										</c:forEach>
 
-										<!-- 토핑 -->
-										<ul>
-											<li></li>
-										</ul>
-										<!-- //토핑 -->
+
+										<div class="etc">
+											<c:forEach items="${itemList}" var="dto">
+												<div class="item_topping">${dto.item_name}</div>
+												<span>${dto.item_price}원</span>
+												<span> x ${dto.cart_quantity}</span>
+											</c:forEach>
+											<!-- //토핑 -->
+										</div>
 									</div>
 
 									<!-- 사이드 메뉴 -->
 									<span style="display: none;" id="goods_name_brief">사이드메뉴</span>
-									<div class="item">
-										<span>사이드메뉴 x 갯수</span> <span>가격</span>원
-									</div>
+									<div class="item"></div>
 								</div>
 							</li>
 						</ul>
@@ -234,19 +208,25 @@
 											온라인 쿠폰</p>
 										<div class="form" style="padding: 20px 10">
 											<div class="form-item">
-											<c:forEach items="${couponList}" var="coupon" varStatus="i">
-												<div class="chk-box" style="margin-left: 25px;">
-													<input type="radio" id="coupon${i.index}" name="coupon"> <label
-														class="checkbox" for="coupon${i.index}"></label> <label
-														for="coupon${i.index}">${coupon.sale_name}(유효기간:${coupon.sale_date}~${coupon.sale_date_end})</label>
-												</div>
-											</c:forEach>
+												<c:forEach items="${couponList}" var="coupon" varStatus="i">
+													<div class="chk-box" style="margin-left: 25px;">
+														<input type="radio" id="coupon${i.index}"
+															value="${i.index}" name="coupon"
+															 onclick="chooseForm(this.name)"> <label
+															class="checkbox" for="coupon${i.index}"></label> <label
+															for="coupon${i.index}">${coupon.sale_name}(유효기간:${coupon.sale_date}~${coupon.sale_date_end})</label>
+													</div>
+												</c:forEach>
 											</div>
 										</div>
 									</div>
 								</div>
 
-								<div class="col-sm-4"
+
+
+								
+
+								<div class="col-sm-4" id="form_0"
 									style="padding: 20px 0; background-color: #f2f2f2; text-align: center;">
 									<div class="coupon-pay"
 										style="background-color: white; height: 300px; border: 20px solid #f2f2f2;">
@@ -272,6 +252,8 @@
 											<dd id="totalPricePay">28,900원</dd>
 										</dl>
 									</div>
+							
+
 
 									<div>
 										<div class="btn-wrap"
@@ -283,6 +265,89 @@
 									</div>
 
 								</div>
+
+
+								<div class="col-sm-4" id="form_1"
+									style="padding: 20px 0; background-color: #f2f2f2; text-align: center;">
+									<div class="coupon-pay"
+										style="background-color: white; height: 300px; border: 20px solid #f2f2f2;">
+										<div class="title-type2">
+											<h4>최종 결제 금액</h4>
+										</div>
+										<dl>
+											<dt>총 상품 금액</dt>
+											<dd class="totalPrice">18,900원</dd>
+										</dl>
+										<dl class="discount">
+											<dt>총 할인 금액</dt>
+											<dd id="totalDiscount">13,000원</dd>
+										</dl>
+										<hr>
+										<!--할인 적용한 쿠폰명-->
+										<ul class="apply applyBox">
+											<li class="prmtName">-> [첫 주문]스타 셰프 컬렉션 L 배달 1만원</li>
+										</ul>
+										<!--//할인 적용한 쿠폰명-->
+										<dl class="total">
+											<dt>총 결제 금액</dt>
+											<dd id="totalPricePay">5,900원</dd>
+										</dl>
+									</div>
+							
+
+
+									<div>
+										<div class="btn-wrap"
+											style="background-color: #ff143c; height: 50px; width: 260px; margin: 0 auto;">
+											<a href="#" class="btn-type1"
+												style="line-height: 50px; color: white; font-size: 18px;">쿠폰
+												적용하기</a>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="col-sm-4" id="form_2"
+									style="padding: 20px 0; background-color: #f2f2f2; text-align: center;">
+									<div class="coupon-pay"
+										style="background-color: white; height: 300px; border: 20px solid #f2f2f2;">
+										<div class="title-type2">
+											<h4>최종 결제 금액</h4>
+										</div>
+										<dl>
+											<dt>총 상품 금액</dt>
+											<dd class="totalPrice">30,900원</dd>
+										</dl>
+										<dl class="discount">
+											<dt>총 할인 금액</dt>
+											<dd id="totalDiscount">6,000원</dd>
+										</dl>
+										<hr>
+										<!--할인 적용한 쿠폰명-->
+										<ul class="apply applyBox">
+											<li class="prmtName">-> [첫 주문]스타 셰프 컬렉션 L 배달 1만원</li>
+										</ul>
+										<!--//할인 적용한 쿠폰명-->
+										<dl class="total">
+											<dt>총 결제 금액</dt>
+											<dd id="totalPricePay">9,900원</dd>
+										</dl>
+									</div>
+							
+
+
+									<div>
+										<div class="btn-wrap"
+											style="background-color: #ff143c; height: 50px; width: 260px; margin: 0 auto;">
+											<a href="#" class="btn-type1"
+												style="line-height: 50px; color: white; font-size: 18px;">쿠폰
+												적용하기</a>
+										</div>
+									</div>
+
+								</div>
+
+
 
 								<div class="modal-footer" style="background-color: #f2f2f2;">
 									<div class="col-sm-8" style="text-align: left; padding: 20px;">
@@ -334,32 +399,37 @@
 					<div class="time-step">
 						<div class="type2" id="time-list">
 							<ul class="col-free">
-								<li class="cupon"><a href="#">바로주문</a></li>
-								<li class="cupon"><a href="#">오늘예약</a></li>
-								<li class="cupon"><a href="#">내일예약</a></li>
+								<li class="tablinks active" onclick="openTab(event, 'tab1')"><a
+									href="javascript:return false;">바로주문</a></li>
+								<li class="tablinks" onclick="openTab(event, 'tab2')"><a
+									href="javascript:return false;">오늘예약</a></li>
+								<li class="tablinks" onclick="openTab(event, 'tab3')"><a
+									href="javascript:return false;">내일예약</a></li>
 							</ul>
 						</div>
 
 						<!-- 바로주문 -->
 						<div>
-							<div class="time-info">
+							<div class="time-info tabcontent" id="tab1"
+								style="display: block;">
 								<p class="text">
-									지금 주문하시면,
-									<br>
-									<span>${orderTime}</span>
-									배달될 예정입니다.
-								</p>	
-									<div class="guide-box4 guide-box4-2">*매장 상황에 따라 배달시간이 상이할 수 있습니다.</div>
-								
-								
-								
-								
-								</div>
+									지금 주문하시면, <br> <span>${orderTime}</span> 배달될 예정입니다.
+								</p>
+								<div class="guide-box4 guide-box4-2">*매장 상황에 따라 배달시간이 상이할
+									수 있습니다.</div>
 							</div>
 						</div>
-						<!-- // 바로주문 -->
+						<div id="tab2" class="time-info tabcontent" style="display: none;">
+							<p class="text">예약 준비중.</p>
+						</div>
+						<div id="tab3" class="time-info tabcontent" style="display: none;">
+							<p class="text">진심 예약 준비중</p>
+						</div>
 					</div>
-				
+
+					<!-- // 바로주문 -->
+				</div>
+
 
 				<!-- 결제방법 -->
 				<div class="step-wrap" id="pay_info">
@@ -406,7 +476,7 @@
 									<div class="chk-box" id="pay-8">
 										<input type="radio" id="pay8" name="pay" value="토스 결제">
 										<label class="checkbox" for="pay8"></label> <label for="pay8">토스</label>
-									</div>				
+									</div>
 								</div>
 							</div>
 						</div>
@@ -488,35 +558,64 @@
 			</form>
 			<!-- //주문하기 버튼 -->
 		</article>
-		</div>
+	</div>
 
 	<c:import url="../template/footer.jsp"></c:import>
 
 	<script>
-	
-	// 카카오 페이
+		// 카카오 페이
 
-    $(document).ready(function () {
-      $('#button').click(function () {
-        // getter
-        var radioVal = $('input[name="pay"]:checked').val();
-        if(radioVal == '카카오페이'){
- 
-        	open('./orderPay')
-        	
-        	
-        }else{
-        	
-        	alert(' 결제 준비중');
-        	
-        }
-      });
-
-    });
-	
-	
 		$(document).ready(function() {
-			// checkbox
+			$('#button').click(function() {
+				// getter
+				var radioVal = $('input[name="pay"]:checked').val();
+				if (radioVal == '카카오페이') {
+
+					open('./orderPay')
+
+				} else {
+
+					alert(' 결제 준비중');
+
+				}
+			});
+
+		});
+
+		// 카카오 페이 end
+
+		// 주문자 동일  불러오기
+		$(document).ready(
+				function() {
+					$("#recipient").change(
+							function() {
+								if ($("#recipient").is(":checked")) {
+									$("#order_name").val(
+											"${member.member_name}").attr(
+											'readonly', true);
+									$(".tel1").val(
+											"${member.member_phone}".substring(
+													4, 8)).attr('readonly',
+											true);
+									$(".tel2").val(
+											"${member.member_phone}".substring(
+													9, 14)).attr('readonly',
+											true);
+								} else {
+									$("#order_name").val("").attr('readonly',
+											false);
+									$(".tel1").val("").attr('readonly', false);
+									$(".tel2").val("").attr('readonly', false);
+								}
+							});
+				});
+
+		// 주문자 동일  불러오기
+
+		// checkbox
+
+		$(document).ready(function() {
+
 			$("input[type='checkbox']").change(function() {
 				if ($(this).is(':checked')) {
 					$(this).parent().addClass('selected');
@@ -527,12 +626,48 @@
 				}
 			});
 		});
+
+		// checkbox end
+
+		// modal창
 		function myCoupon() {
 			var url = "./myCoupon";
 			var name = "popup test";
 			var option = "width = 900px, height = 650px , top = 100px, left = 400px, location = no, scrollbars = no, toolbars = no, status = no"
 			window.open(url, name, option);
 		}
+
+		// modal 창 end
+
+		// modal창 coupon
+		function chooseForm(radioName) {
+			var radios = document.getElementsByName(radioName);
+			for (var i = 0, length = radios.length; i < length; i++) {
+				document.getElementById('form_' + radios[i].value).style.display = 'none';
+				if (radios[i].checked) {
+					document.getElementById('form_' + radios[i].value).style.display = 'block';
+				}
+			}
+		}
+		// modal창 coupon end
+
+		//배달 시간 확인 
+		function openTab(evt, tabName) {
+			var i, tabcontent, tablinks;
+			tabcontent = document.getElementsByClassName("tabcontent");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+			tablinks = document.getElementsByClassName("tablinks");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(
+						" active", "");
+			}
+			document.getElementById(tabName).style.display = "block";
+			evt.currentTarget.className += " active";
+		}
+
+		//배달 시간 확인 end
 	</script>
 </body>
 </html>

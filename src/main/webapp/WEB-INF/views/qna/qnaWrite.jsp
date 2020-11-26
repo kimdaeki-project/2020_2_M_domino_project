@@ -121,16 +121,16 @@
   				
   			  <div class="col-sm-12 qna_input">
 				  <label class="control-label col-sm-2" for="phone">휴대전화<span>*</span></label>
-				  <div class="col-sm-6">
-				  <input type="text" class="form-control empty" id="phone" name="phone">
+				  <div class="col-sm-4">
+				  <input type="text" class="form-control empty" id="phone" name="phone" placeholder="ex) 010-xxxx-xxxx">
 				  <div class="emptyResult phoneResult"></div>
 				  </div>
 			  </div>
 			 
   			  <div class="col-sm-12 qna_input">
 				  <label class="control-label col-sm-2" for="email">이메일<span>*</span></label>
-				  <div class="col-sm-6">
-				  <input type="email" class="form-control empty" id="email" name="email">
+				  <div class="col-sm-4">
+				  <input type="email" class="form-control empty" id="email" name="email" placeholder="ex) aaa@gmail.com">
 				  <div class="emptyResult emailResult"></div>
 				  </div>
 			   </div>
@@ -179,7 +179,7 @@
     		  	<div class="col-sm-12 qna_input">
 				    <label class="control-label col-sm-2" for="order_num">주문번호</label>
 				    <div class="col-sm-4">
-				    <input type="text" class="form-control" id="order_num" name="order_num"  onKeyPress="return numkeyCheck(event)">
+				    <input type="text" class="form-control" id="order_num" name="order_num"  onKeyPress="return numkeyCheck(event)" placeholder="주문번호 숫자를 입력해주세요">
 				    </div>
 				</div>
     
@@ -253,7 +253,7 @@
 		$("#qna_write_btn").click(function(){
 			agreeCheck();
 			emptyCheck();
-			if(emptyCheckResult&&agreeCheckResult){
+			if(emptyCheckResult&&agreeCheckResult&&phoneExpCheck&&emailExpCheck){
 				$("#frm").submit();
 			}
 		});
@@ -310,6 +310,40 @@
 				return false; 
 			}
 			} 
+		
+		//휴대폰이랑 이메일 유효성검사
+		var regExpEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
+		var regExpPhone = /^\d{3}-\d{3,4}-\d{4}$/;//핸드폰 번호 정규식
+		
+		var phoneExpCheck=false;
+		var emailExpCheck=false;
+		
+		$("#phone").blur(function() {
+			phoneExpCheck=false;
+			if(!regExpPhone.test($("input[id='phone']").val())) {
+				phoneExpCheck=false;
+			 	alert("형식에 맞지않는 전화번호입니다.")
+		    
+			}else{
+				phoneExpCheck=true;
+				alert("사용할 수 있는 전화번호 형식입니다.")
+			}
+		});
+		
+		
+		$("#email").blur(function() {
+			emailExpCheck=false;
+			if(!regExpEmail.test($("input[id='email']").val())) {
+				emailExpCheck=false;
+			 	alert("형식에 맞지않는 이메일입니다.")
+		    
+			}else{
+				emailExpCheck=true;
+				alert("사용할 수 있는 이메일 형식입니다.")
+			}
+		});
+		
+		//휴대폰 이메일 유효성 검사
 
 		//다시쓰기 alert창 
 		$(document).ready(function(){

@@ -104,6 +104,10 @@ public class MemberUserDAO implements MemberDAO{
 	}
 	
 	//추가
+		public CouponDTO getMemberSocialIdCheck(CouponDTO couponDTO) throws Exception{
+			return sqlSession.selectOne(NAMESPACE+"getMemberSocialIdCheck", couponDTO);
+		}
+	
 		public CouponDTO getMemberSocialLogin(CouponDTO couponDTO) throws Exception{
 			return sqlSession.selectOne(NAMESPACE+"getMemberSocialLogin", couponDTO);
 		}

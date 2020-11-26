@@ -69,7 +69,8 @@
 												
 											
 										</div>
-										<input type="button" value="배달 주소 등록 확인" id="deliveryBtn">
+										
+										<input type="button" value="배달 주소 등록 확인" class="checkButt" style="width: 150px;" id="deliveryBtn">
 												
 									</form>
 										
@@ -78,12 +79,14 @@
 								</li>
 							</ul>
 							
-							<div class="addr-limit">
-							* 배달 주소는 최대 10개까지만 등록 가능합니다.
-							</div>
+							
 						</div>
+
 					</div>
 				</div>	<!-- 배달/포장 -->
+					<div class="addr-limit">
+						* 배달 주소는 최대 10개까지만 등록 가능합니다.
+					</div>
 			</div>	<!-- 주문방법선택 -->	
 		</div>	
 		<button type="button" style="text-align:center; width:210px; height:58px;" id="btnLog">주소 목록</button>		

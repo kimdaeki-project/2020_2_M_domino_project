@@ -53,6 +53,7 @@ public class OrderController {
 		AddressDTO addressDTO = (AddressDTO)session.getAttribute("member");
 		
 		addressDTO = orderService.getOne(addressDTO);
+		
 		//------주소 가져오기 end---------
 		
 		//------쿠폰 가져오기-------------		
@@ -74,9 +75,13 @@ public class OrderController {
 					
 		//———주문 상품 데이터 가져오기 end————
 		
+
+			
+
 		
 			mv.addObject("pizzaGroupList", pizzaGroupList);
 			mv.addObject("itemList", itemList);		
+
 			mv.addObject("orderTime", orderTime);
 			mv.addObject("address", addressDTO);
 			mv.addObject("couponList", ar);
@@ -112,7 +117,5 @@ public class OrderController {
 		
 	}
 	
-	
-	
-	
+
 }
