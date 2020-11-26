@@ -11,6 +11,7 @@
 
 <c:import url="../template/bootstrap.jsp"></c:import>
 <link href="../resources/css/common/default.css" rel="stylesheet">
+<link href="../resources/css/common/member.css" rel="stylesheet">
 <link href="../resources/css/order/info.css" rel="stylesheet">
 <script src="../resources/js/header.js"></script>
 
@@ -20,19 +21,33 @@
 <body>
 	<c:import url="../template/header.jsp"></c:import>
 
-	<!-- 1depth 메뉴명 & 네비게이션 -->
-	<div class="container">
+<div class="container">
 		<div class="order-title-wrap">
-			<h2 class="order-title">주문내역</h2><br>
+		<h2 class="order-title">주문 내역</h2>
 			<div class="depth-area">
 				<ol>
 					<li><a href="http://localhost/t1">홈</a></li>
-					<li><a href="/basket/detail">장바구니</a></li>
-					<li><strong>결제하기</strong></li>
+					<li><a href="./memberPage">나의정보</a></li>
+					<li><strong>매니아등급</strong></li>
 				</ol>
 			</div>
 		</div>
-
+		
+		<ul id="select" style="padding: 20px 0;">
+			<li>
+				<a href="./memberPage">매니아 등급</a> ㅣ 
+				<a href="./memberOrder">주문 내역 </a> ㅣ 
+				<a href="#">쿠폰함</a> ㅣ 
+				<a href="../memberInq/memberInquirly">1:1 문의</a> ㅣ 
+				<a href="./memberCheck">정보 수정</a> 
+			</li>
+		</ul>
+		
+	<div class="myLevel">
+		<div class="myCheck"><h1 id="mLevel">${member.member_name}님이 주문하신 내역입니다.</h1></div>
+		<div></div>
+		<div class="myCheck2">등급별 혜택보기></div>
+	</div>
 				<!-- 주문내역  ★for문사용★ -->
 				<div class="step-wrap">
 
