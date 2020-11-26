@@ -1,5 +1,7 @@
 package com.domino.t1.member.memberUser;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -19,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.domino.t1.address.AddressDTO;
+import com.domino.t1.cart.CartDTO;
+import com.domino.t1.cart.CartService;
 import com.domino.t1.coupon.CouponDTO;
 import com.domino.t1.member.MemberDTO;
 import com.domino.t1.member.memberInquirly.MemberInquirlyDTO;
@@ -30,7 +34,8 @@ public class MemberUserController {
 	
 	@Autowired
 	private MemberUserService memberService;
-	
+	@Autowired
+	private CartService cartService;
 	//추가
 	@GetMapping("memberSocialLogin")
 	public ModelAndView getMemberSocialLogin(CouponDTO couponDTO, HttpServletRequest request ,HttpSession session) throws Exception{
@@ -49,6 +54,32 @@ public class MemberUserController {
 			mv.setViewName("redirect:../");
 		}
 		return mv;
+	}
+	
+	@GetMapping("memberOrder")
+	public ModelAndView orderWrite(HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		
+		//———주문 상품 데이터 가져오기————
+			CartDTO cartDTO = new CartDTO();
+		
+		
+			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+			List<String[]> gIdList = cartService.getOrderDetailTempLists(memberDTO);
+			List<List<CartDTO>> pizzaGroupList = cartService.getTempPizzaGroupItemList(gIdList.get(0), memberDTO);
+			List<CartDTO> itemList = cartService.getTempStandaloneItemList(gIdList.get(1), memberDTO);
+				
+					
+		//———주문 상품 데이터 가져오기 end————
+		
+			mv.addObject("pizzaGroupList", pizzaGroupList);
+			mv.addObject("itemList", itemList);		
+			
+			mv.setViewName("member/memberOrder");	
+
+		return mv;
+		
 	}
 	
 	@GetMapping("memberDeleteAdmin")
