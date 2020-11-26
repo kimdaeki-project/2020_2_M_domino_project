@@ -14,4 +14,8 @@
 		select * from branch_info where region1 = #{region1} and region2 = #{region2}		
 	</select>
 	
+	<select id="getLatLon" parameterType="BranchInfoDTO" resultType="BranchInfoDTO">
+		select latitude, longitude from branch_info where region1 = #{region1} and region2 = #{region2}
+	</select>
+	
 </mapper>

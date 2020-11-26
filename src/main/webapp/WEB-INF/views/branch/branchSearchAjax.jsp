@@ -32,5 +32,7 @@
 				<a href="#" class="btn type2">방문포장</button></a>
 			</div>
 		</div>
+		<input type="text" id="lat" value="${dto.latitude}">
+		<input type="text" id="lon" value="${dto.longitude}">
 	</div>
 </c:forEach>

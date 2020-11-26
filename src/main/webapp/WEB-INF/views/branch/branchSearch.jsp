@@ -30,11 +30,8 @@
 						<button type="button" class="btn-type v4" id="viewAll">전체매장 보기</button>	
 					</div>
 					<div class="store-map-area">
-						<div class="store-map-wrap">
-							<div class="store-map" id="map">
-							<div id="map"></div>
-							</div>
-						</div>
+						
+						<div id="branchMap"></div>
 						
 						<!-- 탭 선택 최상위 div -->
 						<div class="store-search">
@@ -119,6 +116,7 @@
 												
 							<div id="brName"></div>
 							
+							
 							<!-- ===== 매장 리스트 ] ===== -->
 							
 						</div> <!-- 탭 선택 최상위 div -->
@@ -140,17 +138,26 @@
 	</div>
 </div> <!-- container -->
 
-<script type="text/javascript">
+<script type="text/javascript"> // 매장 지역 검색 search 버튼 결과 js
 	$("#btnBranchSearch").click(function(){
 		var reg1val = $("#region1 option:selected").val()
 		var reg2val = $("#region2 option:selected").val()
+		
+		$.ajax({
+			url:"<%=request.getContextPath()%>/branch/branchMap",
+			type:"GET",
+			data:{"reg1":reg1val, "reg2":reg2val},
+			success:function(result) {
+				console.log("test")
+				$("#branchMap").html(result)
+			}
+		})
 		
 		$.ajax({
 			url:"<%=request.getContextPath()%>/branch/branchName",
 			type:"GET",
 			data:{"reg1":reg1val, "reg2":reg2val},
 			success:function(result) {
-				console.log("test")
 				$("#brName").html(result)
 			}
 		})

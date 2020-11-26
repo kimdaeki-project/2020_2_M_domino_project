@@ -58,6 +58,26 @@ public class BranchInfoController {
 		return mv;
 	}
 	
+	@GetMapping("branchMap")
+	public ModelAndView getLatLon(BranchInfoDTO branchInfoDTO, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		String reg1 = request.getParameter("reg1");
+		System.out.println(reg1);
+		String reg2 = request.getParameter("reg2");
+		System.out.println(reg2);
+		
+		branchInfoDTO.setRegion1(reg1);
+		branchInfoDTO.setRegion2(reg2);
+		
+		List<BranchInfoDTO> ar = branchInfoService.getLatLon(branchInfoDTO);
+		
+		mv.addObject("latlon", ar);
+		mv.setViewName("branch/branchMap");
+		
+		return mv;
+	}
+	
 	@GetMapping("branchSearchAjax")
 	public ModelAndView getBranchResult(BranchInfoDTO branchInfoDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
