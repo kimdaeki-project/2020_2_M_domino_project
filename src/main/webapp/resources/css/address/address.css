@@ -177,7 +177,7 @@
 		padding: 32px 75px 30px 110px;
 		color: #000;
 		width: 100%;
-		height: 206px;
+		height: 270px;
 	}
 	
 	.addr-list .notyet {
@@ -436,7 +436,11 @@
 	#deliveryBtn{
 		margin-top: 10px;
 	}
-
+	
+	#callBackDiv{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	}
 
 	
 	

@@ -168,10 +168,12 @@
 <c:import url="../template/footer.jsp"></c:import>
 </body>
 <script type="text/javascript">
-
+	
+	
 	$("#checkAll2").click(function() {
 		if($("#checkAll2").is(":checked")){
 			$(".chk2").prop("checked",true);
+			
 		}else{
 			$(".chk2").prop("checked",false);
 		}
@@ -196,9 +198,10 @@
 	});
 	
 	
-	if($("input[type=checkbox]").prop("checked", false)) {
-		$(".chk").val(0);
-	}
+
+	
+
+
 	
 	//회원가입 id, pw, 이메일, 전화번호 중복 및 공백 검사
 	var idCheck=false;
@@ -207,9 +210,26 @@
 	var emailCheck=false;
 	var emptyCheckResult=true;
 	
+	var aggCheck=false;
+	
 	$("#btn").click(function() {
+		
+		var check1 = $("#check1").prop("checked");
+		var check2 = $("#check2").prop("checked");
+		var check3 = $("#check3").prop("checked");
+			alert(check1);
+			alert(check2);
+			alert(check3);
+			
+			aggCheck=false;
+			if($(".chk2").prop("checked")){
+				aggCheck=true;
+			}else{
+				aggCheck=false;
+			}
+			
 		emptyCheck();
-		if(idCheck && pwCheck && phoneCheck && emailCheck && emptyCheckResult && idExpCheck && pwExpCheck && phoneExpCheck && emailExpCheck){
+		if(idCheck && pwCheck && phoneCheck && emailCheck && emptyCheckResult && idExpCheck && pwExpCheck && phoneExpCheck && emailExpCheck && aggCheck){
 			$("#frm").submit();
 		}else {
 			alert("필수 항목을 입력 및 입력 형식을 지켜주세요.")
