@@ -63,6 +63,13 @@ public class BranchInfoController {
 		return mv;
 	}
 	
+	@PostMapping("mapSearchResult")
+	public ModelAndView getSearchResult(BranchInfoDTO branchInfoDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("branch/mapSearchResult");
+		return mv;
+	}
+	
 	@GetMapping("branchSearchAjax")
 	public ModelAndView getBranchResult(BranchInfoDTO branchInfoDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();

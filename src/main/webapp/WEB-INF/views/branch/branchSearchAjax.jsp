@@ -26,11 +26,11 @@
 				</div>
 			</div>
 			<div class="br-detail">
-				<a href="#" class="btn type1">상세보기</button></a>
-				<a href="#" class="btn type2">방문포장</button></a>
+				<a href="#" class="btn type1">상세보기</a>
+				<a href="#" class="btn type2">방문포장</a>
 			</div>
 		</div>
-		<input type="text" id="brLat" value="${dto.latitude}">
-		<input type="text" id="brLon" value="${dto.longitude}">
+		<input type="text" class="brLat" value="${dto.latitude}">
+		<input type="text" class="brLon" value="${dto.longitude}">
 	</div>
 </c:forEach>

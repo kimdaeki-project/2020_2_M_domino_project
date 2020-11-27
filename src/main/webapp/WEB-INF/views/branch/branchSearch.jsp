@@ -154,7 +154,19 @@
 	</div>
 </div> <!-- container -->
 
+<script type="text/javascript"> // 디폴트 맵 표시
+
+	getMap()
+	function getMap(){
+		$.get("./branchMap", function(data){
+			$("#branchMap").html(data)
+		})
+	}
+	
+</script>
+
 <script type="text/javascript"> // 매장 지역 검색 search 버튼 결과 js
+
 	$("#btnBranchSearch").click(function(){
 		var reg1val = $("#region1 option:selected").val()
 		var reg2val = $("#region2 option:selected").val()
@@ -164,8 +176,17 @@
 			type:"GET",
 			data:{"reg1":reg1val, "reg2":reg2val},
 			success:function(result) {
-				console.log("test")
-				$("#branchMap").html(result)
+				$("#branchMap").remove()
+				
+				$.ajax({
+					url:"<%=request.getContextPath()%>/branch/mapSearchResult",
+					type:"POST",
+					data:{"reg1":reg1val, "reg2":reg2val},
+					success:function(result) {
+						console.log("result test")
+						$("#branchMap").html(result)
+					}
+				})
 			}
 		})
 		
