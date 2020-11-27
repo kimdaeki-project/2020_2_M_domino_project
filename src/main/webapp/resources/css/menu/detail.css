@@ -4,7 +4,6 @@
 }
 
 .item-option-container{
-	border: 2px red solid;
 	padding-left: 80px;
 /* should be modified later!! */
 	padding-bottom: 200px;
@@ -25,7 +24,8 @@
 }
 
 .option-title-wrap p{
-	font-size: 17px;
+	font-size: 19px;
+	font-weight: bold;
 }
 
 /* size option btn (red) */
@@ -59,6 +59,10 @@
 /* dough */
 .dough-info{
 	width: 90%;
+}
+
+#frm-dough-option{
+	padding: 0 2%;
 }
 
 .dough-info-price{
@@ -113,13 +117,11 @@ form{
 
 .option-item{
 	height: 90px;
-	width: 90%;
-	margin-bottom: 18px;
+	margin: 2% 0;
 }
 
 .option-item-image-wrap{
-	padding:0;
-border: 1px blue solid;
+	
 }
 
 .option-item-image{
@@ -128,19 +130,34 @@ border: 1px blue solid;
 }
 
 .option-item-content{
+	margin: 0 2%;
 	margin: 0 auto;
-border: 1px orange solid;
+	
 }
 
 .option-item-content p{
-border: 1px black solid;
+	text-align: left;
 }
 
 .option-item-quantity{
 	margin: 0 auto;
-border: 1px red solid;
 }
 
+.cs12{
+	padding: 0;
+}
+
+.cs9{
+	padding-top: 2%
+}
+
+.item_price{
+	font-size: 17px;
+}
+
+.cs6{
+	padding-top: 3%
+}
 
 /* pizza-quantity specific button css */
 .pizza-quantity-input-group{
@@ -162,10 +179,7 @@ border: 1px red solid;
 	min-height: 150px;
 	display: flex;
 	background: #f5f5f5;
-	padding-right: 8%;
-	padding-left: 8%;
-border: 2px blue solid;	
-
+	padding: 1% 8%;
 }
 
 
@@ -173,14 +187,12 @@ border: 2px blue solid;
 	width: 300px;
 	margin: 0 auto;
 	float: left;
-border: 1px orange solid;
 }
 
 .item-total-container{
 	width: 20%;
 	margin: 0 auto;
 	float: right;	
-border: 1px green solid;
 }
 
 .subtotal-title{
@@ -225,8 +237,31 @@ border: 1px green solid;
 #btn-to-cart{
 	background-color: #2E77A9;
 }
+.subtotal-title{
+	margin-right: 20px;
+}
 
+#total-price{
+	font-size: 25px;
+	font-weight: bold;
+}
 
+#order-btn{
+	margin: 5% 0;
+}
+
+#pdContainer{
+	padding: 3% 0;	
+}
+
+.toppings-info-wrap, .toppings-info1, .toppings-info2{
+	padding: 1% 0;
+	color:#888888;
+}
+
+.toppings-info-wrap h4{
+	color:black;
+}
 
 
 
