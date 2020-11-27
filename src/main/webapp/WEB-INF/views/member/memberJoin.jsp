@@ -123,7 +123,6 @@
 			    <input type="button" id="btnEmail" value="중복확인" class="checkButt">
 			    <div id="emailResult"></div>
 
-
 			    </div>
 			  </div>
 			  	
