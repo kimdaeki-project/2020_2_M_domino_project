@@ -22,7 +22,14 @@
 	};
 	
 	//지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-	var map = new kakao.maps.Map(mapContainer, mapOption); 
+	var map = new kakao.maps.Map(mapContainer, mapOption);
+	
+	
+	var brPosition = [
+		title: '${dto.branch_name}',
+		latlng: new kakao.maps.LatLng('${dto.latitude}', '${dto.longitude}')
+	]
+	
 	
 	var imageSrc = '/t1/resources/images/branch/ico_spot.png', // 마커이미지의 주소입니다    
 	imageSize = new kakao.maps.Size(40, 52), // 마커이미지의 크기입니다
