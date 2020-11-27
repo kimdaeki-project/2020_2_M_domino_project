@@ -67,9 +67,6 @@
 			    <label class="col-sm-2 join_text" for="id">아이디</label>
 			    <div class="col-sm-4">
 	    
-
-			     <input type="text" id="id" name="member_id" class="form-control empty" placeholder="숫자와 문자 포함   6~12자리">
-
 			     <c:choose>
 			     	<c:when test="${not empty id}">
 			     		<input type="text" id="ka_id" name="member_id" value="${id}" readonly="readonly">

@@ -60,8 +60,7 @@ public class MemberUserController {
 			return mv;	
 		}
 
-		return mv;
-	}
+
 	
 	@GetMapping("memberOrder")
 	public ModelAndView orderWrite(HttpSession session) throws Exception {
