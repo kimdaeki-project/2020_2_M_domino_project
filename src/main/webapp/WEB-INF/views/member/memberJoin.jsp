@@ -22,7 +22,7 @@
 	}
 		
 	.join_text{
-		padding-left: 0;
+		padding:1% 0 0 0;
 		text-align: left;
 		font-size: 17px;
 	}
@@ -36,9 +36,10 @@
   <link href ="../resources/css/common/default.css" rel="stylesheet">
   <link href ="../resources/css/common/member.css" rel="stylesheet">
   <script src="../resources/js/header.js"></script>
- <c:import url="../template/header.jsp"></c:import>
+ 
 </head>
 <body>
+	<c:import url="../template/header.jsp"></c:import>
 	
 	<div class="container">
 	
@@ -157,21 +158,23 @@
 				<div class="form-group">
 						<label for="aggAll" class="labelUpdate">약관 전체동의</label>
 						<div class="memberAgg">
-						<span id="chkNotice">* 필수사항 미체크시 회원가입이 진행되지 않습니다.</span><br>
-	  					<label><input type="checkbox" value=1 id="checkAll2">전체 동의하기</label><br>
-	  					<label><input type="checkbox" value=1 id="check1" class="chk2" name="member_pi_agg">개인정보 수집 및 이용동의(필수)</label><br>
-	 					<label><input type="checkbox" value=1 id="check2" class="chk2" name="member_clause_agg">이용약관 동의(필수)</label><br>
-						<label><input type="checkbox" value=1 id="check3" class="chk2" name="member_locate_agg">위치기반 서비스 약관 동의(필수)</label>
-						</div>
+
+              <span id="chkNotice">* 필수사항 미체크시 회원가입이 진행되지 않습니다.</span><br>
+	  					<label><input type="checkbox" value=1 id="checkAll2" class="chkall2">전체 동의하기</label><br>
+	  					<label><input type="checkbox" value=1 id="check1" class="chk2 chkall" name="member_pi_agg">개인정보 수집 및 이용동의(필수)</label><br>
+	 					<label><input type="checkbox" value=1 id="check2" class="chk2 chkall" name="member_clause_agg">이용약관 동의(필수)</label><br>
+						<label><input type="checkbox" value=1 id="check3" class="chk2 chkall" name="member_locate_agg">위치기반 서비스 약관 동의(필수)</label>
+          </div>
+          </div>
 				</div>
 					
 				<div class="form-group">
 					<label for="aggAll" class="labelUpdate">광고성 정보 수신 전체 동의 </label>
 					<div class="memberAgg" id="aggAll">
-	  					<label><input type="checkbox" value=1 id="checkAll3">전체 동의하기</label><br>
-	  					<label><input type="checkbox" value=1 id="check4" class="chk" name="member_msg_agg">문자 메세지(선택)</label><br>
-	 					 <label><input type="checkbox" value=1 id="check5" class="chk" name="member_email_agg">이메일(선택)</label><br>
-	  					<label><input type="checkbox" value=1 id="check6" class="chk" name="member_post_agg">DM 우편(최근 배달주소로 배송)(선택)</label>	
+	  					<label><input type="checkbox" value=1 id="checkAll3" class="chkall2">전체 동의하기</label><br>
+	  					<label><input type="checkbox" value=1 id="check4" class="chk chkall" name="member_msg_agg">문자 메세지(선택)</label><br>
+	 					 <label><input type="checkbox" value=1 id="check5" class="chk chkall" name="member_email_agg">이메일(선택)</label><br>
+	  					<label><input type="checkbox" value=1 id="check6" class="chk chkall" name="member_post_agg">DM 우편(최근 배달주소로 배송)(선택)</label>	
 				</div>
 				</div>
 			</div>
@@ -188,6 +191,7 @@
 </body>
 <script type="text/javascript">
 	
+
 	//필수사항 전체 체크
 	$("#checkAll2").click(function() {
 		if($("#checkAll2").is(":checked")){
@@ -220,10 +224,66 @@
 	});
 	//전체 동의사항 체크
 	
-
+	//각각의 전체동의 체크 여부
 	
-
-
+	var chkall = document.getElementsByClassName("chkall");
+	var chkall2 = document.getElementsByClassName("chkall2");
+	var chk = document.getElementsByClassName("chk");
+	var chk2 = document.getElementsByClassName("chk2");
+	
+	for(var i=0;i<chk.length;i++){
+		chk[i].addEventListener('click', function(){
+			
+			var result = true;
+			for(var j=0;j<chk2.length;j++){
+				if(!chk[j].checked){ 
+					result =false;
+				}
+			}
+			$("#checkAll3").prop("checked",result);
+		});	
+	}
+	
+	for(var i=0;i<chk2.length;i++){
+		chk2[i].addEventListener('click', function(){
+			
+			var result = true;
+			for(var j=0;j<chk2.length;j++){
+				if(!chk2[j].checked){ 
+					result =false;
+				}
+			}
+			$("#checkAll2").prop("checked",result);
+		});	
+	}
+	
+	for(var i=0;i<chkall.length;i++){
+		chkall[i].addEventListener('click', function(){
+			
+			var result = true;
+			for(var j=0;j<chkall.length;j++){
+				if(!chkall[j].checked){ 
+					result =false;
+				}
+			}
+			$("#checkAll").prop("checked",result);
+		});	
+	}
+	
+	for(var i=0;i<chkall2.length;i++){
+		chkall2[i].addEventListener('click', function(){
+			
+			var result = true;
+			for(var j=0;j<chkall2.length;j++){
+				if(!chkall2[j].checked){ 
+					result =false;
+				}
+			}
+			$("#checkAll").prop("checked",result);
+		});	
+	}
+	//각각의 전체동의 체크여부
+	
 	
 	//회원가입 id, pw, 이메일, 전화번호 중복 및 공백 검사
 
@@ -248,13 +308,13 @@
 		var check2 = $("#check2").prop("checked");
 		var check3 = $("#check3").prop("checked");
 
+
+		aggCheck=false;
+		if(check1 && check2 && check3){
+			aggCheck=true;
+		}else{
 			aggCheck=false;
-			
-			if(check1 && check2 && check3){
-				aggCheck=true;
-			}else{
-				aggCheck=false;
-			}
+		}
 			
 		emptyCheck();
 		
