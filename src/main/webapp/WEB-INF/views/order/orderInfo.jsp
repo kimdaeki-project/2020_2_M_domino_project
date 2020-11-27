@@ -203,12 +203,12 @@
 											<div class="form" style="padding: 20px 10">
 												<div class="form-item">
 													<c:forEach items="${couponList}" var="coupon" varStatus="i">
-														<div class="chk-box" style="margin-left: 25px;">
+														<div class="chk-box" style="margin-left: 25px">
 															<input type="radio" id="coupon${i.index}"
 																value="${i.index}" name="coupon"
 																onclick="chooseForm(this.name)"> <label
 																class="checkbox" for="coupon${i.index}"></label> <label
-																for="coupon${i.index}">${coupon.sale_name}(유효기간:${coupon.sale_date}~${coupon.sale_date_end})</label>
+																for="coupon${i.index}" style="font-size: 15px;">${coupon.sale_name}(유효기간:${coupon.sale_date}~${coupon.sale_date_end})</label>
 														</div>
 													</c:forEach>
 												</div>
@@ -231,15 +231,14 @@
 												<dl>
 													<dt style="font-size: 20px; font-weight: 700">총 상품 금액:</dt>
 													<dd class="totalPrice"
-														style="font-size: 20px; font-weight: 900;">
-														38,900<em>원</em>
+														style="font-size: 20px; font-weight: 900;"><span class="total-price"></span><em>원</em>
 													</dd>
 												</dl>
 												<dl class="discount">
 													<dt style="font-size: 20px; font-weight: 700">총 할인 금액:</dt>
 													<dd id="totalDiscount"
 														style="color: red; font-size: 20px; font-weight: 900;">
-														37,800<em>원</em>
+														<span class="count-price"></span><em>원</em>
 													</dd>
 												</dl>
 												<hr>
@@ -451,7 +450,7 @@
 									<li>
 										<p class="tit">총 상품 금액</p>
 										<p class="price">
-											총가격<em class="total-price">원</em>
+										<span class="total-price"></span><em>원</em>									
 										</p>
 									</li>
 									<li class="math">-</li>
@@ -482,12 +481,12 @@
 			<!-- //주문하기 버튼 -->
 		</article>
 	</div>
-
 	<c:import url="../template/footer.jsp"></c:import>
 
 	<script>
 // 돈계산 ~~~~~~~~~~~	
 		var totalPrice = 0
+		var discounted = 0
 		$(document).ready(function(){
 			// set title menu
 			// pizza + dough(full name) + size + [외 gId.len - 1 건]
@@ -524,12 +523,23 @@
 			})
 			// set totalPrice
 			$(".item-subtotal").each(function(){
-				totalPrice = Number(totalPrice) + Number($(this).text())
+				totalPrice = Number(totalPrice) + Number($(this).text())	
 			})
 			$(".total-price").text(totalPrice)
-		})	
+			
+			<c:forEach items="${couponList}" var="coupon" varStatus="i">{
+			dis ="<c:out value= "${coupon.sale_discount}"/>";
+			
+			discounted = totalPrice / dis;
+			}
+
+			</c:forEach>
+				$(".count-price").text(discounted);
+
+		});
 		
-	
+		
+
 	
 		// 카카오 페이
 
