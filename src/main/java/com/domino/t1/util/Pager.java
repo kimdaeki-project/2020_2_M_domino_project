@@ -4,18 +4,18 @@ import com.domino.t1.address.AddressDTO;
 
 public class Pager extends AddressDTO{
 	
-	//********검색
+	
 	private String kind;
 	private String search;
 	
-	private Integer curPage; //null받을수 있는 integer로 선언
+	private Integer curPage; 
 	
 	private int startRow;
 	private int lastRow;
 	
-	private int perPage; //한페이지당 글 몇개씩 보여주는지 정하는 수
+	private int perPage; 
 	
-	//JSP에서 사용할 변수 
+
 	private long startNum;
 	private long lastNum;
 	private boolean beforeCheck;
@@ -28,50 +28,37 @@ public class Pager extends AddressDTO{
 		this.perPage=10;
 	}
 	
-	//**********startRow, lastRow 계산 하는 메서드******
+
 	public void makeRow() {
 		
-		//********rownum 계산***********
-		
-		//startRow
-		startRow = (this.getCurPage()-1)*this.getPerPage();
-		
-		//lastRow
+		startRow = (this.getCurPage()-1)*this.getPerPage()+1;
 		lastRow = this.getCurPage()*this.getPerPage();
-		
-		//*****************************
+
 	}
 	
-	//***********페이징 계산**************	
 	public void makePage() {
 
-		//2. 전체 페이지의 갯수 
 		long totalPage = this.getTotalCount()/10; 
 		if(this.getTotalCount()%10 !=0) {
 			totalPage++;
 		}
 		
-		//3. 전체 블럭의 갯수 구하기 
 		long totalBlock = totalPage/5;
 		if(totalPage%5 !=0) {
 			totalBlock++;
 				}
 		
-		//4. curPage를 이용해서 현재 블럭 번호를 찾기 
 		long curBlock = this.getCurPage()/5;
 		if(this.getCurPage()%5 !=0) {
 			curBlock++;
 		}
 		
-		//5. 현재블럭번호로 시작번호 끝번호 게산 
 		this.startNum = (curBlock-1)*5+1; 
 		this.lastNum = curBlock*5;
 		
-		//6. 현재블럭번호와 전체블럭번호가 같은지 결정 
 		this.nextCheck=true;
 		if(curBlock == totalBlock) {
 			nextCheck = !nextCheck;
-			//현재블럭이 마지막 블럭이라면 lastNum 수정
 			lastNum = totalPage;
 		}
 		
@@ -81,7 +68,6 @@ public class Pager extends AddressDTO{
 		}	
 	}
 	
-	//*******setter, getter
 	public String getKind() {
 		return kind;
 	}
