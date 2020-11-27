@@ -10,12 +10,19 @@
   <link href ="../resources/css/common/default.css" rel="stylesheet">
   <link href ="../resources/css/common/member.css" rel="stylesheet">
   <script src="../resources/js/header.js"></script>
-<c:import url="../template/header.jsp"></c:import>
+   <link href ="../resources/css/common/qna.css" rel="stylesheet">
+  <c:import url="../template/header.jsp"></c:import>
 
 <style type="text/css">
 	#select li a{
 		font-size: 17px;
 	}
+	
+	.checkButt{
+		width:110px; 
+		height:42px;
+	}
+
 </style>
 
 
@@ -48,87 +55,80 @@
 		<div class="myCheck">회원 문의 정보 수정</div>
 		<div></div>
 	</div>
-	<div class="memberCheck"></div><br>
-			<div class="container">
-			
+	
+	<div style="margin-top:2%; border-top: 2px solid black; padding: 0;">
 			<input type="number" value="${dto.inq_num}" name="inq_num" class="none">
-			<form action="./memberInquirlyUpdate" method="post" id="frm">
-			<div>
-			<div>
-			<dl>
-				<dt>회원번호</dt>
-				<dd><input type="text" name="member_num" value="${dto.member_num}" readonly="readonly" style="border: 0px;"></dd>
-			</dl>
-			<dl>
-				<dt>글 번호</dt>
-				<dd><input type="text" name="inq_num" value="${dto.inq_num}" readonly="readonly" style="border: 0px;"></dd>
-			</dl>		
-					
-			<dl>
-				<dt>문의유형</dt>
-				<dd>
-					${dto.inq_type}			
-				</dd>
-			</dl>
+			<form action="./memberInquirlyUpdate" method="post" class="form-horizontal" id="frm">
 
-			<dl>
-				<dt>매장검색</dt>
-				<dd>
-					${dto.inq_shop} : ${dto.inq_location}
-				</dd>
-			</dl>
-			<dl>
-				<dt>처리상태</dt>
-				<dd><input type="text" name="inq_state" value="${dto.inq_state}"></dd>
-			</dl>
-			
-			
-			<dl>
-				<dt>제목</dt>
-				<dd>
-					<div>
-						<input type="text" name="inq_title" value="${dto.inq_title}"style="border: 0px;">
-					</div>
-				</dd>
-			</dl>
-			
-			<dl>
-				<dt>문의내용</dt>
-				<dd>
-					<div>
-						<textarea rows="10" cols="40" name="inq_contents" class="divText">${dto.inq_contents}</textarea>
-					</div>
-				</dd>
-			</dl>
-
-			<dl>
-				<dt>답변</dt>
-				<dd>
-					<div>
-						<textarea rows="10" cols="40" name="inq_reply" class="divText"></textarea>
-					</div>
-				</dd>
-			</dl>								
+			<div class="col-sm-12 qna_input">
+			    <label class="control-label col-sm-2" for="member_num">회원번호</label>
+			    <div class="col-sm-4">
+			       <input type="text" class="form-control empty" name="member_num" value="${dto.member_num}" readonly="readonly" >
+			    </div>
 			</div>
-		</div>	
-		
-					
-	<input type="button" value="목록" id="checkButt" style= "width:110px; height:42px;" class="inqList">		
-	<input type="submit" value="수정완료" id="checkButt" style= "width:110px; height:42px;" class="inqUpdate">	
-	<input type="button" value="삭제" id="checkButt" style= "width:110px; height:42px;" class="inqUpdateDel">
-	</form>
-	
+			
+			<div class="col-sm-12 qna_input">
+			    <label class="control-label col-sm-2" for="inq_num">글 번호</label>
+			    <div class="col-sm-4">
+			       <input type="text" class="form-control empty" name="inq_num" value="${dto.inq_num}" readonly="readonly" >
+			    </div>
+			</div>
+			
+			<div class="col-sm-12 qna_input">
+			    <label class="control-label col-sm-2" for="inq_type">문의유형</label>
+			    <div class="col-sm-4">
+			       <input type="text" class="form-control empty" value="${dto.inq_type}">
+			    </div>
+			</div>
+			
+			<div class="col-sm-12 qna_input">
+			    <label class="control-label col-sm-2" for="inq_type">매장검색</label>
+			    <div class="col-sm-4">
+			       <input type="text" class="form-control empty" value="${dto.inq_shop} : ${dto.inq_location}">
+			    </div>
+			</div>
+			
+			<div class="col-sm-12 qna_input">
+			    <label class="control-label col-sm-2" for="inq_state">처리상태</label>
+			    <div class="col-sm-4">
+			       <input type="text" class="form-control empty" name="inq_state" value="${dto.inq_state}">
+			    </div>
+			</div>
+			
+			<div class="col-sm-12 qna_input">
+			    <label class="control-label col-sm-2" for="inq_title">제목</label>
+			    <div class="col-sm-6">
+			       <input type="text" class="form-control empty" name="inq_title" value="${dto.inq_title}">
+			    </div>
+			</div>
+			
+			<div class="col-sm-12 qna_input">
+			    <label class="control-label col-sm-2" for="inq_contents">문의내용</label>
+			    <div class="col-sm-6">
+			    	<textarea rows="10" cols="40" name="inq_contents" class="divText">${dto.inq_contents}</textarea>
+			    </div>
+			</div>
+			
+			<div class="col-sm-12 qna_input">
+			    <label class="control-label col-sm-2" for="inq_title">답변</label>
+			    <div class="col-sm-6">
+			    		<textarea rows="10" cols="40" name="inq_reply" class="divText"></textarea>
+			    </div>
+			</div>										
+	</form>	
 	</div>
 	
-	
+	<div class="col-sm-12" style="padding: 2%; text-align: center;">
+		<input type="button" value="목록" class="checkButt inqList">	
+		<input type="submit" value="수정완료"  class="checkButt inqUpdate">	
+		<input type="button" value="삭제"  class="checkButt inqUpdateDel">
+	</div>
 	
 	</div>
-<c:import url="../template/footer.jsp"></c:import>
+	<c:import url="../template/footer.jsp"></c:import>
 </body>
+
 <script type="text/javascript">
-
-
-
 	$(".inqList").click(function() {
 		location.href = "./memberInquirlyList";
 	});
@@ -136,8 +136,6 @@
 	$(".inqUpdateDel").click(function() {
 		location.href = "./memberInquirlyListDelete?inq_num=${dto.inq_num}";
 	});
-
-	
 </script>
 
 </html>

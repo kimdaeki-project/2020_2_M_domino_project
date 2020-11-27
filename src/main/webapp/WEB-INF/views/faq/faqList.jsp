@@ -17,6 +17,11 @@
 			margin-bottom: 3px;
 		}
 		
+		#msg{
+			margin-left: 5px;
+			margin-right: 5px;
+		}
+		
 		.txt_faq{
 			color: red;
 		}

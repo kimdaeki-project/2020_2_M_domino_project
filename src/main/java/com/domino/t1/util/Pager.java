@@ -46,7 +46,7 @@ public class Pager extends AddressDTO{
 	public void makePage() {
 
 		//2. 전체 페이지의 갯수 
-		long totalPage = this.getTotalCount()/10; //146
+		long totalPage = this.getTotalCount()/10; 
 		if(this.getTotalCount()%10 !=0) {
 			totalPage++;
 		}
