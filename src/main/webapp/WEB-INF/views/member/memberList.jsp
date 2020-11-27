@@ -81,6 +81,7 @@
 			</table>
 	  </div>
 	
+
 <div class="pageNum">
   	<c:if test="${pager.beforeCheck}">
   		<a href="./memberList?curPage=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">[이전]</a>
@@ -93,7 +94,8 @@
   	<c:if test="${pager.nextCheck}">
   		<a href="./memberList?curPage=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">[다음]</a>
   	</c:if>
-  </div>	
+</div>
+    
 </div>
 <c:import url="../template/footer.jsp"></c:import>
 </body>

@@ -83,6 +83,11 @@
 			<div id="pwSetResult"></div>
 		</div>
 			
+		<div class="none">
+			<label for="id" class="labelUpdate">등급 </label>
+			 <input type="text" name="member_level" value="${member.member_level}" readonly="readonly">
+		</div>
+			
 		<div class="form-group update_input">
 			<label for="pw4" class="labelUpdate">생년월일 </label>
 			<input type="date" name="member_date" value="${member.member_date}">
@@ -134,10 +139,10 @@
 
 <script type="text/javascript">
 
-	var pwCheck=false;
-	var emailCheck=false;
-	var phoneCheck=false;
-	var idExpCheck=false;
+	var pwCheck=true;
+	var emailCheck=true;
+	var phoneCheck=true;
+	var idExpCheck=true;
 	var pwExpCheck=true;
 	var phoneExpCheck=true;
 	var emailExpCheck=true;
@@ -148,7 +153,7 @@
 			pwCheck=true;
 		}
 		
-		if(pwCheck && pwExpCheck && phoneExpCheck && emailExpCheck) {
+		if(pwCheck && pwExpCheck && phoneExpCheck && emailExpCheck && phoneCheck && emailCheck) {
 			$("#frm").submit();
 			alert("정보 수정이 완료되었습니다")
 		}else{
@@ -165,7 +170,7 @@
 	$("#pw2").blur(function() {
 		var pw1 = $("#pw1").val();
 		var pw2 = $("#pw2").val();
-		pwCheck=false;
+		pwCheck=true;
 		if(pw2==''){
 			$("#pwSetResult").html("비밀번호를 변경하려면 입력하세요.");
 			$("#pwSetResult").removeClass("pwCheck0").addClass("pwCheck1");
@@ -181,7 +186,7 @@
 	});
 	
 	$("#pw2").blur(function() {
-		pwExpCheck=false;
+		pwExpCheck=true;
 		if(!regexPw.test($("input[id='pw2']").val())) {
 			pwExpCheck=false;
 		 	alert("형식에 맞지않는 비밀번호입니다.")
@@ -194,7 +199,7 @@
 	});
 	
 	$("#phone").blur(function() {
-		phoneExpCheck=false;
+		phoneExpCheck=true;
 		if(!regExpPhone.test($("input[id='phone']").val())) {
 			phoneExpCheck=false;
 		 	alert("형식에 맞지않는 전화번호입니다.")
@@ -207,7 +212,7 @@
 	});
 	
 	$("#email").blur(function() {
-		emailExpCheck=false;
+		emailExpCheck=true;
 		if(!regExpEmail.test($("input[id='email']").val())) {
 			emailExpCheck=false;
 		 	alert("형식에 맞지않는 이메일입니다.")
@@ -220,13 +225,13 @@
 	});
 	
 	$("#btnPhone").click(function () {
-		phoneCheck=false;
+		phoneCheck=true;
 		var phone = $("#phone").val();
 		if(phone !=''){
 			$.get("./memberPhoneCheck?member_phone="+phone,function(data){
 				data=data.trim();
 				var str = "중복된  전화번호 입니다."
-				
+					phoneCheck=false;
 				$("phoneResult").removeClass("phoneCheck0").addClass("phoneCheck1");
 				if(data==0){
 					str="중복되지 않은 전화번호 입니다.";
@@ -243,13 +248,13 @@
 	
 	
 	$("#btnEmail").click(function () {
-		emailCheck=false;
+		emailCheck=true;
 		var email = $("#email").val();
 		if(email !=''){
 			$.get("./memberEmailCheck?member_email="+email,function(data){
 				data=data.trim();
 				var str = "중복된  이메일 입니다."
-				
+					emailCheck=false;
 				$("emailResult").removeClass("emailCheck0").addClass("emailCheck1");
 				if(data==0){
 					str="중복되지 않은 이메일 입니다.";

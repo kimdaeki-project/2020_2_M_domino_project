@@ -94,8 +94,7 @@ public class MemberInquirlyController {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("member select");
 		memberInquirlyDTO = memberInquirlyService.getOne(memberInquirlyDTO);
-		
-		
+			
 		mv.addObject("dto", memberInquirlyDTO);
 		mv.setViewName("memberInq/memberInquirlySelect");
 		
@@ -138,6 +137,7 @@ public class MemberInquirlyController {
 		
 		mv.addObject("list", ar);
 		mv.setViewName("memberInq/memberInquirly");
+	
 		return mv;
 	}
 

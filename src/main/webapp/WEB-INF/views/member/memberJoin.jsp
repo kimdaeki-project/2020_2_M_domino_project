@@ -27,6 +27,10 @@
 		font-size: 17px;
 	}
 	
+	#chkNotice{
+		color: red;
+	}
+	
 </style>
   <c:import url="../template/bootstrap.jsp"></c:import>
   <link href ="../resources/css/common/default.css" rel="stylesheet">
@@ -73,6 +77,7 @@
 			     		 <input type="text" id="id" name="member_id" class="form-control empty" placeholder="숫자와 문자 포함   6~12자리">
 			     	</c:otherwise>
 			     </c:choose>
+
 			   
 			      <div id="idResult"></div>
 			    </div>
@@ -114,9 +119,17 @@
 
 			     <label class="col-sm-2 join_text" for="email">이메일 </label>
 			   <div class="col-sm-4">
+
+				<input type="email" name="member_email" id="email" placeholder="ex) aaa@gmail.com">
+			    <input type="button" id="btnEmail" value="중복확인" class="checkButt">
+			    <div id="emailResult"></div>
+
+
+
 				   <input type="email" name="member_email" id="email" placeholder="ex) aaa@gmail.com">
 			       <input type="button" id="btnEmail" value="중복확인" class="checkButt">
 			       <div id="emailResult"></div>
+
 			    </div>
 			  </div>
 			  	
@@ -145,11 +158,14 @@
 				<div class="form-group">
 						<label for="aggAll" class="labelUpdate">약관 전체동의</label>
 						<div class="memberAgg">
+
+              <span id="chkNotice">* 필수사항 미체크시 회원가입이 진행되지 않습니다.</span><br>
 	  					<label><input type="checkbox" value=1 id="checkAll2" class="chkall2">전체 동의하기</label><br>
 	  					<label><input type="checkbox" value=1 id="check1" class="chk2 chkall" name="member_pi_agg">개인정보 수집 및 이용동의(필수)</label><br>
 	 					<label><input type="checkbox" value=1 id="check2" class="chk2 chkall" name="member_clause_agg">이용약관 동의(필수)</label><br>
 						<label><input type="checkbox" value=1 id="check3" class="chk2 chkall" name="member_locate_agg">위치기반 서비스 약관 동의(필수)</label>
-						</div>
+          </div>
+          </div>
 				</div>
 					
 				<div class="form-group">
@@ -175,6 +191,8 @@
 </body>
 <script type="text/javascript">
 	
+
+	//필수사항 전체 체크
 	$("#checkAll2").click(function() {
 		if($("#checkAll2").is(":checked")){
 			$(".chk2").prop("checked",true);
@@ -183,7 +201,9 @@
 			$(".chk2").prop("checked",false);
 		}
 	});
+	//필수사항 전체 체크
 	
+	//선택사항 전체 체크
 	$("#checkAll3").click(function() {
 		if($("#checkAll3").is(":checked")){
 			$(".chk").prop("checked",true);
@@ -192,7 +212,9 @@
 		}
 		
 	});
+	//선택사항 전체 체크
 	
+	//전체 동의사항 체크
 	$("#checkAll").click(function() {
 		if($("input:checkbox[id=checkAll]").prop("checked")) {
 			$("input[type=checkbox]").prop("checked", true);
@@ -200,7 +222,7 @@
 			$("input[type=checkbox]").prop("checked", false);
 		}
 	});
-	
+	//전체 동의사항 체크
 	
 	//각각의 전체동의 체크 여부
 	
@@ -265,6 +287,7 @@
 	
 	//회원가입 id, pw, 이메일, 전화번호 중복 및 공백 검사
 
+
 	if("${id}" != ''){
 		var idCheck = true;
 	} 
@@ -275,7 +298,7 @@
 		var phoneCheck=false;
 		var emailCheck=false;
 		var emptyCheckResult=true;	
-	}
+
 	
 	var aggCheck=false;
 	
@@ -285,6 +308,7 @@
 		var check2 = $("#check2").prop("checked");
 		var check3 = $("#check3").prop("checked");
 
+
 		aggCheck=false;
 		if(check1 && check2 && check3){
 			aggCheck=true;
@@ -293,6 +317,7 @@
 		}
 			
 		emptyCheck();
+		
 		if(idCheck && pwCheck && phoneCheck && emailCheck && emptyCheckResult && idExpCheck && pwExpCheck && phoneExpCheck && emailExpCheck && aggCheck){
 			$("#frm").submit();
 		}else {
@@ -410,16 +435,25 @@
 	var regExpEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
 	var regExpPhone = /^\d{3}-\d{3,4}-\d{4}$/;//핸드폰 번호 정규식
 	
+
+	
+
 	if("${id}" != ''){
 		var idExpCheck=true;
 	}
 	else{
+
 		var idExpCheck=false;
 		var pwExpCheck=false;
 		var phoneExpCheck=false;
 		var emailExpCheck=false;
+
+
+	
+
 		
 	}
+
 
 	$("#id").blur(function() {
 		idExpCheck=false;
