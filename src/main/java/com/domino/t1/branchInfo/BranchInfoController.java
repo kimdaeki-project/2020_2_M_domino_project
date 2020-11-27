@@ -25,12 +25,10 @@ public class BranchInfoController {
 		ModelAndView mv = new ModelAndView();
 		
 		List<BranchInfoDTO> region1 = branchInfoService.getRegion1(branchInfoDTO);
-//		List<BranchInfoDTO> region2 = branchInfoService.getRegion2(branchInfoDTO);
 		System.out.println(region1);
 		
 		mv.addObject("dto", branchInfoDTO);
 		mv.addObject("region1", region1);
-//		mv.addObject("region2", region2);
 		mv.setViewName("branch/branchSearch");
 		
 		return mv;
@@ -49,9 +47,7 @@ public class BranchInfoController {
 		branchInfoDTO.setRegion2(reg2);
 		
 		List<BranchInfoDTO> ar = branchInfoService.getBranchName(branchInfoDTO);
-//		BranchInfoDTO branchName = branchInfoService.getBranchName(branchInfoDTO);
 		
-//		mv.addObject("branchName", branchName);
 		mv.addObject("branch", ar);
 		mv.setViewName("branch/branchSearchAjax");
 		
@@ -61,19 +57,7 @@ public class BranchInfoController {
 	@GetMapping("branchMap")
 	public ModelAndView getLatLon(BranchInfoDTO branchInfoDTO, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		/* 
-		String reg1 = request.getParameter("reg1");
-		System.out.println(reg1);
-		String reg2 = request.getParameter("reg2");
-		System.out.println(reg2);
 		
-		branchInfoDTO.setRegion1(reg1);
-		branchInfoDTO.setRegion2(reg2);
-		
-		List<BranchInfoDTO> ar = branchInfoService.getLatLon(branchInfoDTO);
-		
-		mv.addObject("latlon", ar);
-		 */
 		mv.setViewName("branch/branchMap");
 		
 		return mv;

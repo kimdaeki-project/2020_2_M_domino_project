@@ -23,9 +23,4 @@ public class BranchInfoDAO {
 		return sqlSession.selectList(NAMESPACE+"getBranchName", branchInfoDTO);
 	}
 	
-//	public List<BranchInfoDTO> getLatLon(BranchInfoDTO branchInfoDTO) throws Exception {
-//		return sqlSession.selectList(NAMESPACE+"getLatlon", branchInfoDTO);
-//	}
-	
-
 }
