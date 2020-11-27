@@ -1,5 +1,6 @@
 package com.domino.t1.menu.detail;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,8 +24,7 @@ public class DetailController {
 	
 	@Autowired
 	private DetailService detailService;
-	@Autowired
-	private AddressService addressService;
+
 	
 	@GetMapping("pizzaDetail")
 	public ModelAndView getPizzaDetail(PizzaDTO pizzaDTO) throws Exception{
@@ -56,11 +56,15 @@ public class DetailController {
 	public ModelAndView getSideDishDetail(ItemDTO itemDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
+		ItemDTO sideDish = detailService.getOne(itemDTO);
+		mv.addObject("sideDish", sideDish);
+		
+		ItemDTO dto = new ItemDTO();
+		dto.setItem_category("etc");
+		List<ItemDTO> itemList = detailService.getItemListByCategory(dto);
+		mv.addObject("etcList", itemList);
+		mv.addObject("category", "sideDish");
+		mv.setViewName("menu/detail/sideDishDetail");
 		return mv;
 	}
-	
-//	@PostMapping("toCart")
-//	public void setCartItem() throws Exception {
-//		
-//	}
 }
