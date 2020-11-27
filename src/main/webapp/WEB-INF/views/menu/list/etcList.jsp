@@ -156,10 +156,7 @@
 						}
 						var answer = window.confirm("물건이 장바구니에 담겼습니다. 지금 확인하시겠습니까?")
 						if(answer){						
-							location.href = "/t1/cart/detail"
-							
-						}else{
-							location.href = "/t1/menu/list/pizzaList"
+							location.href = "/t1/cart/detail"							
 						}						
 					}
 			})				
