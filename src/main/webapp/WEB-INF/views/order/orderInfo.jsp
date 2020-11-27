@@ -205,7 +205,7 @@
 													<c:forEach items="${couponList}" var="coupon" varStatus="i">
 														<div class="chk-box" style="margin-left: 25px">
 															<input type="radio" id="coupon${i.index}"
-																value="${i.index}" name="coupon"
+																value="${i.index}" name="none"
 																onclick="chooseForm(this.name)"> <label
 																class="checkbox" for="coupon${i.index}"></label> <label
 																for="coupon${i.index}" style="font-size: 15px;">${coupon.sale_name}(유효기간:${coupon.sale_date}~${coupon.sale_date_end})</label>
@@ -251,7 +251,7 @@
 													<dt style="font-size: 20px; font-weight: 700">총 결제 금액:</dt>
 													<dd id="totalPricePay"
 														style="font-size: 25px; font-weight: 900">
-														28,900<em>원</em>
+														<span class="pay-price"></span><em>원</em>
 													</dd>
 												</dl>
 											</div>
@@ -260,8 +260,8 @@
 
 											<div>
 												<div class="btn-wrap">
-													<a href="javascript:goInfo();" class="btn-type1"
-														style="color: white;"> 쿠폰 적용하기</a>
+													<button type="button" class="btn btn-default btn-type1" data-dismiss="modal" 
+														style="color: white; padding-top: 0"> 쿠폰 적용하기</button>
 												</div>
 											</div>
 
@@ -457,14 +457,14 @@
 									<li class="discount">
 										<p class="tit">총 할인 금액</p>
 										<p class="price" style="color: red;">
-											할인가격<em>원</em>
+											<span class="count-price"></span><em>원</em>
 										</p>
 									</li>
 									<li class="math">=</li>
 									<li class="total">
 										<p class="tit">총 결제 금액</p>
 										<p class="price">
-											결제금액<em>원</em>
+											<span class="pay-price"></span><em>원</em>
 										</p>
 									</li>
 								</ul>
@@ -487,6 +487,7 @@
 // 돈계산 ~~~~~~~~~~~	
 		var totalPrice = 0
 		var discounted = 0
+		var payPrice = 0
 		$(document).ready(function(){
 			// set title menu
 			// pizza + dough(full name) + size + [외 gId.len - 1 건]
@@ -528,13 +529,18 @@
 			$(".total-price").text(totalPrice)
 			
 			<c:forEach items="${couponList}" var="coupon" varStatus="i">{
-			dis ="<c:out value= "${coupon.sale_discount}"/>";
-			
-			discounted = totalPrice / dis;
-			}
+				dis ="<c:out value= "${coupon.sale_discount}"/>";
+				
+				discounted = totalPrice / dis;
+				}
 
-			</c:forEach>
-				$(".count-price").text(discounted);
+				</c:forEach>
+					$(".count-price").text(discounted);
+					
+					payPrice = totalPrice - discounted;
+					
+					$(".pay-price").text(payPrice);
+			
 
 		});
 		
@@ -549,7 +555,7 @@
 				var radioVal = $('input[name="pay"]:checked').val();
 				if (radioVal == '카카오페이') {
 
-					open('./orderPay')
+					open('./orderPay?price=1000')
 
 				} else {
 
@@ -618,7 +624,8 @@
 			}
 		}
 		// modal창 coupon end
-
+	
+		$('#modal').modal("hide");
 
 		//배달 시간 확인 
 		function openTab(evt, tabName) {

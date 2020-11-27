@@ -21,7 +21,7 @@ IMP.request_pay({
     pay_method : 'card',
     merchant_uid : '${orderNum}',
     name : '주문명:결제테스트',
-    amount : 1, //판매 가격
+    amount :' ${price}', //판매 가격
     buyer_email : '${member.member_email}',
     buyer_name : '${member.member_name}',
     buyer_tel : '${member.member_phone}',
