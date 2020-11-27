@@ -14,7 +14,20 @@
 <link href="../resources/css/common/member.css" rel="stylesheet">
 <link href="../resources/css/order/info.css" rel="stylesheet">
 <script src="../resources/js/header.js"></script>
+<style type="text/css">
 
+	#select li a{
+		font-size: 17px;
+	}
+	
+	.menuSearchBtn {
+	width:100%;
+	margin: 0 auto;
+	padding: 30px 0;
+	text-align: center;
+	}
+	
+</style>
 
 </head>
 
@@ -28,7 +41,7 @@
 				<ol>
 					<li><a href="http://localhost/t1">홈</a></li>
 					<li><a href="./memberPage">나의정보</a></li>
-					<li><strong>매니아등급</strong></li>
+					<li><strong>주문 내역</strong></li>
 				</ol>
 			</div>
 		</div>
@@ -105,12 +118,12 @@
 
 
 
-				<!-- 주문하기 버튼 -->
-				<div class="btn">
+				<!-- 다른 제품 보러가기 버튼 -->
+				<div class="menuSearchBtn">
 					<button type="button" id="button">다른 제품 보러가기</button>
 				</div>
 		
-			<!-- //주문하기 버튼 -->
+			<!-- //다른 제품 보러가기 버튼 -->
 		
 	</div>
 
