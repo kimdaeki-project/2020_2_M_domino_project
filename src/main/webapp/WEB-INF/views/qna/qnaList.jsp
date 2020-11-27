@@ -10,58 +10,7 @@
   <link href ="../resources/css/common/default.css" rel="stylesheet">
   <script src="../resources/js/header.js"></script>
   <link href ="../resources/css/common/board.css" rel="stylesheet">
-	<style type="text/css">
-
-		.form-item{
-			float: left;
-			padding: 2px;
-		}
-		
-		th{
-			text-align: center;
-			height: 50px;
-			color: black;
-			font-weight: bold;
-		}
-		
-		td{
-			text-align: center;
-			height: 50px;
-		}
-		
-		.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-    		padding: 15px;
-   		    line-height: 1.42857143;
-            vertical-align: top;
-            border-top: 1px solid #ddd;
-		}
-		
-		.list_con strong{
-			color:  black;
-		}
-		
-		.newsTitle{
-			text-align: left;
-		}
-		
-		.newsTitle strong{
-			padding-left: 70px;
-		}
-		
-		.pageNum{
-			text-align: center;
-		}
-		
-		.pageNum a{
-			color: #888888;
-		}
-		
-		#pageNums{
-			padding: 5px;
-		}
-		
-	
-	</style>
+<link href ="../resources/css/common/tableList.css" rel="stylesheet">
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>

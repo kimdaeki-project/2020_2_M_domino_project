@@ -25,7 +25,7 @@ public class PressService implements NewsService{
 	private FileSaver fileSaver;
 	
 	public String summernote(MultipartFile file, HttpSession session)throws Exception{
-		//파일을 하드 디스크에 저장하고 저장된 파일명을 리턴
+		
 		String path = session.getServletContext().getRealPath("/resources/upload/press");
 		System.out.println(path);
 		File dest = new File(path);

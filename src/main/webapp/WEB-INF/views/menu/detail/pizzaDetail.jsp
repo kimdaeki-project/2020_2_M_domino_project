@@ -16,7 +16,7 @@
 </head>
 <body>
 <c:import url="../../template/header.jsp"></c:import>
-<div class="container">
+<div class="container" id="pdContainer">
 <script type="text/javascript">
 	// item_id, item_name, cart_quantity, item_price, [item_size]
  	var pizzaCart = ["${pizzaDTO.item_id}", "${pizzaDTO.item_name}", "1", "${pizzaDTO.pizza_price_l}", "L"]
@@ -104,26 +104,29 @@
 		<div>
 			<img src="/t1/resources/images/menu/pizza/${pizzaDTO.item_image}" alt="${pizzaDTO.item_name}" class="main-item-image">	
 		</div>
-		<div>
-			<div>메인 토핑</div>
-			<div>${pizzaDTO.pizza_toppings}</div>			
-		</div>
-		<div>
-			<div>토핑 원산지</div>
-			<div>${pizzaDTO.pizza_origin}</div>			
+		
+		<div class="toppings-info-wrap">
+			<div class="toppings-info1">
+				<h4>메인 토핑</h4>
+				<div>${pizzaDTO.pizza_toppings}</div>			
+			</div>
+			<div class="toppings-info2">
+				<h4>토핑 원산지</h4>
+				<div>${pizzaDTO.pizza_origin}</div>			
+			</div>
 		</div>
 	</div>
 	<div class="col-sm-6 item-option-container">
 		<div class="title-wrap">
-			<h2>${pizzaDTO.item_name }</h2>
+			<p style="font-weight: bold; font-size: 30px;">${pizzaDTO.item_name}<p>
 			<span>${pizzaDTO.pizza_hashtag }</span>	
 			<p>영양성분 및 알레르기 유발성분 ></p>	
 		</div>
 		<div class="option-box" id="size-option-wrap">
 			<div class="option-title-wrap">
-				<p>사이즈 선택</p>
+				<p class="option-text">사이즈 선택</p>
 			</div>
-			<div>
+			<div style="text-align: center;">
 				<form id="frm-size-option">
 					<div class="btn-wrap">
 						<input type="radio" value="L" name="item_size" class="size-checkbox" id="size_l" checked="checked" hidden="hidden"/>
@@ -134,7 +137,6 @@
 						<label for="size_m" class="btn-size-option" value="${pizzaDTO.pizza_price_m}">M ${pizzaDTO.pizza_price_m}원</label>
 					</div>				
 				</form>
-			
 			</div>	
 			
 	<script type="text/javascript">	
@@ -233,7 +235,7 @@
 					<span class="input-group-btn">
 						<button type="button" class="btn btn-quantity-controller" min="1" id="pizza-quantity-btn-minus" disabled>-</button>
 					</span> 
-					<input type="text" class="form-control pizza-quantity-input" value="1" id="pizza-quantity-option" disabled /> 
+					<input type="text" class="form-control pizza-quantity-input" value="1" id="pizza-quantity-option" style="text-align: center;" disabled/> 
 					<span class="input-group-btn">
 						<button type="button" class="btn btn-quantity-controller" id="pizza-quantity-btn-plus">+</button>
 					</span>
@@ -288,33 +290,35 @@
 					<div id="main" class="option-list tab-pane fade in active">
 						<ul>
 							<c:forEach items="${main}" var="dto">
-							
-								<li class="option-item row">
-									<div class="option-item-image-wrap col-sm-3">
-										<img src="/t1/resources/images/menu/topping/${dto.item_image}" alt="${dto.item_name}" class="option-item-image">
-									</div>
-									<div class="option-item-content col-sm-5">
-										<p>${dto.item_name}</p>
-										<p>${dto.item_price}</p>
-									</div>
-									<div class="option-item-quantity col-sm-4">
-								<!-- quantity button -->
-										<div class="input-group">
-											<span class="input-group-btn">
-												<button type="button" class="btn btn-quantity-controller btn-minus" min="0" disabled>-</button>
-											</span>
-											<input type="text" class="form-control quantity-input" value="0" disabled/>
-											<input type="hidden" class="item-name-data" value="${dto.item_name }">
-											<input type="hidden" class="item-price-data" value="${dto.item_price }">
-											<input type="hidden" class="item-id-data" value="${dto.item_id }">
-											<span class="input-group-btn">
-												<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
-											</span>	
+								
+								<li class="option-item row option-item-wrap">
+										<div class="col-sm-12 cs12">
+											<div class="option-item-image-wrap col-sm-3">
+												<img src="/t1/resources/images/menu/topping/${dto.item_image}" alt="${dto.item_name}" class="option-item-image">
+											</div>
+											
+											<div class="col-sm-9 cs9">
+											<div class="option-item-content col-sm-6">
+												<p>${dto.item_name}</p>
+												<p class="item_price">${dto.item_price}</p>
+											</div>
+											<div class="option-item-quantity col-sm-6 cs6">
+										<!-- quantity button -->
+												<div class="input-group">
+													<span class="input-group-btn">
+														<button type="button" class="btn btn-quantity-controller btn-minus" min="0" disabled>-</button>
+													</span>
+													<input type="text" class="form-control quantity-input" value="0" disabled/>
+													<input type="hidden" class="item-name-data" value="${dto.item_name }">
+													<input type="hidden" class="item-price-data" value="${dto.item_price }">
+													<input type="hidden" class="item-id-data" value="${dto.item_id }">
+													<span class="input-group-btn">
+														<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
+													</span>	
+												</div>
+											</div>
 										</div>
-										
-										
-									</div>
-													
+									</div>				
 								</li>
 							</c:forEach>
 						</ul>
@@ -325,31 +329,35 @@
 							<c:forEach items="${cheese}" var="dto">
 							
 								<li class="option-item row">
-									<div class="option-item-image-wrap col-sm-3">
-										<img src="/t1/resources/images/menu/topping/${dto.item_image}" alt="${dto.item_name}" class="option-item-image">
-									</div>
-									<div class="option-item-content col-sm-5">
-										<p>${dto.item_name}</p>
-										<p>${dto.item_price}</p>
-									</div>
-									<div class="option-item-quantity col-sm-4">
-								<!-- quantity button -->
-										<div class="input-group">
-											<span class="input-group-btn">
-												<button type="button" class="btn btn-quantity-controller btn-minus" min="0" disabled>-</button>
-											</span>
-											<input type="text" class="form-control quantity-input" value="0" disabled/>
-											<input type="hidden" class="item-name-data" value="${dto.item_name }">
-											<input type="hidden" class="item-price-data" value="${dto.item_price }">
-											<input type="hidden" class="item-id-data" value="${dto.item_id }">
-											<span class="input-group-btn">
-												<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
-											</span>	
+									<div class="col-sm-12 cs12">
+										<div class="option-item-image-wrap col-sm-3">
+											<img src="/t1/resources/images/menu/topping/${dto.item_image}" alt="${dto.item_name}" class="option-item-image">
 										</div>
 										
-										
-									</div>
-													
+										<div class="col-sm-9 cs9">
+											<div class="option-item-content col-sm-6">
+												<p>${dto.item_name}</p>
+												<p class="item_price">${dto.item_price}</p>
+											</div>
+											<div class="option-item-quantity col-sm-6 cs6">
+										<!-- quantity button -->
+												<div class="input-group">
+													<span class="input-group-btn">
+														<button type="button" class="btn btn-quantity-controller btn-minus" min="0" disabled>-</button>
+													</span>
+													<input type="text" class="form-control quantity-input" value="0" disabled/>
+													<input type="hidden" class="item-name-data" value="${dto.item_name }">
+													<input type="hidden" class="item-price-data" value="${dto.item_price }">
+													<input type="hidden" class="item-id-data" value="${dto.item_id }">
+													<span class="input-group-btn">
+														<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
+													</span>	
+												</div>
+												
+												
+											</div>
+										</div>
+									</div>					
 								</li>
 							</c:forEach>
 						</ul>
@@ -359,28 +367,33 @@
 							<c:forEach items="${after}" var="dto">
 							
 								<li class="option-item row">
-									<div class="option-item-image-wrap col-sm-3">
-										<img src="/t1/resources/images/menu/topping/${dto.item_image}" alt="${dto.item_name}" class="option-item-image">
-									</div>
-									<div class="option-item-content col-sm-5">
-										<p>${dto.item_name}</p>
-										<p>${dto.item_price}</p>
-									</div>
-									<div class="option-item-quantity col-sm-4">
-								<!-- quantity button -->
-										<div class="input-group">
-											<span class="input-group-btn">
-												<button type="button" class="btn btn-quantity-controller btn-minus" min="0" disabled>-</button>
-											</span> 
-											<input type="text" class="form-control quantity-input" value="0" disabled /> 
-											<input type="hidden" class="item-name-data" value="${dto.item_name }"> 
-											<input type="hidden" class="item-price-data" value="${dto.item_price }"> 
-											<input type="hidden" class="item-id-data" value="${dto.item_id }"> 
-											<span class="input-group-btn">
-												<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
-											</span>
-										</div>										
-									</div>												
+									<div class="col-sm-12 cs12">
+										<div class="option-item-image-wrap col-sm-3">
+											<img src="/t1/resources/images/menu/topping/${dto.item_image}" alt="${dto.item_name}" class="option-item-image">
+										</div>
+										
+										<div class="col-sm-9 cs9">
+											<div class="option-item-content col-sm-6">
+												<p>${dto.item_name}</p>
+												<p class="item_price">${dto.item_price}</p>
+											</div>
+											<div class="option-item-quantity col-sm-6 cs6">
+										<!-- quantity button -->
+												<div class="input-group">
+													<span class="input-group-btn">
+														<button type="button" class="btn btn-quantity-controller btn-minus" min="0" disabled>-</button>
+													</span> 
+													<input type="text" class="form-control quantity-input" value="0" disabled /> 
+													<input type="hidden" class="item-name-data" value="${dto.item_name }"> 
+													<input type="hidden" class="item-price-data" value="${dto.item_price }"> 
+													<input type="hidden" class="item-id-data" value="${dto.item_id }"> 
+													<span class="input-group-btn">
+														<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
+													</span>
+												</div>										
+											</div>	
+										</div>
+									</div>								
 								</li>
 							</c:forEach>
 						</ul>
@@ -398,27 +411,32 @@
 						<c:forEach items="${sideDishList}" var="dto">
 	
 							<li class="option-item row">
-								<div class="option-item-image-wrap col-sm-3">
-									<img src="/t1/resources/images/menu/sidedish/${dto.item_image}"
-										alt="${dto.item_name}" class="option-item-image">
-								</div>
-								<div class="option-item-content col-sm-5">
-									<p>${dto.item_name}</p>
-									<p>${dto.item_price}</p>
-								</div>
-								<div class="option-item-quantity col-sm-4">
-									<!-- quantity button -->
-									<div class="input-group">
-										<span class="input-group-btn">
-											<button type="button" class="btn btn-quantity-controller btn-minus" min="0" disabled>-</button>
-										</span> 
-										<input type="text" class="form-control quantity-input" value="0" disabled /> 
-										<input type="hidden" class="item-name-data" value="${dto.item_name }"> 
-										<input type="hidden" class="item-price-data" value="${dto.item_price }"> 
-										<input type="hidden" class="item-id-data" value="${dto.item_id }"> 
-										<span class="input-group-btn">
-											<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
-										</span>									
+								<div class="col-sm-12 cs12">
+									<div class="option-item-image-wrap col-sm-3">
+										<img src="/t1/resources/images/menu/sidedish/${dto.item_image}"
+											alt="${dto.item_name}" class="option-item-image">
+									</div>
+									
+									<div class="col-sm-9 cs9">
+										<div class="option-item-content col-sm-6">
+											<p>${dto.item_name}</p>
+											<p class="item_price">${dto.item_price}</p>
+										</div>
+										<div class="option-item-quantity col-sm-6 cs6">
+											<!-- quantity button -->
+											<div class="input-group">
+												<span class="input-group-btn">
+													<button type="button" class="btn btn-quantity-controller btn-minus" min="0" disabled>-</button>
+												</span> 
+												<input type="text" class="form-control quantity-input" value="0" disabled /> 
+												<input type="hidden" class="item-name-data" value="${dto.item_name }"> 
+												<input type="hidden" class="item-price-data" value="${dto.item_price }"> 
+												<input type="hidden" class="item-id-data" value="${dto.item_id }"> 
+												<span class="input-group-btn">
+													<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
+												</span>									
+											</div>
+										</div>
 									</div>
 								</div>
 							</li>
@@ -435,27 +453,32 @@
 						<c:forEach items="${etcList}" var="dto">
 	
 							<li class="option-item row">
-								<div class="option-item-image-wrap col-sm-3">
-									<img src="/t1/resources/images/menu/etc/${dto.item_image}"
-										alt="${dto.item_name}" class="option-item-image">
-								</div>
-								<div class="option-item-content col-sm-5">
-									<p>${dto.item_name}</p>
-									<p>${dto.item_price}</p>
-								</div>
-								<div class="option-item-quantity col-sm-4">
-									<!-- quantity button -->
-									<div class="input-group">
-										<span class="input-group-btn">
-											<button type="button" class="btn btn-quantity-controller btn-minus" min="0" disabled>-</button>
-										</span> 
-										<input type="text" class="form-control quantity-input" value="0" disabled /> 
-										<input type="hidden" class="item-name-data" value="${dto.item_name }"> 
-										<input type="hidden" class="item-price-data" value="${dto.item_price }"> 
-										<input type="hidden" class="item-id-data" value="${dto.item_id }"> 
-										<span class="input-group-btn">
-											<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
-										</span>
+								<div class="col-sm-12 cs12">
+										<div class="option-item-image-wrap col-sm-3">
+											<img src="/t1/resources/images/menu/etc/${dto.item_image}"
+												alt="${dto.item_name}" class="option-item-image">
+										</div>
+										
+									<div class="col-sm-9 cs9">
+										<div class="option-item-content col-sm-6">
+											<p>${dto.item_name}</p>
+											<p class="item_price">${dto.item_price}</p>
+										</div>
+										<div class="option-item-quantity col-sm-6 cs6">
+											<!-- quantity button -->
+											<div class="input-group">
+												<span class="input-group-btn">
+													<button type="button" class="btn btn-quantity-controller btn-minus" min="0" disabled>-</button>
+												</span> 
+												<input type="text" class="form-control quantity-input" value="0" disabled /> 
+												<input type="hidden" class="item-name-data" value="${dto.item_name }"> 
+												<input type="hidden" class="item-price-data" value="${dto.item_price }"> 
+												<input type="hidden" class="item-id-data" value="${dto.item_id }"> 
+												<span class="input-group-btn">
+													<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
+												</span>
+											</div>
+										</div>
 									</div>
 								</div>
 							</li>
@@ -546,7 +569,7 @@
 		<span class="subtotal-title">총 금액</span>
 		<span id="total-price"></span>
 		<span>원</span>
-		<div>
+		<div id="order-btn">
 			<div class="btn-checkout" id="btn-order-now">바로 주문</div>
 			<div class="btn-checkout" id="btn-to-cart">장바구니 담기</div>
 		</div>

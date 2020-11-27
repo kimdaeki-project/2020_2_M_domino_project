@@ -76,7 +76,7 @@ System.out.println("sidesLen: " + sideDishCart.length);
 			) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");		
-		
+		System.out.println("in addtocart!");
 		// 바로 주문 시 order_detail_temp 초기화 시켜주기 
 		if(orderType.equals("direct")) {
 			int emptyTempResult = cartService.emptyOrderDetailTemp(memberDTO);
@@ -85,7 +85,11 @@ System.out.println("sidesLen: " + sideDishCart.length);
 		List<String[]> arr = new ArrayList<String[]>();
 		arr.add(sideDishCart);
 		arr.add(etcCart);
-		
+		for(String[] sList : arr) {
+			for(String s: sList) {
+				System.out.println(s);
+			}
+		}
 		int result = cartService.setCartItemsFromSideDishDetail(orderType, arr, memberDTO);
 		
 		mv.addObject("msg", result);

@@ -20,6 +20,14 @@
 	#noneView{
 		display: none;
 	}
+	
+	.sNotice{
+		padding: 1% 0;
+	}
+	
+	.noticeText li{
+		padding: 1% 0;
+	}
 </style>
 
 </head>
@@ -108,12 +116,12 @@
 			
 		</div>
 		
-		  <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">회원정보 인증</h4>
+          <h4 class="modal-title" style="text-align: center;">회원정보 인증</h4>
         </div>
         <div class="modal-body">
         <form action="./memberSearchPw" method="post" id="frm">
@@ -155,7 +163,10 @@
 			</div>
 		</div>	
 		
-		<input type="button" value="비밀번호 재설정" id="checkButt" style= "width:140px; height:42px;">
+		<div style="text-align: right;">
+			<input type="button" value="비밀번호 재설정" id="checkButt" style= "width:140px; height:42px;">
+		</div>
+		
 		</form>
         </div>
         <div class="modal-footer">

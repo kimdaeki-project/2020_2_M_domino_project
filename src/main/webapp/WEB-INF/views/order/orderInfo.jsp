@@ -132,37 +132,39 @@
 						</div>
 					</div>
 					<div class="order-step">
-					<!-- 타이틀 메뉴: 	pizza + dough(full name) + size + [외 gId.len - 1 건] -->
-						<div class="menu title-menu">
-									
-						</div> 
-					<!-- 주문 제품 리스트 -->										
-						<ul>				
+						<!-- 타이틀 메뉴: 	pizza + dough(full name) + size + [외 gId.len - 1 건] -->
+						<div class="menu title-menu"></div>
+						<!-- 주문 제품 리스트 -->
+						<ul>
 							<c:forEach items="${pizzaGroupList}" var="pizzaGroup">
 								<li class="item pizza-group">
 									<div class="item-pizza">
 										<p class="item-name-big">
-											${pizzaGroup[0].item_name} ${pizzaGroup[1].item_name} ${pizzaGroup[0].item_size} / 
-											<span class="item-subtotal pizza-item-subtotal"></span>원 
+											${pizzaGroup[0].item_name} ${pizzaGroup[1].item_name}
+											${pizzaGroup[0].item_size} / <span
+												class="item-subtotal pizza-item-subtotal"></span>원
 										<p>
-										<input type="hidden" class="pizza-dough-price" value="${pizzaGroup[0].item_price + pizzaGroup[1].item_price}"/>
-										<input type="hidden" class="pizza-quantity" value="${pizzaGroup[0].cart_quantity}" />
-									</div>
-									<c:forEach items="${pizzaGroup}" var="topping" begin="2" varStatus="loop">
+											<input type="hidden" class="pizza-dough-price"
+												value="${pizzaGroup[0].item_price + pizzaGroup[1].item_price}" />
+											<input type="hidden" class="pizza-quantity"
+												value="${pizzaGroup[0].cart_quantity}" />
+									</div> <c:forEach items="${pizzaGroup}" var="topping" begin="2"
+										varStatus="loop">
 										<div class="item-topping">
-											<p class="item-name-small">
-												+ ${topping.item_name}(${topping.cart_quantity}개 X 피자 ${pizzaGroup[0].cart_quantity})
-											</p>
-											<input type="hidden" class="topping-price" value="${topping.item_price * topping.cart_quantity}"/>
-										</div>		
+											<p class="item-name-small">+
+												${topping.item_name}(${topping.cart_quantity}개 X 피자
+												${pizzaGroup[0].cart_quantity})</p>
+											<input type="hidden" class="topping-price"
+												value="${topping.item_price * topping.cart_quantity}" />
+										</div>
 									</c:forEach>
 								</li>
 							</c:forEach>
 							<c:forEach items="${itemList}" var="item">
 								<li class="item-standalone">
 									<p class="item-name-big">
-										${item.item_name} X ${item.cart_quantity} /	
-										<span class="item-subtotal">${item.item_price * item.cart_quantity}</span>원 										
+										${item.item_name} X ${item.cart_quantity} / <span
+											class="item-subtotal">${item.item_price * item.cart_quantity}</span>원
 									</p>
 								</li>
 							</c:forEach>
@@ -170,306 +172,312 @@
 
 					</div>
 				</div>
-			</div>
-
-				<!-- 할인 적용 -->
-				<div class="step-wrap" id="dc_info">
-					<div class="title-wrap">
-						<h3 class="title-type">
-							<strong>할인 적용</strong>
-						</h3>
-					</div>
-					<div class="guide-box4">&#42;가장 높은 할인율의 혜택으로 자동 적용하였습니다.</div>
-
-					<!-- Modal -->
-					<div class="modal fade" id="myModal" role="dialog">
-						<div class="modal-dialog modal-lg">
-							<div class="modal-content coupon-main">
-
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h4 class="modal-title"
-										style="text-align: center; font-size: 20px; font-weight: bold;">도미노
-										온라인 쿠폰</h4>
-								</div>
-
-								<div class="col-sm-8"
-									style="padding: 20px 0; background-color: #f2f2f2;">
-									<div
-										style="background-color: white; height: 350px; border: 20px solid #f2f2f2; border-bottom: 0;">
-										<p
-											style="font-size: 17px; font-weight: bold; padding-left: 30px; padding-top: 30px;">도미노
-											온라인 쿠폰</p>
-										<div class="form" style="padding: 20px 10">
-											<div class="form-item">
-												<c:forEach items="${couponList}" var="coupon" varStatus="i">
-													<div class="chk-box" style="margin-left: 25px;">
-														<input type="radio" id="coupon${i.index}"
-															value="${i.index}" name="coupon"
-															onclick="chooseForm(this.name)"> <label
-															class="checkbox" for="coupon${i.index}"></label> <label
-															for="coupon${i.index}">${coupon.sale_name}(유효기간:${coupon.sale_date}~${coupon.sale_date_end})</label>
-													</div>
-												</c:forEach>
-											</div>
-										</div>
-									</div>
-								</div>
-
-
-
-
-								<c:forEach items="${couponList}" var="coupon" varStatus="i">
-									<div class="col-sm-4" id="form_${i.index}"
-										style="padding: 20px 0; background-color: #f2f2f2; text-align: center; display: none;">
-										<div class="coupon-pay"
-											style="background-color: white; height: 300px; border: 20px solid #f2f2f2;">
-											<div class="title-type2">
-												<div style="font-size: 30px; font-weight: 900;">최종 결제
-													금액</div>
-											</div>
-											<dl>
-												<dt style="font-size: 20px; font-weight: 700">총 상품 금액:</dt>
-												<dd class="totalPrice"
-													style="font-size: 20px; font-weight: 900;">38,900<em>원</em></dd>
-											</dl>
-											<dl class="discount">
-												<dt style="font-size: 20px; font-weight: 700">총 할인 금액:</dt>
-												<dd id="totalDiscount"
-													style="color: red; font-size: 20px; font-weight: 900;">37,800<em>원</em></dd>
-											</dl>
-											<hr>
-											<!--할인 적용한 쿠폰명-->
-											<ul class="apply applyBox">
-												<li class="prmtName">-> ${coupon.sale_name}</li>
-											</ul>
-											<!--//할인 적용한 쿠폰명-->
-											<dl class="total">
-												<dt style="font-size: 20px; font-weight: 700">총 결제 금액:</dt>
-												<dd id="totalPricePay"
-													style="font-size: 25px; font-weight: 900">28,900<em>원</em></dd>
-											</dl>
-										</div>
-
-
-
-										<div>
-											<div class="btn-wrap">
-												<a href="javascript:goInfo();" class="btn-type1"
-													style="color: white;"> 쿠폰 적용하기</a>
-											</div>
-										</div>
-
-									</div>
-								</c:forEach>
-
-
-								<div class="modal-footer" style="background-color: #f2f2f2;">
-									<div class="col-sm-8" style="text-align: left; padding: 20px;">
-										<div id="myCupnInfo" class="notice_box"
-											style="display: block;">
-											<div class="text_type0">유의사항</div>
-											<h5>피자 주문 시, 각 쿠폰에 따른 피자 구매 금액을 할인해 드리며 매니아 쿠폰은 피자 최대
-												4판까지만</h5>
-											<h5>할인이 적용됩니다.(피자 판 이상 구매시 매니아 쿠폰 할인 적용불가) ROYAL 및 VIP
-												등급에게만</h5>
-											<h5>발급되는 생일 50% 할인 쿠폰은 방문포장 전용이며, 피자 1판에만 적용 가능합니다.</h5>
-											<h5>(생일축하 50%할인 적용 후 피자를 2판이상 담을 경우 적용된 할인은 자동으로 취소됩니다.)
-											</h5>
-											<h5>SET 메뉴 주문 시에는 쿠폰 사용이 불가능 합니다.</h5>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="discount-step">
-						<ul>
-							<li id="myCoupon" class="active"><a href="#"
-								class="type-brd5" data-toggle="modal" data-target="#myModal">도미노
-									온라인 쿠폰 선택</a></li>
-							<li id="dcPrmt" class="active"><a
-								href="javascript:changePrmt('dcPrmt');" class="type-brd5"><span>[고객감사]피자
-										25%(배달)</span></a></li>
-							<li id="mobile" class="active"><a
-								href="javascript:changePrmt('mobile');" class="type-brd5">통신사
-									및 카드사 제휴 프로모션 선택</a></li>
-							<li id="voucher" class="active"><a
-								href="javascript:changePrmt('voucher');" class="type-brd5 ">상품권
-									및 쇼핑몰 쿠폰번호 입력</a></li>
-						</ul>
-					</div>
-				</div>
-
-				<!-- //할인 적용 -->
-
-				<!-- 도착 예정시간 -->
-				<div class="step-wrap" id="time_info">
-					<div class="title-wrap">
-						<div class="title-type">
-							<strong>도착 예정시간</strong>
-						</div>
-					</div>
-					<div class="time-step">
-						<div class="type2" id="time-list">
-							<ul class="col-free">
-								<li class="tablinks active" onclick="openTab(event, 'tab1')"><a
-									href="javascript:return false;">바로주문</a></li>
-								<li class="tablinks" onclick="openTab(event, 'tab2')"><a
-									href="javascript:return false;">오늘예약</a></li>
-								<li class="tablinks" onclick="openTab(event, 'tab3')"><a
-									href="javascript:return false;">내일예약</a></li>
-							</ul>
-						</div>
-
-						<!-- 바로주문 -->
-						<div>
-							<div class="time-info tabcontent" id="tab1"
-								style="display: block;">
-								<p class="text">
-									지금 주문하시면, <br> <span>${orderTime}</span> 배달될 예정입니다.
-								</p>
-								<div class="guide-box4 guide-box4-2">*매장 상황에 따라 배달시간이 상이할
-									수 있습니다.</div>
-							</div>
-						</div>
-						<div id="tab2" class="time-info tabcontent" style="display: none;">
-							<p class="text">예약 준비중.</p>
-						</div>
-						<div id="tab3" class="time-info tabcontent" style="display: none;">
-							<p class="text">진심 예약 준비중</p>
-						</div>
-					</div>
-
-					<!-- // 바로주문 -->
-				</div>
-
-
-				<!-- 결제방법 -->
-				<div class="step-wrap" id="pay_info">
-
-					<div class="title-wrap">
-						<h3 class="title-type">
-							<strong>결제수단 선택</strong>
-						</h3>
-					</div>
-
-					<div class="pay-step">
-						<div class="pay-info">
-							<div class="title-type2">미리결제</div>
-							<div class="form">
-								<div class="form-item">
-									<div class="chk-box" id="pay-1">
-										<input type="radio" id="pay1" name="pay" value="카드결제">
-										<label class="checkbox" for="pay1"></label> <label for="pay1">카드결제</label>
-									</div>
-									<div class="chk-box" id="pay-2">
-										<input type="radio" id="pay2" name="pay" value="네이버결제">
-										<label class="checkbox" for="pay2"></label> <label for="pay2">네이버페이</label>
-									</div>
-									<div class="chk-box" id="pay-3">
-										<input type="radio" id="pay3" name="pay" value="핸드폰결제">
-										<label class="checkbox" for="pay3"></label> <label for="pay3">핸드폰결제</label>
-									</div>
-									<div class="chk-box" id="pay-4">
-										<input type="radio" id="pay4" name="pay" value="카카오페이">
-										<label class="checkbox" for="pay4"></label> <label for="pay4">카카오결제</label>
-									</div>
-									<div class="chk-box" id="pay-5">
-										<input type="radio" id="pay5" name="pay" value="도미노결제">
-										<label class="checkbox" for="pay5"></label> <label for="pay5">도미노페이</label>
-									</div>
-									<div class="chk-box" id="pay-6">
-										<input type="radio" id="pay6" name="pay" value="페이코결제">
-										<label class="checkbox" for="pay6"></label> <label for="pay6">페이코</label>
-									</div>
-									<div class="chk-box" id="pay-7">
-										<input type="radio" id="pay7" name="pay" value="스마일페이 결제">
-										<label class="checkbox" for="pay7"></label> <label for="pay7">스마일페이</label>
-									</div>
-									<div class="chk-box" id="pay-8">
-										<input type="radio" id="pay8" name="pay" value="토스 결제">
-										<label class="checkbox" for="pay8"></label> <label for="pay8">토스</label>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="pay-info">
-							<div class="title-type2">
-								현장결제 <br>
-								<div class="guide-box6" style="font-weight: bold;">&#42;
-									코로나바이러스 확산에 따라 도미노피자는 '현금 없는 매장' 캠페인 일환으로 신용ㆍ체크카드 등 미리결제 사용을
-									권유해 드리고 있습니다.</div>
-							</div>
-							<div class="form">
-								<div class="form-item">
-									<div class="chk-box" id="pay-9">
-										<input type="radio" id="pay9" name="pay" value="현장 카드결제">
-										<label class="checkbox" for="pay9"></label> <label for="pay9">현장카드결제</label>
-									</div>
-									<div class="chk-box" id="pay-10">
-										<input type="radio" id="pay10" name="pay" value="현장 현금결제">
-										<label class="checkbox" for="pay10"></label> <label
-											for="pay10">현장현금결제</label>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="pay-info">
-							<div class="form-item">
-								<div class="chk-box v3">
-									<input type="checkbox" id="final_payment"> <label
-										class="checkbox" for="final_payment"></label> <label
-										for="final_payment">기본 결제수단으로 등록</label>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- // 결제방법 -->
-
-				<!-- 결제 금액, 결제 및 주문완료 -->
-				<div class="step-wrap" id="final_pay_info">
-					<div class="step-wrap">
+					<!-- 할인 적용 -->
+					<div class="step-wrap" id="dc_info">
 						<div class="title-wrap">
 							<h3 class="title-type">
-								<strong>최종결제금액</strong>
+								<strong>할인 적용</strong>
+							</h3>
+						</div>
+						<div class="guide-box4">&#42;가장 높은 할인율의 혜택으로 자동 적용하였습니다.</div>
+
+						<!-- Modal -->
+						<div class="modal fade" id="myModal" role="dialog">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content coupon-main">
+
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title"
+											style="text-align: center; font-size: 20px; font-weight: bold;">도미노
+											온라인 쿠폰</h4>
+									</div>
+
+									<div class="col-sm-8"
+										style="padding: 20px 0; background-color: #f2f2f2;">
+										<div
+											style="background-color: white; height: 350px; border: 20px solid #f2f2f2; border-bottom: 0;">
+											<p
+												style="font-size: 17px; font-weight: bold; padding-left: 30px; padding-top: 30px;">도미노
+												온라인 쿠폰</p>
+											<div class="form" style="padding: 20px 10">
+												<div class="form-item">
+													<c:forEach items="${couponList}" var="coupon" varStatus="i">
+														<div class="chk-box" style="margin-left: 25px;">
+															<input type="radio" id="coupon${i.index}"
+																value="${i.index}" name="coupon"
+																onclick="chooseForm(this.name)"> <label
+																class="checkbox" for="coupon${i.index}"></label> <label
+																for="coupon${i.index}">${coupon.sale_name}(유효기간:${coupon.sale_date}~${coupon.sale_date_end})</label>
+														</div>
+													</c:forEach>
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+
+
+									<c:forEach items="${couponList}" var="coupon" varStatus="i">
+										<div class="col-sm-4" id="form_${i.index}"
+											style="padding: 20px 0; background-color: #f2f2f2; text-align: center; display: none;">
+											<div class="coupon-pay"
+												style="background-color: white; height: 300px; border: 20px solid #f2f2f2;">
+												<div class="title-type2">
+													<div style="font-size: 30px; font-weight: 900;">최종 결제
+														금액</div>
+												</div>
+												<dl>
+													<dt style="font-size: 20px; font-weight: 700">총 상품 금액:</dt>
+													<dd class="totalPrice"
+														style="font-size: 20px; font-weight: 900;">
+														38,900<em>원</em>
+													</dd>
+												</dl>
+												<dl class="discount">
+													<dt style="font-size: 20px; font-weight: 700">총 할인 금액:</dt>
+													<dd id="totalDiscount"
+														style="color: red; font-size: 20px; font-weight: 900;">
+														37,800<em>원</em>
+													</dd>
+												</dl>
+												<hr>
+												<!--할인 적용한 쿠폰명-->
+												<ul class="apply applyBox">
+													<li class="prmtName">-> ${coupon.sale_name}</li>
+												</ul>
+												<!--//할인 적용한 쿠폰명-->
+												<dl class="total">
+													<dt style="font-size: 20px; font-weight: 700">총 결제 금액:</dt>
+													<dd id="totalPricePay"
+														style="font-size: 25px; font-weight: 900">
+														28,900<em>원</em>
+													</dd>
+												</dl>
+											</div>
+
+
+
+											<div>
+												<div class="btn-wrap">
+													<a href="javascript:goInfo();" class="btn-type1"
+														style="color: white;"> 쿠폰 적용하기</a>
+												</div>
+											</div>
+
+										</div>
+									</c:forEach>
+
+
+									<div class="modal-footer" style="background-color: #f2f2f2;">
+										<div class="col-sm-8" style="text-align: left; padding: 20px;">
+											<div id="myCupnInfo" class="notice_box"
+												style="display: block;">
+												<div class="text_type0">유의사항</div>
+												<h5>피자 주문 시, 각 쿠폰에 따른 피자 구매 금액을 할인해 드리며 매니아 쿠폰은 피자 최대
+													4판까지만</h5>
+												<h5>할인이 적용됩니다.(피자 판 이상 구매시 매니아 쿠폰 할인 적용불가) ROYAL 및 VIP
+													등급에게만</h5>
+												<h5>발급되는 생일 50% 할인 쿠폰은 방문포장 전용이며, 피자 1판에만 적용 가능합니다.</h5>
+												<h5>(생일축하 50%할인 적용 후 피자를 2판이상 담을 경우 적용된 할인은 자동으로
+													취소됩니다.)</h5>
+												<h5>SET 메뉴 주문 시에는 쿠폰 사용이 불가능 합니다.</h5>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="discount-step">
+							<ul>
+								<li id="myCoupon" class="active"><a href="#"
+									class="type-brd5" data-toggle="modal" data-target="#myModal">도미노
+										온라인 쿠폰 선택</a></li>
+								<li id="dcPrmt" class="active"><a
+									href="javascript:changePrmt('dcPrmt');" class="type-brd5"><span>[고객감사]피자
+											25%(배달)</span></a></li>
+								<li id="mobile" class="active"><a
+									href="javascript:changePrmt('mobile');" class="type-brd5">통신사
+										및 카드사 제휴 프로모션 선택</a></li>
+								<li id="voucher" class="active"><a
+									href="javascript:changePrmt('voucher');" class="type-brd5 ">상품권
+										및 쇼핑몰 쿠폰번호 입력</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- //할인 적용 -->
+
+					<!-- 도착 예정시간 -->
+					<div class="step-wrap" id="time_info">
+						<div class="title-wrap">
+							<div class="title-type">
+								<strong>도착 예정시간</strong>
+							</div>
+						</div>
+						<div class="time-step">
+							<div class="type2" id="time-list">
+								<ul class="col-free">
+									<li class="tablinks active" onclick="openTab(event, 'tab1')"><a
+										href="javascript:return false;">바로주문</a></li>
+									<li class="tablinks" onclick="openTab(event, 'tab2')"><a
+										href="javascript:return false;">오늘예약</a></li>
+									<li class="tablinks" onclick="openTab(event, 'tab3')"><a
+										href="javascript:return false;">내일예약</a></li>
+								</ul>
+							</div>
+
+							<!-- 바로주문 -->
+							<div>
+								<div class="time-info tabcontent" id="tab1"
+									style="display: block;">
+									<p class="text">
+										지금 주문하시면, <br> <span>${orderTime}</span> 배달될 예정입니다.
+									</p>
+									<div class="guide-box4 guide-box4-2">*매장 상황에 따라 배달시간이 상이할
+										수 있습니다.</div>
+								</div>
+							</div>
+							<div id="tab2" class="time-info tabcontent"
+								style="display: none;">
+								<p class="text">예약 준비중.</p>
+							</div>
+							<div id="tab3" class="time-info tabcontent"
+								style="display: none;">
+								<p class="text">진심 예약 준비중</p>
+							</div>
+						</div>
+
+						<!-- // 바로주문 -->
+					</div>
+
+
+					<!-- 결제방법 -->
+					<div class="step-wrap" id="pay_info">
+
+						<div class="title-wrap">
+							<h3 class="title-type">
+								<strong>결제수단 선택</strong>
 							</h3>
 						</div>
 
-						<div class="total-step">
-							<ul>
-								<li>
-									<p class="tit">총 상품 금액</p>
-									<p class="price">
-										총가격<em class="total-price">원</em>
-									</p>
-								</li>
-								<li class="math">-</li>
-								<li class="discount">
-									<p class="tit">총 할인 금액</p>
-									<p class="price" style="color: red;">
-										할인가격<em>원</em>
-									</p>
-								</li>
-								<li class="math">=</li>
-								<li class="total">
-									<p class="tit">총 결제 금액</p>
-									<p class="price">
-										결제금액<em>원</em>
-									</p>
-								</li>
-							</ul>
+						<div class="pay-step">
+							<div class="pay-info">
+								<div class="title-type2">미리결제</div>
+								<div class="form">
+									<div class="form-item">
+										<div class="chk-box" id="pay-1">
+											<input type="radio" id="pay1" name="pay" value="카드결제">
+											<label class="checkbox" for="pay1"></label> <label for="pay1">카드결제</label>
+										</div>
+										<div class="chk-box" id="pay-2">
+											<input type="radio" id="pay2" name="pay" value="네이버결제">
+											<label class="checkbox" for="pay2"></label> <label for="pay2">네이버페이</label>
+										</div>
+										<div class="chk-box" id="pay-3">
+											<input type="radio" id="pay3" name="pay" value="핸드폰결제">
+											<label class="checkbox" for="pay3"></label> <label for="pay3">핸드폰결제</label>
+										</div>
+										<div class="chk-box" id="pay-4">
+											<input type="radio" id="pay4" name="pay" value="카카오페이">
+											<label class="checkbox" for="pay4"></label> <label for="pay4">카카오결제</label>
+										</div>
+										<div class="chk-box" id="pay-5">
+											<input type="radio" id="pay5" name="pay" value="도미노결제">
+											<label class="checkbox" for="pay5"></label> <label for="pay5">도미노페이</label>
+										</div>
+										<div class="chk-box" id="pay-6">
+											<input type="radio" id="pay6" name="pay" value="페이코결제">
+											<label class="checkbox" for="pay6"></label> <label for="pay6">페이코</label>
+										</div>
+										<div class="chk-box" id="pay-7">
+											<input type="radio" id="pay7" name="pay" value="스마일페이 결제">
+											<label class="checkbox" for="pay7"></label> <label for="pay7">스마일페이</label>
+										</div>
+										<div class="chk-box" id="pay-8">
+											<input type="radio" id="pay8" name="pay" value="토스 결제">
+											<label class="checkbox" for="pay8"></label> <label for="pay8">토스</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="pay-info">
+								<div class="title-type2">
+									현장결제 <br>
+									<div class="guide-box6" style="font-weight: bold;">&#42;
+										코로나바이러스 확산에 따라 도미노피자는 '현금 없는 매장' 캠페인 일환으로 신용ㆍ체크카드 등 미리결제 사용을
+										권유해 드리고 있습니다.</div>
+								</div>
+								<div class="form">
+									<div class="form-item">
+										<div class="chk-box" id="pay-9">
+											<input type="radio" id="pay9" name="pay" value="현장 카드결제">
+											<label class="checkbox" for="pay9"></label> <label for="pay9">현장카드결제</label>
+										</div>
+										<div class="chk-box" id="pay-10">
+											<input type="radio" id="pay10" name="pay" value="현장 현금결제">
+											<label class="checkbox" for="pay10"></label> <label
+												for="pay10">현장현금결제</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="pay-info">
+								<div class="form-item">
+									<div class="chk-box v3">
+										<input type="checkbox" id="final_payment"> <label
+											class="checkbox" for="final_payment"></label> <label
+											for="final_payment">기본 결제수단으로 등록</label>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
-				<!-- // 결제 금액, 결제 및 주문완료 -->
+					<!-- // 결제방법 -->
 
-				<!-- 주문하기 버튼 -->
-				<div class="btn">
-					<button type="submit" id="button">결제하기</button>
-				</div>
+					<!-- 결제 금액, 결제 및 주문완료 -->
+					<div class="step-wrap" id="final_pay_info">
+						<div class="step-wrap">
+							<div class="title-wrap">
+								<h3 class="title-type">
+									<strong>최종결제금액</strong>
+								</h3>
+							</div>
+
+							<div class="total-step">
+								<ul>
+									<li>
+										<p class="tit">총 상품 금액</p>
+										<p class="price">
+											총가격<em class="total-price">원</em>
+										</p>
+									</li>
+									<li class="math">-</li>
+									<li class="discount">
+										<p class="tit">총 할인 금액</p>
+										<p class="price" style="color: red;">
+											할인가격<em>원</em>
+										</p>
+									</li>
+									<li class="math">=</li>
+									<li class="total">
+										<p class="tit">총 결제 금액</p>
+										<p class="price">
+											결제금액<em>원</em>
+										</p>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- // 결제 금액, 결제 및 주문완료 -->
+
+					<!-- 주문하기 버튼 -->
+					<div class="btn">
+						<button type="submit" id="button">결제하기</button>
+					</div>
 			</form>
 			<!-- //주문하기 버튼 -->
 		</article>

@@ -9,7 +9,6 @@
     <c:import url="../../template/bootstrap.jsp"></c:import>
     <link href ="/t1/resources/css/common/default.css" rel="stylesheet">
     <link href ="/t1/resources/css/common/board.css" rel="stylesheet">
-    <link href ="/t1/resources/css/common/shared.css" rel="stylesheet">
     <link href ="/t1/resources/css/menu/list.css" rel="stylesheet">
     <script src="/t1/resources/js/header.js"></script>
   
@@ -72,22 +71,20 @@
 						<span class="price-text">${dto.item_price }원</span>
 					</span>				 							
 				</div>	
-					<div class="input-group col-sm-7">
+					<div class="input-group quantity-controller-wrapper">
 						<span class="input-group-btn">
 							<button type="button" class="btn btn-quantity-controller btn-minus" min="0" disabled>-</button>
 						</span>
 						<input type="text" class="form-control quantity-input" value="0" disabled/>
-						<input type="hidden" value="${dto.item_price}"  class="item-unit-price" />
-						<input type="hidden" value="${dto.item_id}" class="item-id" />
+
 						<span class="input-group-btn">
 							<button type="button" class="btn btn-quantity-controller btn-plus">+</button>
 						</span>	
 					</div>	
-					<div class="etc-to-cart-btn col-sm-5">
-						<a>
-							주문 
-						</a>
+					<div class="to-cart-btn">
+						<span>주문</span>
 					</div>		
+					<input type="hidden" value="${dto.item_id}" class="item-id" />					
 				</div>
 			<c:choose>
 				<c:when test="${loop.index % 4 == 3}">
@@ -101,11 +98,77 @@
 	</div>
 	
 </div>	
-	<c:import url="../../template/footer.jsp"></c:import>
-	<script type="text/javascript">	
+<c:import url="../../template/footer.jsp"></c:import>
+<script type="text/javascript">	
+
+	$(".btn-quantity-controller").click(function(){
+		var btn = $(this)
+		var input = btn.closest("div").find(".quantity-input")
+		var quantity = input.val()	
+
+		if(btn.hasClass("btn-minus")){
+			quantity -= 1
+		}else{
+			quantity = Number(quantity) + 1
+		}	
+		input.val(quantity)
+		
+		// minus button disabled control
+		if(btn.hasClass("btn-minus")){
+			if(quantity <= Number(btn.attr("min"))){
+				btn.prop("disabled", true)
+			}
+		}else{
+			btn.closest("div").find(".btn-minus").prop("disabled", false)					
+		}				
+	})
 	
-	</script>
+	$(".to-cart-btn").click(function(){
+		// 로그인 여부부터 확인하기 
+		var member_num = "${member.member_num}";
+		// not logged in -> to login page
+		console.log(member_num)
+		if(member_num == ""){			
+				alert("로그인이 필요한 기능입니다.")		
+				location.href = '/t1/member/memberLogin'
+		}else{
+			var itemId = $(this).next().val()
+			var itemQuantity = $(this).closest(".item-wrapper").find(".quantity-input").val()
+			var orderType = 'fromEtcList'
+			
+			var sideDishCart = []
+			var etcCart = [[itemId, "etc", itemQuantity, 0]]
+		
+			// to cart
+			$.ajax({
+				url : "/t1/cart/addToCart/sideDish"	,
+				type : "post",
+				data : {
+					"orderType" : orderType,
+					"sideDishCart" : sideDishCart.toString(),
+					"etcCart" : etcCart.toString()
+				},
+				success : 
+					function(result){
+						if(result < 1){
+							alert("오류: 장바구니 담기에 실패했습니다. 문제가 지속될 경우 관리자에게 문의 바랍니다.")	
+							return							
+						}
+						var answer = window.confirm("물건이 장바구니에 담겼습니다. 지금 확인하시겠습니까?")
+						if(answer){						
+							location.href = "/t1/cart/detail"
+							
+						}else{
+							location.href = "/t1/menu/list/pizzaList"
+						}						
+					}
+			})				
+		}
+	})
 
 
+
+
+</script>
 </body>
 </html>

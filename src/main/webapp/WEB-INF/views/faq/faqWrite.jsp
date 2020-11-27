@@ -70,6 +70,8 @@
 		<c:import url="../template/footer.jsp"></c:import>
 		 	
 		 <script>
+		 
+		 	//빈칸 여부 check
 			 var emptyCheckResult = true;
 				$("#faq_submit_btn").click(function(){
 					emptyCheck();

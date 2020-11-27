@@ -9,8 +9,9 @@
   <c:import url="../template/bootstrap.jsp"></c:import>
   <link href ="../resources/css/common/default.css" rel="stylesheet">
   <link href ="../resources/css/common/member.css" rel="stylesheet">
+  <link href ="../resources/css/common/qna.css" rel="stylesheet">
   <script src="../resources/js/header.js"></script>
-<c:import url="../template/header.jsp"></c:import>
+ <c:import url="../template/header.jsp"></c:import>
 
 <style type="text/css">
 	#select li a{
@@ -45,99 +46,95 @@
 	</ul>
 	
 	<div class="myLevel">
-		<div class="myCheck">${member.member_name}님께서 문의하신 내용입니다</div>
-		<div></div>
-		<div class="myCheck2">${member.member_name}님께서 문의하신 내용입니다.</div>
+		<div class="myCheck">${member.member_name}님께서 문의하신 내용입니다.</div>
 	</div>
-	<div class="memberCheck"></div><br>
-			<div class="container">
+	
+	<div style="margin-top:2%; border-top: 2px solid black; padding: 0;">
 			
 			<input type="number" value="${dto.inq_num}" name="inq_num" class="none">
 			
-			<div>
-			<div>
-			<dl>
-				<dt>이름</dt>
-				<dd><input type="text" name="member_name" value="${member.member_name}" readonly="readonly" style="border: 0px;"></dd>
-			</dl>
-			
-			<dl>
-				<dt>아이디</dt>
-				<dd><input type="text" name="member_id" value="${member.member_id}" readonly="readonly" style="border: 0px;"></dd>
-			</dl>
-			<dl>
-				<dt>연락처</dt>
-				<dd><input type="text" name="member_phone" value="${member.member_phone}" readonly="readonly" style="border: 0px;"></dd>
-			</dl>
-			<dl>
-				<dt>이메일</dt>
-				<dd><input type="text" name="member_email" value="${member.member_email}" readonly="readonly" style="border: 0px;"></dd>
-			</dl>			
-					
-			<dl>
-				<dt>문의유형</dt>
-				<dd>
-					${dto.inq_type}			
-				</dd>
-			</dl>
-
-			<dl>
-				<dt>매장검색</dt>
-				<dd>
-					${dto.inq_shop} : ${dto.inq_location}
-				</dd>
-			</dl>
-			
-			<dl>
-				<dt>제목</dt>
-				<dd>
-					<div>
-						<input type="text" name="member_email" value="${dto.inq_title}" readonly="readonly" style="border: 0px;">
-					</div>
-				</dd>
-			</dl>
-			
-			<dl>
-				<dt>문의내용</dt>
-				<dd>
-					<div>
-						<textarea rows="10" cols="40" name="inq_contents" class="divText" readonly="readonly">${dto.inq_contents}</textarea>
-					</div>
-				</dd>
-			</dl>
-
-			<dl>
-				<dt>답변</dt>
-				<dd>
-					<div>
-						<textarea rows="10" cols="40" name="inq_reply" class="divText" readonly="readonly">${dto.inq_reply}</textarea>
-					</div>
-				</dd>
-			</dl>								
+			<div class="col-sm-12 qna_input">
+			    <label class="control-label col-sm-2" for="member_name">이름</label>
+			    <div class="col-sm-4">
+			       <input type="text" class="form-control empty" name="member_name" value="${member.member_name}" readonly="readonly" >
+			    </div>
 			</div>
+			
+			<div class="col-sm-12 qna_input">
+			    <label class="control-label col-sm-2" for="member_id">아이디</label>
+			    <div class="col-sm-4">
+			       <input type="text" class="form-control empty" name="member_id" value="${member.member_id}" readonly="readonly">
+			    </div>
+			</div>
+			
+			<div class="col-sm-12 qna_input">
+			    <label class="control-label col-sm-2" for="member_phone">연락처</label>
+			    <div class="col-sm-4">
+			       <input type="text" class="form-control empty" name="member_phone" value="${member.member_phone}" readonly="readonly">
+			    </div>
+			</div>
+			
+			<div class="col-sm-12 qna_input">
+			    <label class="control-label col-sm-2" for="member_email">이메일</label>
+			    <div class="col-sm-4">
+			       <input type="text" class="form-control empty" name="member_email" value="${member.member_email}" readonly="readonly">
+			    </div>
+			</div>
+			
+			<div class="col-sm-12 qna_input">
+			    <label class="control-label col-sm-2" for="inq_type">문의유형</label>
+			    <div class="col-sm-4">
+			       <input type="text" class="form-control empty" value="${dto.inq_type}" readonly="readonly">
+			    </div>
+			</div>
+			
+			<div class="col-sm-12 qna_input">
+			    <label class="control-label col-sm-2" for="inq_type">매장검색</label>
+			    <div class="col-sm-4">
+			       <input type="text" class="form-control empty" value="${dto.inq_shop} : ${dto.inq_location}" readonly="readonly">
+			    </div>
+			</div>
+			
+			<div class="col-sm-12 qna_input">
+			    <label class="control-label col-sm-2" for="inq_title">제목</label>
+			    <div class="col-sm-6">
+			       <input type="text" class="form-control empty" name="inq_title" value="${dto.inq_title}" readonly="readonly">
+			    </div>
+			</div>
+			
+			<div class="col-sm-12 qna_input">
+			    <label class="control-label col-sm-2" for="inq_contents">문의내용</label>
+			    <div class="col-sm-6">
+			    	<textarea rows="10" cols="40" name="inq_contents" class="divText" readonly="readonly">${dto.inq_contents}</textarea>
+			    </div>
+			</div>
+			
+			<div class="col-sm-12 qna_input">
+			    <label class="control-label col-sm-2" for="inq_title">답변</label>
+			    <div class="col-sm-6">
+			    		<textarea rows="10" cols="40" name="inq_reply" class="divText" readonly="readonly"></textarea>
+			    </div>
+			</div>							
+			</div>
+			
+			<div class="col-sm-12" style="padding: 2%; text-align: center;">		
+				<input type="button" value="삭제" id="checkButt" style= "width:110px; height:42px;" class="inqDel">		
+				<input type="button" value="목록" id="checkButt" style= "width:110px; height:42px;" class="inqList">		
+			</div>
+			
 		</div>	
-			
-			
-	<input type="button" value="삭제" id="checkButt" style= "width:110px; height:42px;" class="inqDel">		
-	<input type="button" value="목록" id="checkButt" style= "width:110px; height:42px;" class="inqList">		
+		<c:import url="../template/footer.jsp"></c:import>
+	</body>
 	
-
-	</div>
+	<script type="text/javascript">
+		$(".inqDel").click(function() {
+			location.href = "./memberInquirlyDelete?inq_num=${dto.inq_num}";
+		});
 	
+		$(".inqList").click(function() {
+			location.href = "./memberInquirly";
+		});
 	
-	
-	</div>
-<c:import url="../template/footer.jsp"></c:import>
-</body>
-<script type="text/javascript">
-	$(".inqDel").click(function() {
-		location.href = "./memberInquirlyDelete?inq_num=${dto.inq_num}";
-	});
-
-	$(".inqList").click(function() {
-		location.href = "./memberInquirly";
-	});
-
-</script>
+	</script>
 
 </html>
