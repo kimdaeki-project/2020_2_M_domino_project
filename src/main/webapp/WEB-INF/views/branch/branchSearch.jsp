@@ -176,17 +176,10 @@
 			type:"GET",
 			data:{"reg1":reg1val, "reg2":reg2val},
 			success:function(result) {
-				$("#branchMap").remove()
 				
-				$.ajax({
-					url:"<%=request.getContextPath()%>/branch/mapSearchResult",
-					type:"POST",
-					data:{"reg1":reg1val, "reg2":reg2val},
-					success:function(result) {
-						console.log("result test")
-						$("#branchMap").html(result)
-					}
-				})
+				$.post( "./mapSearchResult", function(result) {
+					$("#branchMap").html(result);
+				});
 			}
 		})
 		

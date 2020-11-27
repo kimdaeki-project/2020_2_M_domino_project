@@ -6,10 +6,11 @@
 	<div class="row branch-addr-result">
 		<div class="column branch-result-list">
 			<dl>
-				<dt>${dto.branch_name}
+				<dt>
+					<span class="brName">${dto.branch_name}</span>
 					<span class="tel">${dto.branch_phone}</span>
 				</dt>
-				<dd class="br-addr">${dto.region1} ${dto.region2} ${dto.street_address }</dd>
+				<dd class="br-addr">${dto.region1} ${dto.region2} ${dto.street_address}</dd>
 				<c:if test="${not empty dto.spcl_sale}">
 					<dd class="hash">
 						<span>${dto.spcl_sale}</span>
