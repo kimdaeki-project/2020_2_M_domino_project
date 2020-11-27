@@ -79,6 +79,13 @@ public class BranchInfoController {
 		return mv;
 	}
 	
+	@GetMapping("branchViewAll")
+	public ModelAndView getViewAllBranch(BranchInfoDTO branchInfoDTO, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("branch/branchViewAll");
+		return mv;
+	}
+	
 	@GetMapping("branchSearchAjax")
 	public ModelAndView getBranchResult(BranchInfoDTO branchInfoDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();

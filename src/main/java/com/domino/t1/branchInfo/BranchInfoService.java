@@ -20,9 +20,5 @@ public class BranchInfoService {
 	public List<BranchInfoDTO> getBranchName(BranchInfoDTO branchInfoDTO) throws Exception {
 		return branchInfoDAO.getBranchName(branchInfoDTO);
 	}
-	
-//	public List<BranchInfoDTO> getLatLon(BranchInfoDTO branchInfoDTO) throws Exception {
-//		return branchInfoDAO.getLatLon(branchInfoDTO);
-//	}
 
 }

@@ -87,11 +87,12 @@
 								<a href="../order/orderInfo" class="btn-type enter">선택</a>
 							</div>
 						</div>
-					</div>
-				</div>	<!-- 배달/포장 -->
-			</div>	<!-- 주문방법선택 -->	
+						</div>
+					</div>	<!-- 배달/포장 -->
+				</div>	<!-- 주문방법선택 -->	
+			</div><!-- inner-box -->
+			<!-- <button type="button" style="text-align:center; width:210px; height:58px;" id="btnLog">선택</button> -->
 		</div>
-		<!-- <button type="button" style="text-align:center; width:210px; height:58px;" id="btnLog">선택</button> -->
 	</div><!-- content -->
 </div><!-- container -->
 

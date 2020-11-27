@@ -125,30 +125,23 @@
 			</div>
 		</div>
 	</div>
+	
 	<!-- ===== 전체매장보기 javascript ===== -->
-	<div class="view-all-branch" id="view-all-branch">
-		<div class="view-all-popup">
-			<div class="view-all-header">
-				<h2>전체 매장 보기</h2>
-			</div>
-			<div class="view-all-map">
-				<div class="all-map-area" id="all-map"></div>
-			</div>
-		</div>
-	</div>
+	<div id="viewAllBranch"></div>
+	
 </div> <!-- container -->
 
 <script type="text/javascript"> // 매장 지역 검색 search 버튼 결과 js
 	$("#btnBranchSearch").click(function(){
 		var reg1val = $("#region1 option:selected").val()
 		var reg2val = $("#region2 option:selected").val()
-		
+	
 		$.ajax({
 			url:"<%=request.getContextPath()%>/branch/branchMap",
 			type:"GET",
 			data:{"reg1":reg1val, "reg2":reg2val},
 			success:function(result) {
-				console.log("test")
+				console.log("test map")
 				$("#branchMap").html(result)
 			}
 		})
@@ -162,7 +155,18 @@
 			}
 		})
 		
+	})	
+	
+	$("#viewAll").click(function(){
+		$.ajax ({
+			url:"<%=request.getContextPath()%>/branch/branchViewAll",
+			type:"GET",
+			success:function(result) {
+				$("#viewAllBranch").html(result)
+			}
+		})
 	})
+		
 </script>
 
 <script type="text/javascript">
@@ -196,8 +200,7 @@
 </script>
 
 <!-- ===== 전체매장보기 javascript ===== -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8359d6b1a5e0267b346e7ce57922d7f4&libraries=services"></script>
-<script type="text/javascript" src="../resources/js/branchSearch/viewAllBranch.js"></script>
+
 
 <!-- ===== 검색탭 javascript ===== -->
 <script type="text/javascript">
