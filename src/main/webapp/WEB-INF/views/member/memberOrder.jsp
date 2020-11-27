@@ -27,6 +27,11 @@
 	text-align: center;
 	}
 	
+	.orderNone{
+		text-align: center;
+		font-size: 24px;
+	}
+	
 </style>
 
 </head>
@@ -72,6 +77,14 @@
 					<div class="order-step">
 						<ul>
 							<li>
+								<c:choose>
+								<c:when test="${empty pizzaGroupList}">
+								<div class="orderNone">
+									<h1>주문 내역이 없습니다.</h1>
+								</div>
+								</c:when>
+								
+								<c:otherwise>
 								<div class="menu">
 									<!-- 피자 명  -->
 									<c:forEach items="${pizzaGroupList}" var="pizzaGroup">
@@ -109,9 +122,14 @@
 									<span style="display: none;" id="goods_name_brief">사이드메뉴</span>
 									<div class="item"></div>
 								</div>
+								</c:otherwise>
+								</c:choose>
 							</li>
 						</ul>
+
 					</div>
+					 
+					
 				</div>
 				<!-- 사이드메뉴 -->
 				<!-- //주문내역 -->
