@@ -116,21 +116,12 @@
 			 </div>
 		
 			  <div class="col-sm-12 join_input">
-
 			     <label class="col-sm-2 join_text" for="email">이메일 </label>
-			   <div class="col-sm-4">
-
-				<input type="email" name="member_email" id="email" placeholder="ex) aaa@gmail.com">
-			    <input type="button" id="btnEmail" value="중복확인" class="checkButt">
-			    <div id="emailResult"></div>
-
-
-
-				   <input type="email" name="member_email" id="email" placeholder="ex) aaa@gmail.com">
-			       <input type="button" id="btnEmail" value="중복확인" class="checkButt">
-			       <div id="emailResult"></div>
-
-			    </div>
+				   <div class="col-sm-4">
+					<input type="email" name="member_email" id="email" placeholder="ex) aaa@gmail.com">
+				    <input type="button" id="btnEmail" value="중복확인" class="checkButt">
+				    <div id="emailResult"></div>
+				    </div>
 			  </div>
 			  	
 			 <div class="form-group level">
@@ -158,40 +149,38 @@
 				<div class="form-group">
 						<label for="aggAll" class="labelUpdate">약관 전체동의</label>
 						<div class="memberAgg">
-
-              <span id="chkNotice">* 필수사항 미체크시 회원가입이 진행되지 않습니다.</span><br>
+             			 <span id="chkNotice">* 필수사항 미체크시 회원가입이 진행되지 않습니다.</span><br>
 	  					<label><input type="checkbox" value=1 id="checkAll2" class="chkall2">전체 동의하기</label><br>
 	  					<label><input type="checkbox" value=1 id="check1" class="chk2 chkall" name="member_pi_agg">개인정보 수집 및 이용동의(필수)</label><br>
 	 					<label><input type="checkbox" value=1 id="check2" class="chk2 chkall" name="member_clause_agg">이용약관 동의(필수)</label><br>
 						<label><input type="checkbox" value=1 id="check3" class="chk2 chkall" name="member_locate_agg">위치기반 서비스 약관 동의(필수)</label>
-          </div>
-          </div>
-				</div>
+          				</div>
+         		 </div>
+         		 
+			</div>
 					
-				<div class="form-group">
-					<label for="aggAll" class="labelUpdate">광고성 정보 수신 전체 동의 </label>
-					<div class="memberAgg" id="aggAll">
-	  					<label><input type="checkbox" value=1 id="checkAll3" class="chkall2">전체 동의하기</label><br>
-	  					<label><input type="checkbox" value=1 id="check4" class="chk chkall" name="member_msg_agg">문자 메세지(선택)</label><br>
-	 					 <label><input type="checkbox" value=1 id="check5" class="chk chkall" name="member_email_agg">이메일(선택)</label><br>
-	  					<label><input type="checkbox" value=1 id="check6" class="chk chkall" name="member_post_agg">DM 우편(최근 배달주소로 배송)(선택)</label>	
+			<div class="form-group">
+				<label for="aggAll" class="labelUpdate">광고성 정보 수신 전체 동의 </label>
+				<div class="memberAgg" id="aggAll">
+  					<label><input type="checkbox" value=1 id="checkAll3" class="chkall2">전체 동의하기</label><br>
+  					<label><input type="checkbox" value=1 id="check4" class="chk chkall" name="member_msg_agg">문자 메세지(선택)</label><br>
+ 					 <label><input type="checkbox" value=1 id="check5" class="chk chkall" name="member_email_agg">이메일(선택)</label><br>
+  					<label><input type="checkbox" value=1 id="check6" class="chk chkall" name="member_post_agg">DM 우편(최근 배달주소로 배송)(선택)</label>	
 				</div>
-				</div>
+			</div>
+			</form>
+			
 			</div>
 			
 			<div style="text-align: center;">
 			<input type="button" id="btn" value="가입하기" class="checkButt" style= "width:110px; height:42px;">
 			</div>
-			
-		</form>
 		</div>
-	</div>
 
 <c:import url="../template/footer.jsp"></c:import>
 </body>
-<script type="text/javascript">
-	
 
+<script>
 	//필수사항 전체 체크
 	$("#checkAll2").click(function() {
 		if($("#checkAll2").is(":checked")){
@@ -287,7 +276,6 @@
 	
 	//회원가입 id, pw, 이메일, 전화번호 중복 및 공백 검사
 
-
 	if("${id}" != ''){
 		var idCheck = true;
 	} 
@@ -298,7 +286,7 @@
 		var phoneCheck=false;
 		var emailCheck=false;
 		var emptyCheckResult=true;	
-
+	}
 	
 	var aggCheck=false;
 	
@@ -435,9 +423,6 @@
 	var regExpEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
 	var regExpPhone = /^\d{3}-\d{3,4}-\d{4}$/;//핸드폰 번호 정규식
 	
-
-	
-
 	if("${id}" != ''){
 		var idExpCheck=true;
 	}
@@ -447,13 +432,8 @@
 		var pwExpCheck=false;
 		var phoneExpCheck=false;
 		var emailExpCheck=false;
-
-
 	
-
-		
 	}
-
 
 	$("#id").blur(function() {
 		idExpCheck=false;
@@ -503,9 +483,7 @@
 			emailExpCheck=true;
 			alert("사용할 수 있는 이메일 형식입니다.")
 		}
-	});
-	
+	});	
 	//회원가입 유효성 검사
-
 </script>
 </html>
