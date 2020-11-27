@@ -5,6 +5,14 @@
     
 <mapper namespace="com.domino.t1.member.memberUser.MemberUserDAO">
 
+	<select id="getMemberSocialLogin" resultType="CouponDTO" parameterType="CouponDTO">
+		select * from member_info where member_id=#{member_id}
+	</select>
+	
+	<select id="getMemberSocialIdCheck" parameterType="CouponDTO" resultType="CouponDTO">
+		select member_id from member_info where member_id = #{member_id}
+	</select>
+  
 	<select id="getOneMember" resultType="MemberDTO" parameterType="MemberDTO">
 		select * from member_info where member_num=#{member_num}
 	</select>

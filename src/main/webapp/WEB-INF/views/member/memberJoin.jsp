@@ -67,7 +67,19 @@
 			    <label class="col-sm-2 join_text" for="id">아이디</label>
 			    <div class="col-sm-4">
 	    
+
 			     <input type="text" id="id" name="member_id" class="form-control empty" placeholder="숫자와 문자 포함   6~12자리">
+
+			     <c:choose>
+			     	<c:when test="${not empty id}">
+			     		<input type="text" id="ka_id" name="member_id" value="${id}" readonly="readonly">
+			     	</c:when>
+			     	
+			     	<c:otherwise>
+			     		 <input type="text" id="id" name="member_id" class="form-control empty" placeholder="숫자와 문자 포함   6~12자리">
+			     	</c:otherwise>
+			     </c:choose>
+
 			   
 			      <div id="idResult"></div>
 			    </div>
@@ -109,10 +121,16 @@
 
 			     <label class="col-sm-2 join_text" for="email">이메일 </label>
 			   <div class="col-sm-4">
+
 				<input type="email" name="member_email" id="email" placeholder="ex) aaa@gmail.com">
 			    <input type="button" id="btnEmail" value="중복확인" class="checkButt">
 			    <div id="emailResult"></div>
 
+
+
+				   <input type="email" name="member_email" id="email" placeholder="ex) aaa@gmail.com">
+			       <input type="button" id="btnEmail" value="중복확인" class="checkButt">
+			       <div id="emailResult"></div>
 
 			    </div>
 			  </div>
@@ -121,8 +139,6 @@
 				<label for="level" class="labelUpdate">등급 </label>
 				<input type="text" name="member_level" value="REGULAR" style="text-align:center; width:500px; height:42px;">
 			</div>
-
-						
 
 			<div style="padding: 15px;">
 				<div class="form-group">
@@ -214,6 +230,12 @@
 	
 	//회원가입 id, pw, 이메일, 전화번호 중복 및 공백 검사
 
+
+	if("${id}" != ''){
+		var idCheck = true;
+	} 
+	
+	else{
 		var idCheck=false;
 		var pwCheck=false;
 		var phoneCheck=false;
@@ -356,14 +378,25 @@
 	var regExpEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
 	var regExpPhone = /^\d{3}-\d{3,4}-\d{4}$/;//핸드폰 번호 정규식
 	
+
 	
-	
+
+	if("${id}" != ''){
+		var idExpCheck=true;
+	}
+	else{
+
 		var idExpCheck=false;
 		var pwExpCheck=false;
 		var phoneExpCheck=false;
 		var emailExpCheck=false;
 
+
 	
+
+		
+	}
+
 
 	$("#id").blur(function() {
 		idExpCheck=false;

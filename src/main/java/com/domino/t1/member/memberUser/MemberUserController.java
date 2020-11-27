@@ -37,22 +37,29 @@ public class MemberUserController {
 	@Autowired
 	private CartService cartService;
 	//추가
-	@GetMapping("memberSocialLogin")
-	public ModelAndView getMemberSocialLogin(CouponDTO couponDTO, HttpServletRequest request ,HttpSession session) throws Exception{
-
-		String id = request.getParameter("id");
-		System.out.println("id값 : "+id);
-
-		couponDTO.setMember_id(id);
-
-		ModelAndView mv = new ModelAndView();
-		couponDTO = memberService.getMemberSocialLogin(couponDTO);
-
-		if(couponDTO != null) {
-			session.setAttribute("member", couponDTO);
-			System.out.println(couponDTO.getMember_name());
-			mv.setViewName("redirect:../");
+		@GetMapping("memberSocialIdCheck")
+		public ModelAndView getMemberSocialIdCheck(CouponDTO couponDTO, HttpServletRequest request,HttpSession session) throws Exception{
+		
+			ModelAndView mv = new ModelAndView();
+			couponDTO = memberService.getMemberSocialIdCheck(couponDTO);
+			
+			
+			if(couponDTO != null) { //있으면 자동로그인
+				couponDTO = memberService.getMemberSocialLogin(couponDTO);
+				session.setAttribute("member", couponDTO);
+				System.out.println(couponDTO.getMember_name());
+				mv.setViewName("redirect:../");
+			}
+			
+			else { //없으면 회원가입 창으로 이동 
+				String id = request.getParameter("member_id");
+				mv.addObject("id", id);
+				mv.setViewName("member/memberJoin");
+			}
+			
+			return mv;	
 		}
+
 		return mv;
 	}
 	
@@ -82,6 +89,7 @@ public class MemberUserController {
 		
 	}
 	
+
 	@GetMapping("memberDeleteAdmin")
 	public ModelAndView setMemberDeleteAdmin(MemberDTO memberDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -355,22 +363,15 @@ public class MemberUserController {
 	public ModelAndView getMemberLogin(CouponDTO couponDTO, String remember, HttpServletResponse response ,HttpSession session) throws Exception{
 
 		ModelAndView mv = new ModelAndView();
-		
-		
-		if(remember != null) {
-
-
-			Cookie cookie = new Cookie("remember", couponDTO.getMember_id());
-
 			
+		if(remember != null) {
+			Cookie cookie = new Cookie("remember", couponDTO.getMember_id());
 			response.addCookie(cookie);
 		}else {
 			Cookie cookie = new Cookie("remember", "");
-			
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
 		}
-
 		couponDTO = memberService.getMemberLogin(couponDTO);
 		
 		if(couponDTO != null) {
@@ -382,10 +383,8 @@ public class MemberUserController {
 			mv.addObject("path", "./memberLogin");
 			mv.setViewName("common/result");
 		}
-		
 		return mv;
 	}
-	
 	
 	@GetMapping("memberLogin")
 	public ModelAndView getMemberLogin() throws Exception{

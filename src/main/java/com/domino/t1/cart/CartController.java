@@ -54,6 +54,12 @@ public class CartController {
 		arr.add(toppingCart);
 		arr.add(sideDishCart);
 		arr.add(etcCart);
+
+for(String s : pizzaCart) {
+	System.out.println(s);
+}
+System.out.println("toppingLength: " + toppingCart.length);
+System.out.println("sidesLen: " + sideDishCart.length);
 		
 		int result = cartService.setCartItemsFromPizzaDetail(orderType, arr, memberDTO);
 
@@ -197,6 +203,14 @@ System.out.println("result: "+ result);
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		int emptyTempResult = cartService.emptyOrderDetailTemp(memberDTO);
+System.out.println("pLength: " + pizzaGIdList.length);
+System.out.println("iLength: " + itemGIdList.length);
+for(String s: pizzaGIdList) {
+	System.out.println(s);
+}
+for(String s: itemGIdList) {
+	System.out.println(s);
+}
 		int pResult = cartService.setOrderDetailTempFromList(1, pizzaGIdList, memberDTO);
 		int iResult = cartService.setOrderDetailTempFromList(0, itemGIdList, memberDTO);
 		
