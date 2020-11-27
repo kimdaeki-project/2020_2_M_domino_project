@@ -84,7 +84,7 @@
 		</ul>	
 		
 
-	  <div style="padding: 1% 0";>
+	  <div style="padding: 1% 0;">
 		 <div style="border-bottom: 1px solid #888; margin-bottom: 3%; padding: 1% 0 2% 0;">
 			<p>도미노피자에 대한 궁금증을 바로 확인하실 수 있습니다.</p>
 			<p class="txt_faq">도미노피자 고객만족센터 <a href="#">080-860-3082</a></p>
@@ -151,6 +151,8 @@
  	<c:import url="../template/footer.jsp"></c:import>
 	
 	<script>
+	
+		//faq Toggle
 		var num = $(this).attr("title"); 
 		
 		$(document).ready(function(){
@@ -168,7 +170,7 @@
 			});
 		
 		
-		//delete
+		//faq Delete
 		$("#faq_result").on("click",".faq_del_btn", function(){
 			var board_num = $(this).attr("title");
 			var check= confirm("정말로 삭제하겠습니까?");

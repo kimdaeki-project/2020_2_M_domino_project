@@ -159,7 +159,7 @@
          		 
 			</div>
 					
-			<div class="form-group">
+			<div class="form-group" style="padding: 15px;">
 				<label for="aggAll" class="labelUpdate">광고성 정보 수신 전체 동의 </label>
 				<div class="memberAgg" id="aggAll">
   					<label><input type="checkbox" value=1 id="checkAll3" class="chkall2">전체 동의하기</label><br>
@@ -352,7 +352,6 @@
 			$.get("./memberIdCheck?member_id="+id,function(data){
 				data=data.trim();
 				var str = "중복된  ID 입니다."
-				
 				$("idResult").removeClass("idCheck0").addClass("idCheck1");
 				if(data==0){
 					str="중복되지 않은 ID 입니다.";

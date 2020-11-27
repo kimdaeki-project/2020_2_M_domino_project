@@ -90,12 +90,14 @@
 	<script type="text/javascript">
 	var count=0;
 
+	<!--서머노트-->
+	
 	 $('#contents').summernote({
 		 height:500,
 		 callbacks:{
 			 onImageUpload:function(files, editor, welEditable){
-				 var formData = new FormData();	    //가상의 from 태그 작성
-				 formData.append('file', files[0]); //파라미터 이름 file
+				 var formData = new FormData();	    
+				 formData.append('file', files[0]); 
 				 
 				 $.ajax({
 				    data: formData,
@@ -110,12 +112,10 @@
 						 $("#contents").summernote('editor.insertImage', data);
 					 }
 				 })
-			 },//upload End
+			 },
 			 
 			 onMediaDelete:function(files){
 				 var fileName = $(files[0]).attr("src");
-				 //fileName에서 파일명만 구해오기
-				 //s4/resources/upload/qna/sdfa-sdfsdf_iu1.jpg
 				fileName = fileName.substring(fileName.lastIndexOf("\\")+1);
 				
 				$.ajax({
@@ -134,6 +134,8 @@
 		
 	 });
 	 
+	 
+	 <!--빈칸 검사-->
 	 var emptyCheckResult = true;
 		$("#news_submit_btn").click(function(){
 			emptyCheck();
