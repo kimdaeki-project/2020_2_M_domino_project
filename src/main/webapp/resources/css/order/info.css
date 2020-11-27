@@ -1035,24 +1035,6 @@ p em{
 }
 
 
-.item_pizza{
-	font-size: 15px;
-	font-weight: 700;	
-}
-
-.etc{
-	
-	padding-top: 20px;
-	
-}
-
-.item_topping{
-	
-	font-size: 15px;
-	font-weight: 700;	
-	
-}
-
 
 .tablinks.active {
 
@@ -1073,12 +1055,37 @@ p em{
 	
 	
 }
+.title-menu{
+	
+	border-bottom: 1px solid #ddd;
+	font-size: 23px;
+	
+}
 
 
+#pay-list > div:nth-child(3) > div.order-step > ul {
+	
+	margin:20px 40px;
+	
+	
+}
 
+.item-name-big{
+	
+	font-size: 18px;
+	
+}
 
+.item-name-small, .item-topping{
+	
+	padding-left: 10px;
+	font-size: 15px;
+	color: #888888;
+}
 
-
-
-
+.item-name-big{
+	
+	font-size: 15px;
+	
+}
 
