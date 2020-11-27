@@ -32,7 +32,7 @@
 					<div class="store-map-area">
 						
 						<div id="branchMap"></div>
-						
+							
 						<!-- 탭 선택 최상위 div -->
 						<div class="store-search">
 							<!-- 탭 선택 -->

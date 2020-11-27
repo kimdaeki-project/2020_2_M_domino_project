@@ -61,7 +61,7 @@ public class BranchInfoController {
 	@GetMapping("branchMap")
 	public ModelAndView getLatLon(BranchInfoDTO branchInfoDTO, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		
+		/* 
 		String reg1 = request.getParameter("reg1");
 		System.out.println(reg1);
 		String reg2 = request.getParameter("reg2");
@@ -73,6 +73,7 @@ public class BranchInfoController {
 		List<BranchInfoDTO> ar = branchInfoService.getLatLon(branchInfoDTO);
 		
 		mv.addObject("latlon", ar);
+		 */
 		mv.setViewName("branch/branchMap");
 		
 		return mv;
