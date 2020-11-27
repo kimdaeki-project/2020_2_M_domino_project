@@ -74,20 +74,20 @@
 		<tr>
 			<td>회원 번호</td>
 			<td>아이디</td>
-			<td>패스워드</td>
 			<td>이름</td>
+			<td>이메일</td>
 			<td>휴대전화</td>
-			
+			<td>등급</td>
 		</tr>
 		
 		<c:forEach items="${list}" var="dto">
 			<tr>
 				<td>${dto.member_num}</td>
 				<td><a href="./memberUpdateAdmin?member_num=${dto.member_num}">${dto.member_id}</a></td>
-				<td>${dto.member_pw}</td>
 				<td>${dto.member_name}</td>
+				<td>${dto.member_email}</td>
 				<td>${dto.member_phone}</td>
-			
+				<td>${dto.member_level}</td>
 			</tr>
 		</c:forEach>
 	

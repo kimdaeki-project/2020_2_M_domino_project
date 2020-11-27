@@ -342,7 +342,8 @@ dl {
 	height: 16px;
 	padding: 30px;;
 	display: inline-block;
-	vertical-align: top
+	vertical-align: top;
+	
 }
 
 #labelCheck{

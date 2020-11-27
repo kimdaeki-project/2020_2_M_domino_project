@@ -42,7 +42,7 @@
 				<c:forEach items="${pizzaGroupList}" var="pizzaGroup">
 					<tr value="${pizzaGroup[0].cart_group_id}" class="pizza-cart-group">
 						<td>
-							<input type="checkbox" checked="checked" class="item-selected"/>
+							<input type="checkbox" checked="checked" class="item-selected to-checkout"/>
 						</td>
 						<td>
 							<div class="item-image-wrapper">
@@ -56,7 +56,7 @@
 								</p>
 								<!-- 사이즈에 따른 피자 기본 가격 + 도우에 따른 옵션 비용 -->
 								<p>${pizzaGroup[0].item_price + pizzaGroup[1].item_price}원</p>
-								<input type="number"class="pizza-price" value="${pizzaGroup[0].item_price + pizzaGroup[1].item_price}"/>
+								<input type="number" class="pizza-dough-price" value="${pizzaGroup[0].item_price + pizzaGroup[1].item_price}" >
 							</div>
 						</td>
 						<td>
@@ -94,7 +94,7 @@
 				<c:forEach items="${itemList}" var="item">		
 					<tr value="${item.cart_group_id}" class="item-cart-group">
 						<td>
-							<input type="checkbox" checked="checked" class="item-selected"/>
+							<input type="checkbox" checked="checked" class="item-selected to-checkout"/>
 						</td>
 						<td>
 							<div class="item-image-wrapper">
@@ -163,10 +163,12 @@
 	// compute each pizza item's total topping price
 	function setToppingPriceSubtotal(){
 		$(".topping-price-subtotal").each(function(){
-			var toppingSubtotal = $(this)
-			$(this).next().find(".topping-price").each(function(){
-				toppingSubtotal.val(Number(toppingSubtotal.val()) + Number($(this).val()))
+			var t = $(this)
+			var toppingSubtotal = 0
+			t.next().find(".topping-price").each(function(){
+				toppingSubtotal = Number(toppingSubtotal) + Number($(this).val())
 			})
+			t.val(toppingSubtotal)
 		})
 	}
 
@@ -175,8 +177,8 @@
 		$(".pizza-unit-price").each(function(){
 			var pizzaUnitSubtotal = $(this)
 			var toppingPrice = pizzaUnitSubtotal.closest("tr").find(".topping-price-subtotal").val()
-			var pizzaPrice = pizzaUnitSubtotal.closest("tr").find(".pizza-price").val()
-			pizzaUnitSubtotal.val(Number(toppingPrice) + Number(pizzaPrice))
+			var pizzaDoughPrice = pizzaUnitSubtotal.closest("tr").find(".pizza-dough-price").val()
+			pizzaUnitSubtotal.val(Number(toppingPrice) + Number(pizzaDoughPrice))
 		})
 	}
 	
@@ -370,8 +372,8 @@
 			}
 
 		})
-		console.log(pizzaGIdList.toString())
-		console.log(itemGIdList.toString())
+		alert(pizzaGIdList.toString())
+		alert(itemGIdList.toString())
 		var addressPage = '/t1/address/delivery'
 		$.get(
 			'/t1/cart/hasAddress',
@@ -389,6 +391,7 @@
 				"itemGIdList" : itemGIdList.toString()
 			},
 			function(result){
+	alert("insert result: " + result)
 				if(result < 1){
 					alert("오류가 발생했습니다. 문제가 지속될 경우 관리자에게 문의 바랍니다.")	
 					return

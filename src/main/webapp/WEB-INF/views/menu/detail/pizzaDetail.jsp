@@ -575,6 +575,12 @@
 					}
 				}
 			)
+			alert(pizzaCart.toString())
+			alert(doughCart.toString())
+			alert(toppingCart.toString())
+			alert(sideDishCart.toString())
+			alert(sideDishCart.toString())
+			
 			$.post(
 				"/t1/cart/addToCart/pizza",{
 					"orderType":"direct",
@@ -603,15 +609,18 @@
 				location.href = '/t1/member/memberLogin'
 				alert("로그인이 필요한 기능입니다.")			
 		}else{
-			$.post(
-				"/t1/cart/addToCart/pizza",{
-					"orderType":"toCart",
-					"pizzaCart":pizzaCart.toString(),
-					"doughCart":doughCart.toString(),
-					"toppingCart":toppingCart.toString(),
-					"sideDishCart":sideDishCart.toString(),
-					"etcCart":etcCart.toString()
+			$.ajax({
+				url : "/t1/cart/addToCart/pizza",
+				type : "post",
+				data : {
+					"orderType" : "toCart",
+					"pizzaCart" : pizzaCart.toString(),
+					"doughCart" : doughCart.toString(),
+					"toppingCart" : toppingCart.toString(),
+					"sideDishCart" : sideDishCart.toString(),
+					"etcCart" : etcCart.toString()
 					},
+				success :
 					function(result){
 						if(result < 1){
 							alert("오류: 장바구니 담기에 실패했습니다. 문제가 지속될 경우 관리자에게 문의 바랍니다.")	
@@ -624,8 +633,8 @@
 						}else{
 							location.href = "/t1/menu/list/pizzaList"
 						}
-					
-					})//end of $.post	
+					}
+			})//end of $.ajax	
 		}//end of else(logged in) statement
 	})
 

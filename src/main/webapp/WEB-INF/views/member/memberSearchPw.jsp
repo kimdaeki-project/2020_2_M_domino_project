@@ -52,7 +52,7 @@
 					<p class="search">회원정보로 찾기</p>
 					<div></div>
 					<br>
-						<input type="text" placeholder="아이디를 입력하세요" class="inputId">
+						<input type="text" placeholder="아이디를 입력하세요" class="inputId" style="height: 35px;">
 					<div>
 						<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">회원정보 인증</button>
 						</div>
@@ -65,7 +65,7 @@
 					<p class="search">본인인증(휴대전화)으로 찾기</p>
 					<div></div>
 					<br>
-						<input type="text" placeholder="아이디를 입력하세요" class="inputId">
+						<input type="text" placeholder="아이디를 입력하세요" class="inputId" style="height: 35px;">
 					<div>
 						<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">본인 인증</button>
 						</div>
@@ -78,7 +78,7 @@
 					<p class="search">아이핀(i-pin으로 찾기)</p>
 					<div></div>
 					<br>
-						<input type="text" placeholder="아이디를 입력하세요" class="inputId">
+						<input type="text" placeholder="아이디를 입력하세요" class="inputId" style="height: 35px;">
 					<div>
 						<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">아이핀 인증</button>
 						</div>
@@ -99,7 +99,7 @@
 					 
 					</li>
 					<li>
-					 - 신용평가기관을 통해 한국도미노피자에 가입하신 아이디,비밀번호 찾기를 진행하며, 당사는 고객의 주민등록번호를 저장하지 않습니다.
+					 - 신용평가기관을 통해 한국도미노피자에 가입하신 아이디,비밀번호 찾기를 진행하며, 당사는 고객의 주민등록번호를 저장하지 않습니다.<br>
 					 
 					</li>
 				

@@ -47,7 +47,7 @@
 	<div class="myLevel">
 		<div class="myCheck">${member.member_name}님께서 문의하신 내용입니다</div>
 		<div></div>
-		<div class="myCheck2">${member.member_name}님께서 문의하신 내용은 총 0건입니다.</div>
+		<div class="myCheck2">${member.member_name}님께서 문의하신 내용입니다.</div>
 	</div>
 	<div class="memberCheck"></div><br>
 			<div class="container">

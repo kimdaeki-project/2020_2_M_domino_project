@@ -81,6 +81,11 @@
 			<input type="password" name="member_pw" id="pw2" placeholder="특수문자, 문자 , 숫자  8~15자리 이내의 암호">
 			<div id="pwSetResult"></div>
 		</div>
+		
+		<div class="form-group update_input">
+			<label for="id" class="labelUpdate">등급 </label>
+			 <input type="text" name="member_level" value="${dto.member_level}">
+		</div>
 			
 		<div class="form-group update_input">
 			<label for="pw4" class="labelUpdate">생년월일 </label>
