@@ -30,12 +30,9 @@
 						<button type="button" class="btn-type v4" id="viewAll">전체매장 보기</button>	
 					</div>
 					<div class="store-map-area">
-						<div class="store-map-wrap">
-							<div class="store-map" id="map">
-							<div id="map"></div>
-							</div>
-						</div>
 						
+						<div id="branchMap"></div>
+							
 						<!-- 탭 선택 최상위 div -->
 						<div class="store-search">
 							<!-- 탭 선택 -->
@@ -51,28 +48,45 @@
 									<div class="form-group srch-type">
 										<div class="form-region" id="form-region-first">
 											<div class="select-region">
-												<select id="region1" name="region1">
-													<c:forEach var="dto" items="${dto.region1}">
-														<option value="0" selected>시/도</option>
-														<option value="1"></option>
-														
+												<select id="region1" name="region1" onchange="regionChange(this)">
+													<option>시/도</option>
+													<c:forEach var="dto" items="${region1}">
+														<option>${dto.region1}</option>
 													</c:forEach>
+													
+													<option>강원</option>
+													<option>충남</option>
+													<option>충북</option>
+													<option>대전</option>
+													<option>경남</option>
+													<option>경북</option>
+													<option>대구</option>
+													<option>전남</option>
+													<option>전북</option>
+													<option>광주</option>
+													<option>울산</option>
+													<option>부산</option>
+													<option>제주</option>
+													<option>세종특별자치시</option>
+													
 												</select>
 											</div>
 										</div>
 										<div class="form-region">
 											<div class="select-region">
-												<select id="region2">
+												<select id="region2" name="region2">
 													<option>구/군</option>
 												</select>
 											</div>
 										</div>
+
 										<div class="form-region" id="btn-search">
-											<button type="button" class="btn-search">
+											<button type="button" class="btn-search" id="btnBranchSearch">
 												<img src="../resources/images/branch/sp_search_t1.png">
 											</button>
 										</div>
 									</div>
+															
 									<div class="spcl-sale-branch">
 										<div class="switch-btn" id="spcl_toggle">
 											<label class="switch">
@@ -115,33 +129,10 @@
 							<!-- ===== 매장명 검색 ] ===== -->
 							
 							<!-- ===== [ 매장 리스트 ===== -->
-							<div class="row branch-addr-result">
-								<div class="column branch-result-list">
-									<dl>
-										<dt>매장명<span class="tel">매장 전화번호</span></dt>
-										<dd class="br-addr">매장 주소</dd>
-										<dd class="hash">
-											<span>
-												특별 세일 1
-												<br>
-												특별 세일 2
-											</span>
-										</dd>
-									</dl>
-									<div class="salenames">
-										<div class="sale1">
-											<span>세일1<br>11<br>122</span>
-										</div>
-										<div class="sale2">
-											<span>세일2<br>11<br>122</span>
-										</div>
-									</div>
-									<div class="br-detail">
-										<a href="#" class="btn type1">상세보기</button></a>
-										<a href="#" class="btn type2">방문포장</button></a>
-									</div>
-								</div>
-							</div>
+												
+							<div id="brInfos"></div>
+							
+							
 							<!-- ===== 매장 리스트 ] ===== -->
 							
 						</div> <!-- 탭 선택 최상위 div -->
@@ -163,82 +154,87 @@
 	</div>
 </div> <!-- container -->
 
+<script type="text/javascript"> // 디폴트 맵 표시
+
+	getMap()
+	function getMap(){
+		$.get("./branchMap", function(data){
+			$("#branchMap").html(data)
+		})
+	}
+	
+</script>
+
+<script type="text/javascript"> // 매장 지역 검색 search 버튼 결과 js
+
+	$("#btnBranchSearch").click(function(){
+		var reg1val = $("#region1 option:selected").val()
+		var reg2val = $("#region2 option:selected").val()
+		
+		$.ajax({
+			url:"<%=request.getContextPath()%>/branch/branchMap",
+			type:"GET",
+			data:{"reg1":reg1val, "reg2":reg2val},
+			success:function(result) {
+				$("#branchMap").remove()
+				
+				$.ajax({
+					url:"<%=request.getContextPath()%>/branch/mapSearchResult",
+					type:"POST",
+					data:{"reg1":reg1val, "reg2":reg2val},
+					success:function(result) {
+						console.log("result test")
+						$("#branchMap").html(result)
+					}
+				})
+			}
+		})
+		
+		$.ajax({
+			url:"<%=request.getContextPath()%>/branch/branchInfos",
+			type:"GET",
+			data:{"reg1":reg1val, "reg2":reg2val},
+			success:function(result) {
+				$("#brInfos").html(result)
+			}
+		})
+		
+	})
+</script>
+
+<script type="text/javascript">
+	var region1 = document.getElementById("region1")
+	
+	function regionChange(e) {
+		var region2_1 = ["구/군"]
+		var region2_a = ["강남구", "강북구", "동대문구", "동작구", "마포구", "서초구", "용산구", "은평구", "중구"];
+		var region2_b = ["계양구"];
+		var region2_c = ["고양시", "과천시", "광명시", "성남시"];
+		var target = document.getElementById("region2");
+		
+		// 선택된 값의 index를 불러오기
+		var regindex = $("#region1 option").index($("#region1 option:selected"));
+
+		if(regindex == 1) var d = region2_a;
+		else if(regindex == 2) var d = region2_b;
+		else if(regindex == 3) var d = region2_c;
+		else if(regindex == 0) var d = region2_1;
+
+		target.options.length = 0;
+
+		for (x in d) {
+			var opt = document.createElement("option");
+			opt.value = d[x];
+			opt.innerHTML = d[x];
+			target.appendChild(opt);
+		}	
+	}
+	
+</script>
+
 <!-- ===== 전체매장보기 javascript ===== -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8359d6b1a5e0267b346e7ce57922d7f4&libraries=services"></script>
-<script>
-
-	var viewAllBranch = document.getElementById("view-all-branch")
-	var btn = document.getElementById("viewAll");
-	
-	$("#viewAll").click(function(){
-	
-		viewAllBranch.style.display = "block";
-		
-		var mapContainer = document.getElementById("all-map"), // 지도를 표시할 div  
-		    mapOption = { 
-		        center: new kakao.maps.LatLng(37.564713, 126.993173), // 지도의 중심좌표
-		    	level: 3 // 지도의 확대 레벨
-			};
-
-		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-		/* */  
-		// 마커를 표시할 위치와 title 객체 배열입니다 
-		var positions = [
-		    {
-		        title: '개포점', 
-		        latlng: new kakao.maps.LatLng(37.475518, 127.047214)
-		    },
-		    {
-		        title: '논현점', 
-		        latlng: new kakao.maps.LatLng(37.510734, 127.023298)
-		    },
-		    {
-		        title: '미아점', 
-		        latlng: new kakao.maps.LatLng(37.617072, 127.022029)
-		    },
-		    {
-		        title: '번동점',
-		        latlng: new kakao.maps.LatLng(37.635334, 127.030114)
-		    },
-		    {
-		        title: '명동점',
-		        latlng: new kakao.maps.LatLng(37.564713, 126.993173)
-		    }
-		];
-		
-		var imageSrc = '/t1/resources/images/branch/ico_spot.png' // 마커이미지의 주소입니다    
-	    
-		for (var i = 0; i < positions.length; i ++) {
-			
-		    var imageSize = new kakao.maps.Size(40, 52), // 마커이미지의 크기입니다
-		    imageOption = {offset: new kakao.maps.Point(0, 0)}
-		    
-			// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
-			
-			// 마커를 생성합니다
-			var marker = new kakao.maps.Marker({
-	
-				// 마커가 지도 위에 표시되도록 설정합니다
-				map: map,
-				
-				position: positions[i].latlng, // 마커를 표시할 위치
-		        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-		         
-			    image: markerImage // 마커이미지 설정 
-			})
-		    
-		}
-		
-	}) 
-	
-	window.onclick = function(event) {
-	  if (event.target == viewAllBranch) {
-	    viewAllBranch.style.display = "none";
-	  }
-	}
-
-</script>
+<script type="text/javascript" src="../resources/js/branchSearch/viewAllBranch.js"></script>
 
 <!-- ===== 검색탭 javascript ===== -->
 <script type="text/javascript">
@@ -269,35 +265,7 @@
 </script>
    
 <!-- ===== 지도 javascript ===== -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8359d6b1a5e0267b346e7ce57922d7f4&libraries=services"></script>
-<script>
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-	mapOption = { 
-	    center: new kakao.maps.LatLng(37.564713, 126.993173), // 지도의 중심좌표
-	    level: 2 // 지도의 확대 레벨
-	};
-	
-	//지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-	var map = new kakao.maps.Map(mapContainer, mapOption); 
-	
-	var imageSrc = '/t1/resources/images/branch/ico_spot.png', // 마커이미지의 주소입니다    
-    imageSize = new kakao.maps.Size(40, 52), // 마커이미지의 크기입니다
-    imageOption = {offset: new kakao.maps.Point(0, 0)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-      
-	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-	    markerPosition = new kakao.maps.LatLng(37.564713, 126.993173); // 마커가 표시될 위치입니다
-	
-	// 마커를 생성합니다
-	var marker = new kakao.maps.Marker({
-	    position: markerPosition, 
-	    image: markerImage // 마커이미지 설정 
-	});
-	
-	// 마커가 지도 위에 표시되도록 설정합니다
-	marker.setMap(map);  
-	
-</script>
+
 <!-- ===== 지도 ===== -->
 
 <!-- ===== footer ===== -->

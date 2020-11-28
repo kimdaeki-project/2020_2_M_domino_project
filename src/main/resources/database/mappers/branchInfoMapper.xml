@@ -4,9 +4,14 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.domino.t1.branchInfo.BranchInfoDAO">
-
-	<select id="getRegion1" resultType="BranchInfoDTO" parameterType="BranchInfoDTO">
-		select region1 from branch_info group by #{region1}
+<!--  -->
+	<select id="getRegion1" resultType="BranchInfoDTO">
+		select region1 from branch_info group by region1
+		
 	</select>
 	
+	<select id="getBranchName" parameterType="BranchInfoDTO" resultType="BranchInfoDTO">
+		select * from branch_info where region1 = #{region1} and region2 = #{region2}		
+	</select>
+
 </mapper>

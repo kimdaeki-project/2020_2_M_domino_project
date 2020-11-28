@@ -1,9 +1,11 @@
 @charset "UTF-8";
+
 .item-desc-container{
-	
+	margin-top: 50px;
 }
 
 .item-option-container{
+	margin-top: 50px;
 	padding-left: 80px;
 /* should be modified later!! */
 	padding-bottom: 200px;
@@ -217,7 +219,7 @@ form{
 
 
 .btn-checkout{
-	width: 120px;
+	width: 47%;
 	height: 46px;
 	color: #fff;
 	text-align: center;
@@ -232,10 +234,12 @@ form{
 
 #btn-order-now{
 	background-color: #FF143C;
+	float: left;
 }
 
 #btn-to-cart{
 	background-color: #2E77A9;
+	float:right;
 }
 .subtotal-title{
 	margin-right: 20px;
@@ -248,10 +252,12 @@ form{
 
 #order-btn{
 	margin: 5% 0;
+	
 }
 
 #pdContainer{
 	padding: 3% 0;	
+	padding-top: 0;
 }
 
 .toppings-info-wrap, .toppings-info1, .toppings-info2{
