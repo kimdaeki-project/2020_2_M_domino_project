@@ -172,17 +172,19 @@
 		var reg1val = $("#region1 option:selected").val()
 		var reg2val = $("#region2 option:selected").val()
 		
-		$.ajax({
+		<%-- $.ajax({
 			url:"<%=request.getContextPath()%>/branch/branchMap",
 			type:"GET",
 			data:{"reg1":reg1val, "reg2":reg2val},
 			success:function(result) {
 				
-				$.post( "./mapSearchResult", function(result) {
-					$("#branchMap").html(result);
-				});
+				
 			}
-		})
+		}) --%>
+		
+		$.post( "./mapSearchResult", function(result) {
+			$("#branchMap").html(result);
+		});
 		
 		$.ajax({
 			url:"<%=request.getContextPath()%>/branch/branchInfos",

@@ -16,6 +16,7 @@
 	var lati = $(".brLat").val();
 	var lon = $(".brLon").val();
 	var name = $(".brName").text();
+	var names = name.split('점');
 	
 	mapOption2 = { 
 	    center: new kakao.maps.LatLng(lati, lon), // 지도의 중심좌표
@@ -24,36 +25,38 @@
 	
 	var map = new kakao.maps.Map(mapContainer2, mapOption2); // 지도를 생성합니다
 	
-	// 마커를 표시할 위치와 title 객체 배열입니다 
-	/* var results = [
-		{
-		    title: '개포점', 
-		    latlng: new kakao.maps.LatLng(37.475518, 127.047214)
-		}
-	]; */
 	
 	console.log(lati);
 	console.log(lon);
-	console.log(name);
 	
-	/////////////////////////////////////
+	/* for(j in names) {
+		name = names[j]+'점'
+		console.log(name)
+	}
 	
-	var results = [
+	console.log(names.length); */
+	
+	// 마커를 표시할 위치와 title 객체 배열입니다
+	/* var results = [
 		{
 			title: name,
 			latlng: new kakao.maps.LatLng(lati, lon)
 		}
-	];
+	]; */
 	
 	var imageSrcs2 = '/t1/resources/images/branch/ico_spot.png'; // 마커이미지의 주소입니다    
 	
+	var results = [];
+	
 	for (var i=0; i<results.length; i++) {
 		
-		
-		/* results[i] = {
-			
-		}; */
-		
+		results = [
+			{
+			// title: name,
+			latlng: new kakao.maps.LatLng(lati, lon)
+			}
+		];
+	
 		var imageSizes2 = new kakao.maps.Size(40, 52), // 마커이미지의 크기입니다
 		imageOptions2 = {offset: new kakao.maps.Point(0, 0)}
 		
@@ -67,13 +70,11 @@
 			map: map,
 			
 			position: results[i].latlng, // 마커를 표시할 위치
-		    title : results[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+		    // title : results[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 		     
 		    image: markerImages2 // 마커이미지 설정 
 		})
+	
 	};
 	
-	
-	
-
 </script>

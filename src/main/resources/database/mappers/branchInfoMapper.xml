@@ -10,7 +10,7 @@
 		
 	</select>
 	
-	<select id="getBranchName" parameterType="BranchInfoDTO" resultType="BranchInfoDTO">
+	<select id="getBranchInfos" parameterType="BranchInfoDTO" resultType="BranchInfoDTO">
 		select * from branch_info where region1 = #{region1} and region2 = #{region2}		
 	</select>
 

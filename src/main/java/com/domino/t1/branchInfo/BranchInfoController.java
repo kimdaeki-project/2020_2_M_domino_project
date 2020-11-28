@@ -46,10 +46,10 @@ public class BranchInfoController {
 		branchInfoDTO.setRegion1(reg1);
 		branchInfoDTO.setRegion2(reg2);
 		
-		List<BranchInfoDTO> ar = branchInfoService.getBranchName(branchInfoDTO);
+		List<BranchInfoDTO> ar = branchInfoService.getBranchInfos(branchInfoDTO);
 		
 		mv.addObject("branch", ar);
-		mv.setViewName("branch/branchSearchAjax");
+		mv.setViewName("branch/branchInfos");
 		
 		return mv;
 	}
@@ -70,7 +70,7 @@ public class BranchInfoController {
 		return mv;
 	}
 	
-	@GetMapping("branchSearchAjax")
+	/* @GetMapping("branchSearchAjax")
 	public ModelAndView getBranchResult(BranchInfoDTO branchInfoDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
@@ -78,7 +78,7 @@ public class BranchInfoController {
 		
 		return mv;
 		
-	}
+	} */
 
 
 }
