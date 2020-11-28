@@ -157,6 +157,7 @@
 <script type="text/javascript"> // 디폴트 맵 표시
 
 	getMap()
+	
 	function getMap(){
 		$.get("./branchMap", function(data){
 			$("#branchMap").html(data)

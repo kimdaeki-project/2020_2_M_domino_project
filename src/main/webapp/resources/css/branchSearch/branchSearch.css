@@ -376,7 +376,11 @@
 		line-height: 1;
 	}
 	
-	.branch-addr-result dl span {
+	.branch-addr-result dl .brName {
+		font-size: 14px;
+	}
+	
+	.branch-addr-result dl tel {
 		margin-left: 5px;
 		font-size: 14px;
 	}
