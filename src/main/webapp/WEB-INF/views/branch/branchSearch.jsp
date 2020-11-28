@@ -154,6 +154,7 @@
 	</div>
 </div> <!-- container -->
 
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8359d6b1a5e0267b346e7ce57922d7f4&libraries=services"></script>
 <script type="text/javascript"> // 디폴트 맵 표시
 
 	getMap()
@@ -166,25 +167,27 @@
 	
 </script>
 
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8359d6b1a5e0267b346e7ce57922d7f4&libraries=services"></script>
 <script type="text/javascript"> // 매장 지역 검색 search 버튼 결과 js
 
 	$("#btnBranchSearch").click(function(){
 		var reg1val = $("#region1 option:selected").val()
 		var reg2val = $("#region2 option:selected").val()
 		
-		<%-- $.ajax({
+		$.ajax({
 			url:"<%=request.getContextPath()%>/branch/branchMap",
 			type:"GET",
 			data:{"reg1":reg1val, "reg2":reg2val},
 			success:function(result) {
 				
-				
+				$.post( "./mapSearchResult", function(result) {
+					$("#branchMap").html(result);
+				});
+						
 			}
-		}) --%>
+		})<%--  --%>
 		
-		$.post( "./mapSearchResult", function(result) {
-			$("#branchMap").html(result);
-		});
+		
 		
 		$.ajax({
 			url:"<%=request.getContextPath()%>/branch/branchInfos",
