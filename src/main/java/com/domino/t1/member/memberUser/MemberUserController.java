@@ -356,9 +356,6 @@ public class MemberUserController {
 	}
 	
 	@PostMapping("memberLogin")
-
-
-
 	public ModelAndView getMemberLogin(CouponDTO couponDTO, String remember, HttpServletResponse response ,HttpSession session) throws Exception{
 
 		ModelAndView mv = new ModelAndView();

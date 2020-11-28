@@ -306,7 +306,8 @@
 			
 		emptyCheck();
 		
-		if(idCheck && pwCheck && phoneCheck && emailCheck && emptyCheckResult && idExpCheck && pwExpCheck && phoneExpCheck && emailExpCheck && aggCheck){
+		if(idCheck && pwCheck && phoneCheck && emailCheck && emptyCheckResult && 
+			idExpCheck && pwExpCheck && phoneExpCheck && emailExpCheck && aggCheck){
 			$("#frm").submit();
 		}else {
 			alert("필수 항목을 입력 및 입력 형식을 지켜주세요.")
