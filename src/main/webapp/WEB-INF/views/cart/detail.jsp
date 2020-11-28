@@ -8,6 +8,7 @@
     <meta charset="utf-8">
     <c:import url="../template/bootstrap.jsp"></c:import>
     <link href ="/t1/resources/css/common/default.css" rel="stylesheet">
+      <link href="/t1/resources/css/common/board.css" rel="stylesheet">
     <link href="/t1/resources/css/cart/detail.css" rel="stylesheet">
     <link href="/t1/resources/css/common/shared.css" rel="stylesheet">
     <script src="/t1/resources/js/header.js"></script>  
@@ -15,18 +16,35 @@
 </head>
 <body>
 
-	<c:import url="../template/header.jsp"></c:import>	
-
+<c:import url="../template/header.jsp"></c:import>	
 	<div class="container">
-		<div class="page-title">
-			<h2>장바구니</h2>
-		</div>
-		<div class="content">
-			<h3>배달주문</h3>
-			<div>${address.roadFullAddr}</div>
-		</div>
+		<div class="order-title-wrap">
+			<h2 class="order-title">장바구니</h2>
+			<div class="depth-area">
+				<ol>
+					<li><a href="http://localhost/t1">홈</a></li>
+					<li><strong>장바구니</strong></li>
+				</ol>
+			</div>		
+		</div>	
+		<div class="step-wrap">
+			<div class="title-wrap">
+				<h3 class="title-type">
+					<strong>배달주문</strong>
+				</h3>
+			</div>
+			<!-- 배달 -->
+			<div class="deli-info">
+				<div class="store">
+					<span>고객 주소</span>
+				</div>
+				<div class="address">${address.roadFullAddr}</div>
+			</div>
+		</div>				
 		<div class="content" id="cart-list-container">
-			<h3>장바구니 목록</h3>		
+			<div class="title-wrap">
+				<h3 class="title-type"><strong>장바구니 목록</strong></h3>	
+			</div>			
 			<table class="table">
 				<thead>
 					<tr>
@@ -35,7 +53,7 @@
 						<td>추가토핑</td>
 						<td>수량</td>
 						<td>금액</td>
-						<td><button type="button" class="btn btn-warning" id="btn-empty-cart">전체 삭제</button></td>
+						<td><span id="btn-empty-cart">전체 삭제</span></td>
 					</tr>	
 				</thead>	
 			<!-- pizza group items -->
@@ -49,23 +67,23 @@
 								<img src="/t1/resources/images/menu/pizza/${pizzaGroup[0].item_image}" class="item-image"/>
 							</div>
 							<div class="desc-container">
-								<p>${pizzaGroup[0].item_name}</p>
-								<p>	
+								<p class="desc-item-name">${pizzaGroup[0].item_name}</p>
+								<p class="desc-item-option">	
 									<span class="dough-name-short">${pizzaGroup[1].dough_name_short}</span>
 									<span>/${pizzaGroup[0].item_size}</span>
 								</p>
 								<!-- 사이즈에 따른 피자 기본 가격 + 도우에 따른 옵션 비용 -->
-								<p>${pizzaGroup[0].item_price + pizzaGroup[1].item_price}원</p>
-								<input type="number" class="pizza-dough-price" value="${pizzaGroup[0].item_price + pizzaGroup[1].item_price}" >
+								<p class="desc-item-price">${pizzaGroup[0].item_price + pizzaGroup[1].item_price}원</p>
+								<input type="hidden" class="pizza-dough-price" value="${pizzaGroup[0].item_price + pizzaGroup[1].item_price}" >
 							</div>
 						</td>
 						<td>
 							<div class="topping-container">
-								<input type="number" value="0" class="topping-price-subtotal"/>
+								<input type="hidden" value="0" class="topping-price-subtotal"/>
 								<ul>
 									<c:forEach items="${pizzaGroup}" var="topping" begin="2" varStatus="loop">
 										<li class="topping-item">
-											<p>${topping.item_name} (+${topping.item_price}) x <span>${topping.cart_quantity}</span><span class="delete-topping-btn">X</span></p>
+											<p class="topping-name">${topping.item_name} (+${topping.item_price}) x <span>${topping.cart_quantity}</span><span class="delete-topping-btn">&#215;</span></p>
 											<input type="hidden" value="${topping.item_price * topping.cart_quantity}" class="topping-price"/>
 											<input type="hidden" value="${topping.cart_item_id}" class="topping-cart-item-id"/>
 										</li>
@@ -74,7 +92,7 @@
 							</div>
 						</td>							
 						<td>
-							<div class="input-group">
+							<div class="input-group quantity-wrapper">
 								<span class="input-group-btn">
 									<button type="button" class="btn btn-quantity-controller btn-minus" min="1" disabled>-</button>
 								</span>
@@ -87,7 +105,7 @@
 							</div>						
 						</td>
 						<td class="item-subtotal-wrapper"><span class="item-subtotal"></span>원</td>
-						<td><p class="delete-item-btn">X</p></td>				
+						<td><p class="delete-item-btn">&#215;</p></td>				
 					</tr>	
 				</c:forEach>			
 			<!-- Standalone items -->	
@@ -101,8 +119,8 @@
 								<img src="/t1/resources/images/menu/${item.item_category}/${item.item_image}" class="item-image"/>
 							</div>
 							<div class="desc-container">
-								<p>${item.item_name}</p>
-								<p>${item.item_price}원</p>
+								<p class="desc-item-name">${item.item_name}</p>
+								<p class="desc-item-price">${item.item_price}원</p>
 							</div>
 						</td>
 						<td>
@@ -125,9 +143,9 @@
 							</div>							
 						</td>
 						<td class="item-subtotal-wrapper"><span class="item-subtotal"></span>원</td>
-						<td><p class="delete-item-btn">X</p></td>				
+						<td><p class="delete-item-btn">&#215;</p></td>				
 					</tr>	
-				</c:forEach>					
+				</c:forEach>									
 			</table>			
 
 		<!-- 총 주문 금액: 체크박스에 체크 되어있는 항목만 합산 -->
@@ -138,21 +156,24 @@
 			</div>
 		</div>
 		
-		<div class="content btn-box">
-			<button id="btn-menu-list">+ 메뉴 추가하기</button>
-			<button id="btn-checkout">주문하기</button>
+		<div class="content btn-wrapper">
+			<div class="btn-box">
+				<div class="" id="btn-menu-list">+ 메뉴 추가하기</div>
+				<div id="btn-checkout">주문하기</div>			
+			</div>
 		</div>
-		
-		<div>
-			<div class="col-sm-3">
+		<div id="disclaimer">
+			<div class="col-sm-3 disclaimer-title">
 				<p>유의사항</p>
 			</div>
-			<div class="col-sm-9">
-				<p>* 할인 적용은 다음 단계에서 가능합니다.</p>
-				<p>* 피클&amp;소스 기본 제공 안내</p>
-				<p> - L : 피클 L (120g) 1개 / 핫소스 2개 / 갈릭디핑소스 15g 2개, M : 피클 M (75g) 1개 / 핫소스 1개 / 갈릭디핑소스 15g 1개</p>
-				<p> - 씬 도우, 더블크러스트 이베리코 피자는 갈릭디핑소스 미 제공</p>
-				<p> - 메뉴 > 음료&amp;기타 추가 구매 가능</p>
+			<div class="col-sm-9 disclaimer-list">
+				<ul>
+					<li>* 할인 적용은 다음 단계에서 가능합니다.</li>
+					<li>* 피클&amp;소스 기본 제공 안내</li>
+					<li> - L : 피클 L (120g) 1개 / 핫소스 2개 / 갈릭디핑소스 15g 2개, M : 피클 M (75g) 1개 / 핫소스 1개 / 갈릭디핑소스 15g 1개</li>
+					<li> - 씬 도우, 더블크러스트 이베리코 피자는 갈릭디핑소스 미 제공</li>
+					<li> - 메뉴 > 음료&amp;기타 추가 구매 가능</li>			
+				</ul>
 			</div>
 		</div>
 	</div>
