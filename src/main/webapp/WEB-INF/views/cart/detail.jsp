@@ -180,7 +180,7 @@
 	
 	<c:import url="../template/footer.jsp"></c:import>
 	<script type="text/javascript">		
-	
+	alert(${pizzaGroupList.size()})
 	// compute each pizza item's total topping price
 	function setToppingPriceSubtotal(){
 		$(".topping-price-subtotal").each(function(){
@@ -367,7 +367,6 @@
 				},
 				success : function(result){
 					result = result.trim()
-					alert(result)
 					if(result > 0){
 						$(this).parent().remove()
 						window.location.reload()
@@ -393,13 +392,10 @@
 			}
 
 		})
-		alert(pizzaGIdList.toString())
-		alert(itemGIdList.toString())
 		var addressPage = '/t1/address/delivery'
 		$.get(
 			'/t1/cart/hasAddress',
 			function(result){
-				alert('hasAddress: '+result)
 				if(result>0){
 					addressPage += 'After'
 				}
@@ -412,7 +408,6 @@
 				"itemGIdList" : itemGIdList.toString()
 			},
 			function(result){
-	alert("insert result: " + result)
 				if(result < 1){
 					alert("오류가 발생했습니다. 문제가 지속될 경우 관리자에게 문의 바랍니다.")	
 					return

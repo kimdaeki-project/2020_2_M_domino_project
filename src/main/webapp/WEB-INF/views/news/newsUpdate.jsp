@@ -44,7 +44,7 @@
   			 <input type="hidden" name="board_num" value="${dto.board_num}">
 		    <div class="form-group">
 		      <label for="title">Title</label>
-		      <input type="text" class="form-control" value="${dto.board_title}" id="title" name="board_title">
+		      <input type="text" class="form-control empty" value="${dto.board_title}" id="title" name="board_title" title="제목">
 		    </div>
 	    
 		    <div class="form-group">
@@ -54,7 +54,7 @@
 		    
 		     <div class="form-group">
 		      <label for="contents">Contents</label>
-		      <textarea class="form-control" rows="20" cols="30" id="contents" name="board_contents">${dto.board_contents}</textarea>
+		      <textarea class="form-control empty" rows="20" cols="30" id="contents" name="board_contents" title="내용">${dto.board_contents}</textarea>
 		    </div>
 		    
 			<div id="files" class="col-sm-6" style="border: 1px solid #ddd">
@@ -65,8 +65,8 @@
 			
 			<div>
 			
-			<div style="float: right;">
-			 	 <input type="submit" class="write_control" value="글수정">
+			<div id="news_update_btn" style="float: right;">
+			 	 <input type="button" class="write_control" value="글수정">
 			</div>
 			
 			<div  class="write_control" style="float: right;">
@@ -124,6 +124,27 @@
 		 }
 		
 	 });
+	 
+	 <!--빈칸 검사-->
+	 var emptyCheckResult = true;
+		$("#news_update_btn").click(function(){
+			emptyCheck();
+			if(emptyCheckResult){
+				$("#frm").submit();
+			}
+		});
+	
+	function emptyCheck(){
+		emptyCheckResult=true;
+		$(".empty").each(function(){
+			var data = $(this).val();
+			if(data==''){
+				emptyCheckResult=false;
+				var title = $(this).attr("title");
+				alert(title+"을 입력하세요");
+			}
+		});
+	}
 		
 	</script>
 

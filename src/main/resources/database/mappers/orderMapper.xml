@@ -16,16 +16,36 @@
     		select * from sale where member_num = #{member_num}
     	
     	</select>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        
+    	<insert id="setOrderView" useGeneratedKeys="false" parameterType="OrderDTO" keyProperty="order_view_num">
+   	    	<selectKey keyProperty="order_view_num" resultType="Long" order="BEFORE">
+       		    SELECT order_view_seq.NEXTVAL FROM dual
+   			</selectKey>      		
+    		  		
+    		INSERT INTO order_view VALUES(
+    			#{member_num},
+    			#{order_view_num},
+    			#{order_adress},
+    			#{order_shop, jdbcType=VARCHAR},
+    			#{order_name},
+    			#{order_phone},
+    			#{order_request, jdbcType=VARCHAR},
+    			#{order_untact, jdbcType=VARCHAR},
+    			SYSDATE,
+    			#{order_total},
+    			#{order_sale, jdbcType=NUMERIC},
+    			#{order_salename, jdbcType=VARCHAR},
+    			#{order_payment, jdbcType=NUMERIC},
+    			#{order_method, jdbcType=VARCHAR} 
+    		)     		
+	
+    	</insert>
+    	<select id="getUserOrderViewList" parameterType="MemberDTO" resultType="OrderDTO">
+    		SELECT * FROM order_view
+    		WHERE member_num = #{member_num}
+    		ORDER BY order_view_num DESC
+    	</select>
     
     
     </mapper>
+    

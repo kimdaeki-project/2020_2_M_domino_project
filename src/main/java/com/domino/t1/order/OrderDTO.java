@@ -2,6 +2,9 @@ package com.domino.t1.order;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.List;
+
+import com.domino.t1.order.orderdetail.OrderDetailDTO;
 
 public class OrderDTO {
 	
@@ -20,10 +23,30 @@ public class OrderDTO {
     private long order_payment;
     private String order_method;
     
+    private long order_view_num;
+    private List<OrderDetailDTO> itemList;
+    private List<List<OrderDetailDTO>> pizzaGroupList;
     
     
     
-    
+	public long getOrder_view_num() {
+		return order_view_num;
+	}
+	public void setOrder_view_num(long order_view_num) {
+		this.order_view_num = order_view_num;
+	}
+	public List<OrderDetailDTO> getItemList() {
+		return itemList;
+	}
+	public void setItemList(List<OrderDetailDTO> itemList) {
+		this.itemList = itemList;
+	}
+	public List<List<OrderDetailDTO>> getPizzaGroupList() {
+		return pizzaGroupList;
+	}
+	public void setPizzaGroupList(List<List<OrderDetailDTO>> pizzaGroupList) {
+		this.pizzaGroupList = pizzaGroupList;
+	}
 	public long getMember_num() {		
 		return member_num;
 	}

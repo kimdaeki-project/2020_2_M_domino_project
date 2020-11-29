@@ -27,6 +27,15 @@ public class OrderDAO {
 		
 		
 	}
+
+	public long setOrderView(OrderDTO orderDTO) throws Exception {
+		sqlSession.insert(NAMESPACE+"setOrderView", orderDTO);	
+		return orderDTO.getOrder_view_num();
+	}
+	
+	public List<OrderDTO> getUserOrderViewList(MemberDTO memberDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getUserOrderViewList", memberDTO);
+	}
 	
 	
 	

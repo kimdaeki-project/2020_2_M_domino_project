@@ -54,12 +54,6 @@ public class CartController {
 		arr.add(toppingCart);
 		arr.add(sideDishCart);
 		arr.add(etcCart);
-
-for(String s : pizzaCart) {
-	System.out.println(s);
-}
-System.out.println("toppingLength: " + toppingCart.length);
-System.out.println("sidesLen: " + sideDishCart.length);
 		
 		int result = cartService.setCartItemsFromPizzaDetail(orderType, arr, memberDTO);
 
@@ -76,7 +70,7 @@ System.out.println("sidesLen: " + sideDishCart.length);
 			) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");		
-		System.out.println("in addtocart!");
+
 		// 바로 주문 시 order_detail_temp 초기화 시켜주기 
 		if(orderType.equals("direct")) {
 			int emptyTempResult = cartService.emptyOrderDetailTemp(memberDTO);
@@ -135,10 +129,16 @@ System.out.println("sidesLen: " + sideDishCart.length);
 		// get CartDTO list of the user
 		List<List<CartDTO>> pizzaGroupList = cartService.getCartPizzaGroupItemList(memberDTO);
 		List<CartDTO> itemList = cartService.getCartStandaloneItemList(memberDTO);
-		if(pizzaGroupList.get(0) == null && itemList.size() < 1) {
+		
+		if(pizzaGroupList.get(0) == null && itemList.size() < 2) {
 			mv.addObject("isCartEmpty", 1);
 			mv.setViewName("cart/detail");
 			return mv;
+		}
+		
+		// to prevent Empty Pizza Group error:
+		if(pizzaGroupList.get(0) == null|| pizzaGroupList.get(0).size()<2) {
+			pizzaGroupList.clear();
 		}
 	
 		mv.addObject("isCartEmpty", 0);
@@ -154,7 +154,6 @@ System.out.println("sidesLen: " + sideDishCart.length);
 		System.out.println("quantity change: to " + cartDTO.getCart_quantity());
 		System.out.println("cart item id: " + cartDTO.getCart_item_id());
 		int result = cartService.updateCartItemQuantity(cartDTO);
-System.out.println("result: "+ result);
 		mv.addObject("msg", result);
 		mv.setViewName("common/ajaxResult");
 		return mv;
@@ -165,7 +164,6 @@ System.out.println("result: "+ result);
 		ModelAndView mv = new ModelAndView();	
 		cartDTO.setMember_num(((MemberDTO)session.getAttribute("member")).getMember_num());
 		int result = cartService.deleteCartGroup(cartDTO);
-		System.out.println("result: "+result);
 		mv.addObject("msg", result);
 		mv.setViewName("common/ajaxResult");
 		return mv;
@@ -207,20 +205,11 @@ System.out.println("result: "+ result);
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		int emptyTempResult = cartService.emptyOrderDetailTemp(memberDTO);
-System.out.println("pLength: " + pizzaGIdList.length);
-System.out.println("iLength: " + itemGIdList.length);
-for(String s: pizzaGIdList) {
-	System.out.println(s);
-}
-for(String s: itemGIdList) {
-	System.out.println(s);
-}
+
 		int pResult = cartService.setOrderDetailTempFromList(1, pizzaGIdList, memberDTO);
-		int iResult = cartService.setOrderDetailTempFromList(0, itemGIdList, memberDTO);
-		
+		int iResult = cartService.setOrderDetailTempFromList(0, itemGIdList, memberDTO);		
 		int result = pResult * iResult;
-System.out.println("pResult: " + pResult);
-System.out.println("iResult: " + iResult);
+
 		mv.addObject("msg", result);
 		mv.setViewName("common/ajaxResult");		
 		return mv;
