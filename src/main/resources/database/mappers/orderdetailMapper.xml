@@ -21,6 +21,7 @@
 	<select id="getOrderDetailList" parameterType="OrderDTO" resultType="OrderDetailDTO">
 		SELECT * FROM order_detail 
 		WHERE order_view_num = #{order_view_num}
+		ORDER BY order_view_num DESC, order_detail_group_id
 	</select>
 	
 

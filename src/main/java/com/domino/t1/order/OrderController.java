@@ -117,5 +117,15 @@ public class OrderController {
 		
 	}
 	
+	@GetMapping("orderSubmit")
+	public ModelAndView orderSubmit(HttpSession session, OrderDTO orderDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		CouponDTO couponDTO = (CouponDTO)session.getAttribute("member");
+		orderDTO.setMember_num(couponDTO.getMember_num());
+		orderService.setOrder(orderDTO);
+		mv.setViewName("redirect:../member/memberOrder");
+		return mv;
+	}
+	
 
 }
