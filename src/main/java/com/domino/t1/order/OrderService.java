@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.domino.t1.address.AddressDTO;
 import com.domino.t1.cart.CartDTO;
@@ -34,18 +35,12 @@ public class OrderService {
 		return orderDAO.getCoupon(couponDTO);		
 	}
 	
+	@Transactional(rollbackFor=Exception.class)
 	public void setOrder(OrderDTO orderDTO) throws Exception {
 		long order_view_num = orderDAO.setOrderView(orderDTO);
-System.out.println("order_view_num: " + order_view_num);
 		orderDTO.setOrder_view_num(order_view_num);
 		setOrderDetail(orderDTO);
 	}
-	
-	
-//	public void setTest() throws Exception {
-//		OrderDTO testDTO = getTester();
-//		setOrderDetail(testDTO);
-//	}
 	
 	// orderDTO requires: member_num, order_view_num
 	public void setOrderDetail(OrderDTO orderDTO) throws Exception {
@@ -57,11 +52,6 @@ System.out.println("order_view_num: " + order_view_num);
 		// get cartDTO lists for pizzaGroup and (standalone)items
 		List<List<CartDTO>> pizzaGroupCartList = cartService.getTempPizzaGroupItemList(gIdSet.get(0), memberDTO);
 		List<CartDTO> itemCartList = cartService.getTempStandaloneItemList(gIdSet.get(1), memberDTO);
-
-System.out.println("got cart Lists");
-for(CartDTO dto: itemCartList) {
-	System.out.println(dto.getItem_name());
-}
 		
 		// merge into a single List<CartDTO>		
 		List<CartDTO> cartList = new ArrayList<CartDTO>();
@@ -74,7 +64,6 @@ for(CartDTO dto: itemCartList) {
 			cartList.addAll(itemCartList);
 		}
 		
-System.out.println("number of items for purchase: "+cartList.size());
 		
 		// CartDTO -> OrderDetailDTO 
 		List<OrderDetailDTO> orderDetailDtoList = toOrderDetailDtoList(orderDTO.getOrder_view_num(), cartList);		
@@ -87,63 +76,47 @@ System.out.println("number of items for purchase: "+cartList.size());
 		// remove purchased items from cart
 		int removed1 = removePurchasedItemsFromCart(gIdSet.get(0), memberDTO);
 		int removed2 = removePurchasedItemsFromCart(gIdSet.get(1), memberDTO);
-System.out.println("removed: " + removed1 + ", " + removed2);
+
 		// empty order_detail_temp
 		int emptied = cartService.emptyOrderDetailTemp(memberDTO);
-System.out.println("emptied items from cart: " + emptied);
+
 		
 	}	
 	
 	
 	// cartDTO 데이터를 OrderDetailDTO에 옮겨담아줌. + order_view_num
-	public List<OrderDetailDTO> toOrderDetailDtoList(long order_view_num ,List<CartDTO> cartDtoList) throws Exception {
+	public List<OrderDetailDTO> toOrderDetailDtoList(long order_view_num ,List<CartDTO> cartDtoList){
 		List<OrderDetailDTO> arr = new ArrayList<OrderDetailDTO>();
 		for(CartDTO c : cartDtoList) {
 			OrderDetailDTO dto = new OrderDetailDTO();
-			dto.setOrder_view_number(order_view_num);
-			dto.setOrder_item_id(c.getCart_item_id());
-			dto.setOrder_detail_price(c.getItem_price());
-			dto.setOrder_detail_quantity(c.getCart_quantity());
-			dto.setOrder_detail_size(c.getItem_size());
-			dto.setOrder_detail_group_id(c.getCart_group_id());
-			dto.setOrder_detail_name(c.getItem_name());
-			dto.setOrder_detail_category(c.getItem_category());
-			arr.add(dto);
+			try {
+				dto.setOrder_view_number(order_view_num);
+				dto.setOrder_item_id(c.getCart_item_id());
+				dto.setOrder_detail_price(c.getItem_price());
+				dto.setOrder_detail_quantity(c.getCart_quantity());
+				dto.setOrder_detail_size(c.getItem_size());
+				dto.setOrder_detail_group_id(c.getCart_group_id());
+				dto.setOrder_detail_name(c.getItem_name());
+				dto.setOrder_detail_category(c.getItem_category());
+				arr.add(dto);								
+			}catch(NullPointerException e) {
+				continue;
+			}
+
 		}		
 		return arr;
 	}
 	
 	public int removePurchasedItemsFromCart(String[] gIdList, MemberDTO memberDTO) throws Exception {
-System.out.println("removing purchased items from cart....");
 		CartDTO dto = new CartDTO();
 		dto.setMember_num(memberDTO.getMember_num());
 		int removed = 0;
 		for(String gId: gIdList) {
 			dto.setCart_group_id(Long.parseLong(gId));
 			int result = cartService.deleteCartGroup(dto);
-System.out.println("gId: " + gId);
 			removed += result;
 		}
 		return removed;
 	}
-	
-	
-//	public OrderDTO getTester() throws Exception {
-//		String s = "str";
-//		long l = 99900;
-//		OrderDTO orderDTO = new OrderDTO();
-//		orderDTO.setMember_num(2);
-//		orderDTO.setOrder_adress(s);
-//		orderDTO.setOrder_shop(s);
-//		orderDTO.setOrder_name(s);
-//		orderDTO.setOrder_phone(s);
-//		orderDTO.setOrder_total(l);
-//		orderDTO.setOrder_sale(l);
-//		orderDTO.setOrder_payment(l);
-//		orderDTO.setOrder_method("wallet");
-//		long order_view_num = orderDAO.setOrderView(orderDTO);
-//System.out.println("order_view_num: " + order_view_num);
-//		orderDTO.setOrder_view_num(order_view_num);
-//		return orderDTO;
-//	}
+
 }

@@ -81,32 +81,6 @@ public class MemberUserController {
 			
 		}
 	
-//	@GetMapping("memberOrder")
-//	public ModelAndView orderWrite(HttpSession session) throws Exception {
-//		ModelAndView mv = new ModelAndView();
-//		
-//		
-//		//———주문 상품 데이터 가져오기————
-//			CartDTO cartDTO = new CartDTO();
-//		
-//		
-//			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-//			List<String[]> gIdList = cartService.getOrderDetailTempLists(memberDTO);
-//			List<List<CartDTO>> pizzaGroupList = cartService.getTempPizzaGroupItemList(gIdList.get(0), memberDTO);
-//			List<CartDTO> itemList = cartService.getTempStandaloneItemList(gIdList.get(1), memberDTO);
-//				
-//					
-//		//———주문 상품 데이터 가져오기 end————
-//		
-//			mv.addObject("pizzaGroupList", pizzaGroupList);
-//			mv.addObject("itemList", itemList);		
-//			
-//			mv.setViewName("member/memberOrder");	
-//
-//		return mv;
-//		
-//	}
-	
 
 	@GetMapping("memberDeleteAdmin")
 	public ModelAndView setMemberDeleteAdmin(MemberDTO memberDTO) throws Exception{
