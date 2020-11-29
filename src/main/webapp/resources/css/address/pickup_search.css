@@ -165,14 +165,14 @@
     	font-weight: bold;
 	}
 	
-	#btn-search {
+	#btnBranchSearch {
 		width: 42px;
 		height: 100%;
 		padding-right: 0px;
 		margin-left: 5px; 
 	}
 	
-	#btn-search button {
+	#btnBranchSearch button {
 		border: 0;
 	    display: inline-block;
 	    width: 42px;
@@ -267,6 +267,12 @@
 	/* 지역 검색 */
 	
 	/* 매장명 검색 */
+	#brList {
+		overflow-y: auto;
+		overflow-x: hidden;
+		max-height: 638px;
+	}
+	
 	#search2 .form-item {
 		width: 342px;
 		height: 42px;
@@ -282,11 +288,16 @@
 	
 	.branch-addr-result {
 		width: 433px;
-		height: 359px;
+		height: auto;
 		max-height: 638px;
 		border-top: 1px solid #ddd;
 		margin: 0 auto;
 	}
+	
+	#brInfos {
+	    max-height: 638px;
+	    overflow-y: auto;
+	} 
 	
 	.branch-result-list {
 		display: inline-block;
@@ -304,7 +315,6 @@
 		height: 93px;
 		padding-top: 10px;
 		margin: 0;
-		background-color: #c0c0c0;
 	}
 	
 	.branch-addr-result dl dt {
@@ -312,40 +322,40 @@
 		height: 16px;
 		font-size: 14px;
 		color: #111;
-		background-color: #ff8080;
 		line-height: 1;
+	}
+	
+	.branch-addr-result dl .brName {
+		font-size: 14px;
 	}
 	
 	.branch-addr-result dl .tel {
 		margin-left: 5px;
 		font-size: 14px;
-		background-color: #ffff00;
 	}
 	
 	.branch-addr-result dl > .br-addr {
 		width: 200px;
-		height: 22px;
+		height: auto;
 		margin-top: 8px;
 		color: #111;
 		font-size: 14px;
 		line-height: 22px;
-		background-color: #ff8000;
 	}
 	
 	.branch-addr-result dl > .hash {
 		width: 200px;
-		height: 22px;
+		height: auto;
 		margin-top: 15px;
 		font-size: 14px;
 		line-height: 20px;
 		color: #888888;
-		background-color: #80ffff;
 	}
 	
 	.branch-addr-result dl > .hash > span {
 		display: block;
 		width: 200px;
-		height: 22px;
+		height: auto;
 	}
 		
 	.branch-addr-result .salenames {
@@ -375,15 +385,14 @@
 	.branch-addr-result .salenames div span {
 		position: absolute;
 		width: 100%;
-		height: 48px;
-		background-color: #000;
-		font-size: 12px;
+		height: auto;
+		font-size: 13px;
 		color: #fff;
-		line-height: 16px;
+		line-height: 1.3;
 		left: 0;
-	    top: 50%;
-	    transform: translateY(-50%);
+	    top: 4%;
 	    text-align: center;
+	    padding: 9px;
 	}
 		
 	.branch-addr-result .br-detail {
@@ -392,25 +401,24 @@
 	    height: 32px;
 	    margin-top: 15px;
 	    text-align: left;
+	    left: 0px;
+	    bottom: 0px;
 	}
 	
 	.br-detail .btn {
 		width: 80px;
 		height: 32px;
 		color: #ffffff;
-		border: none;
-    	padding: 0;
-    	line-height: 32px;
-    	border-radius: 0;
+		line-height: 17px;
 	}
 	
-	.br-detail #type1 {
+	.br-detail .btn.type1 {
 		display: inline-block;
 		background-color: #888888;
 		margin-right: 4px;
 	}
 	
-	.br-detail #type2 {
+	.br-detail .btn.type2 {
 		display: inline-block;
 		background-color: #111111;
 	}
@@ -510,7 +518,7 @@
 	    text-align: left;
 	}
 	
-	.btn-wrap > a {
+	.enter-order > .btn-enter {
 	    width: 220px;
 	    height: 62px;
 	    color: #fff;

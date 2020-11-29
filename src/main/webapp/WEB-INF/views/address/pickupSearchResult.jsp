@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<!-- branch/mapSearchResult.jsp -->
+<!-- pickupSearchResult.jsp -->
 <div class="store-map-wrap">
 	<div class="store-map">
 		<div id="map"></div>
@@ -10,7 +10,7 @@
 </div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8359d6b1a5e0267b346e7ce57922d7f4&libraries=services"></script>
-<script> // branch/mapSearchResult.jsp
+<script> // pickupSearchResult.jsp
 
 	var mapContainer2 = document.getElementById("map"); // 지도를 표시할 div
 	
@@ -26,9 +26,6 @@
 	
 	var map = new kakao.maps.Map(mapContainer2, mapOption2); // 지도를 생성합니다
 	
-	$("#btnBranchSearch").click(function() {
-	    map.relayout();
-	});
 	
 	console.log(lati);
 	console.log(lon);
@@ -49,6 +46,10 @@
 		var result = results[j]
 		console.log(result)
 	}
+	
+	$("#btnBranchSearch").click(function() {
+	    map.relayout();
+	});
 	
 	var imageSrcs2 = '/t1/resources/images/branch/ico_spot.png'; // 마커이미지의 주소입니다    
 	

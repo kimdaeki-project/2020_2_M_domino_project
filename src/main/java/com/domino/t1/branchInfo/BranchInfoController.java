@@ -25,7 +25,6 @@ public class BranchInfoController {
 		ModelAndView mv = new ModelAndView();
 		
 		List<BranchInfoDTO> region1 = branchInfoService.getRegion1(branchInfoDTO);
-		System.out.println(region1);
 		
 		mv.addObject("dto", branchInfoDTO);
 		mv.addObject("region1", region1);
@@ -34,8 +33,8 @@ public class BranchInfoController {
 		return mv;
 	}
 	
-	@GetMapping("branchInfos")
-	public ModelAndView getBranchInfos(BranchInfoDTO branchInfoDTO, HttpServletRequest request) throws Exception {
+	@GetMapping("branchList")
+	public ModelAndView getBranchList(BranchInfoDTO branchInfoDTO, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 
 		String reg1 = request.getParameter("reg1");
@@ -46,10 +45,10 @@ public class BranchInfoController {
 		branchInfoDTO.setRegion1(reg1);
 		branchInfoDTO.setRegion2(reg2);
 		
-		List<BranchInfoDTO> ar = branchInfoService.getBranchInfos(branchInfoDTO);
+		List<BranchInfoDTO> ar = branchInfoService.getBranchList(branchInfoDTO);
 		
 		mv.addObject("branch", ar);
-		mv.setViewName("branch/branchInfos");
+		mv.setViewName("branch/branchList");
 		
 		return mv;
 	}
@@ -70,15 +69,12 @@ public class BranchInfoController {
 		return mv;
 	}
 	
-	/* @GetMapping("branchSearchAjax")
-	public ModelAndView getBranchResult(BranchInfoDTO branchInfoDTO) throws Exception {
+	@GetMapping("brSelectMap")
+	public ModelAndView brSelectMap(BranchInfoDTO branchInfoDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		
-		mv.setViewName("branch/branchSearchAjax");
-		
+		mv.setViewName("branch/brSelectMap");
 		return mv;
-		
-	} */
+	}
 
 
 }

@@ -30,12 +30,17 @@ public class AddressDAO {
 		
 	}
 	
-	public List<BranchInfoDTO> getBranchInfo(BranchInfoDTO branchInfoDTO) throws Exception {
-		return sqlSession.selectList(NAMESPACE+"getBranchInfo", branchInfoDTO);
+	public List<BranchInfoDTO> getRegion1(BranchInfoDTO branchInfoDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getRegion1", branchInfoDTO);
 	}
 	
 	public int setBranchInfo(BranchInfoDTO branchInfoDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"setBranchInfo", branchInfoDTO);
 	}
+	
+	public List<BranchInfoDTO> pickupBrList(BranchInfoDTO branchInfoDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"pickupBrList", branchInfoDTO);
+	}
+	
 
 }

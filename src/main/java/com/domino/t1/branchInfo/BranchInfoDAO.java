@@ -19,8 +19,8 @@ public class BranchInfoDAO {
 		return sqlSession.selectList(NAMESPACE+"getRegion1", branchInfoDTO);
 	}
 	
-	public List<BranchInfoDTO> getBranchInfos(BranchInfoDTO branchInfoDTO) throws Exception {
-		return sqlSession.selectList(NAMESPACE+"getBranchInfos", branchInfoDTO);
+	public List<BranchInfoDTO> getBranchList(BranchInfoDTO branchInfoDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getBranchList", branchInfoDTO);
 	}
 	
 }

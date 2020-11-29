@@ -130,7 +130,7 @@
 							
 							<!-- ===== [ 매장 리스트 ===== -->
 												
-							<div id="brInfos"></div>
+							<div id="brList"></div>
 							
 							
 							<!-- ===== 매장 리스트 ] ===== -->
@@ -190,11 +190,11 @@
 		
 		
 		$.ajax({
-			url:"<%=request.getContextPath()%>/branch/branchInfos",
+			url:"<%=request.getContextPath()%>/branch/branchList",
 			type:"GET",
 			data:{"reg1":reg1val, "reg2":reg2val},
 			success:function(result) {
-				$("#brInfos").html(result)
+				$("#brList").html(result)
 			}
 		})
 		

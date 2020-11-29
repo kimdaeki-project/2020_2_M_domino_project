@@ -27,12 +27,16 @@ public class AddressService {
 		return addressDAO.setMemberAddress(addressDTO);
 	}
 	
-	public List<BranchInfoDTO> getBranchInfo(BranchInfoDTO branchInfoDTO) throws Exception {
-		return addressDAO.getBranchInfo(branchInfoDTO);
+	public List<BranchInfoDTO> getRegion1(BranchInfoDTO branchInfoDTO) throws Exception {
+		return addressDAO.getRegion1(branchInfoDTO);
 	}
 	
 	public int setBranchInfo(BranchInfoDTO branchInfoDTO) throws Exception {
 		return addressDAO.setBranchInfo(branchInfoDTO);
+	}
+	
+	public List<BranchInfoDTO> pickupBrList(BranchInfoDTO branchInfoDTO) throws Exception {
+		return addressDAO.pickupBrList(branchInfoDTO);
 	}
 
 }

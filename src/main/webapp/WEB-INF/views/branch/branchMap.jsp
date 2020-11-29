@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<!-- branchMap.jsp -->
 <div class="store-map-wrap">
 	<div class="store-map">
 		<div id="map"></div>
@@ -9,7 +10,7 @@
 </div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8359d6b1a5e0267b346e7ce57922d7f4&libraries=services"></script>
-<script>
+<script> // branchMap.jsp
 	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	

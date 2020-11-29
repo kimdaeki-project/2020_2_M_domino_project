@@ -2,6 +2,7 @@ package com.domino.t1.address;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.domino.t1.branchInfo.BranchInfoDTO;
+import com.domino.t1.branchInfo.BranchInfoService;
 import com.domino.t1.coupon.CouponDTO;
 import com.domino.t1.member.MemberDTO;
 import com.domino.t1.member.address.MemberAddressDTO;
@@ -120,15 +122,58 @@ public class AddressController {
 	}
 	
 	@GetMapping("pickup")
-	public ModelAndView pickup() throws Exception {
+	public ModelAndView getRegion1(BranchInfoDTO branchInfoDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-//		mv.addObject("order", "pickup");
+		List<BranchInfoDTO> region1 = addressService.getRegion1(branchInfoDTO);
+		
+		mv.addObject("region1", region1);
 		mv.setViewName("address/pickup");
-		System.out.println("pickup");
+		
+		return mv;
+	}
+	
+	@GetMapping("pickupBrList")
+	public ModelAndView pickupBrList(BranchInfoDTO branchInfoDTO, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		String reg1 = request.getParameter("reg1");
+		String reg2 = request.getParameter("reg2");
+		
+		branchInfoDTO.setRegion1(reg1);
+		branchInfoDTO.setRegion2(reg2);
+		
+		List<BranchInfoDTO> ar = addressService.pickupBrList(branchInfoDTO);
+		
+		mv.addObject("branch", ar);
+		mv.setViewName("address/pickupBrList");
 		
 		return mv;
 		
 	}
+	
+	@GetMapping("pickupMap")
+	public ModelAndView pickupMap(BranchInfoDTO branchInfoDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("address/pickupMap");
+		
+		return mv;
+	}
+	
+	@GetMapping("pickupSelectMap")
+	public ModelAndView getPickupSelectMap(BranchInfoDTO branchInfoDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("address/pickupSelectMap");
+		return mv;
+	}
+	
+	@PostMapping("pickupSearchResult")
+	public ModelAndView pickupSearchResult(BranchInfoDTO branchInfoDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("address/pickupSearchResult");
+		return mv;
+	}
+	
 
 }
