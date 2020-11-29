@@ -309,6 +309,10 @@
 	    background-color: white;
 	}
 	
+	.branch-addr-result .brLat, .brLon {
+		display: none;
+	}
+	
 	.branch-addr-result dl {
 		display: inline-block;
 		width: 200px;

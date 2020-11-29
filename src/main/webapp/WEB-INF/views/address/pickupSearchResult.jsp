@@ -16,8 +16,6 @@
 	
 	var lati = $(".brLat").val();
 	var lon = $(".brLon").val();
-	var name = $(".brName").text();
-	var names = name.split('점');
 	
 	mapOption2 = { 
 	    center: new kakao.maps.LatLng(lati, lon), // 지도의 중심좌표
@@ -27,13 +25,6 @@
 	var map = new kakao.maps.Map(mapContainer2, mapOption2); // 지도를 생성합니다
 
 	map.relayout();
-	
-	console.log(lati);
-	console.log(lon);
-	
-	name = names+'점'
-	console.log(names)
-	console.log(name)
 	
 	// 마커를 표시할 위치와 title 객체 배열입니다
 	var results = [
