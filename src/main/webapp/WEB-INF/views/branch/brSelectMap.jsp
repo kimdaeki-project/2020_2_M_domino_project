@@ -15,6 +15,7 @@
 	var lati = $(".brLat").val();
 	var lon = $(".brLon").val();
 	
+	
 	mapOptionDetail = { 
 	    center: new kakao.maps.LatLng(lati, lon), // 지도의 중심좌표
 	    level: 3 // 지도의 확대 레벨

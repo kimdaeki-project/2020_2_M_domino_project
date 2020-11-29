@@ -25,7 +25,8 @@
 	};
 	
 	var map = new kakao.maps.Map(mapContainer2, mapOption2); // 지도를 생성합니다
-	
+
+	map.relayout();
 	
 	console.log(lati);
 	console.log(lon);

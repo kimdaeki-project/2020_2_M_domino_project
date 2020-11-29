@@ -10,7 +10,7 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8359d6b1a5e0267b346e7ce57922d7f4&libraries=services"></script>
 <script type="text/javascript"> // pickupSelectMap.jsp
 	
-	var container = document.getElementById('map-detail'), // 지도를 표시할 div 
+	var container = document.getElementById('map-detail') // 지도를 표시할 div 
 	
 	var lati = $(".brLat").val();
 	var lon = $(".brLon").val();
