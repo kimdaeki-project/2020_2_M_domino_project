@@ -168,7 +168,6 @@ public class CartService {
 			int totalItem = arr.length/size;
 			for(int i=0; i<totalItem; i++) {
 				list.add(Arrays.copyOfRange(arr, i*size, (i+1)*size));
-System.out.println(list.toString());
 			}
 			return list;
 		}	
@@ -236,9 +235,6 @@ System.out.println(list.toString());
 	// 바로 주문 / 장바구니에서 구매하기 버튼 클릭 시 구매 대상 항목 정보를 임시 저장 
 	public int setOrderDetailTemp(long isPizzaGroup, long cart_group_id, MemberDTO memberDTO) throws Exception {
 		OrderDetailTempDTO dto = new OrderDetailTempDTO();
-System.out.println("cart group id: " + cart_group_id);
-System.out.println("is Pizza Group: " + isPizzaGroup);
-System.out.println("member num: " + memberDTO.getMember_num());
 		dto.setCart_group_id(cart_group_id);
 		dto.setIs_pizza_group(isPizzaGroup);
 		dto.setMember_num(memberDTO.getMember_num());

@@ -503,7 +503,7 @@
 			}else{
 				// 피자 없으면 itemList 첫 항목을 타이틀로 사용 
 				title = title.concat("${itemList[0].item_name}", " x ")
-				title = title.concat("${itemList[0]}.cart_quantity")
+				title = title.concat("${itemList[0].cart_quantity}")
 			}
 			// pizza + sideDish + etc 2개 이상이면 "외 total-1" 건 이라고 추가 표시 
 			var totalItemCount = ${pizzaGroupList.size()} + ${itemList.size()}

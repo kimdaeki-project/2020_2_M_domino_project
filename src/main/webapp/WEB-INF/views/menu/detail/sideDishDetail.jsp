@@ -307,7 +307,6 @@ $(".btn-plus").click(function(){
 			$.get(
 				'/t1/cart/hasAddress',
 				function(result){
-					alert('hasAddress: '+result)
 					if(result>0){
 						addressPage += 'After'
 					}
