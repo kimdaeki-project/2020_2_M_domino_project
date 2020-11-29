@@ -27,6 +27,11 @@ public class OrderDAO {
 		
 		
 	}
+
+	public long setOrderView(OrderDTO orderDTO) throws Exception {
+		sqlSession.insert(NAMESPACE+"setOrderView", orderDTO);	
+		return orderDTO.getOrder_view_num();
+	}
 	
 	
 	
