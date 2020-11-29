@@ -18,13 +18,13 @@
     	</select>
         
     	<insert id="setOrderView" useGeneratedKeys="false" parameterType="OrderDTO" keyProperty="order_view_num">
-   	    	<selectKey keyProperty="order_view_num" resultType="Long" order="AFTER">
-       		    SELECT order_view_seq.CURRVAL FROM dual
+   	    	<selectKey keyProperty="order_view_num" resultType="Long" order="BEFORE">
+       		    SELECT order_view_seq.NEXTVAL FROM dual
    			</selectKey>      		
     		  		
     		INSERT INTO order_view VALUES(
     			#{member_num},
-    			order_view_seq.NEXTVAL,
+    			#{order_view_num},
     			#{order_adress},
     			#{order_shop},
     			#{order_name},

@@ -44,11 +44,16 @@ public class OrderDetailDAOTest extends MyTestCase{
 	
 	@Test
 	public void setOrderDetailTest() throws Exception {
-		orderService.setTest();
-		long order_view_num = 1;
+		//orderService.setTest();
+	}
+	
+	@Test
+	public void getOrderDetailItemTest() throws Exception {
+		long order_view_num = 17;
 		OrderDTO orderDTO = new OrderDTO();
 		orderDTO.setOrder_view_num(order_view_num);
 		List<OrderDetailDTO> ordered = orderDetailDAO.getOrderDetailList(orderDTO);
+		System.out.println("entered test");
 		for(OrderDetailDTO dto: ordered) {
 			System.out.println(dto.getOrder_detail_name());
 		}

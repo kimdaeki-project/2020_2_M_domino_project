@@ -80,10 +80,12 @@ for(CartDTO dto: itemCartList) {
 		}
 		
 		// remove purchased items from cart
-		removePurchasedItemsFromCart(gIdSet.get(0));
-		removePurchasedItemsFromCart(gIdSet.get(1));
+		int removed1 = removePurchasedItemsFromCart(gIdSet.get(0));
+		int removed2 = removePurchasedItemsFromCart(gIdSet.get(1));
+System.out.println("removed: " + removed1 + ", " + removed2);
 		// empty order_detail_temp
-		cartService.emptyOrderDetailTemp(memberDTO);
+		int emptied = cartService.emptyOrderDetailTemp(memberDTO);
+System.out.println("emptied items from cart: " + emptied);
 		
 	}	
 	
@@ -106,12 +108,16 @@ for(CartDTO dto: itemCartList) {
 		return arr;
 	}
 	
-	public void removePurchasedItemsFromCart(String[] gIdList) throws Exception {
+	public int removePurchasedItemsFromCart(String[] gIdList) throws Exception {
+System.out.println("removing purchased items from cart....");
 		CartDTO dto = new CartDTO();
+		int removed = 0;
 		for(String gId: gIdList) {
 			dto.setCart_group_id(Long.parseLong(gId));
 			cartService.deleteCartGroup(dto);
+			removed++;
 		}
+		return removed;
 	}
 	
 	
@@ -129,7 +135,7 @@ for(CartDTO dto: itemCartList) {
 		orderDTO.setOrder_payment(l);
 		orderDTO.setOrder_method("wallet");
 		long order_view_num = orderDAO.setOrderView(orderDTO);
-		System.out.println("order_view_num: " + order_view_num);
+System.out.println("order_view_num: " + order_view_num);
 		orderDTO.setOrder_view_num(order_view_num);
 		return orderDTO;
 	}

@@ -18,7 +18,7 @@
 		)		
 	</insert>
 	
-	<select id="setOrderDetailList" parameterType="OrderDTO" resultType="OrderDetailDTO">
+	<select id="getOrderDetailList" parameterType="OrderDTO" resultType="OrderDetailDTO">
 		SELECT * FROM order_detail 
 		WHERE order_view_num = #{order_view_num}
 	</select>

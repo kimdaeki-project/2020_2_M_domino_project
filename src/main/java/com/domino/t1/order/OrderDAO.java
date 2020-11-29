@@ -29,8 +29,8 @@ public class OrderDAO {
 	}
 
 	public long setOrderView(OrderDTO orderDTO) throws Exception {
-		long order_view_num = sqlSession.insert(NAMESPACE+"setOrderView", orderDTO);	
-		return order_view_num;
+		sqlSession.insert(NAMESPACE+"setOrderView", orderDTO);	
+		return orderDTO.getOrder_view_num();
 	}
 	
 	
