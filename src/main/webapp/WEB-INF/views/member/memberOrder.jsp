@@ -71,50 +71,28 @@
 					</div>
 					<div class="order-step">
 						<ul>
-							<li>
-								<div class="menu">
-									<!-- 피자 명  -->
-									<c:forEach items="${pizzaGroupList}" var="pizzaGroup">
-										<c:forEach items="${pizzaGroup}" var="dto">
-											<div>
-												<strong class="goods_name">제품명 : ${dto.item_name}</strong>
-											</div>
-										</c:forEach>
-									</c:forEach>
-									<!-- //피자 명  -->
-								</div> <!-- 토핑 -->
-								<div class="topping">
-									<span style="display: none;" id="goods_name_brief">메인</span>
-									<div class="item">
-										<c:forEach items="${pizzaGroupList}" var="pizzaGroup">
-											<c:forEach items="${pizzaGroup}" var="dto">
-												<div class="item_pizza">${dto.item_name}</div>
-												<span>${dto.item_price}원</span>
-												<span> x ${dto.cart_quantity}</span>
-											</c:forEach>
-										</c:forEach>
-
-
-										<div class="etc">
-											<c:forEach items="${itemList}" var="dto">
-												<div class="item_topping">${dto.item_name}</div>
-												<span>${dto.item_price}원</span>
-												<span> x ${dto.cart_quantity}</span>
-											</c:forEach>
-											<!-- //토핑 -->
+									<c:forEach items="${orderList}" var="order" varStatus="i">
+										<li>
+										<div class="menu">
+											<h3>주문번호 : ${order.order_view_num}</h3>
+											<h3>주문일   : ${order.order_date}</h3>
+											<p>결제금액 : ${order.order_total}</p>
+											<p>배달주소 : ${order.order_adress}</p>
+											<p>${i.index}</p>
+											<c:forEach items="${orderItemList[i.index]}" var="item">
+												<div>
+													<h3>${item.order_detail_name}</h3>
+													<p>${item.order_detail_category}</p>
+												</div>	
+												<hr>								
+											</c:forEach>			
 										</div>
-									</div>
-
-									<!-- 사이드 메뉴 -->
-									<span style="display: none;" id="goods_name_brief">사이드메뉴</span>
-									<div class="item"></div>
-								</div>
-							</li>
+										</li>
+									</c:forEach>										
+							
 						</ul>
 					</div>
 				</div>
-				<!-- 사이드메뉴 -->
-				<!-- //주문내역 -->
 
 
 

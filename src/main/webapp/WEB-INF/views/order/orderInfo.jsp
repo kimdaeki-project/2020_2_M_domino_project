@@ -33,9 +33,9 @@
 			</div>
 		</div>
 
-
+<!-- order form begins here -->
 		<article class="pay">
-			<form id="pay-list">
+			<form id="pay-list" action="./orderSubmit">
 				<div class="step-wrap">
 					<div class="title-wrap">
 						<h3 class="title-type">
@@ -48,6 +48,7 @@
 							<span>고객 주소</span>
 						</div>
 						<div class="address">${address.roadFullAddr}</div>
+						<input type="hidden" name="order_adress" value="${address.roadFullAddr}" />
 					</div>
 				</div>
 
@@ -362,7 +363,7 @@
 								<strong>결제수단 선택</strong>
 							</h3>
 						</div>
-
+						<input type="hidden" name="order_method" id="order-method" value=""/>
 						<div class="pay-step">
 							<div class="pay-info">
 								<div class="title-type2">미리결제</div>
@@ -450,8 +451,8 @@
 								<ul>
 									<li>
 										<p class="tit">총 상품 금액</p>
-										<p class="price">
-											총가격<em class="total-price">원</em>
+										<p class="price" id="price-no-discount">
+											<em class="total-price">원</em>
 										</p>
 									</li>
 									<li class="math">-</li>
@@ -467,6 +468,7 @@
 										<p class="price">
 											결제금액<em>원</em>
 										</p>
+										<input type="hidden" id="order-total-price" name="order_total" value="0"/>
 									</li>
 								</ul>
 							</div>
@@ -479,6 +481,7 @@
 						<button type="submit" id="button">결제하기</button>
 					</div>
 			</form>
+<!-- end of order form -->
 			<!-- //주문하기 버튼 -->
 		</article>
 	</div>
@@ -526,7 +529,9 @@
 			$(".item-subtotal").each(function(){
 				totalPrice = Number(totalPrice) + Number($(this).text())
 			})
-			$(".total-price").text(totalPrice)
+			$("#price-no-discount").text(totalPrice)
+			$(".total .price").text(totalPrice)
+			$("#order-total-price").val(totalPrice)
 		})	
 		
 	
@@ -538,12 +543,13 @@
 				// getter
 				var radioVal = $('input[name="pay"]:checked').val();
 				if (radioVal == '카카오페이') {
-
+					$("#order-method").val("카카오페이")
 					open('./orderPay')
 
 				} else {
 
 					alert(' 결제 준비중');
+					
 
 				}
 			});

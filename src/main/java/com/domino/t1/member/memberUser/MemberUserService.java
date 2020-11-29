@@ -1,5 +1,6 @@
 package com.domino.t1.member.memberUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,10 @@ import com.domino.t1.coupon.CouponDTO;
 import com.domino.t1.member.MemberDTO;
 import com.domino.t1.member.MemberService;
 import com.domino.t1.member.memberInquirly.MemberInquirlyDTO;
+import com.domino.t1.order.OrderDAO;
+import com.domino.t1.order.OrderDTO;
+import com.domino.t1.order.orderdetail.OrderDetailDAO;
+import com.domino.t1.order.orderdetail.OrderDetailDTO;
 import com.domino.t1.util.Pager;
 
 @Service
@@ -18,6 +23,12 @@ public class MemberUserService implements MemberService{
 		
 	@Autowired
 	private MemberUserDAO memberDAO;
+	
+	@Autowired
+	private OrderDAO orderDAO;
+	
+	@Autowired
+	private OrderDetailDAO orderDetailDAO;
 	
 	@Override
 	public MemberDTO getOneMember(MemberDTO memberDTO) throws Exception {
@@ -123,5 +134,19 @@ public class MemberUserService implements MemberService{
 		public CouponDTO getMemberSocialLogin(CouponDTO couponDTO) throws Exception{
 			return memberDAO.getMemberSocialLogin(couponDTO);
 		}
+		
+	// get list of User's entire list of OrderDTO(order_view records)
+	public List<OrderDTO> getUserOrderList(MemberDTO memberDTO) throws Exception {
+		return orderDAO.getUserOrderViewList(memberDTO);
+	}
 	
+	// get list of- list of OrderDetailDTO 
+	public List<List<OrderDetailDTO>> getUserOrderDetailList(List<OrderDTO> orderList) throws Exception{
+		List<List<OrderDetailDTO>> orderItemList = new ArrayList<List<OrderDetailDTO>>();
+		// get List<OrderDetailDTO> with each OrderDTO's order_view_num
+		for(OrderDTO orderDTO: orderList) {
+			orderItemList.add(orderDetailDAO.getOrderDetailList(orderDTO));
+		}
+		return orderItemList;
+	}
 }

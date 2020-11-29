@@ -26,6 +26,8 @@ import com.domino.t1.cart.CartService;
 import com.domino.t1.coupon.CouponDTO;
 import com.domino.t1.member.MemberDTO;
 import com.domino.t1.member.memberInquirly.MemberInquirlyDTO;
+import com.domino.t1.order.OrderDTO;
+import com.domino.t1.order.orderdetail.OrderDetailDTO;
 import com.domino.t1.util.Pager;
 
 @Controller
@@ -60,33 +62,50 @@ public class MemberUserController {
 			return mv;	
 		}
 
-
-	
-	@GetMapping("memberOrder")
-	public ModelAndView orderWrite(HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		
-		
-		//———주문 상품 데이터 가져오기————
-			CartDTO cartDTO = new CartDTO();
-		
-		
-			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-			List<String[]> gIdList = cartService.getOrderDetailTempLists(memberDTO);
-			List<List<CartDTO>> pizzaGroupList = cartService.getTempPizzaGroupItemList(gIdList.get(0), memberDTO);
-			List<CartDTO> itemList = cartService.getTempStandaloneItemList(gIdList.get(1), memberDTO);
-				
-					
-		//———주문 상품 데이터 가져오기 end————
-		
-			mv.addObject("pizzaGroupList", pizzaGroupList);
-			mv.addObject("itemList", itemList);		
+		@GetMapping("memberOrder")
+		public ModelAndView orderWrite(HttpSession session) throws Exception {
+			ModelAndView mv = new ModelAndView();			
 			
+			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+			// user's entire list of OrderDTO(order_view records)
+			List<OrderDTO> orderList = memberService.getUserOrderList(memberDTO);
+			// user's entire list of-list of OrderDetailDTO
+			List<List<OrderDetailDTO>> orderItemList = memberService.getUserOrderDetailList(orderList);			
+						
+			//———주문 상품 데이터 가져오기 end————			
+			mv.addObject("orderList", orderList);
+			mv.addObject("orderItemList", orderItemList);		
 			mv.setViewName("member/memberOrder");	
 
-		return mv;
-		
-	}
+			return mv;
+			
+		}
+	
+//	@GetMapping("memberOrder")
+//	public ModelAndView orderWrite(HttpSession session) throws Exception {
+//		ModelAndView mv = new ModelAndView();
+//		
+//		
+//		//———주문 상품 데이터 가져오기————
+//			CartDTO cartDTO = new CartDTO();
+//		
+//		
+//			MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+//			List<String[]> gIdList = cartService.getOrderDetailTempLists(memberDTO);
+//			List<List<CartDTO>> pizzaGroupList = cartService.getTempPizzaGroupItemList(gIdList.get(0), memberDTO);
+//			List<CartDTO> itemList = cartService.getTempStandaloneItemList(gIdList.get(1), memberDTO);
+//				
+//					
+//		//———주문 상품 데이터 가져오기 end————
+//		
+//			mv.addObject("pizzaGroupList", pizzaGroupList);
+//			mv.addObject("itemList", itemList);		
+//			
+//			mv.setViewName("member/memberOrder");	
+//
+//		return mv;
+//		
+//	}
 	
 
 	@GetMapping("memberDeleteAdmin")
