@@ -27,6 +27,25 @@
 	text-align: center;
 	}
 	
+	.item-name-big{
+	
+	font-size: 18px;
+	padding-left: 10px;
+	margin-top: 5px;
+	
+	}
+	
+	.menu{
+		border-bottom: 1px #888888 solid;
+	}
+
+	.item-name-small, .item-topping{
+		
+		padding-left: 20px;
+		font-size: 14px;
+		color: #888888;
+	}
+	
 </style>
 
 </head>
@@ -71,24 +90,41 @@
 					</div>
 					<div class="order-step">
 						<ul>
-									<c:forEach items="${orderList}" var="order" varStatus="i">
-										<li>
-										<div class="menu">
-											<h3>주문번호 : ${order.order_view_num}</h3>
-											<h3>주문일   : ${order.order_date}</h3>
-											<p>결제금액 : ${order.order_total}</p>
-											<p>배달주소 : ${order.order_adress}</p>
-											<p>${i.index}</p>
-											<c:forEach items="${orderItemList[i.index]}" var="item">
-												<div>
-													<h3>${item.order_detail_name}</h3>
-													<p>${item.order_detail_category}</p>
-												</div>	
-												<hr>								
-											</c:forEach>			
-										</div>
-										</li>
-									</c:forEach>										
+							<c:forEach items="${orderList}" var="order" varStatus="i">
+								<li>
+									<div class="menu">
+										<h3>주문번호 : ${order.order_view_num}</h3>
+										<h3>주문일   : ${order.order_date}</h3>
+										<p>결제금액 : ${order.order_total}</p>
+										<p>배달주소 : ${order.order_adress}</p>
+										<c:forEach items="${orderItemList[i.index]}" var="item">
+											<c:choose>
+												<c:when test="${item.order_detail_category == 'topping' || item.order_detail_category == 'dough'}">
+													<div class="item-name-small">
+														<span>+ ${item.order_detail_name}</span>
+														<span> x ${item.order_detail_quantity} / </span>
+														<span>${item.order_detail_price}원</span>														
+													</div>
+												</c:when>
+												<c:when test="${item.order_detail_category == 'pizza'}">
+													<div class="item-name-big">
+														<span>${item.order_detail_name} 피자</span>
+														<span> x ${item.order_detail_quantity} / </span>
+														<span>${item.order_detail_price}원</span>	
+													</div>												
+												</c:when>
+												<c:otherwise>
+													<div class="item-name-big">
+														<span>${item.order_detail_name}</span>
+														<span> x ${item.order_detail_quantity} / </span>
+														<span>${item.order_detail_price}원</span>
+													</div>														
+												</c:otherwise>	
+											</c:choose>							
+										</c:forEach>			
+									</div>
+								</li>
+							</c:forEach>										
 							
 						</ul>
 					</div>

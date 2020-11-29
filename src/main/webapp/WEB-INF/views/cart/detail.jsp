@@ -180,7 +180,6 @@
 	
 	<c:import url="../template/footer.jsp"></c:import>
 	<script type="text/javascript">		
-	alert(${pizzaGroupList.size()})
 	// compute each pizza item's total topping price
 	function setToppingPriceSubtotal(){
 		$(".topping-price-subtotal").each(function(){
