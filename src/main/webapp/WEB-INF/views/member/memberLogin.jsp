@@ -129,7 +129,7 @@ function loginFormWithKakao() {
 					var id = res.id;
 
 				    if(id !=''){
-				    	location.href="<%=request.getContextPath()%>/member/memberSocialIdCheck?member_id="+id;
+				    	location.href="${pageContext.request.contextPath}/member/memberSocialIdCheck?member_id="+id;
 				    }
 				    	
 					else{
