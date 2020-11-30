@@ -24,9 +24,6 @@
 			<div class="inner-box">
 				<div class="page-title-wrap">
 					<h2 class="page-title">주문방법 선택</h2>
-					<!-- <div class=""> 홈 > 매장검색
-					
-					</div> -->
 					
 				</div>
 				<div class="sel-order-area">

@@ -30,10 +30,12 @@
 			<div class="inner-box">
 				<div class="page-title-wrap">
 					<h2 class="page-title">주문방법 선택</h2>
-					<!-- <div class=""> 홈 > 매장검색
-					
-					</div> -->
-					
+					<div class="depth-area">
+						<ol>
+							<li><a href="http://localhost/t1">홈</a></li>
+							<li><a href="${pageContext.request.contextPath}/address/deliveryAfter">배달 주문</a></li>
+						</ol>
+					</div>
 				</div>
 				<div class="sel-order-area">
 					<div class="sel-order-wrap">

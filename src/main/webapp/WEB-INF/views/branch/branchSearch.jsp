@@ -21,9 +21,7 @@
 			<div class="inner-box">
 				<div class="page-title-wrap">
 					<h2 class="page-title">매장검색</h2>
-					<!-- <div class=""> 홈 > 매장검색
 					
-					</div> -->
 				</div>
 				<div class="store-wrap">
 					<div class="btn-wrap">
