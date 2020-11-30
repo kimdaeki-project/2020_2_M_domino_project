@@ -114,15 +114,17 @@
 			    <div class="col-sm-6">
 			    		<textarea rows="10" cols="40" name="inq_reply" class="divText"></textarea>
 			    </div>
-			</div>										
-	</form>	
-	</div>
-	
-	<div class="col-sm-12" style="padding: 2%; text-align: center;">
+			</div>		
+			
+		<div class="col-sm-12" style="padding: 2%; text-align: center;">
 		<input type="button" value="목록" class="checkButt inqList">	
 		<input type="submit" value="수정완료"  class="checkButt inqUpdate">	
 		<input type="button" value="삭제"  class="checkButt inqUpdateDel">
+	</div>								
+	</form>	
 	</div>
+	
+
 	
 	</div>
 	<c:import url="../template/footer.jsp"></c:import>
@@ -135,7 +137,9 @@
 
 	$(".inqUpdateDel").click(function() {
 		location.href = "./memberInquirlyListDelete?inq_num=${dto.inq_num}";
+		
 	});
+	
 </script>
 
 </html>
