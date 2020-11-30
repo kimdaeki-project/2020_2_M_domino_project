@@ -46,7 +46,7 @@
 	  
 	  
 	  
-	  <!-- 
+	  
 	  <error-page>
 	  	<error-code>404</error-code>
 	  	<location>/error/error404</location>
@@ -61,5 +61,5 @@
 	  	<error-code>405</error-code>
 	  	<location>/error/error405</location>
 	  </error-page>	
-	-->
+	
 </web-app>

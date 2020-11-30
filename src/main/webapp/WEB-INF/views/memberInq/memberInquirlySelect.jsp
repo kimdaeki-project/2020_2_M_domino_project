@@ -112,7 +112,7 @@
 			<div class="col-sm-12 qna_input">
 			    <label class="control-label col-sm-2" for="inq_title">답변</label>
 			    <div class="col-sm-6">
-			    		<textarea rows="10" cols="40" name="inq_reply" class="divText" readonly="readonly"></textarea>
+			    		<textarea rows="10" cols="40" name="inq_reply" class="divText" readonly="readonly">${dto.inq_reply}</textarea>
 			    </div>
 			</div>							
 			</div>
