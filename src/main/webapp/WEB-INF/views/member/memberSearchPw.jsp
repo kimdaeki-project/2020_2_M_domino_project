@@ -194,13 +194,13 @@
 				alert("존재하는 아이디입니다. 비밀번호 찾기를 진행합니다.");
 				}else if(data == 0){
 					alert("존재하는 아이디를 입력하세요");
-					location.href = "./memberSearchPw";
+					
 				}
 				
 			});
 		}else{
 			alert("아이디를 입력해주세요.")
-			location.href = "./memberSearchPw";
+			
 		}
 	});
 
@@ -215,7 +215,7 @@
 			$("#frm").submit();
 		}else{
 			alert("필수항목들을 입력해주세요")
-			location.href = "./memberSearchPw";
+			
 		}
 	});
 	

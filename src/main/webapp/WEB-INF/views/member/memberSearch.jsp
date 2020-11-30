@@ -172,7 +172,6 @@
 			$("#frm").submit();
 		}else{
 			alert("필수항목들을 입력해주세요")
-			location.href = "./memberSearch";
 		}
 	});
 	
